@@ -419,12 +419,6 @@ namespace Memento.Forms
                     Log("Backup finished");
                 }, TaskScheduler.FromCurrentSynchronizationContext());
         }
-
-        private void linkSettings_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void Log(string message)
         {
             _logger?.Information(message);

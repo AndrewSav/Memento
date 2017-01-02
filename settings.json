@@ -1,17 +1,7 @@
 {
   "Profiles": [
     {
-      "ProfileName": "Test",
-      "SavesFolder": "c:\\jopa\\bla",
-      "GameExecutable": "jopa.exe",
-      "KillBeforeRestore": false,
-      "DontWarnOnRestore": false,
-      "BackupBeforeRestoring": true,
-      "BackupOnStartWatching": false,
-      "WriteLog": false
-    },
-    {
-      "ProfileName": "Darkest Dungeon Profile 0",
+      "ProfileName": "Darkest Dungeon",
       "SavesFolder": "E:\\Steam\\userdata\\65211558\\262060\\remote\\profile_0",
       "GameExecutable": "E:\\Steam\\steamapps\\common\\DarkestDungeon\\_windows\\Darkest.exe",
       "KillBeforeRestore": false,
@@ -21,6 +11,6 @@
       "WriteLog": false
     }
   ],
-  "DefaultProfile": "Darkest Dungeon Profile 0",
+  "DefaultProfile": "Darkest Dungeon",
   "StabilizationTimeSeconds": 5
 }

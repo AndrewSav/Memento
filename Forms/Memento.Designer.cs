@@ -54,7 +54,6 @@
             this.buttonEdit = new MetroFramework.Controls.MetroButton();
             this.linkOpenBackupsFolder = new MetroFramework.Controls.MetroLink();
             this.linkOpenSavesFolder = new MetroFramework.Controls.MetroLink();
-            this.linkSettings = new MetroFramework.Controls.MetroLink();
             this.linkRunGame = new MetroFramework.Controls.MetroLink();
             this.linkKillGame = new MetroFramework.Controls.MetroLink();
             this.watcher = new System.IO.FileSystemWatcher();
@@ -365,16 +364,6 @@
             this.linkOpenSavesFolder.UseSelectable = true;
             this.linkOpenSavesFolder.Click += new System.EventHandler(this.linkOpenSavesFolder_Click);
             // 
-            // linkSettings
-            // 
-            this.linkSettings.Location = new System.Drawing.Point(346, 56);
-            this.linkSettings.Name = "linkSettings";
-            this.linkSettings.Size = new System.Drawing.Size(131, 23);
-            this.linkSettings.TabIndex = 24;
-            this.linkSettings.Text = "Settings";
-            this.linkSettings.UseSelectable = true;
-            this.linkSettings.Click += new System.EventHandler(this.linkSettings_Click);
-            // 
             // linkRunGame
             // 
             this.linkRunGame.Enabled = false;
@@ -409,7 +398,6 @@
             this.BorderStyle = MetroFramework.Forms.MetroFormBorderStyle.FixedSingle;
             this.ClientSize = new System.Drawing.Size(514, 373);
             this.Controls.Add(this.linkOpenSavesFolder);
-            this.Controls.Add(this.linkSettings);
             this.Controls.Add(this.linkKillGame);
             this.Controls.Add(this.linkRunGame);
             this.Controls.Add(this.linkOpenBackupsFolder);
@@ -456,7 +444,6 @@
         private MetroFramework.Controls.MetroButton buttonEdit;
         private MetroFramework.Controls.MetroLink linkOpenBackupsFolder;
         private MetroFramework.Controls.MetroLink linkOpenSavesFolder;
-        private MetroFramework.Controls.MetroLink linkSettings;
         private MetroFramework.Controls.MetroLink linkRunGame;
         private MetroFramework.Controls.MetroLink linkSelect;
         private MetroFramework.Controls.MetroLink linkRestore;
