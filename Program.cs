@@ -9,6 +9,7 @@ namespace Memento
         [STAThread]
         static void Main()
         {
+            Application.SetUnhandledExceptionMode(UnhandledExceptionMode.ThrowException);
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 
             Application.EnableVisualStyles();
@@ -20,6 +21,7 @@ namespace Memento
         {
             var log = new LoggerConfiguration().WriteTo.RollingFile("unlandled.log").CreateLogger();
             Exception ex = e.ExceptionObject as Exception;
+            MessageBox.Show(ex?.ToString() ?? "Unhandled exception");
             log.Fatal(ex, "Unhandled exception");
             Environment.FailFast("Unhandled exception", ex);
         }
