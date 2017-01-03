@@ -1,16 +1,5 @@
 {
-  "Profiles": [
-    {
-      "ProfileName": "Darkest Dungeon",
-      "SavesFolder": "E:\\Steam\\userdata\\65211558\\262060\\remote\\profile_0",
-      "GameExecutable": "E:\\Steam\\steamapps\\common\\DarkestDungeon\\_windows\\Darkest.exe",
-      "KillBeforeRestore": false,
-      "DontWarnOnRestore": false,
-      "BackupBeforeRestoring": false,
-      "BackupOnStartWatching": false,
-      "WriteLog": false
-    }
-  ],
-  "DefaultProfile": "Darkest Dungeon",
+  "Profiles": [],
+  "DefaultProfile": "<New>",
   "StabilizationTimeSeconds": 5
 }
