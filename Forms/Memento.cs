@@ -306,6 +306,7 @@ namespace Memento.Forms
                     radioSpecific.Text = label;
                     radioSpecific.Tag = cofd.FileName;
                     radioSpecific.Checked = true;
+                    linkRestore.Enabled = radioSpecific.Tag != null;
                 }
                 else
                 {

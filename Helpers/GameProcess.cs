@@ -35,7 +35,8 @@ namespace Memento.Helpers
 
         public static void KillProcess(string gameExecutable)
         {
-            foreach (Process process in FindProcess(gameExecutable))
+            Process[] processes = FindProcess(gameExecutable).ToArray();
+            foreach (Process process in processes)
             {
                 process.Kill();
             }
