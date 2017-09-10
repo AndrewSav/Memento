@@ -30,24 +30,31 @@ namespace Memento.Forms
 
         private void Memento_Load(object sender, EventArgs e)
         {
-            if (File.Exists(_configPath))
+            if (!File.Exists(_configPath))
             {
-                _settings = Settings.Load(_configPath);
-                comboProfiles.Items.Add(new GameProfile {ProfileName = "<New>"});
-                foreach (GameProfile gameProfile in _settings.Profiles)
+                new Settings
                 {
-                    comboProfiles.Items.Add(gameProfile);
-                }
+                    StabilizationTimeSeconds = 5,
+                    DefaultProfile = "<New>",
+                    Profiles = new List<GameProfile>()
+                }.Save(_configPath);
+            }
 
-                GameProfile selected = _settings.Profiles.FirstOrDefault(x => x.ProfileName == _settings.DefaultProfile);
-                if (selected != null)
-                {
-                    comboProfiles.SelectedItem = selected;
-                }
-                else
-                {
-                    comboProfiles.SelectedIndex = 0;
-                }
+            _settings = Settings.Load(_configPath);
+            comboProfiles.Items.Add(new GameProfile { ProfileName = "<New>" });
+            foreach (GameProfile gameProfile in _settings.Profiles)
+            {
+                comboProfiles.Items.Add(gameProfile);
+            }
+
+            GameProfile selected = _settings.Profiles.FirstOrDefault(x => x.ProfileName == _settings.DefaultProfile);
+            if (selected != null)
+            {
+                comboProfiles.SelectedItem = selected;
+            }
+            else
+            {
+                comboProfiles.SelectedIndex = 0;
             }
 
             _radioButtons =
