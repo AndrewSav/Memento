@@ -30,6 +30,10 @@ namespace Memento.Forms
 
         private void Memento_Load(object sender, EventArgs e)
         {
+            System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
+            FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
+            linkVersion.Text = $"v{fvi.FileMajorPart}.{fvi.FileMinorPart}.{fvi.FileBuildPart}";
+
             if (!File.Exists(_configPath))
             {
                 new Settings
@@ -430,6 +434,11 @@ namespace Memento.Forms
         private void Log(string message)
         {
             _logger?.Information(message);
+        }
+
+        private void linkVersion_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/AndrewSav/Memento/releases");
         }
     }
 }

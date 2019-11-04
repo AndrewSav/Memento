@@ -34,8 +34,8 @@
             this.radioSpecific = new MetroFramework.Controls.MetroRadioButton();
             this.radio02 = new MetroFramework.Controls.MetroRadioButton();
             this.radio01 = new MetroFramework.Controls.MetroRadioButton();
-            this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
+            this.labelSpecificBackup = new MetroFramework.Controls.MetroLabel();
+            this.labelLatestBackups = new MetroFramework.Controls.MetroLabel();
             this.buttonStartStop = new MetroFramework.Controls.MetroButton();
             this.labelSelectGameProfile = new MetroFramework.Controls.MetroLabel();
             this.labelWarning = new MetroFramework.Controls.MetroLabel();
@@ -58,6 +58,7 @@
             this.linkRunGame = new MetroFramework.Controls.MetroLink();
             this.linkKillGame = new MetroFramework.Controls.MetroLink();
             this.watcher = new System.IO.FileSystemWatcher();
+            this.linkVersion = new MetroFramework.Controls.MetroLink();
             this.panelBackups.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.watcher)).BeginInit();
             this.SuspendLayout();
@@ -116,23 +117,23 @@
             this.radio01.Visible = false;
             this.radio01.Click += new System.EventHandler(this.radioLastest_Click);
             // 
-            // metroLabel2
+            // labelSpecificBackup
             // 
-            this.metroLabel2.AutoSize = true;
-            this.metroLabel2.Location = new System.Drawing.Point(312, 9);
-            this.metroLabel2.Name = "metroLabel2";
-            this.metroLabel2.Size = new System.Drawing.Size(102, 19);
-            this.metroLabel2.TabIndex = 14;
-            this.metroLabel2.Text = "Specific Backup:";
+            this.labelSpecificBackup.AutoSize = true;
+            this.labelSpecificBackup.Location = new System.Drawing.Point(312, 9);
+            this.labelSpecificBackup.Name = "labelSpecificBackup";
+            this.labelSpecificBackup.Size = new System.Drawing.Size(102, 19);
+            this.labelSpecificBackup.TabIndex = 14;
+            this.labelSpecificBackup.Text = "Specific Backup:";
             // 
-            // metroLabel1
+            // labelLatestBackups
             // 
-            this.metroLabel1.AutoSize = true;
-            this.metroLabel1.Location = new System.Drawing.Point(3, 9);
-            this.metroLabel1.Name = "metroLabel1";
-            this.metroLabel1.Size = new System.Drawing.Size(96, 19);
-            this.metroLabel1.TabIndex = 15;
-            this.metroLabel1.Text = "Latest Backups:";
+            this.labelLatestBackups.AutoSize = true;
+            this.labelLatestBackups.Location = new System.Drawing.Point(3, 9);
+            this.labelLatestBackups.Name = "labelLatestBackups";
+            this.labelLatestBackups.Size = new System.Drawing.Size(96, 19);
+            this.labelLatestBackups.TabIndex = 15;
+            this.labelLatestBackups.Text = "Latest Backups:";
             // 
             // buttonStartStop
             // 
@@ -178,8 +179,8 @@
             this.panelBackups.Controls.Add(this.radio09);
             this.panelBackups.Controls.Add(this.radio08);
             this.panelBackups.Controls.Add(this.radio07);
-            this.panelBackups.Controls.Add(this.metroLabel1);
-            this.panelBackups.Controls.Add(this.metroLabel2);
+            this.panelBackups.Controls.Add(this.labelLatestBackups);
+            this.panelBackups.Controls.Add(this.labelSpecificBackup);
             this.panelBackups.Controls.Add(this.radio01);
             this.panelBackups.Controls.Add(this.radio05);
             this.panelBackups.Controls.Add(this.radio04);
@@ -392,6 +393,18 @@
             this.watcher.EnableRaisingEvents = true;
             this.watcher.SynchronizingObject = this;
             // 
+            // linkVersion
+            // 
+            this.linkVersion.FontWeight = MetroFramework.MetroLinkWeight.Regular;
+            this.linkVersion.Location = new System.Drawing.Point(432, 345);
+            this.linkVersion.Name = "linkVersion";
+            this.linkVersion.Size = new System.Drawing.Size(81, 23);
+            this.linkVersion.TabIndex = 24;
+            this.linkVersion.Text = "v00.00.00";
+            this.linkVersion.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+            this.linkVersion.UseSelectable = true;
+            this.linkVersion.Click += new System.EventHandler(this.linkVersion_Click);
+            // 
             // Memento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -399,6 +412,7 @@
             this.BorderStyle = MetroFramework.Forms.MetroFormBorderStyle.FixedSingle;
             this.ClientSize = new System.Drawing.Size(514, 373);
             this.Controls.Add(this.linkOpenSavesFolder);
+            this.Controls.Add(this.linkVersion);
             this.Controls.Add(this.linkKillGame);
             this.Controls.Add(this.linkRunGame);
             this.Controls.Add(this.linkOpenBackupsFolder);
@@ -428,8 +442,8 @@
         private MetroFramework.Controls.MetroRadioButton radioSpecific;
         private MetroFramework.Controls.MetroRadioButton radio02;
         private MetroFramework.Controls.MetroRadioButton radio01;
-        private MetroFramework.Controls.MetroLabel metroLabel2;
-        private MetroFramework.Controls.MetroLabel metroLabel1;
+        private MetroFramework.Controls.MetroLabel labelSpecificBackup;
+        private MetroFramework.Controls.MetroLabel labelLatestBackups;
         private MetroFramework.Controls.MetroButton buttonStartStop;
         private MetroFramework.Controls.MetroLabel labelSelectGameProfile;
         private MetroFramework.Controls.MetroLabel labelWarning;
@@ -452,6 +466,7 @@
         private MetroFramework.Controls.MetroLink linkBackup;
         private MetroFramework.Controls.MetroLink linkKillGame;
         private System.IO.FileSystemWatcher watcher;
+        private MetroFramework.Controls.MetroLink linkVersion;
     }
 }
 

@@ -26,18 +26,6 @@ namespace Memento.Helpers
             return GetBackupsFolder(profile.ProfileName);
         }
 
-        //public static IEnumerable<string> GetBackupsDescending(string backups)
-        //{
-        //    int depth = backups.Split('\\').Length;
-        //    return Directory.GetDirectories(backups, "*", SearchOption.AllDirectories)
-        //        .Where(x => x.Split('\\').Length == depth + 3)
-        //        .OrderByDescending(x => x);
-        //}
-        //public static IEnumerable<string> GetBackupsDescending(this GameProfile profile)
-        //{
-        //    return GetBackupsDescending(GetBackupsFolder(profile.ProfileName));
-        //}
-
         private static void CopyFolder(string source, string target)
         {
             Directory.CreateDirectory(target);
