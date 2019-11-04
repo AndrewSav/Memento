@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Memento));
             this.metroToolTip1 = new MetroFramework.Components.MetroToolTip();
             this.comboProfiles = new MetroFramework.Controls.MetroComboBox();
             this.radioSpecific = new MetroFramework.Controls.MetroRadioButton();
@@ -407,6 +408,7 @@
             this.Controls.Add(this.buttonEdit);
             this.Controls.Add(this.buttonStartStop);
             this.Controls.Add(this.comboProfiles);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Memento";
             this.Resizable = false;

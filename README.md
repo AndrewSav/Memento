@@ -12,3 +12,6 @@ That's about it. The program does not prune old saves, so if unchecked, it can g
 Also it's possible to do manual back up / restore instead of watching.
 
 Please make sure that when you are restoring the game is not running, it's probably not programmed to withstand save changes on the fly.
+
+
+Icon made by [author link](https://www.flaticon.com/authors/bqlqn) from <www.flaticon.com>
