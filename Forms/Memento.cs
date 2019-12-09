@@ -9,7 +9,6 @@ using System.Windows.Forms;
 using Memento.Helpers;
 using Memento.Models;
 using MetroFramework.Controls;
-using Microsoft.WindowsAPICodePack.Dialogs;
 using Serilog.Core;
 
 namespace Memento.Forms
@@ -38,6 +37,9 @@ namespace Memento.Forms
             {
                 new Settings
                 {
+                    LogFileName = "log-{Date}.txt",
+                    LogRetainedCountLimit = "9",
+                    LogSizeLimitBytes = "1000000",
                     StabilizationTimeSeconds = 5,
                     DefaultProfile = "<New>",
                     Profiles = new List<GameProfile>()
@@ -302,20 +304,19 @@ namespace Memento.Forms
             string backups = _selectedItem.GetBackupsFolder();
             string backup = _selectedItem.GetBackupsDescending().FirstOrDefault();
 
-            CommonOpenFileDialog cofd = new CommonOpenFileDialog
+            FolderBrowserDialog cofd = new FolderBrowserDialog
             {
-                IsFolderPicker = true,
-                InitialDirectory = backup ?? backups
+                SelectedPath = backup ?? backups
             };
-            if (cofd.ShowDialog() == CommonFileDialogResult.Ok)
+            if (cofd.ShowDialog() == DialogResult.OK)
             {
-                Log($"Selected {cofd.FileName}");
-                string label = BackupFolders.GetLabelFromPath(cofd.FileName);
+                Log($"Selected {cofd.SelectedPath}");
+                string label = BackupFolders.GetLabelFromPath(cofd.SelectedPath);
                 if (label != null)
                 {
                     Log($"Corresponds to {label}");
                     radioSpecific.Text = label;
-                    radioSpecific.Tag = cofd.FileName;
+                    radioSpecific.Tag = cofd.SelectedPath;
                     radioSpecific.Checked = true;
                     linkRestore.Enabled = radioSpecific.Tag != null;
                 }
@@ -329,12 +330,22 @@ namespace Memento.Forms
 
         private void linkOpenSavesFolder_Click(object sender, EventArgs e)
         {
-            Process.Start(_selectedItem.SavesFolder);
+            ProcessStartInfo psi = new ProcessStartInfo
+            {
+                FileName = _selectedItem.SavesFolder,
+                UseShellExecute = true
+            };
+            Process.Start(psi);
         }
 
         private void linkOpenBackupsFolder_Click(object sender, EventArgs e)
         {
-            Process.Start(BackupFolders.GetBackupsFolder(_selectedItem.ProfileName));
+            ProcessStartInfo psi = new ProcessStartInfo
+            {
+                FileName = BackupFolders.GetBackupsFolder(_selectedItem.ProfileName),
+                UseShellExecute = true
+            };
+            Process.Start(psi);
         }
 
         private void linkRunGame_Click(object sender, EventArgs e)

@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
 using Memento.Models;
-using Microsoft.WindowsAPICodePack.Dialogs;
+//using Microsoft.WindowsAPICodePack.Dialogs;
 
 namespace Memento.Forms
 {
@@ -54,32 +55,24 @@ namespace Memento.Forms
 
         private void buttonSavesFolder_Click(object sender, EventArgs e)
         {
-            CommonOpenFileDialog cofd = new CommonOpenFileDialog
-            {
-                IsFolderPicker = true,
-                InitialDirectory = textSavesFolder.Text.Trim()
+            FolderBrowserDialog cofd = new FolderBrowserDialog
+            {                
+                SelectedPath = textSavesFolder.Text.Trim()
             };
-            if (cofd.ShowDialog() == CommonFileDialogResult.Ok)
+            if (cofd.ShowDialog() == DialogResult.OK)
             {
-                textSavesFolder.Text = cofd.FileName;
+                textSavesFolder.Text = cofd.SelectedPath;
             }
         }
 
         private void buttonGameExecutable_Click(object sender, EventArgs e)
         {
-            CommonOpenFileDialog cofd = new CommonOpenFileDialog
+            OpenFileDialog cofd = new OpenFileDialog
             {
-                Filters =
-                {
-                    new CommonFileDialogFilter
-                    {
-                        DisplayName = "Executable",
-                        Extensions = { "exe" },
-                        ShowExtensions = true                    
-                    }               
-                }
+                Filter = "Executables (*.exe)|*.exe",
+                DefaultExt = "exe"
             };
-            if (cofd.ShowDialog() == CommonFileDialogResult.Ok)
+            if (cofd.ShowDialog() == DialogResult.OK)
             {
                 textGameExecutable.Text = cofd.FileName;
             }

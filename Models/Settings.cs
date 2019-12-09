@@ -7,6 +7,10 @@ namespace Memento.Models
     // ReSharper disable once ClassNeverInstantiated.Global
     public class Settings
     {
+
+        public string LogFileName { get; set; }
+        public string LogSizeLimitBytes { get; set; }
+        public string LogRetainedCountLimit { get; set; }
         public List<GameProfile> Profiles { get; set; }
         public string DefaultProfile { get; set; }
         public int StabilizationTimeSeconds { get; set; }

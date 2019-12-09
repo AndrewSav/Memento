@@ -1,18 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using Memento.Models;
 
 namespace Memento.Helpers
 {
+
     static class BackupFolders
     {
         public static string GetBaseFolder()
         {
-            return Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+            Process me = Process.GetCurrentProcess();
+            string parentFileName = me.Parent().MainModule.FileName;
+            string myFileName = me.MainModule.FileName;
+            string target = Path.GetFileName(parentFileName) == Path.GetFileName(myFileName) ? parentFileName : myFileName;
+            return Path.GetDirectoryName(target);
         }
         public static string GetBackupsFolder(string profileName)
         {
