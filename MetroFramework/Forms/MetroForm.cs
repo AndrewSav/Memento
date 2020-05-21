@@ -596,9 +596,10 @@ namespace MetroFramework.Forms
                         if (WindowState == FormWindowState.Normal)
                         {
                             if (shadowForm != null) shadowForm.Visible = true;
-                            btn.Text = "1";
+                            //btn.Text = "1";
+                            btn.Text = "\U0001F5D6"; // \U0001F5D6
                         }
-                        if (WindowState == FormWindowState.Maximized) btn.Text = "2";
+                        if (WindowState == FormWindowState.Maximized) /* btn.Text = "2";*/ btn.Text = "\U0001F5D7"; // \U0001F5D7
                     }
                     break;
             }
@@ -761,12 +762,14 @@ namespace MetroFramework.Forms
                     if (WindowState == FormWindowState.Normal)
                     {
                         WindowState = FormWindowState.Maximized;
-                        btn.Text = "2";
+                        //btn.Text = "2";
+                        btn.Text = "\U0001F5D7"; // \U0001F5D7
                     }
                     else
                     {
                         WindowState = FormWindowState.Normal;
-                        btn.Text = "1";
+                        //btn.Text = "1";
+                        btn.Text = "\U0001F5D6"; // \U0001F5D6
                     }
                 }
             }
