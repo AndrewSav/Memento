@@ -33,11 +33,25 @@ You can build in VS2019. You can use `build.ps1` to build the Release with .Net 
 
 ## Change Log
 
-* 1.0.2 
+* 1.0.4
+
+  * Added ability to rename saves
+  * Added ability to delete saves from the application itself
+  * Fixed a bug, when after renaming a profile, the application did not know how to find old saves
+  * A minor fix for MetroFramework
+
+* 1.0.3
+
+  * Removed maximise button on the Edit form
+  * Moved up Edit form button to align better with the drop down
+  * Fixed version link not working
+  * Updated .net core sdk to the lastest
+  * Worked around a race condition in the build script, that caused a missing icon in the executable
+
+* 1.0.2
 
   * Ported to .Net Core. 
   * Fixed an issue with [Use Unicode UTF-8 for worldwide language support](https://stackoverflow.com/questions/56419639/what-does-beta-use-unicode-utf-8-for-worldwide-language-support-actually-do) option.
-
   
 
 ## Attributions

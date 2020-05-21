@@ -122,7 +122,6 @@ namespace Memento.Forms
             this.radioSpecific.Text = "none";
             this.radioSpecific.UseSelectable = true;
             this.radioSpecific.Click += new System.EventHandler(this.radioLastest_Click);
-            //this.radioSpecific.MouseUp += new System.Windows.Forms.MouseEventHandler(this.radioLastest_MouseUp);
             this.radioSpecific.KeyUp += new System.Windows.Forms.KeyEventHandler(this.radioLastest_KeyUp);
             this.radioSpecific.ContextMenuStrip = this.contextMenuStrip;
             // 
@@ -137,7 +136,6 @@ namespace Memento.Forms
             this.radio02.UseSelectable = true;
             this.radio02.Visible = false;
             this.radio02.Click += new System.EventHandler(this.radioLastest_Click);
-            //this.radio02.MouseUp += new System.Windows.Forms.MouseEventHandler(this.radioLastest_MouseUp);
             this.radio02.KeyUp += new System.Windows.Forms.KeyEventHandler(this.radioLastest_KeyUp);
             this.radio02.ContextMenuStrip = this.contextMenuStrip;
             // 
@@ -152,7 +150,6 @@ namespace Memento.Forms
             this.radio01.UseSelectable = true;
             this.radio01.Visible = false;
             this.radio01.Click += new System.EventHandler(this.radioLastest_Click);
-            //this.radio01.MouseUp += new System.Windows.Forms.MouseEventHandler(this.radioLastest_MouseUp);
             this.radio01.KeyUp += new System.Windows.Forms.KeyEventHandler(this.radioLastest_KeyUp);
             this.radio01.ContextMenuStrip = this.contextMenuStrip;
             // 
@@ -282,7 +279,6 @@ namespace Memento.Forms
             this.radio06.UseSelectable = true;
             this.radio06.Visible = false;
             this.radio06.Click += new System.EventHandler(this.radioLastest_Click);
-            //this.radio06.MouseUp += new System.Windows.Forms.MouseEventHandler(this.radioLastest_MouseUp);
             this.radio06.KeyUp += new System.Windows.Forms.KeyEventHandler(this.radioLastest_KeyUp);
             this.radio06.ContextMenuStrip = this.contextMenuStrip;
             // 
@@ -306,7 +302,6 @@ namespace Memento.Forms
             this.radio10.UseSelectable = true;
             this.radio10.Visible = false;
             this.radio10.Click += new System.EventHandler(this.radioLastest_Click);
-            //this.radio10.MouseUp += new System.Windows.Forms.MouseEventHandler(this.radioLastest_MouseUp);
             this.radio10.KeyUp += new System.Windows.Forms.KeyEventHandler(this.radioLastest_KeyUp);
             this.radio10.ContextMenuStrip = this.contextMenuStrip;
             // 
@@ -321,7 +316,6 @@ namespace Memento.Forms
             this.radio09.UseSelectable = true;
             this.radio09.Visible = false;
             this.radio09.Click += new System.EventHandler(this.radioLastest_Click);
-            //this.radio09.MouseUp += new System.Windows.Forms.MouseEventHandler(this.radioLastest_MouseUp);
             this.radio09.KeyUp += new System.Windows.Forms.KeyEventHandler(this.radioLastest_KeyUp);
             this.radio09.ContextMenuStrip = this.contextMenuStrip;
             // 
@@ -336,7 +330,6 @@ namespace Memento.Forms
             this.radio08.UseSelectable = true;
             this.radio08.Visible = false;
             this.radio08.Click += new System.EventHandler(this.radioLastest_Click);
-            //this.radio08.MouseUp += new System.Windows.Forms.MouseEventHandler(this.radioLastest_MouseUp);
             this.radio09.KeyUp += new System.Windows.Forms.KeyEventHandler(this.radioLastest_KeyUp);
             this.radio08.ContextMenuStrip = this.contextMenuStrip;
             // 
@@ -351,7 +344,6 @@ namespace Memento.Forms
             this.radio07.UseSelectable = true;
             this.radio07.Visible = false;
             this.radio07.Click += new System.EventHandler(this.radioLastest_Click);
-            //this.radio07.MouseUp += new System.Windows.Forms.MouseEventHandler(this.radioLastest_MouseUp);
             this.radio07.KeyUp += new System.Windows.Forms.KeyEventHandler(this.radioLastest_KeyUp);
             this.radio07.ContextMenuStrip = this.contextMenuStrip;
             // 
@@ -366,7 +358,6 @@ namespace Memento.Forms
             this.radio05.UseSelectable = true;
             this.radio05.Visible = false;
             this.radio05.Click += new System.EventHandler(this.radioLastest_Click);
-            //this.radio05.MouseUp += new System.Windows.Forms.MouseEventHandler(this.radioLastest_MouseUp);
             this.radio05.KeyUp += new System.Windows.Forms.KeyEventHandler(this.radioLastest_KeyUp);
             this.radio05.ContextMenuStrip = this.contextMenuStrip;
             // 
@@ -381,7 +372,6 @@ namespace Memento.Forms
             this.radio04.UseSelectable = true;
             this.radio04.Visible = false;
             this.radio04.Click += new System.EventHandler(this.radioLastest_Click);
-            //this.radio04.MouseUp += new System.Windows.Forms.MouseEventHandler(this.radioLastest_MouseUp);
             this.radio04.KeyUp += new System.Windows.Forms.KeyEventHandler(this.radioLastest_KeyUp);
             this.radio04.ContextMenuStrip = this.contextMenuStrip;
             // 
@@ -396,7 +386,6 @@ namespace Memento.Forms
             this.radio03.UseSelectable = true;
             this.radio03.Visible = false;
             this.radio03.Click += new System.EventHandler(this.radioLastest_Click);
-            //this.radio03.MouseUp += new System.Windows.Forms.MouseEventHandler(this.radioLastest_MouseUp);
             this.radio03.KeyUp += new System.Windows.Forms.KeyEventHandler(this.radioLastest_KeyUp);
             this.radio03.ContextMenuStrip = this.contextMenuStrip;
             // 
@@ -476,7 +465,6 @@ namespace Memento.Forms
             this.textBoxSaveEdit.Size = new System.Drawing.Size(120, 20);
             this.textBoxSaveEdit.Visible = false;
             this.textBoxSaveEdit.Leave += new System.EventHandler(this.textBoxSaveEdit_Leave);
-            //this.textBoxSaveEdit.LostFocus += new System.EventHandler(this.textBoxSaveEdit_Leave);
             this.textBoxSaveEdit.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBoxSaveEdit_KeyUp);
             // 
             // Memento
