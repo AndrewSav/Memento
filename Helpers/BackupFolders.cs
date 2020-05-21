@@ -74,7 +74,7 @@ namespace Memento.Helpers
 
         public static string GetLabelFromPath(string s)
         {
-            return BackupPath.FromPath(s)?.Timestamp.ToString("d MMM yyyy HH:mm:ss");
+            return BackupPath.FromPath(s)?.Label;
         }
 
         private static string PathCombineMultiple(params string[] parts)

@@ -11,7 +11,7 @@ namespace Memento.Helpers
         public string Month { get; private set; }
         public string Day { get; private set; }
         public string Time { get; private set; }
-        public DateTime Timestamp { get; private set; }
+        public string Label { get; private set; }
 
         private BackupPath() { }
 
@@ -23,11 +23,14 @@ namespace Memento.Helpers
                 Day = timestamp.ToString("dd"),
                 Time = timestamp.ToString("HH.mm.ss"),
                 Base = savesFolder,
-                Timestamp = timestamp
-
+                Label = LabelFromTimestamp(timestamp)
             };
         }
 
+        private static string LabelFromTimestamp(DateTime timestamp)
+        {
+            return timestamp.ToString("d MMM yyyy HH:mm:ss");
+        }
         public static BackupPath FromPath(string path)
         {
             if (path == null)
@@ -49,7 +52,9 @@ namespace Memento.Helpers
                 Base = basePath
             };
 
-            DateTime? timePart = ParseDatePart(result.Time, "HH.mm.ss", "HH.mm.ss_manual", "HH.mm.ss_restore");
+            (string time, string label) = SplitTimeAndLabel(result.Time);
+
+            DateTime? timePart = ParseDatePart(time, "HH.mm.ss", "HH.mm.ss_manual", "HH.mm.ss_restore");
             DateTime? dayPart = ParseDatePart(result.Day, "dd");
             DateTime? monthPart = ParseDatePart(result.Month, "yyyy-MM");
 
@@ -58,13 +63,13 @@ namespace Memento.Helpers
                 return null;
             }
 
-            result.Timestamp = new DateTime(
+            result.Label = string.IsNullOrEmpty(label) ? LabelFromTimestamp(new DateTime(
                 monthPart.Value.Year,
                 monthPart.Value.Month,
                 dayPart.Value.Day,
                 timePart.Value.Hour,
                 timePart.Value.Minute,
-                timePart.Value.Second);
+                timePart.Value.Second)): label;
             return result;
         }
 
@@ -76,6 +81,26 @@ namespace Memento.Helpers
             result = Path.Combine(result, Time);
             return result;
         }
+        
+        private static (string time, string label) SplitTimeAndLabel(string timeLabelPart)
+        {
+            int indexOfMinus = timeLabelPart.IndexOf('-');
+            if (indexOfMinus < 0)
+            {
+                return (timeLabelPart, "");
+            }
+            else
+            {
+                string time = timeLabelPart.Substring(0, indexOfMinus);
+                string label = timeLabelPart.Substring(indexOfMinus);
+                if (label.Length > 0)
+                {
+                    label = label.Substring(1);
+                }
+                return (time.Trim(), label.Trim());
+            }
+        }
+
         private static DateTime? ParseDatePart(string part, params string[] patterns)
         {
             foreach (string pattern in patterns)
