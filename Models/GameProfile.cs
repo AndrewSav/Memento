@@ -6,7 +6,14 @@ namespace Memento.Models
 {
     public class GameProfile
     {
+        private string backupFolder;
+
         public string ProfileName { get; set; }
+        public string BackupFolder 
+        { 
+            get => backupFolder ?? (ProfileName == "<New>" ? null : ProfileName); 
+            set => backupFolder = value; 
+        }
         public string SavesFolder { get; set; }
         public string GameExecutable { get; set; }
         public bool KillBeforeRestore { get; set; }
@@ -17,6 +24,7 @@ namespace Memento.Models
         public void Load(GameProfile copy)
         {
             ProfileName = copy.ProfileName;
+            BackupFolder = copy.BackupFolder;
             SavesFolder = copy.SavesFolder;
             GameExecutable = copy.GameExecutable;
             KillBeforeRestore = copy.KillBeforeRestore;
@@ -32,9 +40,9 @@ namespace Memento.Models
             {
                 return "Profile name cannot be empty";
             }
-            if (ProfileName.StartsWith("<"))
+            if (ProfileName.IndexOfAny(Path.GetInvalidFileNameChars()) >= 0)
             {
-                return "Profile name cannot start with '<'";
+                return $"Profile name cannot have illegal characters";
             }
             if (ProfileName != originalProfileName && existingProfiles != null && existingProfiles.Contains(ProfileName))
             {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using Memento.Models;
-//using Microsoft.WindowsAPICodePack.Dialogs;
+using System.Linq;
 
 namespace Memento.Forms
 {
@@ -12,7 +12,7 @@ namespace Memento.Forms
         {
             InitializeComponent();
         }
-
+                
         public GameProfile Profile
         {
             get
@@ -20,6 +20,7 @@ namespace Memento.Forms
                 return new GameProfile
                 {
                     ProfileName = textProfileName.Text.Trim(),
+                    BackupFolder = backupFolder ?? textProfileName.Text.Trim(),
                     SavesFolder = textSavesFolder.Text.Trim(),
                     GameExecutable = textGameExecutable.Text.Trim(),
                     BackupBeforeRestoring = toggleBackupBeforeRestoring.Checked,
@@ -32,6 +33,7 @@ namespace Memento.Forms
             set
             {
                 textProfileName.Text = value.ProfileName;
+                backupFolder = value.BackupFolder;
                 textSavesFolder.Text = value.SavesFolder;
                 textGameExecutable.Text = value.GameExecutable;
                 toggleBackupBeforeRestoring.Checked = value.BackupBeforeRestoring;
@@ -43,9 +45,13 @@ namespace Memento.Forms
         }
 
         public string InitialProfileName { get; set; }
+        public string InitialBackupFolder { get; set; }
         public IEnumerable<string> ExistingProfileNames { get; set; }
+        public IEnumerable<string> ExistingBackupFolders { get; set; }
         public bool Deleted { get; private set; }
         public bool Updated { get; private set; }
+        private string backupFolder;
+
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
@@ -85,6 +91,10 @@ namespace Memento.Forms
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
+            if (InitialBackupFolder != Profile.BackupFolder && ExistingBackupFolders != null && ExistingBackupFolders.Contains(Profile.BackupFolder))
+            {
+                backupFolder += Profile.BackupFolder + $" - {DateTime.Now:dd MMM yyyy HH.mm.ss}";
+            }
             string message = Profile.GetValidateMessage(ExistingProfileNames, InitialProfileName);
             if (message == null)
             {

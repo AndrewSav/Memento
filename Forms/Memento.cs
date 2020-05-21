@@ -152,7 +152,9 @@ namespace Memento.Forms
             {
                 editGameProfile.Profile = currentProfile;
                 editGameProfile.InitialProfileName = currentProfile.ProfileName;
+                editGameProfile.InitialBackupFolder = currentProfile.BackupFolder;
                 editGameProfile.ExistingProfileNames = _settings.Profiles.Select(x => x.ProfileName);
+                editGameProfile.ExistingBackupFolders = _settings.Profiles.Select(x => x.BackupFolder);
             }
 
             editGameProfile.ShowDialog(this);
@@ -260,7 +262,7 @@ namespace Memento.Forms
             linkOpenSavesFolder.Enabled = true;
 
             _logger?.Dispose();
-            _logger = _selectedItem.WriteLog ? LoggerHelper.GetLoggerForFolder(BackupFolders.GetBackupsFolder(_selectedItem.ProfileName)) : null;
+            _logger = _selectedItem.WriteLog ? LoggerHelper.GetLoggerForFolder(_selectedItem.GetBackupsFolder()) : null;
             Log($"Profile selected {_selectedItem.ProfileName}");
         }
 
@@ -342,7 +344,7 @@ namespace Memento.Forms
         {
             ProcessStartInfo psi = new ProcessStartInfo
             {
-                FileName = BackupFolders.GetBackupsFolder(_selectedItem.ProfileName),
+                FileName = _selectedItem.GetBackupsFolder(),
                 UseShellExecute = true
             };
             Process.Start(psi);

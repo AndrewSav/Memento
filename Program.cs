@@ -1,8 +1,9 @@
 using System;
 using Serilog;
 using System.Windows.Forms;
+
 [assembly: CLSCompliant(true)]
-namespace wf
+namespace Memento
 {
     static class Program
     {
