@@ -34,6 +34,15 @@ namespace Memento.Helpers
             return string.IsNullOrEmpty(_customLabel) ? LabelFromTimestamp(_timestamp) : _customLabel;
         }
 
+        public bool IsSameIgnoreLabel(BackupPath other)
+        {
+            return _base == other._base
+                && _month == other._month
+                && _day == other._day
+                && _time == other._time
+                && _timestamp == other._timestamp;
+        }
+
         public static BackupPath FromDateTime(DateTime timestamp, string savesFolder)
         {
             return new BackupPath

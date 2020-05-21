@@ -117,19 +117,59 @@ namespace Memento.Forms
             }
         }
 
-        private void UpdateRadioButtons()
+
+        private void SelectNoneBackup()
         {
-            string selectBackup = panelBackups.Controls.OfType<MetroRadioButton>().First(x => x.Checked).Tag as string;
+            radioSpecific.Checked = true;
+            radioSpecific.Tag = null;
+            radioSpecific.Text =  @"none";
+        }
+
+        private void UpdateRadioButtonsInner()
+        {
             foreach (MetroRadioButton button in _radioButtons)
             {
                 button.Visible = false;
             }
             GetRadioButtons(_selectedItem);
+
+        }
+        
+        private void UpdateRadioButtons()
+        {
+            string selectBackup = panelBackups.Controls.OfType<MetroRadioButton>().First(x => x.Checked).Tag as string;
+            
+            UpdateRadioButtonsInner();
+            
+            if (selectBackup == null)
+            {
+                SelectNoneBackup();
+                return;
+            }
+            
+            if (!Directory.Exists(selectBackup))
+            {
+                BackupPath old = BackupPath.FromPath(selectBackup);
+                selectBackup = panelBackups.Controls.OfType<MetroRadioButton>().FirstOrDefault(x => x.Visible && x != radioSpecific && old.IsSameIgnoreLabel(BackupPath.FromPath((string)x.Tag)))?.Tag as string;
+            }
+
+            if (selectBackup == null)
+            {
+                SelectNoneBackup();
+                return;
+            }
+
             MetroRadioButton selectedRadio = panelBackups.Controls.OfType<MetroRadioButton>().FirstOrDefault(x => x.Tag as string == selectBackup);
-            selectedRadio = selectedRadio ?? radioSpecific;
+            selectedRadio = radioSpecific.Checked ? radioSpecific : selectedRadio ?? radioSpecific;
             selectedRadio.Checked = true;
             selectedRadio.Tag = selectBackup;
             selectedRadio.Text = TrimStringForRadioButton(BackupFolders.GetLabelFromPath(selectBackup) ?? @"none");
+            
+            if (!radioSpecific.Checked && radioSpecific.Tag != null && BackupPath.FromPath(selectBackup).IsSameIgnoreLabel(BackupPath.FromPath((string)radioSpecific.Tag)))
+            {
+                radioSpecific.Text = selectedRadio.Text;
+                radioSpecific.Tag = selectedRadio.Tag;
+            }
         }
 
 
@@ -460,19 +500,21 @@ namespace Memento.Forms
             };
             Process.Start(psi);
         }
-        private void radioLastest_MouseUp(object sender, MouseEventArgs e)
+
+        private void contextMenuStrip_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            MetroRadioButton button = (MetroRadioButton)sender;
-            if (e.Button == MouseButtons.Right)
+            MetroContextMenu strip = (MetroContextMenu)sender;
+            MetroRadioButton button = (MetroRadioButton)strip.SourceControl;
+            if (button.Tag == null)
             {
-                button.ContextMenuStrip.Show(button, new Point(e.X, e.Y));
+                e.Cancel = true;
             }
         }
 
         private void radioLastest_KeyUp(object sender, KeyEventArgs e)
         {
             MetroRadioButton button = (MetroRadioButton)sender;
-            if (e.KeyCode == Keys.F2)
+            if (e.KeyCode == Keys.F2 && button.Tag != null)
             {
                 EditSaveName(button);
             }
