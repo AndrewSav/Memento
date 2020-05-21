@@ -338,7 +338,7 @@
             // 
             // buttonEdit
             // 
-            this.buttonEdit.Location = new System.Drawing.Point(466, 85);
+            this.buttonEdit.Location = new System.Drawing.Point(466, 80);
             this.buttonEdit.Name = "buttonEdit";
             this.buttonEdit.Size = new System.Drawing.Size(25, 29);
             this.buttonEdit.TabIndex = 1;

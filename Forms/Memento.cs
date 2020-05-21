@@ -449,7 +449,12 @@ namespace Memento.Forms
 
         private void linkVersion_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("https://github.com/AndrewSav/Memento/releases");
+            ProcessStartInfo psi = new ProcessStartInfo
+            {
+                FileName = "https://github.com/AndrewSav/Memento/releases",
+                UseShellExecute = true
+            };
+            Process.Start(psi);
         }
     }
 }

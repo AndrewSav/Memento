@@ -33,9 +33,11 @@ dotnet build
 Remove-Item $debugBinRuntimes -Recurse -Force
 & $warp -i $debugBin -a windows-x64 -e Memento.exe -o $tempExe
 & $editbin /subsystem:windows $tempExe
-& $rh -open $tempExe -save $tempExe -action addskip -res $icon -mask "ICONGROUP,MAINICON,"
-Compress-Archive $tempExe $targetZip -Force
-Remove-Item $tempExe
+Start-Process $rh "-open", $tempExe, "-save", $tempExe, "-action", "addskip", "-res", $icon, "-mask", "ICONGROUP,MAINICON," -Wait
 
 dotnet publish -c Release -r win-x64 -p:PublishTrimmed=true -p:PublishSingleFile=true
 Compress-Archive "$releasePublish/*" $targetSelfContainedZip -Force
+
+Compress-Archive $tempExe $targetZip -Force
+Remove-Item $tempExe
+

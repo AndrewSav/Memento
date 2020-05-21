@@ -362,6 +362,7 @@
             this.Controls.Add(this.labelSavesFolder);
             this.Controls.Add(this.textProfileName);
             this.Controls.Add(this.labelProfileName);
+            this.MaximizeBox = false;
             this.Name = "EditGameProfile";
             this.Resizable = false;
             this.Text = "Edit Game Profile";
