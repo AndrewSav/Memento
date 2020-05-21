@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reactive.Linq;
@@ -128,7 +129,7 @@ namespace Memento.Forms
             selectedRadio = selectedRadio ?? radioSpecific;
             selectedRadio.Checked = true;
             selectedRadio.Tag = selectBackup;
-            selectedRadio.Text = BackupFolders.GetLabelFromPath(selectBackup) ?? @"none";
+            selectedRadio.Text = TrimStringForRadioButton(BackupFolders.GetLabelFromPath(selectBackup) ?? @"none");
         }
 
 
@@ -283,14 +284,14 @@ namespace Memento.Forms
                         labelWarning.Text = @"Backup location corrupted";
                         break;
                     }
-                    _radioButtons[i].Text = label;
+                    _radioButtons[i].Text = TrimStringForRadioButton(label);
                     _radioButtons[i].Tag = last[i];
                     _radioButtons[i].Visible = true;
                     _radioButtons[i].Checked = false;
                 }
             }
         }
-
+        
         private void radioLastest_Click(object sender, EventArgs e)
         {
             MetroRadioButton button = (MetroRadioButton) sender;
@@ -300,6 +301,7 @@ namespace Memento.Forms
             }
             linkRestore.Enabled = button.Tag != null;
         }
+        
         private void linkSelect_Click(object sender, EventArgs e)
         {
             Log("Selecting specific backup");
@@ -457,6 +459,116 @@ namespace Memento.Forms
                 UseShellExecute = true
             };
             Process.Start(psi);
+        }
+        private void radioLastest_MouseUp(object sender, MouseEventArgs e)
+        {
+            MetroRadioButton button = (MetroRadioButton)sender;
+            if (e.Button == MouseButtons.Right)
+            {
+                button.ContextMenuStrip.Show(button, new Point(e.X, e.Y));
+            }
+        }
+
+        private void radioLastest_KeyUp(object sender, KeyEventArgs e)
+        {
+            MetroRadioButton button = (MetroRadioButton)sender;
+            if (e.KeyCode == Keys.F2)
+            {
+                EditSaveName(button);
+            }
+        }
+
+        private void textBoxSaveEdit_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                labelWarning.Visible = false;
+                textBoxSaveEdit.Visible = false;
+            }
+
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (textBoxSaveEdit.Text.IndexOfAny(Path.GetInvalidFileNameChars()) >= 0)
+                {
+                    labelWarning.Visible = true;
+                    labelWarning.Text = @"Name cannot have illegal characters!";
+                    return;
+                }
+
+                labelWarning.Visible = false;
+                textBoxSaveEdit.Visible = false;
+                MetroRadioButton button = (MetroRadioButton)textBoxSaveEdit.Tag;
+                string path = (string)button.Tag;
+                BackupPath backupPath = BackupPath.FromPath(path);
+                                string newPath = backupPath.ApplyLabel(textBoxSaveEdit.Text).ToString();
+                if (string.Compare(
+                    Path.GetFullPath(path).TrimEnd(Path.DirectorySeparatorChar), 
+                    Path.GetFullPath(newPath).TrimEnd(Path.DirectorySeparatorChar), 
+                    StringComparison.InvariantCultureIgnoreCase) != 0)
+                {
+                    Directory.Move(path, newPath);
+                    button.Tag = newPath;
+                }
+                RestorePanel();
+                UpdateRadioButtons();
+            }
+        }
+
+        private void renameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ToolStripMenuItem item = (ToolStripMenuItem)sender;
+            MetroContextMenu strip = (MetroContextMenu)item.Owner;
+            MetroRadioButton button = (MetroRadioButton)strip.SourceControl;
+
+            EditSaveName(button);               
+        }
+
+        private void EditSaveName(MetroRadioButton button)
+        {
+            BlockPanel();
+            panelBackups.Enabled = true;
+            textBoxSaveEdit.Tag = button;
+            textBoxSaveEdit.Text = BackupFolders.GetLabelFromPath((string)button.Tag);
+            textBoxSaveEdit.Location = new Point(button.Location.X + 20, button.Location.Y);
+            textBoxSaveEdit.Visible = true;
+            textBoxSaveEdit.Select();
+        }
+
+        private void textBoxSaveEdit_Leave(object sender, EventArgs e)
+        {
+            labelWarning.Visible = false;
+            textBoxSaveEdit.Visible = false;
+        }
+
+        private string TrimStringForRadioButton(string s)
+        {
+            string elipsis = "...";
+            Graphics g = radioSpecific.CreateGraphics();
+            float limit = 138;
+            float elipsisLenght = g.MeasureString(elipsis, radioSpecific.Font).Width;
+            if (g.MeasureString(s, radioSpecific.Font).Width <= limit)
+            {
+                return s;
+            }
+            do
+            {
+                s = s.Substring(0, s.Length - 1);
+            } while ((g.MeasureString(s, radioSpecific.Font).Width > limit - elipsisLenght));
+
+            return s + elipsis;
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            BlockPanel();
+            ToolStripMenuItem item = (ToolStripMenuItem)sender;
+            MetroContextMenu strip = (MetroContextMenu)item.Owner;
+            MetroRadioButton button = (MetroRadioButton)strip.SourceControl;
+
+            Directory.Delete((string)button.Tag,true);
+
+            RestorePanel();
+            UpdateRadioButtons();
         }
     }
 }

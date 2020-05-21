@@ -1,4 +1,6 @@
-﻿namespace Memento.Forms
+﻿using System;
+
+namespace Memento.Forms
 {
     partial class Memento
     {
@@ -52,6 +54,9 @@
             this.radio05 = new MetroFramework.Controls.MetroRadioButton();
             this.radio04 = new MetroFramework.Controls.MetroRadioButton();
             this.radio03 = new MetroFramework.Controls.MetroRadioButton();
+            this.contextMenuStrip = new MetroFramework.Controls.MetroContextMenu(this.components);
+            this.renameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.buttonEdit = new MetroFramework.Controls.MetroButton();
             this.linkOpenBackupsFolder = new MetroFramework.Controls.MetroLink();
             this.linkOpenSavesFolder = new MetroFramework.Controls.MetroLink();
@@ -59,9 +64,33 @@
             this.linkKillGame = new MetroFramework.Controls.MetroLink();
             this.watcher = new System.IO.FileSystemWatcher();
             this.linkVersion = new MetroFramework.Controls.MetroLink();
+            this.textBoxSaveEdit = new MetroFramework.Controls.MetroTextBox();
+            this.contextMenuStrip.SuspendLayout();
             this.panelBackups.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.watcher)).BeginInit();
             this.SuspendLayout();
+            // 
+            // contextMenuStrip
+            // 
+            this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.renameToolStripMenuItem, 
+            this.deleteToolStripMenuItem});
+            this.contextMenuStrip.Name = "contextMenuStrip";
+            this.contextMenuStrip.Size = new System.Drawing.Size(181, 48);
+            // 
+            // renameToolStripMenuItem
+            // 
+            this.renameToolStripMenuItem.Name = "renameToolStripMenuItem";
+            this.renameToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.renameToolStripMenuItem.Text = "Rename";
+            this.renameToolStripMenuItem.Click += new System.EventHandler(this.renameToolStripMenuItem_Click);
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.deleteToolStripMenuItem.Text = "Delete";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // metroToolTip1
             // 
@@ -92,6 +121,9 @@
             this.radioSpecific.Text = "none";
             this.radioSpecific.UseSelectable = true;
             this.radioSpecific.Click += new System.EventHandler(this.radioLastest_Click);
+            this.radioSpecific.MouseUp += new System.Windows.Forms.MouseEventHandler(this.radioLastest_MouseUp);
+            this.radioSpecific.KeyUp += new System.Windows.Forms.KeyEventHandler(this.radioLastest_KeyUp);
+            this.radioSpecific.ContextMenuStrip = this.contextMenuStrip;
             // 
             // radio02
             // 
@@ -104,6 +136,9 @@
             this.radio02.UseSelectable = true;
             this.radio02.Visible = false;
             this.radio02.Click += new System.EventHandler(this.radioLastest_Click);
+            this.radio02.MouseUp += new System.Windows.Forms.MouseEventHandler(this.radioLastest_MouseUp);
+            this.radio02.KeyUp += new System.Windows.Forms.KeyEventHandler(this.radioLastest_KeyUp);
+            this.radio02.ContextMenuStrip = this.contextMenuStrip;
             // 
             // radio01
             // 
@@ -116,6 +151,9 @@
             this.radio01.UseSelectable = true;
             this.radio01.Visible = false;
             this.radio01.Click += new System.EventHandler(this.radioLastest_Click);
+            this.radio01.MouseUp += new System.Windows.Forms.MouseEventHandler(this.radioLastest_MouseUp);
+            this.radio01.KeyUp += new System.Windows.Forms.KeyEventHandler(this.radioLastest_KeyUp);
+            this.radio01.ContextMenuStrip = this.contextMenuStrip;
             // 
             // labelSpecificBackup
             // 
@@ -170,6 +208,7 @@
             // panelBackups
             // 
             this.panelBackups.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelBackups.Controls.Add(this.textBoxSaveEdit);
             this.panelBackups.Controls.Add(this.linkSelect);
             this.panelBackups.Controls.Add(this.linkRestore);
             this.panelBackups.Controls.Add(this.linkBackup);
@@ -242,6 +281,9 @@
             this.radio06.UseSelectable = true;
             this.radio06.Visible = false;
             this.radio06.Click += new System.EventHandler(this.radioLastest_Click);
+            this.radio06.MouseUp += new System.Windows.Forms.MouseEventHandler(this.radioLastest_MouseUp);
+            this.radio06.KeyUp += new System.Windows.Forms.KeyEventHandler(this.radioLastest_KeyUp);
+            this.radio06.ContextMenuStrip = this.contextMenuStrip;
             // 
             // labelNoBackupsFound
             // 
@@ -263,6 +305,9 @@
             this.radio10.UseSelectable = true;
             this.radio10.Visible = false;
             this.radio10.Click += new System.EventHandler(this.radioLastest_Click);
+            this.radio10.MouseUp += new System.Windows.Forms.MouseEventHandler(this.radioLastest_MouseUp);
+            this.radio10.KeyUp += new System.Windows.Forms.KeyEventHandler(this.radioLastest_KeyUp);
+            this.radio10.ContextMenuStrip = this.contextMenuStrip;
             // 
             // radio09
             // 
@@ -275,6 +320,9 @@
             this.radio09.UseSelectable = true;
             this.radio09.Visible = false;
             this.radio09.Click += new System.EventHandler(this.radioLastest_Click);
+            this.radio09.MouseUp += new System.Windows.Forms.MouseEventHandler(this.radioLastest_MouseUp);
+            this.radio09.KeyUp += new System.Windows.Forms.KeyEventHandler(this.radioLastest_KeyUp);
+            this.radio09.ContextMenuStrip = this.contextMenuStrip;
             // 
             // radio08
             // 
@@ -287,6 +335,9 @@
             this.radio08.UseSelectable = true;
             this.radio08.Visible = false;
             this.radio08.Click += new System.EventHandler(this.radioLastest_Click);
+            this.radio08.MouseUp += new System.Windows.Forms.MouseEventHandler(this.radioLastest_MouseUp);
+            this.radio09.KeyUp += new System.Windows.Forms.KeyEventHandler(this.radioLastest_KeyUp);
+            this.radio08.ContextMenuStrip = this.contextMenuStrip;
             // 
             // radio07
             // 
@@ -299,6 +350,9 @@
             this.radio07.UseSelectable = true;
             this.radio07.Visible = false;
             this.radio07.Click += new System.EventHandler(this.radioLastest_Click);
+            this.radio07.MouseUp += new System.Windows.Forms.MouseEventHandler(this.radioLastest_MouseUp);
+            this.radio07.KeyUp += new System.Windows.Forms.KeyEventHandler(this.radioLastest_KeyUp);
+            this.radio07.ContextMenuStrip = this.contextMenuStrip;
             // 
             // radio05
             // 
@@ -311,6 +365,9 @@
             this.radio05.UseSelectable = true;
             this.radio05.Visible = false;
             this.radio05.Click += new System.EventHandler(this.radioLastest_Click);
+            this.radio05.MouseUp += new System.Windows.Forms.MouseEventHandler(this.radioLastest_MouseUp);
+            this.radio05.KeyUp += new System.Windows.Forms.KeyEventHandler(this.radioLastest_KeyUp);
+            this.radio05.ContextMenuStrip = this.contextMenuStrip;
             // 
             // radio04
             // 
@@ -323,6 +380,9 @@
             this.radio04.UseSelectable = true;
             this.radio04.Visible = false;
             this.radio04.Click += new System.EventHandler(this.radioLastest_Click);
+            this.radio04.MouseUp += new System.Windows.Forms.MouseEventHandler(this.radioLastest_MouseUp);
+            this.radio04.KeyUp += new System.Windows.Forms.KeyEventHandler(this.radioLastest_KeyUp);
+            this.radio04.ContextMenuStrip = this.contextMenuStrip;
             // 
             // radio03
             // 
@@ -335,6 +395,9 @@
             this.radio03.UseSelectable = true;
             this.radio03.Visible = false;
             this.radio03.Click += new System.EventHandler(this.radioLastest_Click);
+            this.radio03.MouseUp += new System.Windows.Forms.MouseEventHandler(this.radioLastest_MouseUp);
+            this.radio03.KeyUp += new System.Windows.Forms.KeyEventHandler(this.radioLastest_KeyUp);
+            this.radio03.ContextMenuStrip = this.contextMenuStrip;
             // 
             // buttonEdit
             // 
@@ -405,6 +468,16 @@
             this.linkVersion.UseSelectable = true;
             this.linkVersion.Click += new System.EventHandler(this.linkVersion_Click);
             // 
+            // textBoxSaveEdit
+            // 
+            this.textBoxSaveEdit.Location = new System.Drawing.Point(100, 100);
+            this.textBoxSaveEdit.Name = "textBoxSaveEdit";
+            this.textBoxSaveEdit.Size = new System.Drawing.Size(120, 20);
+            this.textBoxSaveEdit.Visible = false;
+            this.textBoxSaveEdit.Leave += new System.EventHandler(this.textBoxSaveEdit_Leave);
+            //this.textBoxSaveEdit.LostFocus += new System.EventHandler(this.textBoxSaveEdit_Leave);
+            this.textBoxSaveEdit.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBoxSaveEdit_KeyUp);
+            // 
             // Memento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -428,6 +501,7 @@
             this.Resizable = false;
             this.Text = "Memento";
             this.Load += new System.EventHandler(this.Memento_Load);
+            this.contextMenuStrip.ResumeLayout(false);
             this.panelBackups.ResumeLayout(false);
             this.panelBackups.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.watcher)).EndInit();
@@ -467,6 +541,10 @@
         private MetroFramework.Controls.MetroLink linkKillGame;
         private System.IO.FileSystemWatcher watcher;
         private MetroFramework.Controls.MetroLink linkVersion;
+        private MetroFramework.Controls.MetroContextMenu contextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem renameToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
+        private MetroFramework.Controls.MetroTextBox textBoxSaveEdit;
     }
 }
 

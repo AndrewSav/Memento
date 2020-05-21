@@ -7,23 +7,43 @@ namespace Memento.Helpers
 {
     class BackupPath
     {
-        public string Base { get; private set; }
-        public string Month { get; private set; }
-        public string Day { get; private set; }
-        public string Time { get; private set; }
-        public string Label { get; private set; }
+        private string _base;
+        private string _month;
+        private string _day;
+        private string _time;
+        private string _customLabel;
+        private DateTime _timestamp;
 
         private BackupPath() { }
+
+        public BackupPath ApplyLabel(string newLabel)
+        {
+            return new BackupPath
+            {
+                _month = _month,
+                _day = _day,
+                _time = _time,
+                _base = _base,
+                _timestamp = _timestamp,
+                _customLabel = newLabel
+            };
+        }
+
+        public string GetLabel()
+        {
+            return string.IsNullOrEmpty(_customLabel) ? LabelFromTimestamp(_timestamp) : _customLabel;
+        }
 
         public static BackupPath FromDateTime(DateTime timestamp, string savesFolder)
         {
             return new BackupPath
             {
-                Month = timestamp.ToString("yyyy-MM"),
-                Day = timestamp.ToString("dd"),
-                Time = timestamp.ToString("HH.mm.ss"),
-                Base = savesFolder,
-                Label = LabelFromTimestamp(timestamp)
+                _month = timestamp.ToString("yyyy-MM"),
+                _day = timestamp.ToString("dd"),
+                _time = timestamp.ToString("HH.mm.ss"),
+                _base = savesFolder,
+                _timestamp = timestamp,
+                _customLabel = ""
             };
         }
 
@@ -46,39 +66,42 @@ namespace Memento.Helpers
             Array.Reverse(tokens);
             BackupPath result = new BackupPath
             {
-                Time = tokens[0],
-                Day = tokens[1],
-                Month = tokens[2],
-                Base = basePath
+                _time = tokens[0],
+                _day = tokens[1],
+                _month = tokens[2],
+                _base = basePath
             };
 
-            (string time, string label) = SplitTimeAndLabel(result.Time);
+            (result._time, result._customLabel) = SplitTimeAndLabel(result._time);
 
-            DateTime? timePart = ParseDatePart(time, "HH.mm.ss", "HH.mm.ss_manual", "HH.mm.ss_restore");
-            DateTime? dayPart = ParseDatePart(result.Day, "dd");
-            DateTime? monthPart = ParseDatePart(result.Month, "yyyy-MM");
+            DateTime? timePart = ParseDatePart(result._time, "HH.mm.ss", "HH.mm.ss_manual", "HH.mm.ss_restore");
+            DateTime? dayPart = ParseDatePart(result._day, "dd");
+            DateTime? monthPart = ParseDatePart(result._month, "yyyy-MM");
 
             if (!timePart.HasValue || !dayPart.HasValue || !monthPart.HasValue)
             {
                 return null;
             }
 
-            result.Label = string.IsNullOrEmpty(label) ? LabelFromTimestamp(new DateTime(
+            result._timestamp = new DateTime(
                 monthPart.Value.Year,
                 monthPart.Value.Month,
                 dayPart.Value.Day,
                 timePart.Value.Hour,
                 timePart.Value.Minute,
-                timePart.Value.Second)): label;
+                timePart.Value.Second);
             return result;
         }
 
-
         public override string ToString()
         {
-            string result = Path.Combine(Base, Month);
-            result = Path.Combine(result, Day);
-            result = Path.Combine(result, Time);
+            string result = Path.Combine(_base, _month);
+            result = Path.Combine(result, _day);
+            result = Path.Combine(result, _time);
+            if (!string.IsNullOrEmpty(_customLabel))
+            {
+                result += $" - {_customLabel}";
+            }
             return result;
         }
         
