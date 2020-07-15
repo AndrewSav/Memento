@@ -56,7 +56,8 @@
             // labelBackupBeforeRestoring
             // 
             this.labelBackupBeforeRestoring.AutoSize = true;
-            this.labelBackupBeforeRestoring.Location = new System.Drawing.Point(23, 208);
+            this.labelBackupBeforeRestoring.Location = new System.Drawing.Point(27, 240);
+            this.labelBackupBeforeRestoring.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelBackupBeforeRestoring.Name = "labelBackupBeforeRestoring";
             this.labelBackupBeforeRestoring.Size = new System.Drawing.Size(150, 19);
             this.labelBackupBeforeRestoring.TabIndex = 23;
@@ -65,7 +66,8 @@
             // labelDontWarnOnRestore
             // 
             this.labelDontWarnOnRestore.AutoSize = true;
-            this.labelDontWarnOnRestore.Location = new System.Drawing.Point(23, 185);
+            this.labelDontWarnOnRestore.Location = new System.Drawing.Point(27, 213);
+            this.labelDontWarnOnRestore.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelDontWarnOnRestore.Name = "labelDontWarnOnRestore";
             this.labelDontWarnOnRestore.Size = new System.Drawing.Size(171, 19);
             this.labelDontWarnOnRestore.TabIndex = 24;
@@ -74,7 +76,8 @@
             // labelKillBeforeRestore
             // 
             this.labelKillBeforeRestore.AutoSize = true;
-            this.labelKillBeforeRestore.Location = new System.Drawing.Point(23, 162);
+            this.labelKillBeforeRestore.Location = new System.Drawing.Point(27, 187);
+            this.labelKillBeforeRestore.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelKillBeforeRestore.Name = "labelKillBeforeRestore";
             this.labelKillBeforeRestore.Size = new System.Drawing.Size(193, 19);
             this.labelKillBeforeRestore.TabIndex = 25;
@@ -83,9 +86,10 @@
             // toggleBackupBeforeRestoring
             // 
             this.toggleBackupBeforeRestoring.AutoSize = true;
-            this.toggleBackupBeforeRestoring.Location = new System.Drawing.Point(223, 210);
+            this.toggleBackupBeforeRestoring.Location = new System.Drawing.Point(260, 242);
+            this.toggleBackupBeforeRestoring.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.toggleBackupBeforeRestoring.Name = "toggleBackupBeforeRestoring";
-            this.toggleBackupBeforeRestoring.Size = new System.Drawing.Size(80, 17);
+            this.toggleBackupBeforeRestoring.Size = new System.Drawing.Size(80, 19);
             this.toggleBackupBeforeRestoring.TabIndex = 7;
             this.toggleBackupBeforeRestoring.Text = "Off";
             this.toggleBackupBeforeRestoring.UseSelectable = true;
@@ -93,9 +97,10 @@
             // toggleDontWarnOnRestore
             // 
             this.toggleDontWarnOnRestore.AutoSize = true;
-            this.toggleDontWarnOnRestore.Location = new System.Drawing.Point(223, 187);
+            this.toggleDontWarnOnRestore.Location = new System.Drawing.Point(260, 216);
+            this.toggleDontWarnOnRestore.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.toggleDontWarnOnRestore.Name = "toggleDontWarnOnRestore";
-            this.toggleDontWarnOnRestore.Size = new System.Drawing.Size(80, 17);
+            this.toggleDontWarnOnRestore.Size = new System.Drawing.Size(80, 19);
             this.toggleDontWarnOnRestore.TabIndex = 6;
             this.toggleDontWarnOnRestore.Text = "Off";
             this.toggleDontWarnOnRestore.UseSelectable = true;
@@ -103,9 +108,10 @@
             // toggleKillBeforeRestore
             // 
             this.toggleKillBeforeRestore.AutoSize = true;
-            this.toggleKillBeforeRestore.Location = new System.Drawing.Point(223, 164);
+            this.toggleKillBeforeRestore.Location = new System.Drawing.Point(260, 189);
+            this.toggleKillBeforeRestore.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.toggleKillBeforeRestore.Name = "toggleKillBeforeRestore";
-            this.toggleKillBeforeRestore.Size = new System.Drawing.Size(80, 17);
+            this.toggleKillBeforeRestore.Size = new System.Drawing.Size(80, 19);
             this.toggleKillBeforeRestore.TabIndex = 5;
             this.toggleKillBeforeRestore.Text = "Off";
             this.toggleKillBeforeRestore.UseSelectable = true;
@@ -113,7 +119,8 @@
             // labelGameExecutale
             // 
             this.labelGameExecutale.AutoSize = true;
-            this.labelGameExecutale.Location = new System.Drawing.Point(23, 122);
+            this.labelGameExecutale.Location = new System.Drawing.Point(27, 141);
+            this.labelGameExecutale.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelGameExecutale.Name = "labelGameExecutale";
             this.labelGameExecutale.Size = new System.Drawing.Size(113, 19);
             this.labelGameExecutale.TabIndex = 17;
@@ -121,9 +128,10 @@
             // 
             // buttonGameExecutable
             // 
-            this.buttonGameExecutable.Location = new System.Drawing.Point(446, 118);
+            this.buttonGameExecutable.Location = new System.Drawing.Point(520, 136);
+            this.buttonGameExecutable.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.buttonGameExecutable.Name = "buttonGameExecutable";
-            this.buttonGameExecutable.Size = new System.Drawing.Size(28, 23);
+            this.buttonGameExecutable.Size = new System.Drawing.Size(33, 27);
             this.buttonGameExecutable.TabIndex = 4;
             this.buttonGameExecutable.Text = "...";
             this.buttonGameExecutable.UseSelectable = true;
@@ -131,9 +139,10 @@
             // 
             // buttonSavesFolder
             // 
-            this.buttonSavesFolder.Location = new System.Drawing.Point(446, 87);
+            this.buttonSavesFolder.Location = new System.Drawing.Point(520, 100);
+            this.buttonSavesFolder.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.buttonSavesFolder.Name = "buttonSavesFolder";
-            this.buttonSavesFolder.Size = new System.Drawing.Size(28, 23);
+            this.buttonSavesFolder.Size = new System.Drawing.Size(33, 27);
             this.buttonSavesFolder.TabIndex = 2;
             this.buttonSavesFolder.Text = "...";
             this.buttonSavesFolder.UseSelectable = true;
@@ -145,16 +154,18 @@
             // 
             // 
             this.textGameExecutable.CustomButton.Image = null;
-            this.textGameExecutable.CustomButton.Location = new System.Drawing.Point(276, 1);
+            this.textGameExecutable.CustomButton.Location = new System.Drawing.Point(322, 1);
+            this.textGameExecutable.CustomButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.textGameExecutable.CustomButton.Name = "";
-            this.textGameExecutable.CustomButton.Size = new System.Drawing.Size(21, 21);
+            this.textGameExecutable.CustomButton.Size = new System.Drawing.Size(25, 25);
             this.textGameExecutable.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
             this.textGameExecutable.CustomButton.TabIndex = 1;
             this.textGameExecutable.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.textGameExecutable.CustomButton.UseSelectable = true;
             this.textGameExecutable.CustomButton.Visible = false;
             this.textGameExecutable.Lines = new string[0];
-            this.textGameExecutable.Location = new System.Drawing.Point(139, 118);
+            this.textGameExecutable.Location = new System.Drawing.Point(162, 136);
+            this.textGameExecutable.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.textGameExecutable.MaxLength = 32767;
             this.textGameExecutable.Name = "textGameExecutable";
             this.textGameExecutable.PasswordChar = '\0';
@@ -163,7 +174,7 @@
             this.textGameExecutable.SelectionLength = 0;
             this.textGameExecutable.SelectionStart = 0;
             this.textGameExecutable.ShortcutsEnabled = true;
-            this.textGameExecutable.Size = new System.Drawing.Size(298, 23);
+            this.textGameExecutable.Size = new System.Drawing.Size(348, 27);
             this.textGameExecutable.TabIndex = 3;
             this.textGameExecutable.UseSelectable = true;
             this.textGameExecutable.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -175,16 +186,18 @@
             // 
             // 
             this.textSavesFolder.CustomButton.Image = null;
-            this.textSavesFolder.CustomButton.Location = new System.Drawing.Point(276, 1);
+            this.textSavesFolder.CustomButton.Location = new System.Drawing.Point(322, 1);
+            this.textSavesFolder.CustomButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.textSavesFolder.CustomButton.Name = "";
-            this.textSavesFolder.CustomButton.Size = new System.Drawing.Size(21, 21);
+            this.textSavesFolder.CustomButton.Size = new System.Drawing.Size(25, 25);
             this.textSavesFolder.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
             this.textSavesFolder.CustomButton.TabIndex = 1;
             this.textSavesFolder.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.textSavesFolder.CustomButton.UseSelectable = true;
             this.textSavesFolder.CustomButton.Visible = false;
             this.textSavesFolder.Lines = new string[0];
-            this.textSavesFolder.Location = new System.Drawing.Point(139, 87);
+            this.textSavesFolder.Location = new System.Drawing.Point(162, 100);
+            this.textSavesFolder.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.textSavesFolder.MaxLength = 32767;
             this.textSavesFolder.Name = "textSavesFolder";
             this.textSavesFolder.PasswordChar = '\0';
@@ -193,7 +206,7 @@
             this.textSavesFolder.SelectionLength = 0;
             this.textSavesFolder.SelectionStart = 0;
             this.textSavesFolder.ShortcutsEnabled = true;
-            this.textSavesFolder.Size = new System.Drawing.Size(298, 23);
+            this.textSavesFolder.Size = new System.Drawing.Size(348, 27);
             this.textSavesFolder.TabIndex = 1;
             this.textSavesFolder.UseSelectable = true;
             this.textSavesFolder.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -202,7 +215,8 @@
             // labelSavesFolder
             // 
             this.labelSavesFolder.AutoSize = true;
-            this.labelSavesFolder.Location = new System.Drawing.Point(23, 91);
+            this.labelSavesFolder.Location = new System.Drawing.Point(27, 105);
+            this.labelSavesFolder.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelSavesFolder.Name = "labelSavesFolder";
             this.labelSavesFolder.Size = new System.Drawing.Size(87, 19);
             this.labelSavesFolder.TabIndex = 12;
@@ -214,16 +228,18 @@
             // 
             // 
             this.textProfileName.CustomButton.Image = null;
-            this.textProfileName.CustomButton.Location = new System.Drawing.Point(276, 1);
+            this.textProfileName.CustomButton.Location = new System.Drawing.Point(322, 1);
+            this.textProfileName.CustomButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.textProfileName.CustomButton.Name = "";
-            this.textProfileName.CustomButton.Size = new System.Drawing.Size(21, 21);
+            this.textProfileName.CustomButton.Size = new System.Drawing.Size(25, 25);
             this.textProfileName.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
             this.textProfileName.CustomButton.TabIndex = 1;
             this.textProfileName.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.textProfileName.CustomButton.UseSelectable = true;
             this.textProfileName.CustomButton.Visible = false;
             this.textProfileName.Lines = new string[0];
-            this.textProfileName.Location = new System.Drawing.Point(139, 56);
+            this.textProfileName.Location = new System.Drawing.Point(162, 65);
+            this.textProfileName.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.textProfileName.MaxLength = 32767;
             this.textProfileName.Name = "textProfileName";
             this.textProfileName.PasswordChar = '\0';
@@ -232,7 +248,7 @@
             this.textProfileName.SelectionLength = 0;
             this.textProfileName.SelectionStart = 0;
             this.textProfileName.ShortcutsEnabled = true;
-            this.textProfileName.Size = new System.Drawing.Size(298, 23);
+            this.textProfileName.Size = new System.Drawing.Size(348, 27);
             this.textProfileName.TabIndex = 0;
             this.textProfileName.UseSelectable = true;
             this.textProfileName.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -241,7 +257,8 @@
             // labelProfileName
             // 
             this.labelProfileName.AutoSize = true;
-            this.labelProfileName.Location = new System.Drawing.Point(23, 60);
+            this.labelProfileName.Location = new System.Drawing.Point(27, 69);
+            this.labelProfileName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelProfileName.Name = "labelProfileName";
             this.labelProfileName.Size = new System.Drawing.Size(90, 19);
             this.labelProfileName.TabIndex = 10;
@@ -249,9 +266,10 @@
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(318, 320);
+            this.buttonSave.Location = new System.Drawing.Point(371, 369);
+            this.buttonSave.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(75, 23);
+            this.buttonSave.Size = new System.Drawing.Size(88, 27);
             this.buttonSave.TabIndex = 10;
             this.buttonSave.Text = "Save";
             this.buttonSave.UseSelectable = true;
@@ -259,9 +277,10 @@
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(399, 320);
+            this.buttonCancel.Location = new System.Drawing.Point(465, 369);
+            this.buttonCancel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(75, 23);
+            this.buttonCancel.Size = new System.Drawing.Size(88, 27);
             this.buttonCancel.TabIndex = 11;
             this.buttonCancel.Text = "Cancel";
             this.buttonCancel.UseSelectable = true;
@@ -269,9 +288,10 @@
             // 
             // buttonDelete
             // 
-            this.buttonDelete.Location = new System.Drawing.Point(237, 320);
+            this.buttonDelete.Location = new System.Drawing.Point(276, 369);
+            this.buttonDelete.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.buttonDelete.Name = "buttonDelete";
-            this.buttonDelete.Size = new System.Drawing.Size(75, 23);
+            this.buttonDelete.Size = new System.Drawing.Size(88, 27);
             this.buttonDelete.TabIndex = 9;
             this.buttonDelete.Text = "Delete";
             this.buttonDelete.UseSelectable = true;
@@ -288,7 +308,8 @@
             this.labelWarning.AutoSize = true;
             this.labelWarning.BackColor = System.Drawing.Color.White;
             this.labelWarning.ForeColor = System.Drawing.Color.Red;
-            this.labelWarning.Location = new System.Drawing.Point(23, 276);
+            this.labelWarning.Location = new System.Drawing.Point(27, 318);
+            this.labelWarning.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelWarning.Name = "labelWarning";
             this.labelWarning.Size = new System.Drawing.Size(58, 19);
             this.labelWarning.TabIndex = 26;
@@ -299,7 +320,8 @@
             // metroLabel1
             // 
             this.metroLabel1.AutoSize = true;
-            this.metroLabel1.Location = new System.Drawing.Point(23, 231);
+            this.metroLabel1.Location = new System.Drawing.Point(27, 267);
+            this.metroLabel1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.metroLabel1.Name = "metroLabel1";
             this.metroLabel1.Size = new System.Drawing.Size(155, 19);
             this.metroLabel1.TabIndex = 28;
@@ -308,9 +330,10 @@
             // toggleBackupOnStartWatching
             // 
             this.toggleBackupOnStartWatching.AutoSize = true;
-            this.toggleBackupOnStartWatching.Location = new System.Drawing.Point(223, 233);
+            this.toggleBackupOnStartWatching.Location = new System.Drawing.Point(260, 269);
+            this.toggleBackupOnStartWatching.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.toggleBackupOnStartWatching.Name = "toggleBackupOnStartWatching";
-            this.toggleBackupOnStartWatching.Size = new System.Drawing.Size(80, 17);
+            this.toggleBackupOnStartWatching.Size = new System.Drawing.Size(80, 19);
             this.toggleBackupOnStartWatching.TabIndex = 27;
             this.toggleBackupOnStartWatching.Text = "Off";
             this.toggleBackupOnStartWatching.UseSelectable = true;
@@ -318,7 +341,8 @@
             // metroLabel2
             // 
             this.metroLabel2.AutoSize = true;
-            this.metroLabel2.Location = new System.Drawing.Point(23, 254);
+            this.metroLabel2.Location = new System.Drawing.Point(27, 293);
+            this.metroLabel2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.metroLabel2.Name = "metroLabel2";
             this.metroLabel2.Size = new System.Drawing.Size(64, 19);
             this.metroLabel2.TabIndex = 30;
@@ -327,19 +351,20 @@
             // toggleWriteLog
             // 
             this.toggleWriteLog.AutoSize = true;
-            this.toggleWriteLog.Location = new System.Drawing.Point(223, 256);
+            this.toggleWriteLog.Location = new System.Drawing.Point(260, 295);
+            this.toggleWriteLog.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.toggleWriteLog.Name = "toggleWriteLog";
-            this.toggleWriteLog.Size = new System.Drawing.Size(80, 17);
+            this.toggleWriteLog.Size = new System.Drawing.Size(80, 19);
             this.toggleWriteLog.TabIndex = 29;
             this.toggleWriteLog.Text = "Off";
             this.toggleWriteLog.UseSelectable = true;
             // 
             // EditGameProfile
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = MetroFramework.Forms.MetroFormBorderStyle.FixedSingle;
-            this.ClientSize = new System.Drawing.Size(499, 358);
+            this.ClientSize = new System.Drawing.Size(582, 413);
             this.Controls.Add(this.metroLabel2);
             this.Controls.Add(this.toggleWriteLog);
             this.Controls.Add(this.metroLabel1);
@@ -362,8 +387,10 @@
             this.Controls.Add(this.labelSavesFolder);
             this.Controls.Add(this.textProfileName);
             this.Controls.Add(this.labelProfileName);
+            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.MaximizeBox = false;
             this.Name = "EditGameProfile";
+            this.Padding = new System.Windows.Forms.Padding(23, 69, 23, 23);
             this.Resizable = false;
             this.Text = "Edit Game Profile";
             this.ResumeLayout(false);

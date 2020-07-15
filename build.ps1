@@ -30,7 +30,9 @@ if (Test-Path $tempExe) {
 mkdir $targetFolder -force | Out-Null
 
 dotnet build
-Remove-Item $debugBinRuntimes -Recurse -Force
+if (Test-Path $debugBinRuntimes) {
+  Remove-Item $debugBinRuntimes -Recurse -Force
+}
 & $warp -i $debugBin -a windows-x64 -e Memento.exe -o $tempExe
 & $editbin /subsystem:windows $tempExe
 Start-Process $rh "-open", $tempExe, "-save", $tempExe, "-action", "addskip", "-res", $icon, "-mask", "ICONGROUP,MAINICON," -Wait

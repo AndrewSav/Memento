@@ -511,7 +511,7 @@ namespace Memento.Forms
             }
         }
 
-        private void radioLastest_KeyUp(object sender, KeyEventArgs e)
+        private void radio_KeyUp(object sender, KeyEventArgs e)
         {
             MetroRadioButton button = (MetroRadioButton)sender;
             if (e.KeyCode == Keys.F2 && button.Tag != null)
@@ -520,17 +520,17 @@ namespace Memento.Forms
             }
         }
 
-        private void textBoxSaveEdit_KeyUp(object sender, KeyEventArgs e)
+        private void textBoxSavenameEdit_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
             {
                 labelWarning.Visible = false;
-                textBoxSaveEdit.Visible = false;
+                textBoxSavenameEdit.Visible = false;
             }
 
             if (e.KeyCode == Keys.Enter)
             {
-                if (textBoxSaveEdit.Text.IndexOfAny(Path.GetInvalidFileNameChars()) >= 0)
+                if (textBoxSavenameEdit.Text.IndexOfAny(Path.GetInvalidFileNameChars()) >= 0)
                 {
                     labelWarning.Visible = true;
                     labelWarning.Text = @"Name cannot have illegal characters!";
@@ -538,11 +538,11 @@ namespace Memento.Forms
                 }
 
                 labelWarning.Visible = false;
-                textBoxSaveEdit.Visible = false;
-                MetroRadioButton button = (MetroRadioButton)textBoxSaveEdit.Tag;
+                textBoxSavenameEdit.Visible = false;
+                MetroRadioButton button = (MetroRadioButton)textBoxSavenameEdit.Tag;
                 string path = (string)button.Tag;
                 BackupPath backupPath = BackupPath.FromPath(path);
-                                string newPath = backupPath.ApplyLabel(textBoxSaveEdit.Text).ToString();
+                                string newPath = backupPath.ApplyLabel(textBoxSavenameEdit.Text).ToString();
                 if (string.Compare(
                     Path.GetFullPath(path).TrimEnd(Path.DirectorySeparatorChar), 
                     Path.GetFullPath(newPath).TrimEnd(Path.DirectorySeparatorChar), 
@@ -569,17 +569,17 @@ namespace Memento.Forms
         {
             BlockPanel();
             panelBackups.Enabled = true;
-            textBoxSaveEdit.Tag = button;
-            textBoxSaveEdit.Text = BackupFolders.GetLabelFromPath((string)button.Tag);
-            textBoxSaveEdit.Location = new Point(button.Location.X + 20, button.Location.Y);
-            textBoxSaveEdit.Visible = true;
-            textBoxSaveEdit.Select();
+            textBoxSavenameEdit.Tag = button;
+            textBoxSavenameEdit.Text = BackupFolders.GetLabelFromPath((string)button.Tag);
+            textBoxSavenameEdit.Location = new Point(button.Location.X + 20, button.Location.Y);
+            textBoxSavenameEdit.Visible = true;
+            textBoxSavenameEdit.Select();
         }
 
         private void textBoxSaveEdit_Leave(object sender, EventArgs e)
         {
             labelWarning.Visible = false;
-            textBoxSaveEdit.Visible = false;
+            textBoxSavenameEdit.Visible = false;
         }
 
         private string TrimStringForRadioButton(string s)
