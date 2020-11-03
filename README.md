@@ -37,7 +37,7 @@ You can build in VS2019. You can use `build.ps1` to build the Release with .Net 
 
   * Fixed to work with the new Windows Forms Designer for .NET Core
   * Minor fix in the build script
-  * Added "Deleting old save before restoring" option (use on Windows build 1903 or newer, to avoid intermittent deletion lock issues)
+  * Added "Deleting old save before restoring" option (use with care, if used on Windows build before 1903, it can cause intermittent deletion lock issues)
   * Updated dependencies
 
 * 1.0.4
