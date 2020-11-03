@@ -21,7 +21,7 @@ namespace Memento
 
         private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
-            var log = new LoggerConfiguration().WriteTo.RollingFile("unhandled.log").CreateLogger();
+            var log = new LoggerConfiguration().WriteTo.File("unhandled.log", rollingInterval: RollingInterval.Day).CreateLogger();
             Exception ex = e.ExceptionObject as Exception;
             MessageBox.Show(ex?.ToString() ?? "Unhandled exception");
             log.Fatal(ex, "Unhandled exception");
