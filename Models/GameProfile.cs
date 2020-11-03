@@ -18,6 +18,7 @@ namespace Memento.Models
         public string GameExecutable { get; set; }
         public bool KillBeforeRestore { get; set; }
         public bool DontWarnOnRestore { get; set; }
+        public bool DeleteBeforeRestoring { get; set; }
         public bool BackupBeforeRestoring { get; set; }
         public bool BackupOnStartWatching { get; set; }
         public bool WriteLog { get; set; }
@@ -29,6 +30,7 @@ namespace Memento.Models
             GameExecutable = copy.GameExecutable;
             KillBeforeRestore = copy.KillBeforeRestore;
             DontWarnOnRestore = copy.DontWarnOnRestore;
+            DeleteBeforeRestoring = copy.DeleteBeforeRestoring;
             BackupBeforeRestoring = copy.BackupBeforeRestoring;
             BackupOnStartWatching = copy.BackupOnStartWatching;
             WriteLog = copy.WriteLog;

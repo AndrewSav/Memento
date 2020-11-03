@@ -454,6 +454,12 @@ namespace Memento.Forms
             Log($"Restoring {backupToRestore}");
             Task.Factory.StartNew(() =>
                 {
+                    if (_selectedItem.DeleteBeforeRestoring)
+                    {
+                        Log("Deleting old save before restoring");
+                        _selectedItem.DeleteSavesFolder();
+                    }
+
                     if (_selectedItem.BackupBeforeRestoring)
                     {
                         _selectedItem.MakeBackup(DateTime.Now);

@@ -51,12 +51,14 @@
             this.toggleBackupOnStartWatching = new MetroFramework.Controls.MetroToggle();
             this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
             this.toggleWriteLog = new MetroFramework.Controls.MetroToggle();
+            this.toggleDeleteBeforeRestoring = new MetroFramework.Controls.MetroToggle();
+            this.labelDeleteBeforeRestoring = new MetroFramework.Controls.MetroLabel();
             this.SuspendLayout();
             // 
             // labelBackupBeforeRestoring
             // 
             this.labelBackupBeforeRestoring.AutoSize = true;
-            this.labelBackupBeforeRestoring.Location = new System.Drawing.Point(27, 240);
+            this.labelBackupBeforeRestoring.Location = new System.Drawing.Point(27, 268);
             this.labelBackupBeforeRestoring.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelBackupBeforeRestoring.Name = "labelBackupBeforeRestoring";
             this.labelBackupBeforeRestoring.Size = new System.Drawing.Size(150, 19);
@@ -66,7 +68,7 @@
             // labelDontWarnOnRestore
             // 
             this.labelDontWarnOnRestore.AutoSize = true;
-            this.labelDontWarnOnRestore.Location = new System.Drawing.Point(27, 213);
+            this.labelDontWarnOnRestore.Location = new System.Drawing.Point(27, 214);
             this.labelDontWarnOnRestore.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelDontWarnOnRestore.Name = "labelDontWarnOnRestore";
             this.labelDontWarnOnRestore.Size = new System.Drawing.Size(171, 19);
@@ -86,7 +88,7 @@
             // toggleBackupBeforeRestoring
             // 
             this.toggleBackupBeforeRestoring.AutoSize = true;
-            this.toggleBackupBeforeRestoring.Location = new System.Drawing.Point(260, 242);
+            this.toggleBackupBeforeRestoring.Location = new System.Drawing.Point(260, 270);
             this.toggleBackupBeforeRestoring.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.toggleBackupBeforeRestoring.Name = "toggleBackupBeforeRestoring";
             this.toggleBackupBeforeRestoring.Size = new System.Drawing.Size(80, 19);
@@ -266,7 +268,7 @@
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(371, 369);
+            this.buttonSave.Location = new System.Drawing.Point(371, 400);
             this.buttonSave.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(88, 27);
@@ -277,7 +279,7 @@
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(465, 369);
+            this.buttonCancel.Location = new System.Drawing.Point(465, 400);
             this.buttonCancel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(88, 27);
@@ -288,7 +290,7 @@
             // 
             // buttonDelete
             // 
-            this.buttonDelete.Location = new System.Drawing.Point(276, 369);
+            this.buttonDelete.Location = new System.Drawing.Point(276, 400);
             this.buttonDelete.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(88, 27);
@@ -308,7 +310,7 @@
             this.labelWarning.AutoSize = true;
             this.labelWarning.BackColor = System.Drawing.Color.White;
             this.labelWarning.ForeColor = System.Drawing.Color.Red;
-            this.labelWarning.Location = new System.Drawing.Point(27, 318);
+            this.labelWarning.Location = new System.Drawing.Point(27, 349);
             this.labelWarning.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelWarning.Name = "labelWarning";
             this.labelWarning.Size = new System.Drawing.Size(58, 19);
@@ -320,7 +322,7 @@
             // metroLabel1
             // 
             this.metroLabel1.AutoSize = true;
-            this.metroLabel1.Location = new System.Drawing.Point(27, 267);
+            this.metroLabel1.Location = new System.Drawing.Point(27, 295);
             this.metroLabel1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.metroLabel1.Name = "metroLabel1";
             this.metroLabel1.Size = new System.Drawing.Size(155, 19);
@@ -330,7 +332,7 @@
             // toggleBackupOnStartWatching
             // 
             this.toggleBackupOnStartWatching.AutoSize = true;
-            this.toggleBackupOnStartWatching.Location = new System.Drawing.Point(260, 269);
+            this.toggleBackupOnStartWatching.Location = new System.Drawing.Point(260, 297);
             this.toggleBackupOnStartWatching.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.toggleBackupOnStartWatching.Name = "toggleBackupOnStartWatching";
             this.toggleBackupOnStartWatching.Size = new System.Drawing.Size(80, 19);
@@ -341,7 +343,7 @@
             // metroLabel2
             // 
             this.metroLabel2.AutoSize = true;
-            this.metroLabel2.Location = new System.Drawing.Point(27, 293);
+            this.metroLabel2.Location = new System.Drawing.Point(27, 322);
             this.metroLabel2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.metroLabel2.Name = "metroLabel2";
             this.metroLabel2.Size = new System.Drawing.Size(64, 19);
@@ -351,7 +353,7 @@
             // toggleWriteLog
             // 
             this.toggleWriteLog.AutoSize = true;
-            this.toggleWriteLog.Location = new System.Drawing.Point(260, 295);
+            this.toggleWriteLog.Location = new System.Drawing.Point(260, 324);
             this.toggleWriteLog.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.toggleWriteLog.Name = "toggleWriteLog";
             this.toggleWriteLog.Size = new System.Drawing.Size(80, 19);
@@ -359,12 +361,35 @@
             this.toggleWriteLog.Text = "Off";
             this.toggleWriteLog.UseSelectable = true;
             // 
+            // toggleDeleteBeforeRestoring
+            // 
+            this.toggleDeleteBeforeRestoring.AutoSize = true;
+            this.toggleDeleteBeforeRestoring.Location = new System.Drawing.Point(260, 243);
+            this.toggleDeleteBeforeRestoring.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.toggleDeleteBeforeRestoring.Name = "toggleDeleteBeforeRestoring";
+            this.toggleDeleteBeforeRestoring.Size = new System.Drawing.Size(80, 19);
+            this.toggleDeleteBeforeRestoring.TabIndex = 7;
+            this.toggleDeleteBeforeRestoring.Text = "Off";
+            this.toggleDeleteBeforeRestoring.UseSelectable = true;
+            // 
+            // labelDeleteBeforeRestoring
+            // 
+            this.labelDeleteBeforeRestoring.AutoSize = true;
+            this.labelDeleteBeforeRestoring.Location = new System.Drawing.Point(27, 241);
+            this.labelDeleteBeforeRestoring.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelDeleteBeforeRestoring.Name = "labelDeleteBeforeRestoring";
+            this.labelDeleteBeforeRestoring.Size = new System.Drawing.Size(145, 19);
+            this.labelDeleteBeforeRestoring.TabIndex = 23;
+            this.labelDeleteBeforeRestoring.Text = "Delete before restoring";
+            // 
             // EditGameProfile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = MetroFramework.Forms.MetroFormBorderStyle.FixedSingle;
-            this.ClientSize = new System.Drawing.Size(582, 413);
+            this.ClientSize = new System.Drawing.Size(582, 448);
+            this.Controls.Add(this.labelDeleteBeforeRestoring);
+            this.Controls.Add(this.toggleDeleteBeforeRestoring);
             this.Controls.Add(this.metroLabel2);
             this.Controls.Add(this.toggleWriteLog);
             this.Controls.Add(this.metroLabel1);
@@ -422,5 +447,7 @@
         private MetroFramework.Controls.MetroToggle toggleBackupOnStartWatching;
         private MetroFramework.Controls.MetroLabel metroLabel2;
         private MetroFramework.Controls.MetroToggle toggleWriteLog;
+        private MetroFramework.Controls.MetroToggle toggleDeleteBeforeRestoring;
+        private MetroFramework.Controls.MetroLabel labelDeleteBeforeRestoring;
     }
 }

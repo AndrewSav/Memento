@@ -59,6 +59,11 @@ namespace Memento.Helpers
             CopyFolder(backupPath,profile.SavesFolder);
         }
 
+        public static void DeleteSavesFolder(this GameProfile profile)
+        {
+            Directory.Delete(profile.SavesFolder, true);
+        }
+
         private static DateTime? ParseDatePart(string part, params string[] patterns)
         {
             foreach (string pattern in patterns)

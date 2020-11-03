@@ -23,6 +23,7 @@ namespace Memento.Forms
                     BackupFolder = backupFolder ?? textProfileName.Text.Trim(),
                     SavesFolder = textSavesFolder.Text.Trim(),
                     GameExecutable = textGameExecutable.Text.Trim(),
+                    DeleteBeforeRestoring = toggleDeleteBeforeRestoring.Checked,
                     BackupBeforeRestoring = toggleBackupBeforeRestoring.Checked,
                     DontWarnOnRestore = toggleDontWarnOnRestore.Checked,
                     KillBeforeRestore = toggleKillBeforeRestore.Checked,
@@ -36,6 +37,7 @@ namespace Memento.Forms
                 backupFolder = value.BackupFolder;
                 textSavesFolder.Text = value.SavesFolder;
                 textGameExecutable.Text = value.GameExecutable;
+                toggleDeleteBeforeRestoring.Checked = value.DeleteBeforeRestoring;
                 toggleBackupBeforeRestoring.Checked = value.BackupBeforeRestoring;
                 toggleDontWarnOnRestore.Checked = value.DontWarnOnRestore;
                 toggleKillBeforeRestore.Checked = value.KillBeforeRestore;
