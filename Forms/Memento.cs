@@ -30,8 +30,7 @@ namespace Memento.Forms
 
         private void Memento_Load(object sender, EventArgs e)
         {
-            System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
-            FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
+            FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(Process.GetCurrentProcess().MainModule.FileName);
             linkVersion.Text = $"v{fvi.FileMajorPart}.{fvi.FileMinorPart}.{fvi.FileBuildPart}";
 
             if (!File.Exists(_configPath))

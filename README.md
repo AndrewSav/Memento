@@ -33,6 +33,10 @@ You can build in VS2019. You can use `build.ps1` to build the Release with .Net 
 
 ## Change Log
 
+* 1.0.6
+
+  * Upgraded to .net 5
+
 * 1.0.5
 
   * Fixed to work with the new Windows Forms Designer for .NET Core

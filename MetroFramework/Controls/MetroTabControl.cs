@@ -520,7 +520,6 @@ namespace MetroFramework.Controls
 
         protected override CreateParams CreateParams
         {
-            [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.UnmanagedCode)]
             get
             {
                 const int WS_EX_LAYOUTRTL = 0x400000;

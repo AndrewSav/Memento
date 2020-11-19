@@ -1,7 +1,7 @@
 $ErrorActionPreference = "Stop"
 $global:ProgressPreference = 'SilentlyContinue'
 
-$targetFramework = "netcoreapp3.1"
+$targetFramework = "net5.0-windows"
 
 $targetFolder = Join-Path $PSScriptRoot Build
 $debugBin = Join-Path $PSScriptRoot "bin\Debug\$targetFramework"
@@ -37,7 +37,7 @@ if (Test-Path $debugBinRuntimes) {
 & $editbin /subsystem:windows $tempExe
 Start-Process $rh "-open", $tempExe, "-save", $tempExe, "-action", "addskip", "-res", $icon, "-mask", "ICONGROUP,MAINICON," -Wait
 
-dotnet publish -c Release -r win-x64 -p:PublishTrimmed=true -p:PublishSingleFile=true
+dotnet publish -c Release -r win-x64 -p:PublishTrimmed=true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true 
 Compress-Archive "$releasePublish/*" $targetSelfContainedZip -Force
 
 Compress-Archive $tempExe $targetZip -Force
