@@ -36,6 +36,7 @@ You can build in VS2019. You can use `build.ps1` to build the Release with .Net 
 * 1.0.6
 
   * Upgraded to .net 5
+  * Upgraded dependencies
 
 * 1.0.5
 
