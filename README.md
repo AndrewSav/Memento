@@ -2,7 +2,7 @@
 
 ![Main UI](Images/main01.png)
 
-This is a simple tool for save scumming, written in an evening. Build on Windows 10 with .NET Core 3.1
+This is a simple tool for save scumming, written in an evening. Build on Windows 10 with .NET Core 5.0
 
 ## Support
 
