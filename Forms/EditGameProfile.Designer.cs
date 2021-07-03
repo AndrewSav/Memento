@@ -378,9 +378,9 @@
             this.labelDeleteBeforeRestoring.Location = new System.Drawing.Point(27, 241);
             this.labelDeleteBeforeRestoring.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelDeleteBeforeRestoring.Name = "labelDeleteBeforeRestoring";
-            this.labelDeleteBeforeRestoring.Size = new System.Drawing.Size(145, 19);
+            this.labelDeleteBeforeRestoring.Size = new System.Drawing.Size(228, 19);
             this.labelDeleteBeforeRestoring.TabIndex = 23;
-            this.labelDeleteBeforeRestoring.Text = "Delete before restoring";
+            this.labelDeleteBeforeRestoring.Text = "Clean up save folder before restoring";
             // 
             // EditGameProfile
             // 
