@@ -506,12 +506,6 @@ namespace Memento.Forms
             // watcher
             // 
             this.watcher.EnableRaisingEvents = true;
-            this.watcher.Filter = "*";
-            this.watcher.IncludeSubdirectories = false;
-            this.watcher.InternalBufferSize = 8192;
-            this.watcher.NotifyFilter = ((System.IO.NotifyFilters)(((System.IO.NotifyFilters.FileName | System.IO.NotifyFilters.DirectoryName) 
-            | System.IO.NotifyFilters.LastWrite)));
-            this.watcher.Path = "";
             this.watcher.SynchronizingObject = this;
             // 
             // linkVersion
