@@ -393,6 +393,11 @@ namespace Memento.Forms
 
         private void linkRunGame_Click(object sender, EventArgs e)
         {
+            runGame();
+        }
+
+        private void runGame()
+        {
             ProcessStartInfo si = new ProcessStartInfo
             {
                 FileName = _selectedItem.GameExecutable,
@@ -467,6 +472,11 @@ namespace Memento.Forms
                 })
                 .ContinueWith((x) =>
                 {
+                    if (_selectedItem.KillBeforeRestore && !GameProcess.FindProcess(_selectedItem.GameExecutable).Any())
+                    {
+                        runGame();
+                    }
+
                     RestorePanel();
                     UpdateRadioButtons();
                     Log("Restore finished");
