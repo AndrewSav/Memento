@@ -33,13 +33,19 @@ namespace Memento.Helpers
             }
         }
 
-        public static void KillProcess(string gameExecutable)
+        public static bool KillProcess(string gameExecutable)
         {
+            bool result = true;
             Process[] processes = FindProcess(gameExecutable).ToArray();
             foreach (Process process in processes)
             {
                 process.Kill();
+                if(!process.WaitForExit(5000))
+                {
+                    result = false;
+                }
             }
+            return result;
         }
     }
 }
