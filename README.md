@@ -33,6 +33,13 @@ You can build in VS2019. You can use `build.ps1` to build the Release with .Net 
 
 ## Change Log
 
+* 1.0.7 (unreleased)
+
+  * Upgraded to .net SDK 5.0.301
+  * When "Kill/restart game during restore" is enambled attemt to wait for process to finish after killing it
+  * Now "Kill/restart game during restore" option actually attempt to restart the game after restore
+  * Updated dependencies
+
 * 1.0.6
 
   * Upgraded to .net 5
