@@ -16,24 +16,30 @@ namespace Memento.Models
         }
         public string SavesFolder { get; set; }
         public string GameExecutable { get; set; }
+        public string WatchFilter { get; set; }
+        public string BackupFilter { get; set; }
         public bool KillBeforeRestore { get; set; }
         public bool DontWarnOnRestore { get; set; }
         public bool DeleteBeforeRestoring { get; set; }
         public bool BackupBeforeRestoring { get; set; }
         public bool BackupOnStartWatching { get; set; }
         public bool WriteLog { get; set; }
+        public bool ShowNumberOfFiles { get; set; }
         public void Load(GameProfile copy)
         {
             ProfileName = copy.ProfileName;
             BackupFolder = copy.BackupFolder;
             SavesFolder = copy.SavesFolder;
             GameExecutable = copy.GameExecutable;
+            WatchFilter = copy.WatchFilter;
+            BackupFilter = copy.BackupFilter;
             KillBeforeRestore = copy.KillBeforeRestore;
             DontWarnOnRestore = copy.DontWarnOnRestore;
             DeleteBeforeRestoring = copy.DeleteBeforeRestoring;
             BackupBeforeRestoring = copy.BackupBeforeRestoring;
             BackupOnStartWatching = copy.BackupOnStartWatching;
             WriteLog = copy.WriteLog;
+            ShowNumberOfFiles = copy.ShowNumberOfFiles;
         }
 
         public string GetValidateMessage(IEnumerable<string> existingProfiles, string originalProfileName)
@@ -65,6 +71,10 @@ namespace Memento.Models
             if (DontWarnOnRestore && KillBeforeRestore)
             {
                 return "'Do not warn when restoring' is not valid with 'Kill game before restore'";
+            }
+            if (ShowNumberOfFiles && string.IsNullOrEmpty(BackupFilter))
+            {
+                return "'Show number of files backed up' is not valid if 'Backup Filter' is not set";
             }
             return null;
         }

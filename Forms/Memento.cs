@@ -37,7 +37,7 @@ namespace Memento.Forms
             {
                 new Settings
                 {
-                    LogFileName = "log-{Date}.txt",
+                    LogFileName = "log.txt",
                     LogRetainedCountLimit = "9",
                     LogSizeLimitBytes = "1000000",
                     StabilizationTimeSeconds = 5,
@@ -96,6 +96,10 @@ namespace Memento.Forms
                 comboProfiles.Enabled = false;
                 buttonEdit.Enabled = false;
                 watcher = new FileSystemWatcher(_selectedItem.SavesFolder) { IncludeSubdirectories = true };
+                if (!string.IsNullOrEmpty(_selectedItem.WatchFilter))
+                {
+                    watcher.Filter = _selectedItem.WatchFilter;
+                }
                 var changed = Observable.FromEventPattern<FileSystemEventArgs>(watcher, "Changed");
                 var deleted = Observable.FromEventPattern<FileSystemEventArgs>(watcher, "Deleted");
                 var renamed = Observable.FromEventPattern<FileSystemEventArgs>(watcher, "Renamed");
@@ -109,13 +113,31 @@ namespace Memento.Forms
                     .Subscribe(x =>
                     {
                         Log($"Save change detected. Timestamp {x:HH:mm:ss}");
-                        _selectedItem.MakeBackup(x);
+                        RunMakeBackup(_selectedItem, x);
                         Invoke((Action)UpdateRadioButtons);
+
                     });
                 watcher.EnableRaisingEvents = true;
             }
         }
 
+        private void RunMakeBackup(GameProfile profile, DateTime x)
+        {
+            int n = profile.MakeBackup(x);
+            Invoke((Action<int, DateTime>)SetBackupLabel, n, x);
+        }
+
+        private void SetBackupLabel(int n, DateTime x)
+        {
+            if (n > 0)
+            {
+                labelBackup.Text = $"{n} files backed up {BackupPath.LabelFromTimestamp(x)}";
+                labelBackup.Visible = true;
+            } else
+            {
+                labelBackup.Visible = false;
+            }
+        }
 
         private void SelectNoneBackup()
         {
@@ -131,7 +153,6 @@ namespace Memento.Forms
                 button.Visible = false;
             }
             GetRadioButtons(_selectedItem);
-
         }
         
         private void UpdateRadioButtons()
@@ -170,7 +191,6 @@ namespace Memento.Forms
                 radioSpecific.Tag = selectedRadio.Tag;
             }
         }
-
 
         private MetroRadioButton GetSelectedRadioButton()
         {
@@ -232,6 +252,7 @@ namespace Memento.Forms
         private void comboProfiles_SelectedIndexChanged(object sender, EventArgs e)
         {
             labelWarning.Visible = false;
+            labelBackup.Visible = false;
             _selectedItem = (GameProfile) comboProfiles.SelectedItem;
             _settings.DefaultProfile = _selectedItem.ProfileName;
             _settings.Save(_configPath);
@@ -266,6 +287,7 @@ namespace Memento.Forms
             radioSpecific.Tag = null;
             radioSpecific.Checked = true;
             labelWarning.Visible = false;
+            labelBackup.Visible = false;
 
             linkRunGame.Enabled = false;
             linkKillGame.Enabled = false;
@@ -466,7 +488,8 @@ namespace Memento.Forms
 
                     if (_selectedItem.BackupBeforeRestoring)
                     {
-                        _selectedItem.MakeBackup(DateTime.Now);
+                        Log("Backing up before restoring");
+                        RunMakeBackup(_selectedItem, DateTime.Now);
                     }
                     _selectedItem.RestoreBackup(backupToRestore);
                 })
@@ -493,9 +516,9 @@ namespace Memento.Forms
             DateTime now = DateTime.Now;
             Log($"Backing up {now:dd MMM yyyy HH:mm:ss}");
             BlockPanel();
-            Task.Factory.StartNew(() => { _selectedItem.MakeBackup(DateTime.Now); })
+            Task.Factory.StartNew(() => { RunMakeBackup(_selectedItem, DateTime.Now); })
                 .ContinueWith((x) =>
-                {
+                {                    
                     RestorePanel();
                     UpdateRadioButtons();
                     Log("Backup finished");

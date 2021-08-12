@@ -56,7 +56,7 @@ namespace Memento.Helpers
             };
         }
 
-        private static string LabelFromTimestamp(DateTime timestamp)
+        public static string LabelFromTimestamp(DateTime timestamp)
         {
             return timestamp.ToString("d MMM yyyy HH:mm:ss");
         }

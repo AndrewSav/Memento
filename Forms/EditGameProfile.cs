@@ -28,7 +28,10 @@ namespace Memento.Forms
                     DontWarnOnRestore = toggleDontWarnOnRestore.Checked,
                     KillBeforeRestore = toggleKillBeforeRestore.Checked,
                     BackupOnStartWatching = toggleBackupOnStartWatching.Checked,
-                    WriteLog = toggleWriteLog.Checked
+                    WriteLog = toggleWriteLog.Checked,
+                    BackupFilter = backupFilter,
+                    WatchFilter = watchFilter,
+                    ShowNumberOfFiles = toggleShowNumberOfFiles.Checked
                 };
             }
             set
@@ -43,6 +46,9 @@ namespace Memento.Forms
                 toggleKillBeforeRestore.Checked = value.KillBeforeRestore;
                 toggleBackupOnStartWatching.Checked = value.BackupOnStartWatching;
                 toggleWriteLog.Checked = value.WriteLog;
+                backupFilter = value.BackupFilter;
+                watchFilter = value.WatchFilter;
+                toggleShowNumberOfFiles.Checked = value.ShowNumberOfFiles;
             }
         }
 
@@ -53,6 +59,9 @@ namespace Memento.Forms
         public bool Deleted { get; private set; }
         public bool Updated { get; private set; }
         private string backupFolder;
+
+        private string backupFilter;
+        private string watchFilter;
 
 
         private void buttonDelete_Click(object sender, EventArgs e)
@@ -107,6 +116,18 @@ namespace Memento.Forms
             {
                 labelWarning.Text = message;
                 labelWarning.Visible = true;
+            }
+        }
+        private void linkAdvancedFiltering_Click(object sender, EventArgs e)
+        {
+            AdvancedFiltering advancedFiltering = new AdvancedFiltering();
+            advancedFiltering.Profile = Profile;
+            advancedFiltering.ShowDialog(this);
+            if (advancedFiltering.Updated)
+            {
+                GameProfile profile = advancedFiltering.Profile;
+                backupFilter = profile.BackupFilter;
+                watchFilter = profile.WatchFilter;
             }
         }
     }

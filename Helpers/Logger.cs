@@ -20,10 +20,10 @@ namespace Memento.Helpers
             string logRetainedCountLimit = Environment.ExpandEnvironmentVariables(settings.LogRetainedCountLimit);
             string logSizeLimitBytes = Environment.ExpandEnvironmentVariables(settings.LogSizeLimitBytes);
 
-            serilogSettings.Add(new KeyValuePair<string, string>("write-to:RollingFile.pathFormat", Path.Combine(folderName, logFilename)));
-            serilogSettings.Add(new KeyValuePair<string, string>("write-to:RollingFile.fileSizeLimitBytes", logSizeLimitBytes));
-            serilogSettings.Add(new KeyValuePair<string, string>("write-to:RollingFile.retainedFileCountLimit", logRetainedCountLimit));
-            serilogSettings.Add(new KeyValuePair<string, string>("using:RollingFile", "Serilog.Sinks.RollingFile"));
+            serilogSettings.Add(new KeyValuePair<string, string>("write-to:File.path", Path.Combine(folderName, logFilename)));
+            serilogSettings.Add(new KeyValuePair<string, string>("write-to:File.fileSizeLimitBytes", logSizeLimitBytes));
+            serilogSettings.Add(new KeyValuePair<string, string>("write-to:File.retainedFileCountLimit", logRetainedCountLimit));
+            serilogSettings.Add(new KeyValuePair<string, string>("using:File", "Serilog.Sinks.File"));
 
             return new LoggerConfiguration().ReadFrom.KeyValuePairs(serilogSettings).CreateLogger();
         }

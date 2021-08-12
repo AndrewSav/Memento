@@ -32,7 +32,6 @@ namespace Memento.Forms
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Memento));
-            this.metroToolTip1 = new MetroFramework.Components.MetroToolTip();
             this.comboProfiles = new MetroFramework.Controls.MetroComboBox();
             this.radioSpecific = new MetroFramework.Controls.MetroRadioButton();
             this.radio02 = new MetroFramework.Controls.MetroRadioButton();
@@ -66,16 +65,11 @@ namespace Memento.Forms
             this.linkKillGame = new MetroFramework.Controls.MetroLink();
             this.watcher = new System.IO.FileSystemWatcher();
             this.linkVersion = new MetroFramework.Controls.MetroLink();
+            this.labelBackup = new MetroFramework.Controls.MetroLabel();
             this.contextMenuStrip.SuspendLayout();
             this.panelBackups.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.watcher)).BeginInit();
             this.SuspendLayout();
-            // 
-            // metroToolTip1
-            // 
-            this.metroToolTip1.Style = MetroFramework.MetroColorStyle.Blue;
-            this.metroToolTip1.StyleManager = null;
-            this.metroToolTip1.Theme = MetroFramework.MetroThemeStyle.Light;
             // 
             // comboProfiles
             // 
@@ -521,12 +515,26 @@ namespace Memento.Forms
             this.linkVersion.UseSelectable = true;
             this.linkVersion.Click += new System.EventHandler(this.linkVersion_Click);
             // 
+            // labelBackup
+            // 
+            this.labelBackup.AutoSize = true;
+            this.labelBackup.ForeColor = System.Drawing.Color.Black;
+            this.labelBackup.Location = new System.Drawing.Point(160, 144);
+            this.labelBackup.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelBackup.Name = "labelBackup";
+            this.labelBackup.Size = new System.Drawing.Size(60, 19);
+            this.labelBackup.TabIndex = 25;
+            this.labelBackup.Text = "Message";
+            this.labelBackup.UseCustomForeColor = true;
+            this.labelBackup.Visible = false;
+            // 
             // Memento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = MetroFramework.Forms.MetroFormBorderStyle.FixedSingle;
             this.ClientSize = new System.Drawing.Size(600, 430);
+            this.Controls.Add(this.labelBackup);
             this.Controls.Add(this.linkOpenSavesFolder);
             this.Controls.Add(this.linkVersion);
             this.Controls.Add(this.linkKillGame);
@@ -556,7 +564,6 @@ namespace Memento.Forms
         }
 
         #endregion
-        private MetroFramework.Components.MetroToolTip metroToolTip1;
         private MetroFramework.Controls.MetroComboBox comboProfiles;
         private MetroFramework.Controls.MetroRadioButton radioSpecific;
         private MetroFramework.Controls.MetroRadioButton radio02;
@@ -590,6 +597,7 @@ namespace Memento.Forms
         private MetroFramework.Controls.MetroTextBox textBoxSavenameEdit;
         private System.Windows.Forms.ToolStripMenuItem renameToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
+        private MetroFramework.Controls.MetroLabel labelBackup;
     }
 }
 

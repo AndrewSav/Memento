@@ -1,6 +1,8 @@
 using System;
 using Serilog;
 using System.Windows.Forms;
+using System.Diagnostics;
+using System.IO;
 
 [assembly: CLSCompliant(true)]
 namespace Memento

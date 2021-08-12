@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Memento.Models;
 
 namespace Memento.Helpers
@@ -50,18 +51,60 @@ namespace Memento.Helpers
             return BackupPath.FromDateTime(lastChange, backups).ToString();
         }
 
-        public static void MakeBackup(this GameProfile profile, DateTime x)
+        public static int MakeBackup(this GameProfile profile, DateTime x)
         {
-            CopyFolder(profile.SavesFolder, GetTargetBackupFolder(profile.ProfileName, x));
+            string targetPath = GetTargetBackupFolder(profile.ProfileName, x);
+            if (string.IsNullOrEmpty(profile.BackupFilter))
+            {
+                CopyFolder(profile.SavesFolder, targetPath);
+                return -1;
+            }
+            else
+            {
+                int counter = 0;
+                foreach (string path in ApplyFilter(profile.SavesFolder, profile.BackupFilter))
+                {
+                    string target = path.Replace(profile.SavesFolder, targetPath);
+                    Directory.CreateDirectory(Path.GetDirectoryName(target));
+                    File.Copy(path, target, true);
+                    counter++;
+                }
+                return counter;
+            }
         }
+
         public static void RestoreBackup(this GameProfile profile, string backupPath)
         {
             CopyFolder(backupPath,profile.SavesFolder);
         }
 
+        private static IEnumerable<string> ApplyFilter(string path, string filter)
+        {
+            path = Path.GetFullPath(path);
+            Regex r = new Regex(filter ?? "");
+            foreach (string newPath in Directory.GetFiles(path, "*.*", SearchOption.AllDirectories))
+            {
+                string segment = newPath.Substring(path.Length + 1);
+                if (r.Match(segment).Success)
+                {
+                    yield return newPath;
+                }
+            }
+        }
+
         public static void DeleteSavesFolder(this GameProfile profile)
         {
-            Directory.Delete(profile.SavesFolder, true);
+            if (string.IsNullOrEmpty(profile.BackupFilter))
+            {
+                Directory.Delete(profile.SavesFolder, true);
+            }
+            else
+            {
+                foreach(string path in ApplyFilter(profile.SavesFolder,profile.BackupFilter))
+                {
+                    File.Delete(path);
+                }
+            }
         }
 
         private static DateTime? ParseDatePart(string part, params string[] patterns)
