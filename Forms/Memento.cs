@@ -129,7 +129,7 @@ namespace Memento.Forms
 
         private void SetBackupLabel(int n, DateTime x)
         {
-            if (n > 0)
+            if (n >= 0)
             {
                 labelBackup.Text = $"{n} files backed up {BackupPath.LabelFromTimestamp(x)}";
                 labelBackup.Visible = true;
@@ -645,7 +645,18 @@ namespace Memento.Forms
             MetroContextMenu strip = (MetroContextMenu)item.Owner;
             MetroRadioButton button = (MetroRadioButton)strip.SourceControl;
 
-            Directory.Delete((string)button.Tag,true);
+            string timeFolder = (string)button.Tag;
+            Directory.Delete(timeFolder, true);
+            string dayFolder = Path.GetDirectoryName(timeFolder);
+            if (Directory.GetDirectories(dayFolder).Length == 0)
+            {
+                Directory.Delete(dayFolder, true);
+            }
+            string monthFolder = Path.GetDirectoryName(dayFolder);
+            if (Directory.GetDirectories(monthFolder).Length == 0)
+            {
+                Directory.Delete(monthFolder, true);
+            }
 
             RestorePanel();
             UpdateRadioButtons();

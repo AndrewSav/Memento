@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Memento.Models
 {
@@ -75,6 +76,16 @@ namespace Memento.Models
             if (ShowNumberOfFiles && string.IsNullOrEmpty(BackupFilter))
             {
                 return "'Show number of files backed up' is not valid if 'Backup Filter' is not set";
+            }
+            if (!string.IsNullOrEmpty(BackupFilter))
+            {
+                try
+                {
+                    new Regex(BackupFilter);
+                } catch (RegexParseException)
+                {
+                    return "Could not parse 'Backup Filter' as a Regular Expression";
+                }
             }
             return null;
         }

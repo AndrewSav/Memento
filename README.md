@@ -61,13 +61,14 @@ You can build in VS2019. You can use `build.ps1` to build the Release with .Net 
 
 * 1.1.0 (unreleased)
 
-  * Upgraded to .net SDK 5.0.301
+  * Upgraded to .net SDK 5.0.400
   * When "Kill/restart game during restore" is enambled attemt to wait for process to finish after killing it
   * Now "Kill/restart game during restore" option actually attempt to restart the game after restore
   * Updated dependencies
   * Added an option for File Watcher [filter](https://docs.microsoft.com/en-us/dotnet/api/system.io.filesystemwatcher.filter)
   * Added an option to filter which files to backup using [Regular Expressions](https://docs.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-language-quick-reference)
   * Minor code clean up
+  * Fixed an issue Where "Delete" backup would not delete the parent folders if it's the last backup we are deleting in the parent folder, which interfered with Radion Buttons display logic causing some backups not to be displayed
 
 * 1.0.6
 
