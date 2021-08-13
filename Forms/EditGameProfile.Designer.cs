@@ -55,6 +55,7 @@
             this.linkAdvancedFiltering = new MetroFramework.Controls.MetroLink();
             this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
             this.toggleShowNumberOfFiles = new MetroFramework.Controls.MetroToggle();
+            this.metroToolTip1 = new MetroFramework.Components.MetroToolTip();
             this.SuspendLayout();
             // 
             // labelBackupBeforeRestoring
@@ -410,6 +411,12 @@
             this.toggleShowNumberOfFiles.Text = "Off";
             this.toggleShowNumberOfFiles.UseSelectable = true;
             // 
+            // metroToolTip1
+            // 
+            this.metroToolTip1.Style = MetroFramework.MetroColorStyle.Blue;
+            this.metroToolTip1.StyleManager = null;
+            this.metroToolTip1.Theme = MetroFramework.MetroThemeStyle.Light;
+            // 
             // EditGameProfile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -483,5 +490,6 @@
         private MetroFramework.Controls.MetroLink linkAdvancedFiltering;
         private MetroFramework.Controls.MetroLabel metroLabel3;
         private MetroFramework.Controls.MetroToggle toggleShowNumberOfFiles;
+        private MetroFramework.Components.MetroToolTip metroToolTip1;
     }
 }

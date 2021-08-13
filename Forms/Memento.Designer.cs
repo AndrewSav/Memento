@@ -66,6 +66,7 @@ namespace Memento.Forms
             this.watcher = new System.IO.FileSystemWatcher();
             this.linkVersion = new MetroFramework.Controls.MetroLink();
             this.labelBackup = new MetroFramework.Controls.MetroLabel();
+            this.metroToolTip1 = new MetroFramework.Components.MetroToolTip();
             this.contextMenuStrip.SuspendLayout();
             this.panelBackups.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.watcher)).BeginInit();
@@ -528,6 +529,12 @@ namespace Memento.Forms
             this.labelBackup.UseCustomForeColor = true;
             this.labelBackup.Visible = false;
             // 
+            // metroToolTip1
+            // 
+            this.metroToolTip1.Style = MetroFramework.MetroColorStyle.Blue;
+            this.metroToolTip1.StyleManager = null;
+            this.metroToolTip1.Theme = MetroFramework.MetroThemeStyle.Light;
+            // 
             // Memento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -598,6 +605,7 @@ namespace Memento.Forms
         private System.Windows.Forms.ToolStripMenuItem renameToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
         private MetroFramework.Controls.MetroLabel labelBackup;
+        private MetroFramework.Components.MetroToolTip metroToolTip1;
     }
 }
 

@@ -35,6 +35,7 @@
             this.buttonOk = new MetroFramework.Controls.MetroButton();
             this.buttonCancel = new MetroFramework.Controls.MetroButton();
             this.buttonClear = new MetroFramework.Controls.MetroButton();
+            this.metroToolTip1 = new MetroFramework.Components.MetroToolTip();
             this.SuspendLayout();
             // 
             // labelBackupFilter
@@ -154,6 +155,12 @@
             this.buttonClear.UseSelectable = true;
             this.buttonClear.Click += new System.EventHandler(this.buttonClear_Click);
             // 
+            // metroToolTip1
+            // 
+            this.metroToolTip1.Style = MetroFramework.MetroColorStyle.Blue;
+            this.metroToolTip1.StyleManager = null;
+            this.metroToolTip1.Theme = MetroFramework.MetroThemeStyle.Light;
+            // 
             // AdvancedFiltering
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -187,5 +194,6 @@
         private MetroFramework.Controls.MetroButton buttonOk;
         private MetroFramework.Controls.MetroButton buttonCancel;
         private MetroFramework.Controls.MetroButton buttonClear;
+        private MetroFramework.Components.MetroToolTip metroToolTip1;
     }
 }
