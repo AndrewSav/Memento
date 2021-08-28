@@ -26,6 +26,7 @@ namespace Memento.Models
         public bool BackupOnStartWatching { get; set; }
         public bool WriteLog { get; set; }
         public bool ShowNumberOfFiles { get; set; }
+        public bool DeleteWithoutConfirmation { get; set; }
         public void Load(GameProfile copy)
         {
             ProfileName = copy.ProfileName;
@@ -41,6 +42,7 @@ namespace Memento.Models
             BackupOnStartWatching = copy.BackupOnStartWatching;
             WriteLog = copy.WriteLog;
             ShowNumberOfFiles = copy.ShowNumberOfFiles;
+            DeleteWithoutConfirmation = copy.DeleteWithoutConfirmation;
         }
 
         public string GetValidateMessage(IEnumerable<string> existingProfiles, string originalProfileName)

@@ -59,6 +59,10 @@ You can build in VS2019. You can use `build.ps1` to build the Release with .Net 
 
 ## Change Log
 
+* 1.2.0 (unreleased)
+
+  * Added an confirmation dialog when deleting a backup
+
 * 1.1.0
 
   * Upgraded to .net SDK 5.0.400

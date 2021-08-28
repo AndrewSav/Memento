@@ -46,16 +46,18 @@
             this.buttonCancel = new MetroFramework.Controls.MetroButton();
             this.buttonDelete = new MetroFramework.Controls.MetroButton();
             this.labelWarning = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
+            this.labelBackupOnStartWatching = new MetroFramework.Controls.MetroLabel();
             this.toggleBackupOnStartWatching = new MetroFramework.Controls.MetroToggle();
-            this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
+            this.labelWriteLog = new MetroFramework.Controls.MetroLabel();
             this.toggleWriteLog = new MetroFramework.Controls.MetroToggle();
             this.toggleDeleteBeforeRestoring = new MetroFramework.Controls.MetroToggle();
             this.labelDeleteBeforeRestoring = new MetroFramework.Controls.MetroLabel();
             this.linkAdvancedFiltering = new MetroFramework.Controls.MetroLink();
-            this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
+            this.labelShowNumberOfFiles = new MetroFramework.Controls.MetroLabel();
             this.toggleShowNumberOfFiles = new MetroFramework.Controls.MetroToggle();
             this.metroToolTip1 = new MetroFramework.Components.MetroToolTip();
+            this.labelDeleteWithoutConfirmation = new MetroFramework.Controls.MetroLabel();
+            this.toggleDeleteWithoutConfirmation = new MetroFramework.Controls.MetroToggle();
             this.SuspendLayout();
             // 
             // labelBackupBeforeRestoring
@@ -271,7 +273,7 @@
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(348, 281);
+            this.buttonSave.Location = new System.Drawing.Point(348, 371);
             this.buttonSave.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(88, 27);
@@ -282,7 +284,7 @@
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(348, 347);
+            this.buttonCancel.Location = new System.Drawing.Point(348, 305);
             this.buttonCancel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(88, 27);
@@ -293,7 +295,7 @@
             // 
             // buttonDelete
             // 
-            this.buttonDelete.Location = new System.Drawing.Point(348, 314);
+            this.buttonDelete.Location = new System.Drawing.Point(348, 338);
             this.buttonDelete.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(88, 27);
@@ -304,10 +306,11 @@
             // 
             // labelWarning
             // 
+            this.labelWarning.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labelWarning.AutoSize = true;
             this.labelWarning.BackColor = System.Drawing.Color.White;
             this.labelWarning.ForeColor = System.Drawing.Color.Red;
-            this.labelWarning.Location = new System.Drawing.Point(27, 372);
+            this.labelWarning.Location = new System.Drawing.Point(27, 408);
             this.labelWarning.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelWarning.Name = "labelWarning";
             this.labelWarning.Size = new System.Drawing.Size(58, 19);
@@ -316,15 +319,15 @@
             this.labelWarning.UseCustomForeColor = true;
             this.labelWarning.Visible = false;
             // 
-            // metroLabel1
+            // labelBackupOnStartWatching
             // 
-            this.metroLabel1.AutoSize = true;
-            this.metroLabel1.Location = new System.Drawing.Point(27, 298);
-            this.metroLabel1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.metroLabel1.Name = "metroLabel1";
-            this.metroLabel1.Size = new System.Drawing.Size(155, 19);
-            this.metroLabel1.TabIndex = 28;
-            this.metroLabel1.Text = "Backup on start watching";
+            this.labelBackupOnStartWatching.AutoSize = true;
+            this.labelBackupOnStartWatching.Location = new System.Drawing.Point(27, 298);
+            this.labelBackupOnStartWatching.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelBackupOnStartWatching.Name = "labelBackupOnStartWatching";
+            this.labelBackupOnStartWatching.Size = new System.Drawing.Size(155, 19);
+            this.labelBackupOnStartWatching.TabIndex = 28;
+            this.labelBackupOnStartWatching.Text = "Backup on start watching";
             // 
             // toggleBackupOnStartWatching
             // 
@@ -337,15 +340,15 @@
             this.toggleBackupOnStartWatching.Text = "Off";
             this.toggleBackupOnStartWatching.UseSelectable = true;
             // 
-            // metroLabel2
+            // labelWriteLog
             // 
-            this.metroLabel2.AutoSize = true;
-            this.metroLabel2.Location = new System.Drawing.Point(27, 325);
-            this.metroLabel2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.metroLabel2.Name = "metroLabel2";
-            this.metroLabel2.Size = new System.Drawing.Size(64, 19);
-            this.metroLabel2.TabIndex = 30;
-            this.metroLabel2.Text = "Write log";
+            this.labelWriteLog.AutoSize = true;
+            this.labelWriteLog.Location = new System.Drawing.Point(27, 325);
+            this.labelWriteLog.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelWriteLog.Name = "labelWriteLog";
+            this.labelWriteLog.Size = new System.Drawing.Size(64, 19);
+            this.labelWriteLog.TabIndex = 30;
+            this.labelWriteLog.Text = "Write log";
             // 
             // toggleWriteLog
             // 
@@ -390,15 +393,15 @@
             this.linkAdvancedFiltering.UseVisualStyleBackColor = true;
             this.linkAdvancedFiltering.Click += new System.EventHandler(this.linkAdvancedFiltering_Click);
             // 
-            // metroLabel3
+            // labelShowNumberOfFiles
             // 
-            this.metroLabel3.AutoSize = true;
-            this.metroLabel3.Location = new System.Drawing.Point(27, 353);
-            this.metroLabel3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.metroLabel3.Name = "metroLabel3";
-            this.metroLabel3.Size = new System.Drawing.Size(197, 19);
-            this.metroLabel3.TabIndex = 32;
-            this.metroLabel3.Text = "Show number of files backed up";
+            this.labelShowNumberOfFiles.AutoSize = true;
+            this.labelShowNumberOfFiles.Location = new System.Drawing.Point(27, 353);
+            this.labelShowNumberOfFiles.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelShowNumberOfFiles.Name = "labelShowNumberOfFiles";
+            this.labelShowNumberOfFiles.Size = new System.Drawing.Size(197, 19);
+            this.labelShowNumberOfFiles.TabIndex = 32;
+            this.labelShowNumberOfFiles.Text = "Show number of files backed up";
             // 
             // toggleShowNumberOfFiles
             // 
@@ -417,21 +420,44 @@
             this.metroToolTip1.StyleManager = null;
             this.metroToolTip1.Theme = MetroFramework.MetroThemeStyle.Light;
             // 
+            // labelDeleteWithoutConfirmation
+            // 
+            this.labelDeleteWithoutConfirmation.AutoSize = true;
+            this.labelDeleteWithoutConfirmation.Location = new System.Drawing.Point(27, 379);
+            this.labelDeleteWithoutConfirmation.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelDeleteWithoutConfirmation.Name = "labelDeleteWithoutConfirmation";
+            this.labelDeleteWithoutConfirmation.Size = new System.Drawing.Size(170, 19);
+            this.labelDeleteWithoutConfirmation.TabIndex = 34;
+            this.labelDeleteWithoutConfirmation.Text = "Delete without confirmation";
+            // 
+            // toggleDeleteWithoutConfirmation
+            // 
+            this.toggleDeleteWithoutConfirmation.AutoSize = true;
+            this.toggleDeleteWithoutConfirmation.Location = new System.Drawing.Point(260, 381);
+            this.toggleDeleteWithoutConfirmation.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.toggleDeleteWithoutConfirmation.Name = "toggleDeleteWithoutConfirmation";
+            this.toggleDeleteWithoutConfirmation.Size = new System.Drawing.Size(80, 19);
+            this.toggleDeleteWithoutConfirmation.TabIndex = 33;
+            this.toggleDeleteWithoutConfirmation.Text = "Off";
+            this.toggleDeleteWithoutConfirmation.UseSelectable = true;
+            // 
             // EditGameProfile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = MetroFramework.Forms.MetroFormBorderStyle.FixedSingle;
             this.CancelButton = this.buttonCancel;
-            this.ClientSize = new System.Drawing.Size(469, 398);
-            this.Controls.Add(this.metroLabel3);
+            this.ClientSize = new System.Drawing.Size(469, 434);
+            this.Controls.Add(this.labelDeleteWithoutConfirmation);
+            this.Controls.Add(this.toggleDeleteWithoutConfirmation);
+            this.Controls.Add(this.labelShowNumberOfFiles);
             this.Controls.Add(this.toggleShowNumberOfFiles);
             this.Controls.Add(this.linkAdvancedFiltering);
             this.Controls.Add(this.labelDeleteBeforeRestoring);
             this.Controls.Add(this.toggleDeleteBeforeRestoring);
-            this.Controls.Add(this.metroLabel2);
+            this.Controls.Add(this.labelWriteLog);
             this.Controls.Add(this.toggleWriteLog);
-            this.Controls.Add(this.metroLabel1);
+            this.Controls.Add(this.labelBackupOnStartWatching);
             this.Controls.Add(this.toggleBackupOnStartWatching);
             this.Controls.Add(this.labelWarning);
             this.Controls.Add(this.buttonDelete);
@@ -481,15 +507,17 @@
         private MetroFramework.Controls.MetroButton buttonCancel;
         private MetroFramework.Controls.MetroButton buttonDelete;
         private MetroFramework.Controls.MetroLabel labelWarning;
-        private MetroFramework.Controls.MetroLabel metroLabel1;
+        private MetroFramework.Controls.MetroLabel labelBackupOnStartWatching;
         private MetroFramework.Controls.MetroToggle toggleBackupOnStartWatching;
-        private MetroFramework.Controls.MetroLabel metroLabel2;
+        private MetroFramework.Controls.MetroLabel labelWriteLog;
         private MetroFramework.Controls.MetroToggle toggleWriteLog;
         private MetroFramework.Controls.MetroToggle toggleDeleteBeforeRestoring;
         private MetroFramework.Controls.MetroLabel labelDeleteBeforeRestoring;
         private MetroFramework.Controls.MetroLink linkAdvancedFiltering;
-        private MetroFramework.Controls.MetroLabel metroLabel3;
+        private MetroFramework.Controls.MetroLabel labelShowNumberOfFiles;
         private MetroFramework.Controls.MetroToggle toggleShowNumberOfFiles;
         private MetroFramework.Components.MetroToolTip metroToolTip1;
+        private MetroFramework.Controls.MetroLabel labelDeleteWithoutConfirmation;
+        private MetroFramework.Controls.MetroToggle toggleDeleteWithoutConfirmation;
     }
 }

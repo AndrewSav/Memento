@@ -31,7 +31,8 @@ namespace Memento.Forms
                     WriteLog = toggleWriteLog.Checked,
                     BackupFilter = backupFilter,
                     WatchFilter = watchFilter,
-                    ShowNumberOfFiles = toggleShowNumberOfFiles.Checked
+                    ShowNumberOfFiles = toggleShowNumberOfFiles.Checked,
+                    DeleteWithoutConfirmation = toggleDeleteWithoutConfirmation.Checked
                 };
             }
             set
@@ -49,6 +50,7 @@ namespace Memento.Forms
                 backupFilter = value.BackupFilter;
                 watchFilter = value.WatchFilter;
                 toggleShowNumberOfFiles.Checked = value.ShowNumberOfFiles;
+                toggleDeleteWithoutConfirmation.Checked = value.DeleteWithoutConfirmation;
             }
         }
 

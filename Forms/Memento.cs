@@ -640,6 +640,14 @@ namespace Memento.Forms
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!_selectedItem.DeleteWithoutConfirmation)
+            {
+                DialogResult dr = MessageBox.Show(this, "Confirm deletion, please!", "Deleting Backup", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                if (dr == DialogResult.Cancel)
+                {
+                    return;
+                }
+            }
             BlockPanel();
             ToolStripMenuItem item = (ToolStripMenuItem)sender;
             MetroContextMenu strip = (MetroContextMenu)item.Owner;
