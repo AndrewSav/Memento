@@ -1,7 +1,7 @@
 $ErrorActionPreference = "Stop"
 $global:ProgressPreference = 'SilentlyContinue'
 
-$targetFramework = "net5.0-windows"
+$targetFramework = "net6.0-windows"
 
 $targetFolder = Join-Path $PSScriptRoot Build
 $debugBin = Join-Path $PSScriptRoot "bin\Debug\$targetFramework"
@@ -12,9 +12,9 @@ $releasePublish = Join-Path $PSScriptRoot "bin\Release\$targetFramework\win-x64\
 $warp = Join-Path $PSScriptRoot Tools\warp.exe
 $editbin = Join-Path $PSScriptRoot Tools\editbin.exe
 $rh = Join-Path $PSScriptRoot Tools\rh.exe
-$project = Join-Path $PSScriptRoot Memento.csproj 
+$project = Join-Path $PSScriptRoot Memento.csproj
 
-$icon = Join-Path $PSScriptRoot Resources\Main.ico 
+$icon = Join-Path $PSScriptRoot Resources\Main.ico
 
 $version = ([xml](Get-Content $project)).Project.PropertyGroup[0].Version
 
@@ -37,7 +37,7 @@ if (Test-Path $debugBinRuntimes) {
 & $editbin /subsystem:windows $tempExe
 Start-Process $rh "-open", $tempExe, "-save", $tempExe, "-action", "addskip", "-res", $icon, "-mask", "ICONGROUP,MAINICON," -Wait
 
-dotnet publish -c Release -r win-x64 -p:PublishTrimmed=true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true 
+dotnet publish -c Release --self-contained -r win-x64 -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true
 Compress-Archive "$releasePublish/*" $targetSelfContainedZip -Force
 
 Compress-Archive $tempExe $targetZip -Force

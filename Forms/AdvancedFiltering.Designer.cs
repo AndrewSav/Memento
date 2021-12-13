@@ -36,6 +36,8 @@
             this.buttonCancel = new MetroFramework.Controls.MetroButton();
             this.buttonClear = new MetroFramework.Controls.MetroButton();
             this.metroToolTip1 = new MetroFramework.Components.MetroToolTip();
+            this.linkRegex = new MetroFramework.Controls.MetroLink();
+            this.linkWatcher = new MetroFramework.Controls.MetroLink();
             this.SuspendLayout();
             // 
             // labelBackupFilter
@@ -96,7 +98,7 @@
             this.textWatchFilter.CustomButton.UseSelectable = true;
             this.textWatchFilter.CustomButton.Visible = false;
             this.textWatchFilter.Lines = new string[0];
-            this.textWatchFilter.Location = new System.Drawing.Point(119, 98);
+            this.textWatchFilter.Location = new System.Drawing.Point(119, 103);
             this.textWatchFilter.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.textWatchFilter.MaxLength = 32767;
             this.textWatchFilter.Name = "textWatchFilter";
@@ -115,7 +117,7 @@
             // labelWatchFilter
             // 
             this.labelWatchFilter.AutoSize = true;
-            this.labelWatchFilter.Location = new System.Drawing.Point(27, 102);
+            this.labelWatchFilter.Location = new System.Drawing.Point(27, 107);
             this.labelWatchFilter.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelWatchFilter.Name = "labelWatchFilter";
             this.labelWatchFilter.Size = new System.Drawing.Size(82, 19);
@@ -124,7 +126,7 @@
             // 
             // buttonOk
             // 
-            this.buttonOk.Location = new System.Drawing.Point(217, 135);
+            this.buttonOk.Location = new System.Drawing.Point(217, 144);
             this.buttonOk.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.buttonOk.Name = "buttonOk";
             this.buttonOk.Size = new System.Drawing.Size(88, 27);
@@ -135,7 +137,7 @@
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(313, 135);
+            this.buttonCancel.Location = new System.Drawing.Point(313, 144);
             this.buttonCancel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(88, 27);
@@ -146,7 +148,7 @@
             // 
             // buttonClear
             // 
-            this.buttonClear.Location = new System.Drawing.Point(121, 135);
+            this.buttonClear.Location = new System.Drawing.Point(121, 144);
             this.buttonClear.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.buttonClear.Name = "buttonClear";
             this.buttonClear.Size = new System.Drawing.Size(88, 27);
@@ -161,13 +163,37 @@
             this.metroToolTip1.StyleManager = null;
             this.metroToolTip1.Theme = MetroFramework.MetroThemeStyle.Light;
             // 
+            // linkRegex
+            // 
+            this.linkRegex.Location = new System.Drawing.Point(26, 86);
+            this.linkRegex.Name = "linkRegex";
+            this.linkRegex.Size = new System.Drawing.Size(88, 16);
+            this.linkRegex.TabIndex = 18;
+            this.linkRegex.Text = "(regex syntax)";
+            this.linkRegex.UseSelectable = true;
+            this.linkRegex.UseVisualStyleBackColor = true;
+            this.linkRegex.Click += new System.EventHandler(this.linkRegex_Click);
+            // 
+            // linkWatcher
+            // 
+            this.linkWatcher.Location = new System.Drawing.Point(8, 124);
+            this.linkWatcher.Name = "linkWatcher";
+            this.linkWatcher.Size = new System.Drawing.Size(110, 15);
+            this.linkWatcher.TabIndex = 18;
+            this.linkWatcher.Text = "(watcher syntax)";
+            this.linkWatcher.UseSelectable = true;
+            this.linkWatcher.UseVisualStyleBackColor = true;
+            this.linkWatcher.Click += new System.EventHandler(this.linkWatcher_Click);
+            // 
             // AdvancedFiltering
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = MetroFramework.Forms.MetroFormBorderStyle.FixedSingle;
             this.CancelButton = this.buttonCancel;
-            this.ClientSize = new System.Drawing.Size(428, 173);
+            this.ClientSize = new System.Drawing.Size(428, 196);
+            this.Controls.Add(this.linkWatcher);
+            this.Controls.Add(this.linkRegex);
             this.Controls.Add(this.buttonClear);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonOk);
@@ -195,5 +221,7 @@
         private MetroFramework.Controls.MetroButton buttonCancel;
         private MetroFramework.Controls.MetroButton buttonClear;
         private MetroFramework.Components.MetroToolTip metroToolTip1;
+        private MetroFramework.Controls.MetroLink linkRegex;
+        private MetroFramework.Controls.MetroLink linkWatcher;
     }
 }

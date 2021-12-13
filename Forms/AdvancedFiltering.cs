@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using Memento.Models;
 
 namespace Memento.Forms
@@ -44,6 +45,28 @@ namespace Memento.Forms
         {
             textWatchFilter.Text = string.Empty;
             textBackupFilter.Text = string.Empty;
+        }
+
+        private void linkWatcher_Click(object sender, EventArgs e)
+        {
+            ProcessStartInfo psi = new ProcessStartInfo
+            {
+                FileName = "https://docs.microsoft.com/en-us/dotnet/api/system.io.filesystemwatcher.filter#remarks",
+                UseShellExecute = true
+            };
+            Process.Start(psi);
+
+        }
+
+        private void linkRegex_Click(object sender, EventArgs e)
+        {
+            ProcessStartInfo psi = new ProcessStartInfo
+            {
+                FileName = "https://docs.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-language-quick-reference",
+                UseShellExecute = true
+            };
+            Process.Start(psi);
+
         }
     }
 }

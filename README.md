@@ -2,7 +2,7 @@
 
 ![Main UI](Images/main01.png)
 
-This is a simple tool for save scumming, initial version written in an evening. Build it on Windows 10 with .NET Core 5.0
+This is a simple tool for save scumming, initial version written in an evening. Build it on Windows 10/11 with .NET Core 6.0
 
 ## Support
 
@@ -55,13 +55,15 @@ Unzip the archive and put the content to a folder and run.
 
 ## Building
 
-You can build in VS2019. You can use `build.ps1` to build the Release with .Net core SDK. Look at `global.json` to find out which SDK version you need installed.
+You can build in VS2022. You can use `build.ps1` to build the Release with .Net core SDK. Look at `global.json` to find out which SDK version you need installed.
 
 ## Change Log
 
-* 1.2.0 (unreleased)
+* 1.2.0
 
+  * Upgraded to .net SDK 6.0.100
   * Added an confirmation dialog when deleting a backup
+  * Added help links to advanced filtering window
 
 * 1.1.0
 
