@@ -31,7 +31,9 @@ mkdir $targetFolder -force | Out-Null
 
 dotnet build
 if (Test-Path $debugBinRuntimes) {
-  Remove-Item $debugBinRuntimes -Recurse -Force
+  gci $debugBinRuntimes | ?{ $_.name -ne "win" } | %{
+    Remove-Item $_ -Recurse -Force
+  }
 }
 & $warp -i $debugBin -a windows-x64 -e Memento.exe -o $tempExe
 & $editbin /subsystem:windows $tempExe
