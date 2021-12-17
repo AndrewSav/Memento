@@ -95,7 +95,7 @@ namespace Memento.Forms
                 linkBackup.Enabled = false;
                 comboProfiles.Enabled = false;
                 buttonEdit.Enabled = false;
-                watcher = new FileSystemWatcher(_selectedItem.SavesFolder) { IncludeSubdirectories = true };
+                watcher = new FileSystemWatcher(_selectedItem.GetSavesFolder()) { IncludeSubdirectories = true };
                 if (!string.IsNullOrEmpty(_selectedItem.WatchFilter))
                 {
                     watcher.Filter = _selectedItem.WatchFilter;
@@ -297,14 +297,14 @@ namespace Memento.Forms
 
         private void LoadProfile(GameProfile profile)
         {
-            if (!Directory.Exists(profile.SavesFolder))
+            if (!Directory.Exists(profile.GetSavesFolder()))
             {
                 labelWarning.Visible = true;
                 labelWarning.Text = @"Saves Folder not found!";
                 return;
             }
 
-            if (!File.Exists(profile.GameExecutable))
+            if (!File.Exists(profile.GetGameExecutable()))
             {
                 labelWarning.Visible = true;
                 labelWarning.Text = @"Game executable not found!";
@@ -397,7 +397,7 @@ namespace Memento.Forms
         {
             ProcessStartInfo psi = new ProcessStartInfo
             {
-                FileName = _selectedItem.SavesFolder,
+                FileName = _selectedItem.GetSavesFolder(),
                 UseShellExecute = true
             };
             Process.Start(psi);
@@ -422,16 +422,16 @@ namespace Memento.Forms
         {
             ProcessStartInfo si = new ProcessStartInfo
             {
-                FileName = _selectedItem.GameExecutable,
+                FileName = _selectedItem.GetGameExecutable(),
                 // ReSharper disable once AssignNullToNotNullAttribute
-                WorkingDirectory = Path.GetDirectoryName(_selectedItem.GameExecutable)
+                WorkingDirectory = Path.GetDirectoryName(_selectedItem.GetGameExecutable())
             };
             Process.Start(si);
         }
 
         private void linkKillGame_Click(object sender, EventArgs e)
         {
-            GameProcess.KillProcess(_selectedItem.GameExecutable);
+            GameProcess.KillProcess(_selectedItem.GetGameExecutable());
         }
 
         private void BlockPanel()
@@ -459,10 +459,10 @@ namespace Memento.Forms
             if (_selectedItem.KillBeforeRestore)
             {
                 Log("Killing game process");
-                GameProcess.KillProcess(_selectedItem.GameExecutable);
+                GameProcess.KillProcess(_selectedItem.GetGameExecutable());
             }
 
-            if (!_selectedItem.DontWarnOnRestore && GameProcess.FindProcess(_selectedItem.GameExecutable).Any())
+            if (!_selectedItem.DontWarnOnRestore && GameProcess.FindProcess(_selectedItem.GetGameExecutable()).Any())
             {
                 Log("Warning user that game process is up");
                 DialogResult dr = MessageBox.Show(this,
@@ -495,7 +495,7 @@ namespace Memento.Forms
                 })
                 .ContinueWith((x) =>
                 {
-                    if (_selectedItem.KillBeforeRestore && !GameProcess.FindProcess(_selectedItem.GameExecutable).Any())
+                    if (_selectedItem.KillBeforeRestore && !GameProcess.FindProcess(_selectedItem.GetGameExecutable()).Any())
                     {
                         runGame();
                     }

@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -10,12 +12,18 @@ namespace Memento.Models
         private string backupFolder;
 
         public string ProfileName { get; set; }
-        public string BackupFolder 
-        { 
-            get => backupFolder ?? (ProfileName == "<New>" ? null : ProfileName); 
-            set => backupFolder = value; 
+        public string BackupFolder
+        {
+            get => backupFolder ?? (ProfileName == "<New>" ? null : ProfileName);
+            set => backupFolder = value;
         }
+        public Dictionary<string,string> SavesFolderCollection { get; set; }
+        public Dictionary<string, string> GameExecutableCollection { get; set; }
+        [Obsolete]
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string SavesFolder { get; set; }
+        [Obsolete]
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string GameExecutable { get; set; }
         public string WatchFilter { get; set; }
         public string BackupFilter { get; set; }
@@ -31,8 +39,8 @@ namespace Memento.Models
         {
             ProfileName = copy.ProfileName;
             BackupFolder = copy.BackupFolder;
-            SavesFolder = copy.SavesFolder;
-            GameExecutable = copy.GameExecutable;
+            SavesFolderCollection = copy.SavesFolderCollection.ToDictionary(e => e.Key,e => e.Value);
+            GameExecutableCollection = copy.GameExecutableCollection.ToDictionary(e => e.Key, e => e.Value);
             WatchFilter = copy.WatchFilter;
             BackupFilter = copy.BackupFilter;
             KillBeforeRestore = copy.KillBeforeRestore;
@@ -43,6 +51,37 @@ namespace Memento.Models
             WriteLog = copy.WriteLog;
             ShowNumberOfFiles = copy.ShowNumberOfFiles;
             DeleteWithoutConfirmation = copy.DeleteWithoutConfirmation;
+        }
+
+        public string GetSavesFolder()
+        {
+            if (SavesFolderCollection.ContainsKey(Environment.MachineName))
+            {
+                return SavesFolderCollection[Environment.MachineName];
+            }
+            else
+            {
+                return SavesFolderCollection[SavesFolderCollection.Keys.First()];
+            }
+        }
+        public string GetGameExecutable()
+        {
+            if (GameExecutableCollection.ContainsKey(Environment.MachineName))
+            {
+                return GameExecutableCollection[Environment.MachineName];
+            }
+            else
+            {
+                return GameExecutableCollection[GameExecutableCollection.Keys.First()];
+            }
+        }
+        public void SetSavesFolder(string value)
+        {
+            SavesFolderCollection[Environment.MachineName] = value;
+        }
+        public void SetGameExecutable(string value)
+        {
+            GameExecutableCollection[Environment.MachineName] = value;
         }
 
         public string GetValidateMessage(IEnumerable<string> existingProfiles, string originalProfileName)
@@ -59,15 +98,15 @@ namespace Memento.Models
             {
                 return "Profile with this name already exists";
             }
-            if (!Directory.Exists(SavesFolder))
+            if (!Directory.Exists(GetSavesFolder()))
             {
                 return "Saves folder with this path does not exist";
             }
-            if (!File.Exists(GameExecutable))
+            if (!File.Exists(GetGameExecutable()))
             {
                 return "Game executable with this path does not exist";
             }
-            if (string.IsNullOrEmpty(GameExecutable) && KillBeforeRestore)
+            if (string.IsNullOrEmpty(GetGameExecutable()) && KillBeforeRestore)
             {
                 return "'Kill game before restore' requires Game Executable";
             }

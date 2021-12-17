@@ -56,15 +56,15 @@ namespace Memento.Helpers
             string targetPath = GetTargetBackupFolder(profile.ProfileName, x);
             if (string.IsNullOrEmpty(profile.BackupFilter))
             {
-                CopyFolder(profile.SavesFolder, targetPath);
+                CopyFolder(profile.GetSavesFolder(), targetPath);
                 return -1;
             }
             else
             {
                 int counter = 0;
-                foreach (string path in ApplyFilter(profile.SavesFolder, profile.BackupFilter))
+                foreach (string path in ApplyFilter(profile.GetSavesFolder(), profile.BackupFilter))
                 {
-                    string target = path.Replace(profile.SavesFolder, targetPath);
+                    string target = path.Replace(profile.GetSavesFolder(), targetPath);
                     Directory.CreateDirectory(Path.GetDirectoryName(target));
                     File.Copy(path, target, true);
                     counter++;
@@ -75,7 +75,7 @@ namespace Memento.Helpers
 
         public static void RestoreBackup(this GameProfile profile, string backupPath)
         {
-            CopyFolder(backupPath,profile.SavesFolder);
+            CopyFolder(backupPath,profile.GetSavesFolder());
         }
 
         private static IEnumerable<string> ApplyFilter(string path, string filter)
@@ -96,11 +96,11 @@ namespace Memento.Helpers
         {
             if (string.IsNullOrEmpty(profile.BackupFilter))
             {
-                Directory.Delete(profile.SavesFolder, true);
+                Directory.Delete(profile.GetSavesFolder(), true);
             }
             else
             {
-                foreach(string path in ApplyFilter(profile.SavesFolder,profile.BackupFilter))
+                foreach(string path in ApplyFilter(profile.GetSavesFolder(), profile.BackupFilter))
                 {
                     File.Delete(path);
                 }

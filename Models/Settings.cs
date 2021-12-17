@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
 
@@ -8,6 +9,7 @@ namespace Memento.Models
     public class Settings
     {
 
+        public string SchemaVersion { get; set; }
         public string LogFileName { get; set; }
         public string LogSizeLimitBytes { get; set; }
         public string LogRetainedCountLimit { get; set; }
@@ -17,7 +19,32 @@ namespace Memento.Models
 
         public static Settings Load(string path)
         {
-            return JsonConvert.DeserializeObject<Settings>(File.ReadAllText(path));
+            return Migrate(JsonConvert.DeserializeObject<Settings>(File.ReadAllText(path)), path);
+        }
+
+        private static Settings Migrate(Settings s, string path)
+        {
+            if (s.SchemaVersion == null)
+            {
+                s.SchemaVersion = "1";
+                foreach (GameProfile p in s.Profiles)
+                {
+                    if (p.GameExecutableCollection == null)
+                    {
+#pragma warning disable CS0612 // Type or member is obsolete
+                        p.GameExecutableCollection = new Dictionary<string, string> { { Environment.MachineName, p.GameExecutable } };
+                    }
+                    p.GameExecutable = null;
+                    if (p.SavesFolderCollection == null)
+                    {
+                        p.SavesFolderCollection = new Dictionary<string, string> { { Environment.MachineName, p.SavesFolder } };
+                    }
+                    p.SavesFolder = null;
+#pragma warning restore CS0612 // Type or member is obsolete
+                }
+                s.Save(path);
+            }
+            return s;
         }
         public static void Save(string path, Settings settings)
         {

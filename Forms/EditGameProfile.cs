@@ -12,17 +12,19 @@ namespace Memento.Forms
         {
             InitializeComponent();
         }
-                
+
         public GameProfile Profile
         {
             get
             {
+                savesFolder[Environment.MachineName] = textSavesFolder.Text.Trim();
+                gameExecutable[Environment.MachineName] = textGameExecutable.Text.Trim();
                 return new GameProfile
                 {
                     ProfileName = textProfileName.Text.Trim(),
                     BackupFolder = backupFolder ?? textProfileName.Text.Trim(),
-                    SavesFolder = textSavesFolder.Text.Trim(),
-                    GameExecutable = textGameExecutable.Text.Trim(),
+                    SavesFolderCollection = savesFolder,
+                    GameExecutableCollection = gameExecutable,
                     DeleteBeforeRestoring = toggleDeleteBeforeRestoring.Checked,
                     BackupBeforeRestoring = toggleBackupBeforeRestoring.Checked,
                     DontWarnOnRestore = toggleDontWarnOnRestore.Checked,
@@ -39,8 +41,10 @@ namespace Memento.Forms
             {
                 textProfileName.Text = value.ProfileName;
                 backupFolder = value.BackupFolder;
-                textSavesFolder.Text = value.SavesFolder;
-                textGameExecutable.Text = value.GameExecutable;
+                textSavesFolder.Text = value.GetSavesFolder();
+                savesFolder = value.SavesFolderCollection.ToDictionary(e => e.Key, e => e.Value);
+                textGameExecutable.Text = value.GetGameExecutable();
+                gameExecutable = value.GameExecutableCollection.ToDictionary(e => e.Key, e => e.Value);
                 toggleDeleteBeforeRestoring.Checked = value.DeleteBeforeRestoring;
                 toggleBackupBeforeRestoring.Checked = value.BackupBeforeRestoring;
                 toggleDontWarnOnRestore.Checked = value.DontWarnOnRestore;
@@ -61,6 +65,8 @@ namespace Memento.Forms
         public bool Deleted { get; private set; }
         public bool Updated { get; private set; }
         private string backupFolder;
+        private Dictionary<string, string> savesFolder { get; set; }
+        private Dictionary<string, string> gameExecutable { get; set; }
 
         private string backupFilter;
         private string watchFilter;
