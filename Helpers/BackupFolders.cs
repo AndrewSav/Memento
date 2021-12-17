@@ -20,16 +20,16 @@ namespace Memento.Helpers
             string target = Path.GetFileName(parentFileName) == Path.GetFileName(myFileName) ? parentFileName : myFileName;
             return Path.GetDirectoryName(target);
         }
-        private static string GetBackupsFolder(string backupFolder)
+        private static string GetBackupFolder(string backupFolder)
         {
             string backups = PathCombineMultiple(GetBaseFolder(), "Saves", backupFolder);
             Directory.CreateDirectory(backups);
             return backups;
         }
 
-        public static string GetBackupsFolder(this GameProfile profile)
+        public static string GetBackupFolder(this GameProfile profile)
         {
-            return GetBackupsFolder(profile.BackupFolder);
+            return GetBackupFolder(profile.BackupFolder);
         }
 
         private static void CopyFolder(string source, string target)
@@ -172,7 +172,7 @@ namespace Memento.Helpers
         }
         public static IEnumerable<string> GetBackupsDescending(this GameProfile profile)
         {
-            return GetBackupsDescending(profile.GetBackupsFolder());
+            return GetBackupsDescending(profile.GetBackupFolder());
         }
     }
 }

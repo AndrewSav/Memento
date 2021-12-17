@@ -291,7 +291,7 @@ namespace Memento.Forms
 
             linkRunGame.Enabled = false;
             linkKillGame.Enabled = false;
-            linkOpenBackupsFolder.Enabled = false;
+            linkOpenBackupFolder.Enabled = false;
             linkOpenSavesFolder.Enabled = false;
         }
 
@@ -320,11 +320,11 @@ namespace Memento.Forms
             linkBackup.Enabled = true;
             linkRunGame.Enabled = true;
             linkKillGame.Enabled = true;
-            linkOpenBackupsFolder.Enabled = true;
+            linkOpenBackupFolder.Enabled = true;
             linkOpenSavesFolder.Enabled = true;
 
             _logger?.Dispose();
-            _logger = _selectedItem.WriteLog ? LoggerHelper.GetLoggerForFolder(_selectedItem.GetBackupsFolder()) : null;
+            _logger = _selectedItem.WriteLog ? LoggerHelper.GetLoggerForFolder(_selectedItem.GetBackupFolder()) : null;
             Log($"Profile selected {_selectedItem.ProfileName}");
         }
 
@@ -366,7 +366,7 @@ namespace Memento.Forms
         private void linkSelect_Click(object sender, EventArgs e)
         {
             Log("Selecting specific backup");
-            string backups = _selectedItem.GetBackupsFolder();
+            string backups = _selectedItem.GetBackupFolder();
             string backup = _selectedItem.GetBackupsDescending().FirstOrDefault();
 
             FolderBrowserDialog cofd = new FolderBrowserDialog
@@ -403,11 +403,11 @@ namespace Memento.Forms
             Process.Start(psi);
         }
 
-        private void linkOpenBackupsFolder_Click(object sender, EventArgs e)
+        private void linkOpenBackupFolder_Click(object sender, EventArgs e)
         {
             ProcessStartInfo psi = new ProcessStartInfo
             {
-                FileName = _selectedItem.GetBackupsFolder(),
+                FileName = _selectedItem.GetBackupFolder(),
                 UseShellExecute = true
             };
             Process.Start(psi);

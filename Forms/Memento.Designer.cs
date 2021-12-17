@@ -59,7 +59,7 @@ namespace Memento.Forms
             this.radio04 = new MetroFramework.Controls.MetroRadioButton();
             this.radio03 = new MetroFramework.Controls.MetroRadioButton();
             this.buttonEdit = new MetroFramework.Controls.MetroButton();
-            this.linkOpenBackupsFolder = new MetroFramework.Controls.MetroLink();
+            this.linkOpenBackupFolder = new MetroFramework.Controls.MetroLink();
             this.linkOpenSavesFolder = new MetroFramework.Controls.MetroLink();
             this.linkRunGame = new MetroFramework.Controls.MetroLink();
             this.linkKillGame = new MetroFramework.Controls.MetroLink();
@@ -452,16 +452,16 @@ namespace Memento.Forms
             this.buttonEdit.UseSelectable = true;
             this.buttonEdit.Click += new System.EventHandler(this.buttonEdit_Click);
             // 
-            // linkOpenBackupsFolder
+            // linkOpenBackupFolder
             // 
-            this.linkOpenBackupsFolder.Location = new System.Drawing.Point(174, 365);
-            this.linkOpenBackupsFolder.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.linkOpenBackupsFolder.Name = "linkOpenBackupsFolder";
-            this.linkOpenBackupsFolder.Size = new System.Drawing.Size(153, 27);
-            this.linkOpenBackupsFolder.TabIndex = 24;
-            this.linkOpenBackupsFolder.Text = "Open Backups Folder";
-            this.linkOpenBackupsFolder.UseSelectable = true;
-            this.linkOpenBackupsFolder.Click += new System.EventHandler(this.linkOpenBackupsFolder_Click);
+            this.linkOpenBackupFolder.Location = new System.Drawing.Point(174, 365);
+            this.linkOpenBackupFolder.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.linkOpenBackupFolder.Name = "linkOpenBackupFolder";
+            this.linkOpenBackupFolder.Size = new System.Drawing.Size(153, 27);
+            this.linkOpenBackupFolder.TabIndex = 24;
+            this.linkOpenBackupFolder.Text = "Open Backup Folder";
+            this.linkOpenBackupFolder.UseSelectable = true;
+            this.linkOpenBackupFolder.Click += new System.EventHandler(this.linkOpenBackupFolder_Click);
             // 
             // linkOpenSavesFolder
             // 
@@ -546,7 +546,7 @@ namespace Memento.Forms
             this.Controls.Add(this.linkVersion);
             this.Controls.Add(this.linkKillGame);
             this.Controls.Add(this.linkRunGame);
-            this.Controls.Add(this.linkOpenBackupsFolder);
+            this.Controls.Add(this.linkOpenBackupFolder);
             this.Controls.Add(this.panelBackups);
             this.Controls.Add(this.labelWarning);
             this.Controls.Add(this.labelSelectGameProfile);
@@ -591,7 +591,7 @@ namespace Memento.Forms
         private MetroFramework.Controls.MetroRadioButton radio03;
         private MetroFramework.Controls.MetroLabel labelNoBackupsFound;
         private MetroFramework.Controls.MetroButton buttonEdit;
-        private MetroFramework.Controls.MetroLink linkOpenBackupsFolder;
+        private MetroFramework.Controls.MetroLink linkOpenBackupFolder;
         private MetroFramework.Controls.MetroLink linkOpenSavesFolder;
         private MetroFramework.Controls.MetroLink linkRunGame;
         private MetroFramework.Controls.MetroLink linkSelect;
