@@ -55,9 +55,14 @@ Unzip the archive and put the content to a folder and run.
 
 ## Building
 
-You can build in VS2022. You can use `build.ps1` to build the Release with .Net core SDK. Look at `global.json` to find out which SDK version you need installed.
+You can build in VS2022. You can use `build.ps1` to build the Release with .Net core SDK. Look at `global.json` to find out which SDK version you need installed. You probably want to delete your `bin`/`obj` before the build so that the build output does not have irrelevant files you might have used during testing.
 
 ## Change Log
+
+* 1.3.0 (unreleased)
+  * Upgraded to .net SDK 6.0.101
+  * Pathes to the game executable and the save folder are now saved per PC making it easier to sync the backups with the likes of Dropbox and Google Drive
+
 
 * 1.2.0
 
