@@ -9,6 +9,12 @@ namespace Memento.Models
 {
     public class GameProfile
     {
+        public GameProfile()
+        {
+            SavesFolderCollection = new Dictionary<string, string>();
+            GameExecutableCollection = new Dictionary<string, string>();
+        }
+            
         private string backupFolder;
 
         public string ProfileName { get; set; }
@@ -61,7 +67,7 @@ namespace Memento.Models
             }
             else
             {
-                return SavesFolderCollection[SavesFolderCollection.Keys.First()];
+                return SavesFolderCollection.Count > 0 ? SavesFolderCollection[SavesFolderCollection.Keys.First()] : null;
             }
         }
         public string GetGameExecutable()
@@ -72,7 +78,7 @@ namespace Memento.Models
             }
             else
             {
-                return GameExecutableCollection[GameExecutableCollection.Keys.First()];
+                return GameExecutableCollection.Count > 0 ? GameExecutableCollection[GameExecutableCollection.Keys.First()] :  null;
             }
         }
         public void SetSavesFolder(string value)
