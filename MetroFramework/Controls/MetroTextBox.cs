@@ -264,7 +264,7 @@ namespace MetroFramework.Controls
                     Size originalSize = textBoxIcon.Size;
                     double resizeFactor = _height / (double)originalSize.Height;
 
-                    Point iconLocation = new Point(1, 1);
+                    Point iconLocation = new(1, 1);
                     return new Size((int)(originalSize.Width * resizeFactor), (int)(originalSize.Height * resizeFactor));
                 }
 
@@ -496,7 +496,7 @@ namespace MetroFramework.Controls
         public MetroTextBox()
         {
             SetStyle(ControlStyles.DoubleBuffer | ControlStyles.OptimizedDoubleBuffer, true);
-            this.GotFocus += MetroTextBox_GotFocus;
+            GotFocus += MetroTextBox_GotFocus;
             base.TabStop = false;
 
             CreateBaseTextBox();
@@ -511,8 +511,7 @@ namespace MetroFramework.Controls
         public event EventHandler AcceptsTabChanged;
         private void BaseTextBoxAcceptsTabChanged(object sender, EventArgs e)
         {
-            if (AcceptsTabChanged != null)
-                AcceptsTabChanged(this, e);
+            AcceptsTabChanged?.Invoke(this, e);
         }
 
         private void BaseTextBoxSizeChanged(object sender, EventArgs e)
@@ -682,10 +681,10 @@ namespace MetroFramework.Controls
             if (_witherror)
             {
                 borderColor = MetroColors.Red;
-                if (this.Style == MetroColorStyle.Red) borderColor = MetroColors.Orange;
+                if (Style == MetroColorStyle.Red) borderColor = MetroColors.Orange;
             }
 
-            using (Pen p = new Pen(borderColor))
+            using (Pen p = new(borderColor))
             {
                 e.Graphics.DrawRectangle(p, new Rectangle(0, 0, Width - 2, Height - 1));
             }
@@ -697,7 +696,7 @@ namespace MetroFramework.Controls
         {
             if (displayIcon && textBoxIcon != null)
             {
-                Point iconLocation = new Point(5, 5);
+                Point iconLocation = new(5, 5);
                 if (textBoxIconRight)
                 {
                     iconLocation = new Point(ClientRectangle.Width - iconSize.Width - 1, 1);
@@ -772,7 +771,7 @@ namespace MetroFramework.Controls
             _button.MouseLeave += _button_MouseLeave;
             _button.Click += _button_Click;
 
-            if (!this.Controls.Contains(this._button)) this.Controls.Add(_button);
+            if (!Controls.Contains(_button)) Controls.Add(_button);
 
             if (lnkClear != null) return;
 
@@ -789,7 +788,7 @@ namespace MetroFramework.Controls
 
         void _button_Click(object sender, EventArgs e)
         {
-            if (ButtonClick != null) ButtonClick(this, e);
+            ButtonClick?.Invoke(this, e);
         }
 
         void _button_MouseLeave(object sender, EventArgs e)
@@ -835,7 +834,7 @@ namespace MetroFramework.Controls
         {
             UseStyleColors = false;
             Invalidate();
-            this.InvokeLostFocus(this, e);
+            InvokeLostFocus(this, e);
         }
 
         void baseTextBox_GotFocus(object sender, EventArgs e)
@@ -843,7 +842,7 @@ namespace MetroFramework.Controls
             _witherror = false;
             UseStyleColors = true;
             Invalidate();
-            this.InvokeGotFocus(this, e);
+            InvokeGotFocus(this, e);
         }
 
         private void UpdateBaseTextBox()
@@ -853,12 +852,12 @@ namespace MetroFramework.Controls
                 if ((Height % 2) > 0)
                 {
                     _button.Size = new Size(Height - 2, Height - 2);
-                    _button.Location = new Point(this.Width - (_button.Width + 1), 1);
+                    _button.Location = new Point(Width - (_button.Width + 1), 1);
                 }
                 else
                 {
                     _button.Size = new Size(Height - 5, Height - 5);
-                    _button.Location = new Point((this.Width - _button.Width) - 3, 2);
+                    _button.Location = new Point((Width - _button.Width) - 3, 2);
                 }
 
                 _button.Visible = _showbutton;
@@ -868,10 +867,10 @@ namespace MetroFramework.Controls
             if (lnkClear != null)
             {
                 lnkClear.Visible = false;
-                if (_showclear && this.Text != "" && !this.ReadOnly && this.Enabled)
+                if (_showclear && Text != "" && !ReadOnly && Enabled)
                 {
                     _clearloc = 16;
-                    lnkClear.Location = new Point(this.Width - (ButtonWidth + 17), (this.Height - 14) / 2);
+                    lnkClear.Location = new Point(Width - (ButtonWidth + 17), (Height - 14) / 2);
                     lnkClear.Visible = true;
                 }
             }
@@ -883,7 +882,7 @@ namespace MetroFramework.Controls
 
             if (displayIcon)
             {
-                Point textBoxLocation = new Point(iconSize.Width + 10, 5);
+                Point textBoxLocation = new(iconSize.Width + 10, 5);
                 if (textBoxIconRight)
                 {
                     textBoxLocation = new Point(3, 3);
@@ -935,7 +934,7 @@ namespace MetroFramework.Controls
                 }
             }
 
-            private Font _waterMarkFont = MetroFramework.MetroFonts.WaterMark(MetroLabelSize.Small, MetroWaterMarkWeight.Italic);
+            private Font _waterMarkFont = MetroFonts.WaterMark(MetroLabelSize.Small, MetroWaterMarkWeight.Italic);
             public Font WaterMarkFont
             {
                 get { return _waterMarkFont; }
@@ -978,7 +977,7 @@ namespace MetroFramework.Controls
                         break;
                 }
 
-                SolidBrush drawBrush = new SolidBrush(WaterMarkColor);
+                SolidBrush drawBrush = new(WaterMarkColor);
 
                 TextRenderer.DrawText(g, promptText, _waterMarkFont, clientRectangle, _waterMarkColor, BackColor, flags);
             }
@@ -1029,25 +1028,25 @@ namespace MetroFramework.Controls
 
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MetroTextBox));
-            this.lnkClear = new MetroFramework.Controls.MetroLink();
-            this.SuspendLayout();
+            ComponentResourceManager resources = new(typeof(MetroTextBox));
+            lnkClear = new MetroLink();
+            SuspendLayout();
             // 
             // lnkClear
             // 
-            this.lnkClear.FontSize = MetroFramework.MetroLinkSize.Medium;
-            this.lnkClear.FontWeight = MetroFramework.MetroLinkWeight.Regular;
-            this.lnkClear.Image = ((System.Drawing.Image)(resources.GetObject("lnkClear.Image")));
-            this.lnkClear.ImageSize = 10;
-            this.lnkClear.Location = new System.Drawing.Point(654, 96);
-            this.lnkClear.Name = "lnkClear";
-            this.lnkClear.NoFocusImage = ((System.Drawing.Image)(resources.GetObject("lnkClear.NoFocusImage")));
-            this.lnkClear.Size = new System.Drawing.Size(12, 12);
-            this.lnkClear.TabIndex = 2;
-            this.lnkClear.UseSelectable = true;
-            this.lnkClear.Click += new EventHandler(lnkClear_Click);
-            this.ResumeLayout(false);
-            this.Controls.Add(lnkClear);
+            lnkClear.FontSize = MetroLinkSize.Medium;
+            lnkClear.FontWeight = MetroLinkWeight.Regular;
+            lnkClear.Image = ((Image)(resources.GetObject("lnkClear.Image")));
+            lnkClear.ImageSize = 10;
+            lnkClear.Location = new Point(654, 96);
+            lnkClear.Name = "lnkClear";
+            lnkClear.NoFocusImage = ((Image)(resources.GetObject("lnkClear.NoFocusImage")));
+            lnkClear.Size = new Size(12, 12);
+            lnkClear.TabIndex = 2;
+            lnkClear.UseSelectable = true;
+            lnkClear.Click += new EventHandler(lnkClear_Click);
+            ResumeLayout(false);
+            Controls.Add(lnkClear);
         }
 
         public delegate void LUClear();
@@ -1055,11 +1054,11 @@ namespace MetroFramework.Controls
 
         void lnkClear_Click(object sender, EventArgs e)
         {
-            this.Focus();
-            this.Clear();
+            Focus();
+            Clear();
             baseTextBox.Focus();
 
-            if (ClearClicked != null) ClearClicked();
+            ClearClicked?.Invoke();
         }
 
         #region MetroTextButton
@@ -1300,7 +1299,7 @@ namespace MetroFramework.Controls
                 }
             }
 
-            public Bitmap ApplyInvert(Bitmap bitmapImage)
+            public static Bitmap ApplyInvert(Bitmap bitmapImage)
             {
                 byte A, R, G, B;
                 Color pixelColor;
@@ -1330,7 +1329,7 @@ namespace MetroFramework.Controls
                         Size originalSize = Image.Size;
                         double resizeFactor = 14 / (double)originalSize.Height;
 
-                        Point iconLocation = new Point(1, 1);
+                        Point iconLocation = new(1, 1);
                         return new Size((int)(originalSize.Width * resizeFactor), (int)(originalSize.Height * resizeFactor));
                     }
 
@@ -1342,7 +1341,7 @@ namespace MetroFramework.Controls
             {
                 if (Image != null)
                 {
-                    Point iconLocation = new Point(2, (ClientRectangle.Height - iconSize.Height) / 2);
+                    Point iconLocation = new(2, (ClientRectangle.Height - iconSize.Height) / 2);
                     int _filler = 5;
 
                     switch (ImageAlign)

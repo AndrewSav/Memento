@@ -24,9 +24,8 @@
  * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF 
  * THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-using System;
+
 using System.Collections.Generic;
-using System.Text;
 using System.Text.RegularExpressions;
 
 namespace MetroFramework.Drawing.Html
@@ -35,9 +34,9 @@ namespace MetroFramework.Drawing.Html
     {
         #region Fields
 
-        private string _tagName;
-        private bool _isClosing;
-        private Dictionary<string, string> _attributes;
+        private readonly string _tagName;
+        private readonly bool _isClosing;
+        private readonly Dictionary<string, string> _attributes;
 
         #endregion
 
@@ -45,13 +44,13 @@ namespace MetroFramework.Drawing.Html
 
         private HtmlTag()
         {
-            _attributes = new Dictionary<string, string>();
+            _attributes = [];
         }
 
         public HtmlTag(string tag)
             : this()
         {
-            tag = tag.Substring(1, tag.Length - 2);
+            tag = tag[1..^1];
 
             int spaceIndex = tag.IndexOf(" ");
 
@@ -62,14 +61,14 @@ namespace MetroFramework.Drawing.Html
             }
             else
             {
-                _tagName = tag.Substring(0, spaceIndex);
+                _tagName = tag[..spaceIndex];
             }
 
             //Check if is end tag
             if (_tagName.StartsWith("/"))
             {
                 _isClosing = true;
-                _tagName = _tagName.Substring(1);
+                _tagName = _tagName[1..];
             }
 
             _tagName = _tagName.ToLower();
@@ -94,7 +93,7 @@ namespace MetroFramework.Drawing.Html
 
                     if (attvalue.StartsWith("\"") && attvalue.EndsWith("\"") && attvalue.Length > 2)
                     {
-                        attvalue = attvalue.Substring(1, attvalue.Length - 2);
+                        attvalue = attvalue[1..^1];
                     }
 
                     if (!Attributes.ContainsKey(attname))
@@ -240,9 +239,9 @@ namespace MetroFramework.Drawing.Html
         /// </summary>
         /// <param name="htmlLength"></param>
         /// <returns></returns>
-        private string TranslateLength(string htmlLength)
+        private static string TranslateLength(string htmlLength)
         {
-            CssLength len = new CssLength(htmlLength);
+            CssLength len = new(htmlLength);
 
             if (len.HasError)
             {

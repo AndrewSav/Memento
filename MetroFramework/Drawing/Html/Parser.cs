@@ -24,9 +24,7 @@
  * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF 
  * THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-using System;
-using System.Collections.Generic;
-using System.Text;
+
 using System.Text.RegularExpressions;
 
 namespace MetroFramework.Drawing.Html
@@ -148,7 +146,7 @@ namespace MetroFramework.Drawing.Html
         /// <returns>Collection of matches</returns>
         public static MatchCollection Match(string regex, string source)
         {
-            Regex r = new Regex(regex, RegexOptions.IgnoreCase | RegexOptions.Singleline);
+            Regex r = new(regex, RegexOptions.IgnoreCase | RegexOptions.Singleline);
             return r.Matches(source);
         }
 
@@ -179,10 +177,8 @@ namespace MetroFramework.Drawing.Html
                 position = matches[0].Index;
                 return matches[0].Value;
             }
-            else
-            {
-                position = -1;
-            }
+
+            position = -1;
 
             return null;
         }

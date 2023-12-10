@@ -859,7 +859,7 @@ namespace MetroFramework.Drawing
 
         public static StringFormat GetStringFormat(ContentAlignment textAlign)
         {
-            StringFormat stringFormat = new StringFormat();
+            StringFormat stringFormat = new();
             stringFormat.Trimming = StringTrimming.EllipsisCharacter;
 
             switch (textAlign)

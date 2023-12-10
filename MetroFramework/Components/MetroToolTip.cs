@@ -21,8 +21,7 @@
  * CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE 
  * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-using System;
-using System.Collections.Generic;
+
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
@@ -184,11 +183,11 @@ namespace MetroFramework.Components
             Color borderColor = MetroPaint.BorderColor.Button.Normal(displayTheme);
             Color foreColor = MetroPaint.ForeColor.Label.Normal(displayTheme);
 
-            using (SolidBrush b = new SolidBrush(backColor))
+            using (SolidBrush b = new(backColor))
             {
                 e.Graphics.FillRectangle(b, e.Bounds);
             }
-            using (Pen p = new Pen(borderColor))
+            using (Pen p = new(borderColor))
             {
                 e.Graphics.DrawRectangle(p, new Rectangle(e.Bounds.X, e.Bounds.Y, e.Bounds.Width - 1, e.Bounds.Height - 1));
             }

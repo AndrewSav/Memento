@@ -73,7 +73,7 @@ namespace Memento.Helpers
             }
             string basePath = string.Join("\\",tokens.Take(tokens.Length - 3).ToArray());
             Array.Reverse(tokens);
-            BackupPath result = new BackupPath
+            BackupPath result = new()
             {
                 _time = tokens[0],
                 _day = tokens[1],
@@ -121,16 +121,14 @@ namespace Memento.Helpers
             {
                 return (timeLabelPart, "");
             }
-            else
+
+            string time = timeLabelPart[..indexOfMinus];
+            string label = timeLabelPart[indexOfMinus..];
+            if (label.Length > 0)
             {
-                string time = timeLabelPart.Substring(0, indexOfMinus);
-                string label = timeLabelPart.Substring(indexOfMinus);
-                if (label.Length > 0)
-                {
-                    label = label.Substring(1);
-                }
-                return (time.Trim(), label.Trim());
+                label = label[1..];
             }
+            return (time.Trim(), label.Trim());
         }
 
         private static DateTime? ParseDatePart(string part, params string[] patterns)

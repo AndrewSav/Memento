@@ -176,15 +176,13 @@ namespace MetroFramework.Controls
         public event EventHandler ValueChanged;
         private void OnValueChanged()
         {
-            if (ValueChanged != null)
-                ValueChanged(this, EventArgs.Empty);
+            ValueChanged?.Invoke(this, EventArgs.Empty);
         }
 
         public event ScrollEventHandler Scroll;
         private void OnScroll(ScrollEventType scrollType, int newValue)
         {
-            if (Scroll != null)
-                Scroll(this, new ScrollEventArgs(scrollType, newValue));
+            Scroll?.Invoke(this, new ScrollEventArgs(scrollType, newValue));
         }
 
 
@@ -231,7 +229,7 @@ namespace MetroFramework.Controls
                     if (trackerValue < barMinimum)
                     {
                         trackerValue = barMinimum;
-                        if (ValueChanged != null) ValueChanged(this, new EventArgs());
+                        ValueChanged?.Invoke(this, new EventArgs());
                     }
                     Invalidate();
                 }
@@ -253,7 +251,7 @@ namespace MetroFramework.Controls
                     if (trackerValue > barMaximum)
                     {
                         trackerValue = barMaximum;
-                        if (ValueChanged != null) ValueChanged(this, new EventArgs());
+                        ValueChanged?.Invoke(this, new EventArgs());
                     }
                     Invalidate();
                 }
@@ -401,18 +399,18 @@ namespace MetroFramework.Controls
         {
             int TrackX = (((trackerValue - barMinimum) * (Width - 6)) / (barMaximum - barMinimum));
 
-            using (SolidBrush b = new SolidBrush(thumbColor))
+            using (SolidBrush b = new(thumbColor))
             {
-                Rectangle barRect = new Rectangle(0, Height / 2 - 2, TrackX, 4);
+                Rectangle barRect = new(0, Height / 2 - 2, TrackX, 4);
                 g.FillRectangle(b, barRect);
 
-                Rectangle thumbRect = new Rectangle(TrackX, Height / 2 - 8, 6, 16);
+                Rectangle thumbRect = new(TrackX, Height / 2 - 8, 6, 16);
                 g.FillRectangle(b, thumbRect);
             }
 
-            using (SolidBrush b = new SolidBrush(barColor))
+            using (SolidBrush b = new(barColor))
             {
-                Rectangle barRect = new Rectangle(TrackX + 7, Height / 2 - 2, Width - TrackX + 7, 4);
+                Rectangle barRect = new(TrackX + 7, Height / 2 - 2, Width - TrackX + 7, 4);
                 g.FillRectangle(b, barRect);
             }
         }
@@ -520,11 +518,8 @@ namespace MetroFramework.Controls
         {
             if (keyData == Keys.Tab | ModifierKeys == Keys.Shift)
                 return base.ProcessDialogKey(keyData);
-            else
-            {
-                OnKeyDown(new KeyEventArgs(keyData));
-                return true;
-            }
+            OnKeyDown(new KeyEventArgs(keyData));
+            return true;
         }
 
         #endregion

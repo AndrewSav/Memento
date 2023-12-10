@@ -23,7 +23,6 @@
  */
 using System;
 using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.ComponentModel;
 using System.Windows.Forms;
 
@@ -328,9 +327,9 @@ namespace MetroFramework.Controls
                 }
             }
 
-            Rectangle textRect = new Rectangle(16, 0, Width - 16, Height);
-            Rectangle boxRect = new Rectangle(0, Height / 2 - 6, 12, 12);
-            using (Pen p = new Pen(borderColor))
+            Rectangle textRect = new(16, 0, Width - 16, Height);
+            Rectangle boxRect = new(0, Height / 2 - 6, 12, 12);
+            using (Pen p = new(borderColor))
             {
                 switch (CheckAlign )
                 {
@@ -375,9 +374,9 @@ namespace MetroFramework.Controls
             {
                 Color fillColor = CheckState == CheckState.Indeterminate ? borderColor : MetroPaint.GetStyleColor(Style);
 
-                using (SolidBrush b = new SolidBrush(fillColor))
+                using (SolidBrush b = new(fillColor))
                 {
-                    Rectangle boxCheck = new Rectangle(boxRect.Left + 2, boxRect.Top + 2, 9, 9);
+                    Rectangle boxCheck = new(boxRect.Left + 2, boxRect.Top + 2, 9, 9);
                     e.Graphics.FillRectangle(b, boxCheck);
                 }
             }

@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -71,7 +69,7 @@ namespace MetroFramework.Components
 
         #region Fields
 
-        private readonly List<Control> extendedControls = new List<Control>();
+        private readonly List<Control> extendedControls = [];
 
         #endregion
 

@@ -24,7 +24,6 @@
 using System.Data;
 using System.IO;
 using System.Reflection;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace MetroFramework.Localization
@@ -33,7 +32,7 @@ namespace MetroFramework.Localization
     {
         private DataSet languageDataset;
 
-        public string DefaultLanguage()
+        public static string DefaultLanguage()
         {
             return "en";
         }
@@ -89,7 +88,7 @@ namespace MetroFramework.Localization
 
             if (xmlStream != null)
             {
-                DataSet importDataset = new DataSet();
+                DataSet importDataset = new();
                 importDataset.ReadXml(xmlStream);
 
                 languageDataset.Merge(importDataset);
@@ -97,7 +96,7 @@ namespace MetroFramework.Localization
             }
         }
 
-        private string convertVar(object var)
+        private static string convertVar(object var)
         {
             if (var == null)
                 return "";

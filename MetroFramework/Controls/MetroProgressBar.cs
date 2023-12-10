@@ -352,9 +352,9 @@ namespace MetroFramework.Controls
 
             DrawProgressText(e.Graphics);
 
-            using (Pen p = new Pen(MetroPaint.BorderColor.ProgressBar.Normal(Theme)))
+            using (Pen p = new(MetroPaint.BorderColor.ProgressBar.Normal(Theme)))
             {
-                Rectangle borderRect = new Rectangle(0, 0, Width - 1, Height - 1);
+                Rectangle borderRect = new(0, 0, Width - 1, Height - 1);
                 e.Graphics.DrawRectangle(p, borderRect);
             }
 

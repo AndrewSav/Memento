@@ -1,12 +1,9 @@
-﻿using MetroFramework;
-using MetroFramework.Components;
+﻿using MetroFramework.Components;
 using MetroFramework.Drawing;
 using MetroFramework.Interfaces;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace MetroFramework.Controls
@@ -106,7 +103,7 @@ namespace MetroFramework.Controls
             set
             {
                 metroStyleManager = value;
-                settheme();
+                SetTheme();
             }
         }
 
@@ -151,26 +148,19 @@ namespace MetroFramework.Controls
 
         public MetroContextMenu(IContainer Container)
         {
-            if (Container != null)
-            {
-                Container.Add(this);
-            }
+            Container?.Add(this);
         }
 
-        private void settheme()
+        private void SetTheme()
         {
-            this.BackColor = MetroPaint.BackColor.Form(Theme);
-            this.ForeColor = MetroPaint.ForeColor.Button.Normal(Theme);
-            this.Renderer = new MetroCTXRenderer(Theme, Style);
+            BackColor = MetroPaint.BackColor.Form(Theme);
+            ForeColor = MetroPaint.ForeColor.Button.Normal(Theme);
+            Renderer = new MetroCTXRenderer(Theme, Style);
         }
 
-        private class MetroCTXRenderer : ToolStripProfessionalRenderer
+        private class MetroCTXRenderer(MetroThemeStyle Theme, MetroColorStyle Style) : ToolStripProfessionalRenderer(new ContextColors(Theme, Style))
         {
-            MetroFramework.MetroThemeStyle _theme;
-            public MetroCTXRenderer(MetroFramework.MetroThemeStyle Theme, MetroColorStyle Style) : base(new contextcolors(Theme, Style)) 
-            {
-                _theme = Theme;
-            }
+            readonly MetroThemeStyle _theme = Theme;
 
             protected override void OnRenderItemText(ToolStripItemTextRenderEventArgs e)
             {
@@ -179,16 +169,10 @@ namespace MetroFramework.Controls
             }
         }
 
-        private class contextcolors : ProfessionalColorTable
+        private class ContextColors(MetroThemeStyle Theme, MetroColorStyle Style) : ProfessionalColorTable
         {
-            MetroThemeStyle _theme = MetroThemeStyle.Light;
-            MetroColorStyle _style = MetroColorStyle.Blue;
-
-            public contextcolors(MetroFramework.MetroThemeStyle Theme, MetroColorStyle Style)
-            {
-                _theme = Theme;
-                _style = Style;
-            }
+            readonly MetroThemeStyle _theme = Theme;
+            readonly MetroColorStyle _style = Style;
 
             public override Color MenuItemSelected
             {

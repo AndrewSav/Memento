@@ -26,8 +26,6 @@
  */
 using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Drawing.Drawing2D;
 using System.IO;
 using System.Reflection;
 using System.Diagnostics;
@@ -56,7 +54,7 @@ namespace MetroFramework.Drawing.Html
             bool isPercent = number.EndsWith("%");
             float result = 0f;
 
-            if (isPercent) toParse = number.Substring(0, number.Length - 1);
+            if (isPercent) toParse = number[..^1];
 
             if (!float.TryParse(toParse, NumberStyles.Number, NumberFormatInfo.InvariantInfo, out result))
             {
@@ -110,7 +108,7 @@ namespace MetroFramework.Drawing.Html
             float factor = 1f;
 
             //Number of the length
-            string number = length.Substring(0, length.Length - 2);
+            string number = length[..^2];
 
             //TODO: Units behave different in paper and in screen!
             switch (unit)
@@ -171,19 +169,19 @@ namespace MetroFramework.Drawing.Html
             if (colorValue.StartsWith("#"))
             {
                 #region hexadecimal forms
-                string hex = colorValue.Substring(1);
+                string hex = colorValue[1..];
 
                 if (hex.Length == 6)
                 {
-                    r = int.Parse(hex.Substring(0, 2), System.Globalization.NumberStyles.HexNumber);
-                    g = int.Parse(hex.Substring(2, 2), System.Globalization.NumberStyles.HexNumber);
-                    b = int.Parse(hex.Substring(4, 2), System.Globalization.NumberStyles.HexNumber);
+                    r = int.Parse(hex[..2], NumberStyles.HexNumber);
+                    g = int.Parse(hex.Substring(2, 2), NumberStyles.HexNumber);
+                    b = int.Parse(hex.Substring(4, 2), NumberStyles.HexNumber);
                 }
                 else if (hex.Length == 3)
                 {
-                    r = int.Parse(new String(hex.Substring(0, 1)[0], 2), System.Globalization.NumberStyles.HexNumber);
-                    g = int.Parse(new String(hex.Substring(1, 1)[0], 2), System.Globalization.NumberStyles.HexNumber);
-                    b = int.Parse(new String(hex.Substring(2, 1)[0], 2), System.Globalization.NumberStyles.HexNumber);
+                    r = int.Parse(new String(hex[..1][0], 2), NumberStyles.HexNumber);
+                    g = int.Parse(new String(hex.Substring(1, 1)[0], 2), NumberStyles.HexNumber);
+                    b = int.Parse(new String(hex.Substring(2, 1)[0], 2), NumberStyles.HexNumber);
                 }
                 else
                 {
@@ -195,7 +193,7 @@ namespace MetroFramework.Drawing.Html
             {
                 #region RGB forms
 
-                string rgb = colorValue.Substring(4, colorValue.Length - 5);
+                string rgb = colorValue[4..^1];
                 string[] chunks = rgb.Split(',');
 
                 if (chunks.Length == 3)
@@ -262,13 +260,11 @@ namespace MetroFramework.Drawing.Html
                 {
                     return onError;
                 }
-                else
-                {
-                    Color c = GetActualColor(hex);
-                    r = c.R;
-                    g = c.G;
-                    b = c.B;
-                }
+
+                Color c = GetActualColor(hex);
+                r = c.R;
+                g = c.G;
+                b = c.B;
 
                 #endregion
             }
@@ -324,7 +320,7 @@ namespace MetroFramework.Drawing.Html
             if (string.IsNullOrEmpty(value)) return new string[] { };
 
             string[] values = value.Split(separator);
-            List<string> result = new List<string>();
+            List<string> result = [];
 
             for (int i = 0; i < values.Length; i++)
             {
@@ -351,8 +347,8 @@ namespace MetroFramework.Drawing.Html
 
             if (lastDot < 0) return null;
 
-            string type = path.Substring(0, lastDot);
-            moreInfo = path.Substring(lastDot + 1);
+            string type = path[..lastDot];
+            moreInfo = path[(lastDot + 1)..];
             moreInfo = moreInfo.Replace("(", string.Empty).Replace(")", string.Empty);
 
 
@@ -376,7 +372,7 @@ namespace MetroFramework.Drawing.Html
             if (path.StartsWith("method:", StringComparison.CurrentCultureIgnoreCase))
             {
                 string methodName = string.Empty;
-                Type t = GetTypeInfo(path.Substring(7), ref methodName); if (t == null) return null;
+                Type t = GetTypeInfo(path[7..], ref methodName); if (t == null) return null;
                 MethodInfo method = t.GetMethod(methodName);
 
                 if (!method.IsStatic || method.GetParameters().Length > 0)
@@ -386,22 +382,20 @@ namespace MetroFramework.Drawing.Html
 
                 return method;
             }
-            else if (path.StartsWith("property:", StringComparison.CurrentCultureIgnoreCase))
+
+            if (path.StartsWith("property:", StringComparison.CurrentCultureIgnoreCase))
             {
                 string propName = string.Empty;
-                Type t = GetTypeInfo(path.Substring(9), ref propName); if (t == null) return null;
+                Type t = GetTypeInfo(path[9..], ref propName); if (t == null) return null;
                 PropertyInfo prop = t.GetProperty(propName);
 
                 return prop;
             }
-            else if (Uri.IsWellFormedUriString(path, UriKind.RelativeOrAbsolute))
+            if (Uri.IsWellFormedUriString(path, UriKind.RelativeOrAbsolute))
             {
                 return new Uri(path);
             }
-            else
-            {
-                return new FileInfo(path);
-            }
+            return new FileInfo(path);
         }
 
         /// <summary>
@@ -413,35 +407,32 @@ namespace MetroFramework.Drawing.Html
         {
             object source = DetectSource(path);
 
-            FileInfo finfo = source as FileInfo;
             PropertyInfo prop = source as PropertyInfo;
             MethodInfo method = source as MethodInfo;
 
             try
             {
-                if (finfo != null)
+                if (source is FileInfo finfo)
                 {
                     if (!finfo.Exists) return null;
 
                     return Image.FromFile(finfo.FullName);
 
                 }
-                else if (prop != null)
+
+                if (prop != null)
                 {
                     if (!prop.PropertyType.IsSubclassOf(typeof(Image)) && !prop.PropertyType.Equals(typeof(Image))) return null;
                     
                     return prop.GetValue(null, null) as Image;
                 }
-                else if (method != null)
+                if (method != null)
                 {
                     if (!method.ReturnType.IsSubclassOf(typeof(Image))) return null;
 
                     return method.Invoke(null, null) as Image;
                 }
-                else
-                {
-                    return null;
-                }
+                return null;
             }
             catch
             {
@@ -458,38 +449,35 @@ namespace MetroFramework.Drawing.Html
         {
             object source = DetectSource(path);
 
-            FileInfo finfo = source as FileInfo;
             PropertyInfo prop = source as PropertyInfo;
             MethodInfo method = source as MethodInfo;
 
             try
             {
-                if (finfo != null)
+                if (source is FileInfo finfo)
                 {
                     if (!finfo.Exists) return null;
 
-                    StreamReader sr = new StreamReader(finfo.FullName);
+                    StreamReader sr = new(finfo.FullName);
                     string result = sr.ReadToEnd();
                     sr.Dispose();
 
                     return result;
                 }
-                else if (prop != null)
+
+                if (prop != null)
                 {
                     if (!prop.PropertyType.Equals(typeof(string))) return null;
 
                     return prop.GetValue(null, null) as string;
                 }
-                else if (method != null)
+                if (method != null)
                 {
                     if (!method.ReturnType.Equals(typeof(string))) return null;
 
                     return method.Invoke(null, null) as string;
                 }
-                else
-                {
-                    return string.Empty;
-                }
+                return string.Empty;
             }
             catch
             {
@@ -514,20 +502,17 @@ namespace MetroFramework.Drawing.Html
             {
                 if (finfo != null || uri != null)
                 {
-                    ProcessStartInfo nfo = new ProcessStartInfo(href);
+                    ProcessStartInfo nfo = new(href);
                     nfo.UseShellExecute = true;
 
                     Process.Start(nfo);
 
                 }
-                else if (method != null)
-                {
-                    method.Invoke(null, null);
-                }
                 else
                 {
-                    //Nothing to do.
+                    method?.Invoke(null, null);
                 }
+                //Nothing to do.
             }
             catch
             {

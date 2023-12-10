@@ -80,7 +80,7 @@ namespace Memento.Forms
 
         private void buttonSavesFolder_Click(object sender, EventArgs e)
         {
-            FolderBrowserDialog cofd = new FolderBrowserDialog
+            FolderBrowserDialog cofd = new()
             {                
                 SelectedPath = textSavesFolder.Text.Trim()
             };
@@ -92,7 +92,7 @@ namespace Memento.Forms
 
         private void buttonGameExecutable_Click(object sender, EventArgs e)
         {
-            OpenFileDialog cofd = new OpenFileDialog
+            OpenFileDialog cofd = new()
             {
                 Filter = "Executables (*.exe)|*.exe",
                 DefaultExt = "exe"
@@ -128,7 +128,7 @@ namespace Memento.Forms
         }
         private void linkAdvancedFiltering_Click(object sender, EventArgs e)
         {
-            AdvancedFiltering advancedFiltering = new AdvancedFiltering();
+            AdvancedFiltering advancedFiltering = new();
             advancedFiltering.Profile = Profile;
             advancedFiltering.ShowDialog(this);
             if (advancedFiltering.Updated)

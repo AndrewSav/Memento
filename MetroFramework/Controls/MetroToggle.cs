@@ -23,7 +23,6 @@
  */
 using System;
 using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.ComponentModel;
 using System.Windows.Forms;
 
@@ -180,7 +179,7 @@ namespace MetroFramework.Controls
             set { displayFocusRectangle = value; }
         }
 
-        private MetroLocalize metroLocalize = null;
+        private readonly MetroLocalize metroLocalize = null;
 
         private MetroLinkSize metroLinkSize = MetroLinkSize.Small;
         [DefaultValue(MetroLinkSize.Small)]
@@ -343,17 +342,17 @@ namespace MetroFramework.Controls
                 borderColor = MetroPaint.BorderColor.CheckBox.Normal(Theme);
             }
 
-            using (Pen p = new Pen(borderColor))
+            using (Pen p = new(borderColor))
             {
-                Rectangle boxRect = new Rectangle((DisplayStatus ? 30 : 0), 0, ClientRectangle.Width - (DisplayStatus ? 31 : 1), ClientRectangle.Height - 1);
+                Rectangle boxRect = new((DisplayStatus ? 30 : 0), 0, ClientRectangle.Width - (DisplayStatus ? 31 : 1), ClientRectangle.Height - 1);
                 e.Graphics.DrawRectangle(p, boxRect);
             }
 
             Color fillColor = Checked ? MetroPaint.GetStyleColor(Style) : MetroPaint.BorderColor.CheckBox.Normal(Theme);
 
-            using (SolidBrush b = new SolidBrush(fillColor))
+            using (SolidBrush b = new(fillColor))
             {
-                Rectangle boxRect = new Rectangle(DisplayStatus ? 32 : 2, 2, ClientRectangle.Width - (DisplayStatus ? 34 : 4), ClientRectangle.Height - 4);
+                Rectangle boxRect = new(DisplayStatus ? 32 : 2, 2, ClientRectangle.Width - (DisplayStatus ? 34 : 4), ClientRectangle.Height - 4);
                 e.Graphics.FillRectangle(b, boxRect);
             }
 
@@ -364,24 +363,24 @@ namespace MetroFramework.Controls
                 backColor = MetroPaint.BackColor.Form(Theme);
             }
 
-            using (SolidBrush b = new SolidBrush(backColor))
+            using (SolidBrush b = new(backColor))
             {
                 int left = Checked ? Width - 11 : (DisplayStatus ? 30 : 0);
 
-                Rectangle boxRect = new Rectangle(left, 0, 11, ClientRectangle.Height);
+                Rectangle boxRect = new(left, 0, 11, ClientRectangle.Height);
                 e.Graphics.FillRectangle(b, boxRect);
             }
-            using (SolidBrush b = new SolidBrush(MetroPaint.BorderColor.CheckBox.Hover(Theme)))
+            using (SolidBrush b = new(MetroPaint.BorderColor.CheckBox.Hover(Theme)))
             {
                 int left = Checked ? Width - 10 : (DisplayStatus ? 30 : 0);
 
-                Rectangle boxRect = new Rectangle(left, 0, 10, ClientRectangle.Height);
+                Rectangle boxRect = new(left, 0, 10, ClientRectangle.Height);
                 e.Graphics.FillRectangle(b, boxRect);
             }
 
             if (DisplayStatus)
             {
-                Rectangle textRect = new Rectangle(0, 0, 30, ClientRectangle.Height);
+                Rectangle textRect = new(0, 0, 30, ClientRectangle.Height);
                 TextRenderer.DrawText(e.Graphics, Text, MetroFonts.Link(metroLinkSize, metroLinkWeight), textRect, foreColor, MetroPaint.GetTextFormatFlags(TextAlign));
             }
 

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -59,18 +58,16 @@ namespace Memento.Helpers
                 CopyFolder(profile.GetSavesFolder(), targetPath);
                 return -1;
             }
-            else
+
+            int counter = 0;
+            foreach (string path in ApplyFilter(profile.GetSavesFolder(), profile.BackupFilter))
             {
-                int counter = 0;
-                foreach (string path in ApplyFilter(profile.GetSavesFolder(), profile.BackupFilter))
-                {
-                    string target = path.Replace(profile.GetSavesFolder(), targetPath);
-                    Directory.CreateDirectory(Path.GetDirectoryName(target));
-                    File.Copy(path, target, true);
-                    counter++;
-                }
-                return counter;
+                string target = path.Replace(profile.GetSavesFolder(), targetPath);
+                Directory.CreateDirectory(Path.GetDirectoryName(target));
+                File.Copy(path, target, true);
+                counter++;
             }
+            return counter;
         }
 
         public static void RestoreBackup(this GameProfile profile, string backupPath)
@@ -81,10 +78,10 @@ namespace Memento.Helpers
         private static IEnumerable<string> ApplyFilter(string path, string filter)
         {
             path = Path.GetFullPath(path);
-            Regex r = new Regex(filter ?? "");
+            Regex r = new(filter ?? "");
             foreach (string newPath in Directory.GetFiles(path, "*.*", SearchOption.AllDirectories))
             {
-                string segment = newPath.Substring(path.Length + 1);
+                string segment = newPath[(path.Length + 1)..];
                 if (r.Match(segment).Success)
                 {
                     yield return newPath;
@@ -107,18 +104,18 @@ namespace Memento.Helpers
             }
         }
 
-        private static DateTime? ParseDatePart(string part, params string[] patterns)
-        {
-            foreach (string pattern in patterns)
-            {
-                DateTime result;
-                if (DateTime.TryParseExact(part, pattern, CultureInfo.InvariantCulture, DateTimeStyles.None, out result))
-                {
-                    return result;
-                }
-            }
-            return null;
-        }
+        //private static DateTime? ParseDatePart(string part, params string[] patterns)
+        //{
+        //    foreach (string pattern in patterns)
+        //    {
+        //        DateTime result;
+        //        if (DateTime.TryParseExact(part, pattern, CultureInfo.InvariantCulture, DateTimeStyles.None, out result))
+        //        {
+        //            return result;
+        //        }
+        //    }
+        //    return null;
+        //}
 
         public static string GetLabelFromPath(string s)
         {
@@ -142,23 +139,26 @@ namespace Memento.Helpers
 
         private static IEnumerable<string> FoldFolders(IEnumerable<string> candidateFolders, IEnumerable<string> pathParts, string currentBackupFolder)
         {
-            Func<string, bool> beforeCurrent = path => currentBackupFolder == null || (string.CompareOrdinal(path, currentBackupFolder) < 0);
-            Func<string, string> reconstructFullPath = basePath => PathCombineMultiple((new[] { basePath }).Union(pathParts).ToArray());
-            Func<string, bool> isPathValid = path => BackupPath.FromPath(reconstructFullPath(path)) != null;
+            bool BeforeCurrent(string path) => currentBackupFolder == null || (string.CompareOrdinal(path, currentBackupFolder) < 0);
+            string ReconstructFullPath(string basePath) => PathCombineMultiple((new[] { basePath }).Union(pathParts).ToArray());
+            bool IsPathValid(string path) => BackupPath.FromPath(ReconstructFullPath(path)) != null;
 
-            return candidateFolders.OrderByDescending(x => x).Where(x => isPathValid(x) && beforeCurrent(x)).Take(2);
+            return candidateFolders.OrderByDescending(x => x).Where(x => IsPathValid(x) && BeforeCurrent(x)).Take(2);
         }
+
+        internal static readonly string[] stringArray = ["00.00.00"];
+        internal static readonly string[] stringArray0 = ["01", "00.00.00"];
 
         private static string FindNextBackupFolder(string backupsBaseFolder, string currentBackupFolder = null)
         {
             IEnumerable<string> candidateFolders = Directory.GetDirectories(backupsBaseFolder);
-            IEnumerable<string> monthFolders = FoldFolders(candidateFolders, new[] {"01", "00.00.00"}, currentBackupFolder);
+            IEnumerable<string> monthFolders = FoldFolders(candidateFolders, stringArray0, currentBackupFolder);
 
             candidateFolders = monthFolders.Select(Directory.GetDirectories).SelectMany(x => x);
-            IEnumerable<string> dayFolders = FoldFolders(candidateFolders, new[] { "00.00.00" }, currentBackupFolder);
+            IEnumerable<string> dayFolders = FoldFolders(candidateFolders, stringArray, currentBackupFolder);
 
             candidateFolders = dayFolders.Select(Directory.GetDirectories).SelectMany(x => x);
-            return FoldFolders(candidateFolders, new string[0], currentBackupFolder).FirstOrDefault();
+            return FoldFolders(candidateFolders, Array.Empty<string>(), currentBackupFolder).FirstOrDefault();
         }
 
         private static IEnumerable<string> GetBackupsDescending(string backupsBaseFolder)

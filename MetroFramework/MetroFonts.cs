@@ -21,13 +21,8 @@
  * CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE 
  * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-using System.Diagnostics;
+
 using System.Drawing;
-using System.IO;
-using System.Runtime.InteropServices;
-using System.Reflection;
-using System.Drawing.Text;
-using System;
 
 namespace MetroFramework
 {
@@ -197,7 +192,7 @@ namespace MetroFramework
             }
         }
 
-        private static IMetroFontResolver FontResolver;
+        private static readonly IMetroFontResolver FontResolver;
 
         static MetroFonts()
         {

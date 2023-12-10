@@ -26,7 +26,6 @@
  */
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Reflection;
 
@@ -43,9 +42,9 @@ namespace MetroFramework.Drawing.Html
     public class CssBlock
     {
         #region Fields
-        private string _block;
-        private Dictionary<PropertyInfo, string> _propertyValues;
-        private Dictionary<string,string> _properties;
+        private readonly string _block;
+        private readonly Dictionary<PropertyInfo, string> _propertyValues;
+        private readonly Dictionary<string,string> _properties;
 
         #endregion
 
@@ -56,8 +55,8 @@ namespace MetroFramework.Drawing.Html
         /// </summary>
         private CssBlock()
         {
-            _propertyValues = new Dictionary<PropertyInfo, string>();
-            _properties = new Dictionary<string, string>();
+            _propertyValues = [];
+            _properties = [];
         }
 
         /// <summary>
@@ -85,7 +84,7 @@ namespace MetroFramework.Drawing.Html
                 string propValue = chunks[1].Trim();
                 
                 //Remove semicolon
-                if (propValue.EndsWith(";")) propValue = propValue.Substring(0, propValue.Length - 1).Trim();
+                if (propValue.EndsWith(";")) propValue = propValue[..^1].Trim();
 
                 //Add property to list
                 Properties.Add(propName, propValue);

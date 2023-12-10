@@ -25,8 +25,6 @@
  * THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Globalization;
 
 namespace MetroFramework.Drawing.Html
@@ -71,12 +69,12 @@ namespace MetroFramework.Drawing.Html
         #endregion
 
         #region Fields
-        private float _number;
-        private bool _isRelative;
-        private CssUnit _unit;
-        private string _length;
-        private bool _isPercentage;
-        private bool _hasError;
+        private readonly float _number;
+        private readonly bool _isRelative;
+        private readonly CssUnit _unit;
+        private readonly string _length;
+        private readonly bool _isPercentage;
+        private readonly bool _hasError;
 
         #endregion
 
@@ -116,7 +114,7 @@ namespace MetroFramework.Drawing.Html
             string u = length.Substring(length.Length - 2, 2);
 
             //Number of the length
-            string number = length.Substring(0, length.Length - 2);
+            string number = length[..^2];
 
             //TODO: Units behave different in paper and in screen!
             switch (u)
@@ -153,7 +151,7 @@ namespace MetroFramework.Drawing.Html
                     return;
             }
 
-            if (!float.TryParse(number,  System.Globalization.NumberStyles.Number, NumberFormatInfo.InvariantInfo, out _number))
+            if (!float.TryParse(number,  NumberStyles.Number, NumberFormatInfo.InvariantInfo, out _number))
             {
                 _hasError = true;
             }
@@ -257,46 +255,44 @@ namespace MetroFramework.Drawing.Html
             {
                 return string.Empty;
             }
-            else if (IsPercentage)
+
+            if (IsPercentage)
             {
                 return string.Format(NumberFormatInfo.InvariantInfo, "{0}%", Number);
             }
-            else
+            string u = string.Empty;
+
+            switch (Unit)
             {
-                string u = string.Empty;
-
-                switch (Unit)
-                {
-                    case CssUnit.None:
-                        break;
-                    case CssUnit.Ems:
-                        u = "em";
-                        break;
-                    case CssUnit.Pixels:
-                        u = "px";
-                        break;
-                    case CssUnit.Ex:
-                        u = "ex";
-                        break;
-                    case CssUnit.Inches:
-                        u = "in";
-                        break;
-                    case CssUnit.Centimeters:
-                        u = "cm";
-                        break;
-                    case CssUnit.Milimeters:
-                        u = "mm";
-                        break;
-                    case CssUnit.Points:
-                        u = "pt";
-                        break;
-                    case CssUnit.Picas:
-                        u = "pc";
-                        break;
-                }
-
-                return string.Format(NumberFormatInfo.InvariantInfo, "{0}{1}", Number, u);
+                case CssUnit.None:
+                    break;
+                case CssUnit.Ems:
+                    u = "em";
+                    break;
+                case CssUnit.Pixels:
+                    u = "px";
+                    break;
+                case CssUnit.Ex:
+                    u = "ex";
+                    break;
+                case CssUnit.Inches:
+                    u = "in";
+                    break;
+                case CssUnit.Centimeters:
+                    u = "cm";
+                    break;
+                case CssUnit.Milimeters:
+                    u = "mm";
+                    break;
+                case CssUnit.Points:
+                    u = "pt";
+                    break;
+                case CssUnit.Picas:
+                    u = "pc";
+                    break;
             }
+
+            return string.Format(NumberFormatInfo.InvariantInfo, "{0}{1}", Number, u);
         }
 
         #endregion

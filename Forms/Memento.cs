@@ -30,7 +30,7 @@ namespace Memento.Forms
 
         private void Memento_Load(object sender, EventArgs e)
         {
-            FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(Process.GetCurrentProcess().MainModule.FileName);
+            FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(Environment.ProcessPath);
             linkVersion.Text = $"v{fvi.FileMajorPart}.{fvi.FileMinorPart}.{fvi.FileBuildPart}";
 
             if (!File.Exists(_configPath))
@@ -42,7 +42,7 @@ namespace Memento.Forms
                     LogSizeLimitBytes = "1000000",
                     StabilizationTimeSeconds = 5,
                     DefaultProfile = "<New>",
-                    Profiles = new List<GameProfile>()
+                    Profiles = []
                 }.Save(_configPath);
             }
 
@@ -157,11 +157,11 @@ namespace Memento.Forms
         
         private void UpdateRadioButtons()
         {
-            string selectBackup = panelBackups.Controls.OfType<MetroRadioButton>().First(x => x.Checked).Tag as string;
-            
+            object tag = panelBackups.Controls.OfType<MetroRadioButton>().First(x => x.Checked).Tag;
+
             UpdateRadioButtonsInner();
-            
-            if (selectBackup == null)
+
+            if (tag is not string selectBackup)
             {
                 SelectNoneBackup();
                 return;
@@ -206,9 +206,8 @@ namespace Memento.Forms
 
         private void buttonEdit_Click(object sender, EventArgs e)
         {
-            EditGameProfile editGameProfile = new EditGameProfile();
-            GameProfile currentProfile = comboProfiles.SelectedItem as GameProfile;
-            if (currentProfile != null)
+            EditGameProfile editGameProfile = new();
+            if (comboProfiles.SelectedItem is GameProfile currentProfile)
             {
                 editGameProfile.Profile = currentProfile;
                 editGameProfile.InitialProfileName = currentProfile.ProfileName;
@@ -369,7 +368,7 @@ namespace Memento.Forms
             string backups = _selectedItem.GetBackupFolder();
             string backup = _selectedItem.GetBackupsDescending().FirstOrDefault();
 
-            FolderBrowserDialog cofd = new FolderBrowserDialog
+            FolderBrowserDialog cofd = new()
             {
                 SelectedPath = backup ?? backups
             };
@@ -395,7 +394,7 @@ namespace Memento.Forms
 
         private void linkOpenSavesFolder_Click(object sender, EventArgs e)
         {
-            ProcessStartInfo psi = new ProcessStartInfo
+            ProcessStartInfo psi = new()
             {
                 FileName = _selectedItem.GetSavesFolder(),
                 UseShellExecute = true
@@ -405,7 +404,7 @@ namespace Memento.Forms
 
         private void linkOpenBackupFolder_Click(object sender, EventArgs e)
         {
-            ProcessStartInfo psi = new ProcessStartInfo
+            ProcessStartInfo psi = new()
             {
                 FileName = _selectedItem.GetBackupFolder(),
                 UseShellExecute = true
@@ -420,7 +419,7 @@ namespace Memento.Forms
 
         private void runGame()
         {
-            ProcessStartInfo si = new ProcessStartInfo
+            ProcessStartInfo si = new()
             {
                 FileName = _selectedItem.GetGameExecutable(),
                 // ReSharper disable once AssignNullToNotNullAttribute
@@ -531,7 +530,7 @@ namespace Memento.Forms
 
         private void linkVersion_Click(object sender, EventArgs e)
         {
-            ProcessStartInfo psi = new ProcessStartInfo
+            ProcessStartInfo psi = new()
             {
                 FileName = "https://github.com/AndrewSav/Memento/releases",
                 UseShellExecute = true
@@ -632,7 +631,7 @@ namespace Memento.Forms
             }
             do
             {
-                s = s.Substring(0, s.Length - 1);
+                s = s[..^1];
             } while ((g.MeasureString(s, radioSpecific.Font).Width > limit - elipsisLenght));
 
             return s + elipsis;
@@ -654,20 +653,36 @@ namespace Memento.Forms
             MetroRadioButton button = (MetroRadioButton)strip.SourceControl;
 
             string timeFolder = (string)button.Tag;
+            SetAttributesNormal(new DirectoryInfo(timeFolder));
             Directory.Delete(timeFolder, true);
             string dayFolder = Path.GetDirectoryName(timeFolder);
             if (Directory.GetDirectories(dayFolder).Length == 0)
             {
+                SetAttributesNormal(new DirectoryInfo(dayFolder));
                 Directory.Delete(dayFolder, true);
             }
             string monthFolder = Path.GetDirectoryName(dayFolder);
             if (Directory.GetDirectories(monthFolder).Length == 0)
             {
+                SetAttributesNormal(new DirectoryInfo(monthFolder));
                 Directory.Delete(monthFolder, true);
             }
 
             RestorePanel();
             UpdateRadioButtons();
+        }
+        private static void SetAttributesNormal(DirectoryInfo path)
+        {
+            Queue<DirectoryInfo> dirs = new Queue<DirectoryInfo>();
+            dirs.Enqueue(path);
+            while (dirs.Count > 0)
+            {
+                var dir = dirs.Dequeue();
+                dir.Attributes = FileAttributes.Normal;
+                Parallel.ForEach(dir.EnumerateFiles(), e => e.Attributes = FileAttributes.Normal);
+                foreach (var subDir in dir.GetDirectories())
+                    dirs.Enqueue(subDir);
+            }
         }
     }
 }

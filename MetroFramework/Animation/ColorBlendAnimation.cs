@@ -72,7 +72,7 @@ namespace MetroFramework.Animation
             return Color.FromArgb(a, r, g, b);
         }
 
-        private Color GetPropertyValue(string pName, Control control)
+        private static Color GetPropertyValue(string pName, Control control)
         {
             Type type = control.GetType();
             string propertyName = pName;

@@ -22,7 +22,6 @@
  * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Security;
@@ -172,8 +171,8 @@ namespace MetroFramework.Controls
 
         #region Fields
 
-        private MetroScrollBar verticalScrollbar = new MetroScrollBar(MetroScrollOrientation.Vertical);
-        private MetroScrollBar horizontalScrollbar = new MetroScrollBar(MetroScrollOrientation.Horizontal);
+        private readonly MetroScrollBar verticalScrollbar = new(MetroScrollOrientation.Vertical);
+        private readonly MetroScrollBar horizontalScrollbar = new(MetroScrollOrientation.Horizontal);
 
         private bool showHorizontalScrollbar = false;
         [DefaultValue(false)]

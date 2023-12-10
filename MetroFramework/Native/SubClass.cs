@@ -22,9 +22,6 @@
  * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.Security;
 
@@ -33,25 +30,25 @@ namespace MetroFramework.Native
     [SuppressUnmanagedCodeSecurity]
     internal class SubClass : NativeWindow
     {
-        public delegate int SubClassWndProcEventHandler(ref System.Windows.Forms.Message m);
+        public delegate int SubClassWndProcEventHandler(ref Message m);
         public event SubClassWndProcEventHandler SubClassedWndProc;
         private bool IsSubClassed = false;
 
         public SubClass(IntPtr Handle, bool _SubClass)
         {
-            base.AssignHandle(Handle);
-            this.IsSubClassed = _SubClass;
+            AssignHandle(Handle);
+            IsSubClassed = _SubClass;
         }
 
         public bool SubClassed
         {
-            get { return this.IsSubClassed; }
-            set { this.IsSubClassed = value; }
+            get { return IsSubClassed; }
+            set { IsSubClassed = value; }
         }
 
         protected override void WndProc(ref Message m)
         {
-            if (this.IsSubClassed)
+            if (IsSubClassed)
             {
                 if (OnSubClassedWndProc(ref m) != 0)
                     return;
@@ -66,7 +63,7 @@ namespace MetroFramework.Native
 
         #region HiWord Message Cracker
 
-        public int HiWord(int Number)
+        public static int HiWord(int Number)
         {
             return ((Number >> 16) & 0xffff);
         }
@@ -75,7 +72,7 @@ namespace MetroFramework.Native
 
         #region LoWord Message Cracker
 
-        public int LoWord(int Number)
+        public static int LoWord(int Number)
         {
             return (Number & 0xffff);
         }
@@ -84,7 +81,7 @@ namespace MetroFramework.Native
 
         #region MakeLong Message Cracker
 
-        public int MakeLong(int LoWord, int HiWord)
+        public static int MakeLong(int LoWord, int HiWord)
         {
             return (HiWord << 16) | (LoWord & 0xffff);
         }
@@ -93,7 +90,7 @@ namespace MetroFramework.Native
 
         #region MakeLParam Message Cracker
 
-        public IntPtr MakeLParam(int LoWord, int HiWord)
+        public static IntPtr MakeLParam(int LoWord, int HiWord)
         {
             return (IntPtr)((HiWord << 16) | (LoWord & 0xffff));
         }
@@ -104,7 +101,7 @@ namespace MetroFramework.Native
         {
             if (SubClassedWndProc != null)
             {
-                return this.SubClassedWndProc(ref m);
+                return SubClassedWndProc(ref m);
             }
 
             return 0;

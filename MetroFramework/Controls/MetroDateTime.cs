@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Text;
 using System.Windows.Forms;
 using MetroFramework.Interfaces;
 using MetroFramework.Drawing;
@@ -262,7 +259,7 @@ namespace MetroFramework.Controls
 
         protected virtual void OnPaintForeground(PaintEventArgs e)
         {
-            this.MinimumSize = new Size(0, GetPreferredSize(Size.Empty).Height);
+            MinimumSize = new Size(0, GetPreferredSize(Size.Empty).Height);
 
             Color borderColor, foreColor;
 
@@ -287,26 +284,26 @@ namespace MetroFramework.Controls
                 borderColor = MetroPaint.BorderColor.ComboBox.Normal(Theme);
             }
 
-            using (Pen p = new Pen(borderColor))
+            using (Pen p = new(borderColor))
             {
-                Rectangle boxRect = new Rectangle(0, 0, Width - 1, Height - 1);
+                Rectangle boxRect = new(0, 0, Width - 1, Height - 1);
                 e.Graphics.DrawRectangle(p, boxRect);
             }
 
-            using (SolidBrush b = new SolidBrush(foreColor))
+            using (SolidBrush b = new(foreColor))
             {
-                e.Graphics.FillPolygon(b, new Point[] { new Point(Width - 20, (Height / 2) - 2), new Point(Width - 9, (Height / 2) - 2), new Point(Width - 15, (Height / 2) + 4) });
+                e.Graphics.FillPolygon(b, new Point[] { new(Width - 20, (Height / 2) - 2), new(Width - 9, (Height / 2) - 2), new(Width - 15, (Height / 2) + 4) });
                 //e.Graphics.FillPolygon(b, new Point[] { new Point(Width - 15, (Height / 2) - 5), new Point(Width - 21, (Height / 2) + 2), new Point(Width - 9, (Height / 2) + 2) });
             }
 
             int _check = 0;
 
-            if (this.ShowCheckBox)
+            if (ShowCheckBox)
             {
                 _check = 15;
-                using (Pen p = new Pen(borderColor))
+                using (Pen p = new(borderColor))
                 {
-                    Rectangle boxRect = new Rectangle(3, Height / 2 - 6, 12, 12);
+                    Rectangle boxRect = new(3, Height / 2 - 6, 12, 12);
                     e.Graphics.DrawRectangle(p, boxRect);
                 }
 
@@ -315,9 +312,9 @@ namespace MetroFramework.Controls
 
                     Color fillColor = MetroPaint.GetStyleColor(Style);
 
-                    using (SolidBrush b = new SolidBrush(fillColor))
+                    using (SolidBrush b = new(fillColor))
                     {
-                        Rectangle boxRect = new Rectangle(5, Height / 2 - 4, 9, 9);
+                        Rectangle boxRect = new(5, Height / 2 - 4, 9, 9);
                         e.Graphics.FillRectangle(b, boxRect);
                     }
                 }
@@ -327,7 +324,7 @@ namespace MetroFramework.Controls
                 }
             }
 
-            Rectangle textRect = new Rectangle(2 + _check, 2, Width - 20, Height - 4);
+            Rectangle textRect = new(2 + _check, 2, Width - 20, Height - 4);
 
             TextRenderer.DrawText(e.Graphics, Text, MetroFonts.DateTime(metroDateTimeSize, metroDateTimeWeight), textRect, foreColor, TextFormatFlags.Left | TextFormatFlags.VerticalCenter);
 

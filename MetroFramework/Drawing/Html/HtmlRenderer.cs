@@ -24,9 +24,8 @@
  * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF 
  * THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-using System;
+
 using System.Collections.Generic;
-using System.Text;
 using System.Reflection;
 using System.Drawing;
 
@@ -39,7 +38,7 @@ namespace MetroFramework.Drawing.Html
         /// <summary>
         /// List of assembly references
         /// </summary>
-        private static List<Assembly> _references;
+        private static readonly List<Assembly> _references;
 
         /// <summary>
         /// Gets a list of Assembly references used to search for external references
@@ -68,7 +67,7 @@ namespace MetroFramework.Drawing.Html
         static HtmlRenderer()
         {
             //Initialize references list
-            _references = new List<Assembly>();
+            _references = [];
 
             //Add this assembly as a reference
             References.Add(Assembly.GetExecutingAssembly());
@@ -99,7 +98,7 @@ namespace MetroFramework.Drawing.Html
         /// <param name="clip">If true, it will only paint on the specified area</param>
         public static void Render(Graphics g, string html, RectangleF area, bool clip)
         {
-            InitialContainer container = new InitialContainer(html);
+            InitialContainer container = new(html);
             Region prevClip = g.Clip;
 
             if (clip) g.SetClip(area);

@@ -1,12 +1,8 @@
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Media;
-using System.Text;
 using System.Threading;
 using System.Windows.Forms;
-using MetroFramework.Forms;
-using MetroFramework.Interfaces;
 
 namespace MetroFramework
 {
@@ -174,7 +170,7 @@ namespace MetroFramework
                         SystemSounds.Asterisk.Play(); break;
                 }
 
-                MetroMessageBoxControl _control = new MetroMessageBoxControl();
+                MetroMessageBoxControl _control = new();
                 _control.BackColor = _owner.BackColor;
                 _control.Properties.Buttons = buttons;
                 _control.Properties.DefaultButton = defaultbutton;
@@ -207,7 +203,7 @@ namespace MetroFramework
                 _control.BringToFront();
                 _control.SetDefaultButton();
 
-                Action<MetroMessageBoxControl> _delegate = new Action<MetroMessageBoxControl>(ModalState);
+                Action<MetroMessageBoxControl> _delegate = new(ModalState);
                 IAsyncResult _asyncresult = _delegate.BeginInvoke(_control, null, _delegate);
                 bool _cancelled = false;
 

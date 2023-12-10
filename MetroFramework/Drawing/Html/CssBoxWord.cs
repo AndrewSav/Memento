@@ -24,9 +24,7 @@
  * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF 
  * THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-using System;
-using System.Collections.Generic;
-using System.Text;
+
 using System.Drawing;
 
 namespace MetroFramework.Drawing.Html
@@ -49,7 +47,7 @@ namespace MetroFramework.Drawing.Html
 
         private string _word;
         private PointF _lastMeasureOffset;
-        private CssBox _ownerBox;
+        private readonly CssBox _ownerBox;
         private Image _image;
 
 
@@ -99,8 +97,8 @@ namespace MetroFramework.Drawing.Html
 
                 if (value != null)
                 {
-                    CssLength w = new CssLength(OwnerBox.Width);
-                    CssLength h = new CssLength(OwnerBox.Height);
+                    CssLength w = new(OwnerBox.Width);
+                    CssLength h = new(OwnerBox.Height);
                     if (w.Number > 0 && w.Unit == CssLength.CssUnit.Pixels)
                     {
                         Width = w.Number;

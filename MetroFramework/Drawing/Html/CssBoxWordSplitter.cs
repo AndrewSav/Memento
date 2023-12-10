@@ -24,9 +24,8 @@
  * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF 
  * THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-using System;
+
 using System.Collections.Generic;
-using System.Text;
 
 namespace MetroFramework.Drawing.Html
 {
@@ -63,9 +62,9 @@ namespace MetroFramework.Drawing.Html
         #endregion
 
         #region Fields
-        private CssBox _box;
-        private string _text;
-        private List<CssBoxWord> _words;
+        private readonly CssBox _box;
+        private readonly string _text;
+        private readonly List<CssBoxWord> _words;
         private CssBoxWord _curword;
 
         #endregion
@@ -74,7 +73,7 @@ namespace MetroFramework.Drawing.Html
 
         private CssBoxWordSplitter()
         {
-            _words = new List<CssBoxWord>();
+            _words = [];
             _curword = null;
         }
 
@@ -168,17 +167,17 @@ namespace MetroFramework.Drawing.Html
             _curword = new CssBoxWord(Box);
         }
 
-        private bool IsSpace(char c)
+        private static bool IsSpace(char c)
         {
             return c == ' ' || c == '\t' || c == '\n';
         }
 
-        private bool IsLineBreak(char c)
+        private static bool IsLineBreak(char c)
         {
             return c == '\n' || c == '\a';
         }
 
-        private bool IsTab(char c)
+        private static bool IsTab(char c)
         {
             return c == '\t';
         }

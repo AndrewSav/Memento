@@ -45,7 +45,7 @@ namespace MetroFramework.Native
         [DllImport("User32.dll")]
         public static extern bool HideCaret(IntPtr hWnd);
 
-        private IntPtr controlHandle;
+        private readonly IntPtr controlHandle;
 
         public WinCaret(IntPtr ownerHandle)
         {
@@ -64,11 +64,11 @@ namespace MetroFramework.Native
         {
             ShowCaret(controlHandle);
         }
-        public bool SetPosition(int x, int y)
+        public static bool SetPosition(int x, int y)
         {
             return SetCaretPos(x, y);
         }
-        public void Destroy()
+        public static void Destroy()
         {
             DestroyCaret();
         }

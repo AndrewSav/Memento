@@ -176,8 +176,8 @@ namespace MetroFramework.Controls
 
         #region Fields
 
-        public MetroScrollBar VerticalMetroScrollbar = new MetroScrollBar(MetroScrollOrientation.Vertical);
-        private MetroScrollBar HorizontalMetroScrollbar = new MetroScrollBar(MetroScrollOrientation.Horizontal);
+        public MetroScrollBar VerticalMetroScrollbar = new(MetroScrollOrientation.Vertical);
+        private readonly MetroScrollBar HorizontalMetroScrollbar = new(MetroScrollOrientation.Horizontal);
 
         private bool showHorizontalScrollbar = false;
         [DefaultValue(false)]
@@ -287,15 +287,15 @@ namespace MetroFramework.Controls
         {
             AutoScrollPosition = new Point(e.NewValue, VerticalMetroScrollbar.Value);
             UpdateScrollBarPositions();
-            if (HorizontalScrolled != null) HorizontalScrolled(this, e);
-            
+            HorizontalScrolled?.Invoke(this, e);
+
         }
 
         private void VerticalScrollbarScroll(object sender, ScrollEventArgs e)
         {
             AutoScrollPosition = new Point(HorizontalMetroScrollbar.Value, e.NewValue);
             UpdateScrollBarPositions();
-            if (VerticalScrolled != null) VerticalScrolled(this, e);
+            VerticalScrolled?.Invoke(this, e);
         }
 
         #endregion
@@ -427,7 +427,7 @@ namespace MetroFramework.Controls
 
             VerticalMetroScrollbar.Location = new Point(ClientRectangle.Width - VerticalMetroScrollbar.Width, ClientRectangle.Y);
 
-            if (!VerticalScrollbar || !this.VerticalScroll.Visible)
+            if (!VerticalScrollbar || !VerticalScroll.Visible)
             {
                 VerticalMetroScrollbar.Visible = false;
                 _verticalScrollWidth = 0;
@@ -435,7 +435,7 @@ namespace MetroFramework.Controls
 
             HorizontalMetroScrollbar.Location = new Point(ClientRectangle.X, ClientRectangle.Height - HorizontalMetroScrollbar.Height);
 
-            if (!HorizontalScrollbar || !this.HorizontalScroll.Visible)
+            if (!HorizontalScrollbar || !HorizontalScroll.Visible)
             {
                 HorizontalMetroScrollbar.Visible = false;
                 _horizontalScrollHeight = 0;

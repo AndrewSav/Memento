@@ -24,9 +24,7 @@
  * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF 
  * THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-using System;
-using System.Collections.Generic;
-using System.Text;
+
 using System.Drawing.Drawing2D;
 using System.Drawing;
 
@@ -137,7 +135,7 @@ namespace MetroFramework.Drawing.Html
                     break;
             }
 
-            GraphicsPath path = new GraphicsPath(pts, new byte[] { (byte)PathPointType.Line, (byte)PathPointType.Line, (byte)PathPointType.Line, (byte)PathPointType.Line });
+            GraphicsPath path = new(pts, new byte[] { (byte)PathPointType.Line, (byte)PathPointType.Line, (byte)PathPointType.Line, (byte)PathPointType.Line });
 
             if (corner != null)
             {
@@ -157,7 +155,7 @@ namespace MetroFramework.Drawing.Html
         /// <returns></returns>
         private static GraphicsPath CreateCorner(CssBox b, RectangleF r, int cornerIndex)
         {
-            GraphicsPath corner = new GraphicsPath();
+            GraphicsPath corner = new();
 
             RectangleF outer = RectangleF.Empty;
             RectangleF inner = RectangleF.Empty;
@@ -235,7 +233,7 @@ namespace MetroFramework.Drawing.Html
             ///  |       |
             ///  SW-----SE
 
-            GraphicsPath path = new GraphicsPath();
+            GraphicsPath path = new();
 
             nwRadius *= 2;
             neRadius *= 2;

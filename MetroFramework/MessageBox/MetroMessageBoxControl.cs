@@ -1,21 +1,15 @@
 ﻿using MetroFramework.Controls;
-using MetroFramework.Drawing;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
 using System.Diagnostics;
-using System.Text;
 using System.Windows.Forms;
-using MetroFramework.Forms;
 using MetroFramework.Localization;
 
 namespace MetroFramework
 {
     public partial class MetroMessageBoxControl : Form
     {
-        private MetroLocalize metroLocalize = null;
+        private readonly MetroLocalize metroLocalize = null;
 
         public MetroMessageBoxControl()
         {
@@ -35,19 +29,19 @@ namespace MetroFramework
         }
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private Color _defaultColor = Color.FromArgb(57, 179, 215);
+        private readonly Color _defaultColor = Color.FromArgb(57, 179, 215);
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private Color _errorColor = Color.FromArgb(210, 50, 45);
+        private readonly Color _errorColor = Color.FromArgb(210, 50, 45);
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private Color _warningColor = Color.FromArgb(237, 156, 40);
+        private readonly Color _warningColor = Color.FromArgb(237, 156, 40);
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private Color _success = Color.FromArgb(71, 164, 71);
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private Color _question = Color.FromArgb(71, 164, 71);
+        private readonly Color _question = Color.FromArgb(71, 164, 71);
 
         /// <summary>
         /// Gets the top body section of the control. 
@@ -58,7 +52,7 @@ namespace MetroFramework
         }
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private MetroMessageBoxProperties _properties = null;
+        private readonly MetroMessageBoxProperties _properties = null;
 
         /// <summary>
         /// Gets the message box display properties.
@@ -209,7 +203,7 @@ namespace MetroFramework
         private void EnableButton(MetroButton button)
         { EnableButton(button, true); }
 
-        private void EnableButton(MetroButton button, bool enabled)
+        private static void EnableButton(MetroButton button, bool enabled)
         {
             button.Enabled = enabled; button.Visible = enabled;
         }

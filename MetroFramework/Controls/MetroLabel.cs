@@ -180,7 +180,7 @@ namespace MetroFramework.Controls
 
         #region Fields
 
-        private DoubleBufferedTextBox baseTextBox;
+        private readonly DoubleBufferedTextBox baseTextBox;
 
         private MetroLabelSize metroLabelSize = MetroLabelSize.Medium;
         [DefaultValue(MetroLabelSize.Medium)]

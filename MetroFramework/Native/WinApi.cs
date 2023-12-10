@@ -72,7 +72,7 @@ namespace MetroFramework.Native
         [StructLayout(LayoutKind.Sequential)]
         public struct TCHITTESTINFO
         {
-            public System.Drawing.Point pt;
+            public Point pt;
             public uint flags;
         }
 
@@ -81,10 +81,10 @@ namespace MetroFramework.Native
         {
             public RECT(Rectangle rc)
             {
-                this.Left = rc.Left;
-                this.Top = rc.Top;
-                this.Right = rc.Right;
-                this.Bottom = rc.Bottom;
+                Left = rc.Left;
+                Top = rc.Top;
+                Right = rc.Right;
+                Bottom = rc.Bottom;
             }
 
             public int Left;

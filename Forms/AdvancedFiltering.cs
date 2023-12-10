@@ -49,7 +49,7 @@ namespace Memento.Forms
 
         private void linkWatcher_Click(object sender, EventArgs e)
         {
-            ProcessStartInfo psi = new ProcessStartInfo
+            ProcessStartInfo psi = new()
             {
                 FileName = "https://docs.microsoft.com/en-us/dotnet/api/system.io.filesystemwatcher.filter#remarks",
                 UseShellExecute = true
@@ -60,7 +60,7 @@ namespace Memento.Forms
 
         private void linkRegex_Click(object sender, EventArgs e)
         {
-            ProcessStartInfo psi = new ProcessStartInfo
+            ProcessStartInfo psi = new()
             {
                 FileName = "https://docs.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-language-quick-reference",
                 UseShellExecute = true

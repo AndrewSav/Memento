@@ -29,7 +29,6 @@ using System.Windows.Forms;
 using MetroFramework.Components;
 using MetroFramework.Drawing;
 using MetroFramework.Interfaces;
-using System.Drawing.Imaging;
 
 namespace MetroFramework.Controls
 {
@@ -185,7 +184,7 @@ public virtual new Image Image
     set
     {
         _image = value;
-        createimages();
+        CreateImages();
     }
 }
 
@@ -226,8 +225,8 @@ public Int32 ImageSize
 
                 if (AutoSize && _image != null)
                 {
-                    base.Width = TextRenderer.MeasureText(value, MetroFonts.Link(metroLinkSize, metroLinkWeight)).Width;
-                    base.Width += _imagesize + 2;
+                    Width = TextRenderer.MeasureText(value, MetroFonts.Link(metroLinkSize, metroLinkWeight)).Width;
+                    Width += _imagesize + 2;
                 }
             }
         }
@@ -381,7 +380,7 @@ private void DrawIcon(Graphics g)
             _imgH = _image.Height;
         }
 
-        Point iconLocation = new Point(2, (ClientRectangle.Height - _imagesize) / 2);
+        Point iconLocation = new(2, (ClientRectangle.Height - _imagesize) / 2);
         int _filler = 0;
 
         switch (ImageAlign)
@@ -447,7 +446,7 @@ Image _darklightimg = null;
 Image _lightimg = null;
 Image _darkimg = null;
 
-private void createimages()
+private void CreateImages()
 {
     if (_image != null)
     {
@@ -458,7 +457,7 @@ private void createimages()
         _lightlightimg = ApplyLight(new Bitmap(_lightimg));
     }
 }
-public Bitmap ApplyInvert(Bitmap bitmapImage)
+public static Bitmap ApplyInvert(Bitmap bitmapImage)
 {
     byte A, R, G, B;
     Color pixelColor;
@@ -479,7 +478,7 @@ public Bitmap ApplyInvert(Bitmap bitmapImage)
     return bitmapImage;
 }
 
-public Bitmap ApplyLight(Bitmap bitmapImage)
+public static Bitmap ApplyLight(Bitmap bitmapImage)
 {
     byte A, R, G, B;
     Color pixelColor;
@@ -594,8 +593,8 @@ public Bitmap ApplyLight(Bitmap bitmapImage)
                 isPressed = true;
                 Invalidate();
 
-                if (Name == "lnkClear" && Parent.GetType().Name == "MetroTextBox") this.PerformClick();
-                if (Name == "lnkClear" && Parent.GetType().Name == "SearchControl") this.PerformClick();
+                if (Name == "lnkClear" && Parent.GetType().Name == "MetroTextBox") PerformClick();
+                if (Name == "lnkClear" && Parent.GetType().Name == "SearchControl") PerformClick();
             }
 
             base.OnMouseDown(e);

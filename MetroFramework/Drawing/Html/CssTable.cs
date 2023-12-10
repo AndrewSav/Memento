@@ -26,7 +26,6 @@
  */
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Drawing;
 
 namespace MetroFramework.Drawing.Html
@@ -55,7 +54,7 @@ namespace MetroFramework.Drawing.Html
 
             #region Props
 
-            private int _startRow;
+            private readonly int _startRow;
             /// <summary>
             /// Gets the index of the row where box starts
             /// </summary>
@@ -64,7 +63,7 @@ namespace MetroFramework.Drawing.Html
                 get { return _startRow; }
             }
 
-            private int _endRow;
+            private readonly int _endRow;
 
             /// <summary>
             /// Gets the index of the row where box ends
@@ -82,15 +81,15 @@ namespace MetroFramework.Drawing.Html
 
         #region Fields
 
-        private CssBox _tableBox;
+        private readonly CssBox _tableBox;
         private int _rowCount;
         private int _columnCount;
-        private List<CssBox> _bodyrows;
+        private readonly List<CssBox> _bodyrows;
         private CssBox _caption;
-        private List<CssBox> _columns;
+        private readonly List<CssBox> _columns;
         private CssBox _headerBox;
         private CssBox _footerBox;
-        private List<CssBox> _allRows;
+        private readonly List<CssBox> _allRows;
         private float[] _columnWidths;
         private bool _widthSpecified;
         private float[] _columnMinWidths;
@@ -101,9 +100,9 @@ namespace MetroFramework.Drawing.Html
 
         private CssTable()
         {
-            _bodyrows = new List<CssBox>();
-            _columns = new List<CssBox>();
-            _allRows = new List<CssBox>();
+            _bodyrows = [];
+            _columns = [];
+            _allRows = [];
         }
 
         public CssTable(CssBox tableBox, Graphics g)
@@ -437,7 +436,7 @@ namespace MetroFramework.Drawing.Html
 
                 for (int i = 0; i < Columns.Count; i++)
                 {
-                    CssLength len = new CssLength(Columns[i].Width); //Get specified width
+                    CssLength len = new(Columns[i].Width); //Get specified width
 
                     if (len.Number > 0) //If some width specified
                     {
@@ -466,7 +465,7 @@ namespace MetroFramework.Drawing.Html
                             i < row.Boxes.Count &&                          //And there's a box to check
                             row.Boxes[i].Display == CssConstants.TableCell)//And the box is a table-cell
                         {
-                            CssLength len = new CssLength(row.Boxes[i].Width); //Get specified width
+                            CssLength len = new(row.Boxes[i].Width); //Get specified width
                             
                             if (len.Number > 0) //If some width specified
                             {
@@ -625,15 +624,14 @@ namespace MetroFramework.Drawing.Html
                     cell.MeasureBounds(g); //That will automatically set the bottom of the cell
 
                     //Alter max bottom only if row is cell's row + cell's rowspan - 1
-                    SpacingBox sb = cell as SpacingBox;
-                    if (sb != null)
+                    if (cell is SpacingBox sb)
                     {
                         if (sb.EndRow == currentrow)
                         {
                             maxBottom = Math.Max(maxBottom, sb.ExtendedBox.ActualBottom);
                         }
                     }
-                    else if(rowspan == 1)
+                    else if (rowspan == 1)
                     {
                         maxBottom = Math.Max(maxBottom, cell.ActualBottom);
                     }
@@ -735,7 +733,7 @@ namespace MetroFramework.Drawing.Html
         /// Gets the colspan of the specified box
         /// </summary>
         /// <param name="b"></param>
-        private int GetColSpan(CssBox b)
+        private static int GetColSpan(CssBox b)
         {
             string att = b.GetAttribute("colspan", "1");
             int colspan;
@@ -752,7 +750,7 @@ namespace MetroFramework.Drawing.Html
         /// Gets the rowspan of the specified box
         /// </summary>
         /// <param name="b"></param>
-        private int GetRowSpan(CssBox b)
+        private static int GetRowSpan(CssBox b)
         {
             string att = b.GetAttribute("rowspan", "1");
             int rowspan;
@@ -770,7 +768,7 @@ namespace MetroFramework.Drawing.Html
         /// </summary>
         /// <param name="b"></param>
         /// <param name="g"></param>
-        private void Measure(CssBox b, Graphics g)
+        private static void Measure(CssBox b, Graphics g)
         {
             if (b == null) return;
 
@@ -786,7 +784,7 @@ namespace MetroFramework.Drawing.Html
         /// </summary>
         /// <param name="b"></param>
         /// <param name="g"></param>
-        private void MeasureWords(CssBox b, Graphics g)
+        private static void MeasureWords(CssBox b, Graphics g)
         {
             if (b == null) return;
 
@@ -853,7 +851,7 @@ namespace MetroFramework.Drawing.Html
         /// </remarks>
         private float GetAvailableWidth()
         {
-            CssLength tblen = new CssLength(TableBox.Width);
+            CssLength tblen = new(TableBox.Width);
 
             if (tblen.Number > 0)
             {
@@ -863,15 +861,11 @@ namespace MetroFramework.Drawing.Html
                 {
                     return CssValue.ParseNumber(tblen.Length, TableBox.ParentBox.AvailableWidth);
                 }
-                else
-                {
-                    return tblen.Number;
-                }
+
+                return tblen.Number;
             }
-            else
-            {
-                return TableBox.ParentBox.AvailableWidth;
-            }
+
+            return TableBox.ParentBox.AvailableWidth;
         }
 
         /// <summary>
@@ -915,7 +909,7 @@ namespace MetroFramework.Drawing.Html
         /// Gets the span attribute of the tag of the specified box
         /// </summary>
         /// <param name="b"></param>
-        private int GetSpan(CssBox b)
+        private static int GetSpan(CssBox b)
         {
             float f = CssValue.ParseNumber(b.GetAttribute("span"), 1);
 
@@ -927,7 +921,7 @@ namespace MetroFramework.Drawing.Html
         /// </summary>
         /// <param name="width"></param>
         /// <returns></returns>
-        private CssBox CreateColumn(CssBox modelBox)
+        private static CssBox CreateColumn(CssBox modelBox)
         {
             return modelBox;
             //Box b = new Box(null, new HtmlTag(string.Format("<COL style=\"width:{0}\" >", width)));

@@ -28,7 +28,7 @@ namespace MetroFramework
 {
     public sealed class MetroBrushes
     {
-        private static Dictionary<string, SolidBrush> metroBrushes = new Dictionary<string, SolidBrush>();
+        private static readonly Dictionary<string, SolidBrush> metroBrushes = [];
         private static SolidBrush GetSaveBrush(string key, Color color)
         {
             lock (metroBrushes)

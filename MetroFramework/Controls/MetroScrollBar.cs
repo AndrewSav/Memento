@@ -191,8 +191,7 @@ namespace MetroFramework.Controls
         {
             if (oldValue != newValue)
             {
-                if (ValueChanged != null)
-                    ValueChanged(this, curValue);
+                ValueChanged?.Invoke(this, curValue);
             }
 
             if (Scroll == null) return;
@@ -249,7 +248,7 @@ namespace MetroFramework.Controls
 
         private int trackPosition;
 
-        private readonly Timer progressTimer = new Timer();
+        private readonly Timer progressTimer = new();
 
         private int mouseWheelBarPartitions = 10;
 

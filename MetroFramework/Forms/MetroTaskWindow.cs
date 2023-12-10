@@ -22,7 +22,6 @@
  * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 using System;
-using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -149,7 +148,7 @@ namespace MetroFramework.Forms
 
                 Size = new Size(400, 200);
 
-                Taskbar myTaskbar = new Taskbar();
+                Taskbar myTaskbar = new();
                 switch (myTaskbar.Position)
                 {
                     case TaskbarPosition.Left:
@@ -186,7 +185,7 @@ namespace MetroFramework.Forms
 
                 isInitialized = true;
 
-                MoveAnimation myMoveAnim = new MoveAnimation();
+                MoveAnimation myMoveAnim = new();
                 myMoveAnim.Start(controlContainer, new Point(20, 60), TransitionType.EaseInOutCubic, 15);
             }
 
@@ -197,7 +196,7 @@ namespace MetroFramework.Forms
         {
             base.OnPaint(e);
 
-            using (SolidBrush b = new SolidBrush(MetroPaint.BackColor.Form(Theme)))
+            using (SolidBrush b = new(MetroPaint.BackColor.Form(Theme)))
             {
                 e.Graphics.FillRectangle(b, new Rectangle(Width - progressWidth, 0, progressWidth, 5));
             }

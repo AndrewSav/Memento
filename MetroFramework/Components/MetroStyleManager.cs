@@ -23,7 +23,6 @@
  */
 using System;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Windows.Forms;
 using MetroFramework.Controls;
 using MetroFramework.Interfaces;
@@ -132,7 +131,7 @@ namespace MetroFramework.Components
 
         public object Clone()
         {
-            MetroStyleManager newStyleManager = new MetroStyleManager();
+            MetroStyleManager newStyleManager = new();
             newStyleManager.metroTheme = Theme;
             newStyleManager.metroStyle = Style;
             return newStyleManager;
@@ -237,20 +236,17 @@ namespace MetroFramework.Components
                 return;
             }
 
-            IMetroControl metroControl = ctrl as IMetroControl;
-            if (metroControl != null)
+            if (ctrl is IMetroControl metroControl)
             {
                 ApplyTheme(metroControl);
             }
 
-            IMetroComponent metroComponent = ctrl as IMetroComponent;
-            if (metroComponent != null)
+            if (ctrl is IMetroComponent metroComponent)
             {
                 ApplyTheme(metroComponent);
             }
 
-            TabControl tabControl = ctrl as TabControl;
-            if (tabControl != null)
+            if (ctrl is TabControl tabControl)
             {
                 foreach (TabPage tp in ((TabControl)ctrl).TabPages)
                 {

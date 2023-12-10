@@ -59,10 +59,15 @@ You can build in VS2022. You can use `build.ps1` to build the Release with .Net 
 
 ## Change Log
 
-* 1.3.0 (unreleased)
+* 1.4.0
+
+  * Upgraded to .net 8
+  * Fixed issue with deleteing saves on Google Drive
+
+* 1.3.0
+
   * Upgraded to .net SDK 6.0.101
   * Pathes to the game executable and the save folder are now saved per PC making it easier to sync the backups with the likes of Dropbox and Google Drive
-
 
 * 1.2.0
 

@@ -2,9 +2,9 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFramework>net8.0-windows7.0</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
-    <Version>1.3.0</Version>
+    <Version>1.4.0</Version>
     <ApplicationIcon>Resources\Main.ico</ApplicationIcon>
     <AssemblyName>Memento</AssemblyName>
     <RootNamespace>Memento</RootNamespace>
@@ -33,11 +33,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Windows.Compatibility" Version="6.0.6" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="Serilog" Version="2.10.0" />
+    <PackageReference Include="Microsoft.Windows.Compatibility" Version="8.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Serilog" Version="3.1.1" />
     <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
-    <PackageReference Include="System.Reactive.Linq" Version="5.0.0" />
+    <PackageReference Include="System.Reactive.Linq" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>

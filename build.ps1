@@ -1,7 +1,7 @@
 $ErrorActionPreference = "Stop"
 $global:ProgressPreference = 'SilentlyContinue'
 
-$targetFramework = "net6.0-windows"
+$targetFramework = "net8.0-windows7.0"
 
 $targetFolder = Join-Path $PSScriptRoot Build
 $debugBin = Join-Path $PSScriptRoot "bin\Debug\$targetFramework"

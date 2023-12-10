@@ -26,7 +26,6 @@
  */
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Drawing;
 
 namespace MetroFramework.Drawing.Html
@@ -43,10 +42,10 @@ namespace MetroFramework.Drawing.Html
 
         #region Fields
 
-        private List<CssBoxWord> _words;
-        private CssBox _ownerBox;
-        private Dictionary<CssBox, RectangleF> _rects;
-        private List<CssBox> _relatedBoxes;
+        private readonly List<CssBoxWord> _words;
+        private readonly CssBox _ownerBox;
+        private readonly Dictionary<CssBox, RectangleF> _rects;
+        private readonly List<CssBox> _relatedBoxes;
 
         #endregion
 
@@ -57,9 +56,9 @@ namespace MetroFramework.Drawing.Html
         /// </summary>
         public CssLineBox(CssBox ownerBox)
         {
-            _rects = new Dictionary<CssBox, RectangleF>();
-            _relatedBoxes = new List<CssBox>();
-            _words = new List<CssBoxWord>();
+            _rects = [];
+            _relatedBoxes = [];
+            _words = [];
             _ownerBox = ownerBox;
             _ownerBox.LineBoxes.Add(this);
         }
@@ -153,7 +152,7 @@ namespace MetroFramework.Drawing.Html
         /// <returns></returns>
         internal List<CssBoxWord> WordsOf(CssBox box)
         {
-            List<CssBoxWord> r = new List<CssBoxWord>();
+            List<CssBoxWord> r = [];
 
             foreach (CssBoxWord word in Words)
                 if (word.OwnerBox.Equals(box)) r.Add(word);
@@ -236,7 +235,7 @@ namespace MetroFramework.Drawing.Html
         /// </summary>
         /// <param name="g"></param>
         /// <returns></returns>
-        public float GetBaseLineHeight(CssBox b, Graphics g)
+        public static float GetBaseLineHeight(CssBox b, Graphics g)
         {
             Font f = b.ActualFont;
             FontFamily ff = f.FontFamily;
@@ -268,7 +267,7 @@ namespace MetroFramework.Drawing.Html
             }
             else
             {
-                CssBoxWord firstw = b.FirstWordOccourence(b, this);
+                CssBoxWord firstw = CssBox.FirstWordOccourence(b, this);
 
                 if (firstw != null)
                 {
@@ -286,7 +285,7 @@ namespace MetroFramework.Drawing.Html
             {
                 //Do this only if rectangle is shorter than parent's
                 float recttop = newtop - gap;
-                RectangleF newr = new RectangleF(r.X, recttop, r.Width, r.Height);
+                RectangleF newr = new(r.X, recttop, r.Width, r.Height);
                 Rectangles[b] = newr;
                 b.OffsetRectangle(this, gap);
             }

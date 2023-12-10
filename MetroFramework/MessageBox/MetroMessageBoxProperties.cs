@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
+﻿using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace MetroFramework
@@ -44,7 +41,7 @@ namespace MetroFramework
         { get; set; }
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private MetroMessageBoxControl _owner = null;
+        private readonly MetroMessageBoxControl _owner = null;
 
         /// <summary>
         /// Gets the property owner.

@@ -28,7 +28,7 @@ namespace MetroFramework
 {
     public sealed class MetroPens
     {
-        private static Dictionary<string, Pen> metroPens = new Dictionary<string ,Pen>();
+        private static readonly Dictionary<string, Pen> metroPens = [];
         private static Pen GetSavePen(string key, Color color)
         {
             lock (metroPens)

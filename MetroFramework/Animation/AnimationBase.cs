@@ -34,8 +34,7 @@ namespace MetroFramework.Animation
         public event EventHandler AnimationCompleted;
         private void OnAnimationCompleted()
         {
-            if (AnimationCompleted != null)
-                AnimationCompleted(this, EventArgs.Empty);
+            AnimationCompleted?.Invoke(this, EventArgs.Empty);
         }
 
         private DelayedCall timer;
@@ -82,14 +81,14 @@ namespace MetroFramework.Animation
         }
         protected void Start(Control control, TransitionType transitionType, int duration, AnimationAction actionHandler, AnimationFinishedEvaluator evaluatorHandler)
         {
-            this.targetControl = control;
+            targetControl = control;
             this.transitionType = transitionType;
             this.actionHandler = actionHandler;
             this.evaluatorHandler = evaluatorHandler;
 
-            this.counter = 0;
-            this.startTime = 0;
-            this.targetTime = duration;
+            counter = 0;
+            startTime = 0;
+            targetTime = duration;
 
             timer = DelayedCall.Start(DoAnimation, duration);
         }
@@ -131,10 +130,8 @@ namespace MetroFramework.Animation
                     {
                         return (int)(c / 2 * t * t + b);
                     }
-                    else
-                    {
-                        return (int)(-c / 2 * ((--t) * (t - 2) - 1) + b);
-                    }
+
+                    return (int)(-c / 2 * ((--t) * (t - 2) - 1) + b);
 
                 case TransitionType.EaseInCubic:
                     // cubic easing in - accelerating from zero velocity
@@ -150,10 +147,8 @@ namespace MetroFramework.Animation
                     {
                         return (int)(c / 2 * t * t * t + b);
                     }
-                    else
-                    {
-                        return (int)(c / 2 * ((t -= 2) * t * t + 2) + b);
-                    }
+
+                    return (int)(c / 2 * ((t -= 2) * t * t + 2) + b);
 
                 case TransitionType.EaseInQuart:
                     // quartic easing in - accelerating from zero velocity
@@ -165,10 +160,8 @@ namespace MetroFramework.Animation
                     {
                         return (int)b;
                     }
-                    else
-                    {
-                        return (int)(c * Math.Pow(2, (10 * (t / d - 1))) + b);
-                    }
+
+                    return (int)(c * Math.Pow(2, (10 * (t / d - 1))) + b);
 
                 case TransitionType.EaseOutExpo:
                     // exponential (2^t) easing out - decelerating to zero velocity
@@ -176,10 +169,8 @@ namespace MetroFramework.Animation
                     {
                         return (int)(b + c);
                     }
-                    else
-                    {
-                        return (int)(c * (-Math.Pow(2, -10 * t / d) + 1) + b);
-                    }
+
+                    return (int)(c * (-Math.Pow(2, -10 * t / d) + 1) + b);
 
                 default:
                     return 0;

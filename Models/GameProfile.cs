@@ -11,8 +11,8 @@ namespace Memento.Models
     {
         public GameProfile()
         {
-            SavesFolderCollection = new Dictionary<string, string>();
-            GameExecutableCollection = new Dictionary<string, string>();
+            SavesFolderCollection = [];
+            GameExecutableCollection = [];
         }
             
         private string backupFolder;
@@ -65,10 +65,8 @@ namespace Memento.Models
             {
                 return SavesFolderCollection[Environment.MachineName];
             }
-            else
-            {
-                return SavesFolderCollection.Count > 0 ? SavesFolderCollection[SavesFolderCollection.Keys.First()] : null;
-            }
+
+            return SavesFolderCollection.Count > 0 ? SavesFolderCollection[SavesFolderCollection.Keys.First()] : null;
         }
         public string GetGameExecutable()
         {
@@ -76,10 +74,8 @@ namespace Memento.Models
             {
                 return GameExecutableCollection[Environment.MachineName];
             }
-            else
-            {
-                return GameExecutableCollection.Count > 0 ? GameExecutableCollection[GameExecutableCollection.Keys.First()] :  null;
-            }
+
+            return GameExecutableCollection.Count > 0 ? GameExecutableCollection[GameExecutableCollection.Keys.First()] :  null;
         }
         public void SetSavesFolder(string value)
         {

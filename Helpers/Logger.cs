@@ -14,7 +14,7 @@ namespace Memento.Helpers
             string configPath = Path.Combine(BackupFolders.GetBaseFolder(), "settings.json");
             Settings settings = Settings.Load(configPath);
 
-            List<KeyValuePair<string, string>> serilogSettings = new List<KeyValuePair<string, string>>();
+            List<KeyValuePair<string, string>> serilogSettings = [];
 
             string logFilename = Environment.ExpandEnvironmentVariables(settings.LogFileName);
             string logRetainedCountLimit = Environment.ExpandEnvironmentVariables(settings.LogRetainedCountLimit);

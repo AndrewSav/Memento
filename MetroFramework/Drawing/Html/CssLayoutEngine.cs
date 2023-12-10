@@ -26,7 +26,6 @@
  */
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Drawing;
 
 namespace MetroFramework.Drawing.Html
@@ -71,7 +70,7 @@ namespace MetroFramework.Drawing.Html
             float lineSpacing = 0f;
 
             //First line box
-            CssLineBox line = new CssLineBox(blockBox);
+            CssLineBox line = new(blockBox);
 
             //Flow words and boxes
             FlowBox(g, blockBox, blockBox, maxRight, lineSpacing, startx,ref line, ref curx, ref cury, ref maxBottom);
@@ -215,8 +214,8 @@ namespace MetroFramework.Drawing.Html
             float w = 0f;
             float onError = 5f;
             
-            StringFormat sf = new StringFormat();
-            sf.SetMeasurableCharacterRanges(new CharacterRange[] { new CharacterRange(0, 1) });
+            StringFormat sf = new();
+            sf.SetMeasurableCharacterRanges(new CharacterRange[] { new(0, 1) });
             Region[] regs = g.MeasureCharacterRanges(space, b.ActualFont, new RectangleF(0, 0, float.MaxValue, float.MaxValue), sf);
 
             if (regs == null || regs.Length == 0) return onError;
@@ -330,7 +329,7 @@ namespace MetroFramework.Drawing.Html
 
             bool isTableCell = lineBox.OwnerBox.Display == CssConstants.TableCell;
             float baseline = lineBox.GetMaxWordBottom() - GetDescent(lineBox.OwnerBox.ActualFont) - 2;
-            List<CssBox> boxes = new List<CssBox>(lineBox.Rectangles.Keys);
+            List<CssBox> boxes = new(lineBox.Rectangles.Keys);
 
             foreach (CssBox b in boxes)
             {
@@ -388,7 +387,7 @@ namespace MetroFramework.Drawing.Html
 
             float celltop = cell.ClientTop;
             float cellbot = cell.ClientBottom;
-            float bottom = cell.GetMaximumBottom(cell, 0f);
+            float bottom = CssBox.GetMaximumBottom(cell, 0f);
             float dist = 0f;
 
             if (cell.VerticalAlign == CssConstants.Bottom)
