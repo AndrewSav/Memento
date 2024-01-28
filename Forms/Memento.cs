@@ -5,6 +5,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reactive.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Memento.Helpers;
@@ -95,7 +96,7 @@ namespace Memento.Forms
                 linkBackup.Enabled = false;
                 comboProfiles.Enabled = false;
                 buttonEdit.Enabled = false;
-                watcher = new FileSystemWatcher(_selectedItem.GetSavesFolder()) { IncludeSubdirectories = true };
+                watcher = new FileSystemWatcher(_selectedItem.GetSavesFolder()) { IncludeSubdirectories = _selectedItem.WatchSubdirectories };
                 if (!string.IsNullOrEmpty(_selectedItem.WatchFilter))
                 {
                     watcher.Filter = _selectedItem.WatchFilter;
@@ -108,14 +109,44 @@ namespace Memento.Forms
                     .Merge(deleted)
                     .Merge(renamed)
                     .Merge(created)
-                    .Select(x => DateTime.Now)
+                    .Where(x =>
+                    {
+                        if (string.IsNullOrEmpty(_selectedItem.BackupFilter) || x.EventArgs.Name == null) return true;
+                        bool ok = Regex.IsMatch(x.EventArgs.Name, _selectedItem.BackupFilter);
+                        if (!ok)
+                        {
+                            Log($"Suppressing change not matching backup filter. {x.EventArgs.ChangeType} {x.EventArgs.Name}");
+                        }
+                        return ok;
+                    })
+                    .Select(x =>
+                    {
+                        DateTime now = DateTime.Now;
+                        FileSystemEventArgs ea = x.EventArgs;
+                        Log($"Save change detected. {now:HH:mm:ss} {ea.ChangeType} {ea.Name}");
+                        return now;
+                    })
                     .Throttle(TimeSpan.FromSeconds(_settings.StabilizationTimeSeconds))
                     .Subscribe(x =>
                     {
-                        Log($"Save change detected. Timestamp {x:HH:mm:ss}");
+                        Log($"Save change notified. {x:HH:mm:ss}");
+                        if (_selectedItem.MinimumBackupInterval > 0)
+                        {
+                            DateTime? z = Invoke(GetLastSaveTime);
+                            if (z != null)
+                            {
+                                TimeSpan interval = DateTime.Now - z.Value;
+                                if (_selectedItem.MinimumBackupInterval != 0 &&
+                                    interval.TotalMinutes < _selectedItem.MinimumBackupInterval)
+                                {
+                                    Log($"Skipping backup. Last one was {(int)interval.TotalMinutes} minutes ago, which is less than {_selectedItem.MinimumBackupInterval} minutes");
+                                    return;
+                                }
+                            }
+                        }
                         RunMakeBackup(_selectedItem, x);
-                        Invoke((Action)UpdateRadioButtons);
-
+                        Invoke(UpdateRadioButtons);
+                        Log("Finished automated backup");
                     });
                 watcher.EnableRaisingEvents = true;
             }
@@ -124,12 +155,12 @@ namespace Memento.Forms
         private void RunMakeBackup(GameProfile profile, DateTime x)
         {
             int n = profile.MakeBackup(x);
-            Invoke((Action<int, DateTime>)SetBackupLabel, n, x);
+            Invoke(SetBackupLabel, n, x);
         }
 
         private void SetBackupLabel(int n, DateTime x)
         {
-            if (n >= 0)
+            if (n >= 0 && _selectedItem.ShowNumberOfFiles)
             {
                 labelBackup.Text = $"{n} files backed up {BackupPath.LabelFromTimestamp(x)}";
                 labelBackup.Visible = true;
@@ -327,6 +358,22 @@ namespace Memento.Forms
             Log($"Profile selected {_selectedItem.ProfileName}");
         }
 
+        private DateTime? GetLastSaveTime()
+        {
+            if (_radioButtons[0].Tag is not string tag) return null;
+            MatchCollection matches = DateTimeFromBackupPath().Matches(tag);
+            if (matches.Count == 0) return null;
+            Match match = matches[^1];
+            return new DateTime(
+                int.Parse(match.Groups["year"].Value),
+                int.Parse(match.Groups["month"].Value),
+                int.Parse(match.Groups["day"].Value),
+                int.Parse(match.Groups["hour"].Value),
+                int.Parse(match.Groups["minute"].Value),
+                int.Parse(match.Groups["second"].Value)
+            );
+        }
+
         private void GetRadioButtons(GameProfile profile)
         {
             string[] last = profile.GetBackupsDescending().Take(10).ToArray();
@@ -414,10 +461,10 @@ namespace Memento.Forms
 
         private void linkRunGame_Click(object sender, EventArgs e)
         {
-            runGame();
+            RunGame();
         }
 
-        private void runGame()
+        private void RunGame()
         {
             ProcessStartInfo si = new()
             {
@@ -496,7 +543,7 @@ namespace Memento.Forms
                 {
                     if (_selectedItem.KillBeforeRestore && !GameProcess.FindProcess(_selectedItem.GetGameExecutable()).Any())
                     {
-                        runGame();
+                        RunGame();
                     }
 
                     RestorePanel();
@@ -684,5 +731,8 @@ namespace Memento.Forms
                     dirs.Enqueue(subDir);
             }
         }
+
+        [GeneratedRegex(@"(?<year>\d{4})-(?<month>\d{2})\\(?<day>\d{2})\\(?<hour>\d{2})\.(?<minute>\d{2})\.(?<second>\d{2})(?:$|[^\d])")]
+        private static partial Regex DateTimeFromBackupPath();
     }
 }

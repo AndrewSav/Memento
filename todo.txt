@@ -1,3 +1,1 @@
-Add ability to only save automaticilly if there was no save for last x minute
-Add commnad line for the executable
-Sort out pinning to task bar that does not quite work due to packed executable
+Add commnad line for the game executable

@@ -19,15 +19,17 @@ namespace Memento.Forms
                 {
                     WatchFilter = textWatchFilter.Text.Trim(),
                     BackupFilter = textBackupFilter.Text.Trim(),
+                    WatchSubdirectories = toggleWatchSubfolders.Checked
                 };
             }
             set
             {
                 textWatchFilter.Text = value.WatchFilter;
                 textBackupFilter.Text = value.BackupFilter;
+                toggleWatchSubfolders.Checked = value.WatchSubdirectories;
             }
         }
-
+        
         public bool Updated { get; private set; }
 
         private void buttonCancel_Click(object sender, EventArgs e)
@@ -45,6 +47,7 @@ namespace Memento.Forms
         {
             textWatchFilter.Text = string.Empty;
             textBackupFilter.Text = string.Empty;
+            toggleWatchSubfolders.Checked = true;
         }
 
         private void linkWatcher_Click(object sender, EventArgs e)

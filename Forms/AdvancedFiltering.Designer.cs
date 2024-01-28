@@ -28,188 +28,210 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.labelBackupFilter = new MetroFramework.Controls.MetroLabel();
-            this.textBackupFilter = new MetroFramework.Controls.MetroTextBox();
-            this.textWatchFilter = new MetroFramework.Controls.MetroTextBox();
-            this.labelWatchFilter = new MetroFramework.Controls.MetroLabel();
-            this.buttonOk = new MetroFramework.Controls.MetroButton();
-            this.buttonCancel = new MetroFramework.Controls.MetroButton();
-            this.buttonClear = new MetroFramework.Controls.MetroButton();
-            this.metroToolTip1 = new MetroFramework.Components.MetroToolTip();
-            this.linkRegex = new MetroFramework.Controls.MetroLink();
-            this.linkWatcher = new MetroFramework.Controls.MetroLink();
-            this.SuspendLayout();
+            labelBackupFilter = new MetroFramework.Controls.MetroLabel();
+            textBackupFilter = new MetroFramework.Controls.MetroTextBox();
+            textWatchFilter = new MetroFramework.Controls.MetroTextBox();
+            labelWatchFilter = new MetroFramework.Controls.MetroLabel();
+            buttonOk = new MetroFramework.Controls.MetroButton();
+            buttonCancel = new MetroFramework.Controls.MetroButton();
+            buttonClear = new MetroFramework.Controls.MetroButton();
+            metroToolTip1 = new MetroFramework.Components.MetroToolTip();
+            linkRegex = new MetroFramework.Controls.MetroLink();
+            linkWatcher = new MetroFramework.Controls.MetroLink();
+            toggleWatchSubfolders = new MetroFramework.Controls.MetroToggle();
+            labelKillBeforeRestore = new MetroFramework.Controls.MetroLabel();
+            SuspendLayout();
             // 
             // labelBackupFilter
             // 
-            this.labelBackupFilter.AutoSize = true;
-            this.labelBackupFilter.Location = new System.Drawing.Point(27, 69);
-            this.labelBackupFilter.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelBackupFilter.Name = "labelBackupFilter";
-            this.labelBackupFilter.Size = new System.Drawing.Size(88, 19);
-            this.labelBackupFilter.TabIndex = 17;
-            this.labelBackupFilter.Text = "Backup Filter:";
+            labelBackupFilter.AutoSize = true;
+            labelBackupFilter.Location = new System.Drawing.Point(27, 69);
+            labelBackupFilter.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            labelBackupFilter.Name = "labelBackupFilter";
+            labelBackupFilter.Size = new System.Drawing.Size(88, 19);
+            labelBackupFilter.TabIndex = 17;
+            labelBackupFilter.Text = "Backup Filter:";
             // 
             // textBackupFilter
             // 
             // 
             // 
             // 
-            this.textBackupFilter.CustomButton.Image = null;
-            this.textBackupFilter.CustomButton.Location = new System.Drawing.Point(256, 1);
-            this.textBackupFilter.CustomButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.textBackupFilter.CustomButton.Name = "";
-            this.textBackupFilter.CustomButton.Size = new System.Drawing.Size(25, 25);
-            this.textBackupFilter.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.textBackupFilter.CustomButton.TabIndex = 1;
-            this.textBackupFilter.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.textBackupFilter.CustomButton.UseSelectable = true;
-            this.textBackupFilter.CustomButton.Visible = false;
-            this.textBackupFilter.Lines = new string[0];
-            this.textBackupFilter.Location = new System.Drawing.Point(119, 65);
-            this.textBackupFilter.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.textBackupFilter.MaxLength = 32767;
-            this.textBackupFilter.Name = "textBackupFilter";
-            this.textBackupFilter.PasswordChar = '\0';
-            this.textBackupFilter.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.textBackupFilter.SelectedText = "";
-            this.textBackupFilter.SelectionLength = 0;
-            this.textBackupFilter.SelectionStart = 0;
-            this.textBackupFilter.ShortcutsEnabled = true;
-            this.textBackupFilter.Size = new System.Drawing.Size(282, 27);
-            this.textBackupFilter.TabIndex = 1;
-            this.textBackupFilter.UseSelectable = true;
-            this.textBackupFilter.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.textBackupFilter.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            textBackupFilter.CustomButton.Image = null;
+            textBackupFilter.CustomButton.Location = new System.Drawing.Point(256, 1);
+            textBackupFilter.CustomButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            textBackupFilter.CustomButton.Name = "";
+            textBackupFilter.CustomButton.Size = new System.Drawing.Size(25, 25);
+            textBackupFilter.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            textBackupFilter.CustomButton.TabIndex = 1;
+            textBackupFilter.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            textBackupFilter.CustomButton.UseSelectable = true;
+            textBackupFilter.CustomButton.Visible = false;
+            textBackupFilter.Location = new System.Drawing.Point(119, 65);
+            textBackupFilter.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            textBackupFilter.MaxLength = 32767;
+            textBackupFilter.Name = "textBackupFilter";
+            textBackupFilter.PasswordChar = '\0';
+            textBackupFilter.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            textBackupFilter.SelectedText = "";
+            textBackupFilter.SelectionLength = 0;
+            textBackupFilter.SelectionStart = 0;
+            textBackupFilter.ShortcutsEnabled = true;
+            textBackupFilter.Size = new System.Drawing.Size(282, 27);
+            textBackupFilter.TabIndex = 1;
+            textBackupFilter.UseSelectable = true;
+            textBackupFilter.WaterMarkColor = System.Drawing.Color.FromArgb(109, 109, 109);
+            textBackupFilter.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
             // textWatchFilter
             // 
             // 
             // 
             // 
-            this.textWatchFilter.CustomButton.Image = null;
-            this.textWatchFilter.CustomButton.Location = new System.Drawing.Point(256, 1);
-            this.textWatchFilter.CustomButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.textWatchFilter.CustomButton.Name = "";
-            this.textWatchFilter.CustomButton.Size = new System.Drawing.Size(25, 25);
-            this.textWatchFilter.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.textWatchFilter.CustomButton.TabIndex = 1;
-            this.textWatchFilter.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.textWatchFilter.CustomButton.UseSelectable = true;
-            this.textWatchFilter.CustomButton.Visible = false;
-            this.textWatchFilter.Lines = new string[0];
-            this.textWatchFilter.Location = new System.Drawing.Point(119, 103);
-            this.textWatchFilter.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.textWatchFilter.MaxLength = 32767;
-            this.textWatchFilter.Name = "textWatchFilter";
-            this.textWatchFilter.PasswordChar = '\0';
-            this.textWatchFilter.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.textWatchFilter.SelectedText = "";
-            this.textWatchFilter.SelectionLength = 0;
-            this.textWatchFilter.SelectionStart = 0;
-            this.textWatchFilter.ShortcutsEnabled = true;
-            this.textWatchFilter.Size = new System.Drawing.Size(282, 27);
-            this.textWatchFilter.TabIndex = 2;
-            this.textWatchFilter.UseSelectable = true;
-            this.textWatchFilter.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.textWatchFilter.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            textWatchFilter.CustomButton.Image = null;
+            textWatchFilter.CustomButton.Location = new System.Drawing.Point(256, 1);
+            textWatchFilter.CustomButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            textWatchFilter.CustomButton.Name = "";
+            textWatchFilter.CustomButton.Size = new System.Drawing.Size(25, 25);
+            textWatchFilter.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            textWatchFilter.CustomButton.TabIndex = 1;
+            textWatchFilter.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            textWatchFilter.CustomButton.UseSelectable = true;
+            textWatchFilter.CustomButton.Visible = false;
+            textWatchFilter.Location = new System.Drawing.Point(119, 103);
+            textWatchFilter.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            textWatchFilter.MaxLength = 32767;
+            textWatchFilter.Name = "textWatchFilter";
+            textWatchFilter.PasswordChar = '\0';
+            textWatchFilter.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            textWatchFilter.SelectedText = "";
+            textWatchFilter.SelectionLength = 0;
+            textWatchFilter.SelectionStart = 0;
+            textWatchFilter.ShortcutsEnabled = true;
+            textWatchFilter.Size = new System.Drawing.Size(282, 27);
+            textWatchFilter.TabIndex = 2;
+            textWatchFilter.UseSelectable = true;
+            textWatchFilter.WaterMarkColor = System.Drawing.Color.FromArgb(109, 109, 109);
+            textWatchFilter.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
             // labelWatchFilter
             // 
-            this.labelWatchFilter.AutoSize = true;
-            this.labelWatchFilter.Location = new System.Drawing.Point(27, 107);
-            this.labelWatchFilter.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelWatchFilter.Name = "labelWatchFilter";
-            this.labelWatchFilter.Size = new System.Drawing.Size(82, 19);
-            this.labelWatchFilter.TabIndex = 10;
-            this.labelWatchFilter.Text = "Watch Filter:";
+            labelWatchFilter.AutoSize = true;
+            labelWatchFilter.Location = new System.Drawing.Point(27, 107);
+            labelWatchFilter.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            labelWatchFilter.Name = "labelWatchFilter";
+            labelWatchFilter.Size = new System.Drawing.Size(82, 19);
+            labelWatchFilter.TabIndex = 10;
+            labelWatchFilter.Text = "Watch Filter:";
             // 
             // buttonOk
             // 
-            this.buttonOk.Location = new System.Drawing.Point(217, 144);
-            this.buttonOk.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.buttonOk.Name = "buttonOk";
-            this.buttonOk.Size = new System.Drawing.Size(88, 27);
-            this.buttonOk.TabIndex = 4;
-            this.buttonOk.Text = "Ok";
-            this.buttonOk.UseSelectable = true;
-            this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
+            buttonOk.Location = new System.Drawing.Point(217, 174);
+            buttonOk.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            buttonOk.Name = "buttonOk";
+            buttonOk.Size = new System.Drawing.Size(88, 27);
+            buttonOk.TabIndex = 4;
+            buttonOk.Text = "Ok";
+            buttonOk.UseSelectable = true;
+            buttonOk.Click += buttonOk_Click;
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(313, 144);
-            this.buttonCancel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(88, 27);
-            this.buttonCancel.TabIndex = 5;
-            this.buttonCancel.Text = "Cancel";
-            this.buttonCancel.UseSelectable = true;
-            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
+            buttonCancel.Location = new System.Drawing.Point(313, 174);
+            buttonCancel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            buttonCancel.Name = "buttonCancel";
+            buttonCancel.Size = new System.Drawing.Size(88, 27);
+            buttonCancel.TabIndex = 5;
+            buttonCancel.Text = "Cancel";
+            buttonCancel.UseSelectable = true;
+            buttonCancel.Click += buttonCancel_Click;
             // 
             // buttonClear
             // 
-            this.buttonClear.Location = new System.Drawing.Point(121, 144);
-            this.buttonClear.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.buttonClear.Name = "buttonClear";
-            this.buttonClear.Size = new System.Drawing.Size(88, 27);
-            this.buttonClear.TabIndex = 3;
-            this.buttonClear.Text = "Clear";
-            this.buttonClear.UseSelectable = true;
-            this.buttonClear.Click += new System.EventHandler(this.buttonClear_Click);
+            buttonClear.Location = new System.Drawing.Point(121, 174);
+            buttonClear.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            buttonClear.Name = "buttonClear";
+            buttonClear.Size = new System.Drawing.Size(88, 27);
+            buttonClear.TabIndex = 3;
+            buttonClear.Text = "Reset";
+            buttonClear.UseSelectable = true;
+            buttonClear.Click += buttonClear_Click;
             // 
             // metroToolTip1
             // 
-            this.metroToolTip1.Style = MetroFramework.MetroColorStyle.Blue;
-            this.metroToolTip1.StyleManager = null;
-            this.metroToolTip1.Theme = MetroFramework.MetroThemeStyle.Light;
+            metroToolTip1.Style = MetroFramework.MetroColorStyle.Blue;
+            metroToolTip1.StyleManager = null;
+            metroToolTip1.Theme = MetroFramework.MetroThemeStyle.Light;
             // 
             // linkRegex
             // 
-            this.linkRegex.Location = new System.Drawing.Point(26, 86);
-            this.linkRegex.Name = "linkRegex";
-            this.linkRegex.Size = new System.Drawing.Size(88, 16);
-            this.linkRegex.TabIndex = 18;
-            this.linkRegex.Text = "(regex syntax)";
-            this.linkRegex.UseSelectable = true;
-            this.linkRegex.UseVisualStyleBackColor = true;
-            this.linkRegex.Click += new System.EventHandler(this.linkRegex_Click);
+            linkRegex.Location = new System.Drawing.Point(26, 86);
+            linkRegex.Name = "linkRegex";
+            linkRegex.Size = new System.Drawing.Size(88, 16);
+            linkRegex.TabIndex = 18;
+            linkRegex.Text = "(regex syntax)";
+            linkRegex.UseSelectable = true;
+            linkRegex.UseVisualStyleBackColor = true;
+            linkRegex.Click += linkRegex_Click;
             // 
             // linkWatcher
             // 
-            this.linkWatcher.Location = new System.Drawing.Point(8, 124);
-            this.linkWatcher.Name = "linkWatcher";
-            this.linkWatcher.Size = new System.Drawing.Size(110, 15);
-            this.linkWatcher.TabIndex = 18;
-            this.linkWatcher.Text = "(watcher syntax)";
-            this.linkWatcher.UseSelectable = true;
-            this.linkWatcher.UseVisualStyleBackColor = true;
-            this.linkWatcher.Click += new System.EventHandler(this.linkWatcher_Click);
+            linkWatcher.Location = new System.Drawing.Point(8, 124);
+            linkWatcher.Name = "linkWatcher";
+            linkWatcher.Size = new System.Drawing.Size(110, 15);
+            linkWatcher.TabIndex = 18;
+            linkWatcher.Text = "(watcher syntax)";
+            linkWatcher.UseSelectable = true;
+            linkWatcher.UseVisualStyleBackColor = true;
+            linkWatcher.Click += linkWatcher_Click;
+            // 
+            // toggleWatchSubfolders
+            // 
+            toggleWatchSubfolders.AutoSize = true;
+            toggleWatchSubfolders.Location = new System.Drawing.Point(119, 141);
+            toggleWatchSubfolders.Name = "toggleWatchSubfolders";
+            toggleWatchSubfolders.Size = new System.Drawing.Size(80, 19);
+            toggleWatchSubfolders.TabIndex = 19;
+            toggleWatchSubfolders.Text = "Off";
+            toggleWatchSubfolders.UseSelectable = true;
+            toggleWatchSubfolders.UseVisualStyleBackColor = true;
+            // 
+            // labelKillBeforeRestore
+            // 
+            labelKillBeforeRestore.AutoSize = true;
+            labelKillBeforeRestore.Location = new System.Drawing.Point(6, 142);
+            labelKillBeforeRestore.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            labelKillBeforeRestore.Name = "labelKillBeforeRestore";
+            labelKillBeforeRestore.Size = new System.Drawing.Size(109, 19);
+            labelKillBeforeRestore.TabIndex = 26;
+            labelKillBeforeRestore.Text = "Watch subfolders";
             // 
             // AdvancedFiltering
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BorderStyle = MetroFramework.Forms.MetroFormBorderStyle.FixedSingle;
-            this.CancelButton = this.buttonCancel;
-            this.ClientSize = new System.Drawing.Size(428, 196);
-            this.Controls.Add(this.linkWatcher);
-            this.Controls.Add(this.linkRegex);
-            this.Controls.Add(this.buttonClear);
-            this.Controls.Add(this.buttonCancel);
-            this.Controls.Add(this.buttonOk);
-            this.Controls.Add(this.labelBackupFilter);
-            this.Controls.Add(this.textBackupFilter);
-            this.Controls.Add(this.textWatchFilter);
-            this.Controls.Add(this.labelWatchFilter);
-            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.MaximizeBox = false;
-            this.Name = "AdvancedFiltering";
-            this.Padding = new System.Windows.Forms.Padding(23, 69, 23, 23);
-            this.Resizable = false;
-            this.Text = "Advanced Filtering";
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            BorderStyle = MetroFramework.Forms.MetroFormBorderStyle.FixedSingle;
+            CancelButton = buttonCancel;
+            ClientSize = new System.Drawing.Size(428, 219);
+            Controls.Add(labelKillBeforeRestore);
+            Controls.Add(toggleWatchSubfolders);
+            Controls.Add(linkWatcher);
+            Controls.Add(linkRegex);
+            Controls.Add(buttonClear);
+            Controls.Add(buttonCancel);
+            Controls.Add(buttonOk);
+            Controls.Add(labelBackupFilter);
+            Controls.Add(textBackupFilter);
+            Controls.Add(textWatchFilter);
+            Controls.Add(labelWatchFilter);
+            Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            MaximizeBox = false;
+            Name = "AdvancedFiltering";
+            Padding = new System.Windows.Forms.Padding(23, 69, 23, 23);
+            Resizable = false;
+            Text = "Advanced Filtering";
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -223,5 +245,7 @@
         private MetroFramework.Components.MetroToolTip metroToolTip1;
         private MetroFramework.Controls.MetroLink linkRegex;
         private MetroFramework.Controls.MetroLink linkWatcher;
+        private MetroFramework.Controls.MetroToggle toggleWatchSubfolders;
+        private MetroFramework.Controls.MetroLabel labelKillBeforeRestore;
     }
 }

@@ -14,8 +14,8 @@ namespace Memento.Helpers
         public static string GetBaseFolder()
         {
             Process me = Process.GetCurrentProcess();
-            string parentFileName = me.Parent().MainModule.FileName;
-            string myFileName = me.MainModule.FileName;
+            string parentFileName = me.Parent().MainModule!.FileName;
+            string myFileName = me.MainModule!.FileName;
             string target = Path.GetFileName(parentFileName) == Path.GetFileName(myFileName) ? parentFileName : myFileName;
             return Path.GetDirectoryName(target);
         }
@@ -63,7 +63,7 @@ namespace Memento.Helpers
             foreach (string path in ApplyFilter(profile.GetSavesFolder(), profile.BackupFilter))
             {
                 string target = path.Replace(profile.GetSavesFolder(), targetPath);
-                Directory.CreateDirectory(Path.GetDirectoryName(target));
+                Directory.CreateDirectory(Path.GetDirectoryName(target)!);
                 File.Copy(path, target, true);
                 counter++;
             }
@@ -78,11 +78,10 @@ namespace Memento.Helpers
         private static IEnumerable<string> ApplyFilter(string path, string filter)
         {
             path = Path.GetFullPath(path);
-            Regex r = new(filter ?? "");
             foreach (string newPath in Directory.GetFiles(path, "*.*", SearchOption.AllDirectories))
             {
                 string segment = newPath[(path.Length + 1)..];
-                if (r.Match(segment).Success)
+                if (Regex.IsMatch(segment, filter ?? ""))
                 {
                     yield return newPath;
                 }
@@ -146,16 +145,16 @@ namespace Memento.Helpers
             return candidateFolders.OrderByDescending(x => x).Where(x => IsPathValid(x) && BeforeCurrent(x)).Take(2);
         }
 
-        internal static readonly string[] stringArray = ["00.00.00"];
-        internal static readonly string[] stringArray0 = ["01", "00.00.00"];
+        internal static readonly string[] StringArray = ["00.00.00"];
+        internal static readonly string[] StringArray0 = ["01", "00.00.00"];
 
         private static string FindNextBackupFolder(string backupsBaseFolder, string currentBackupFolder = null)
         {
             IEnumerable<string> candidateFolders = Directory.GetDirectories(backupsBaseFolder);
-            IEnumerable<string> monthFolders = FoldFolders(candidateFolders, stringArray0, currentBackupFolder);
+            IEnumerable<string> monthFolders = FoldFolders(candidateFolders, StringArray0, currentBackupFolder);
 
             candidateFolders = monthFolders.Select(Directory.GetDirectories).SelectMany(x => x);
-            IEnumerable<string> dayFolders = FoldFolders(candidateFolders, stringArray, currentBackupFolder);
+            IEnumerable<string> dayFolders = FoldFolders(candidateFolders, StringArray, currentBackupFolder);
 
             candidateFolders = dayFolders.Select(Directory.GetDirectories).SelectMany(x => x);
             return FoldFolders(candidateFolders, Array.Empty<string>(), currentBackupFolder).FirstOrDefault();

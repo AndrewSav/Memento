@@ -28,464 +28,508 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.labelBackupBeforeRestoring = new MetroFramework.Controls.MetroLabel();
-            this.labelDontWarnOnRestore = new MetroFramework.Controls.MetroLabel();
-            this.labelKillBeforeRestore = new MetroFramework.Controls.MetroLabel();
-            this.toggleBackupBeforeRestoring = new MetroFramework.Controls.MetroToggle();
-            this.toggleDontWarnOnRestore = new MetroFramework.Controls.MetroToggle();
-            this.toggleKillBeforeRestore = new MetroFramework.Controls.MetroToggle();
-            this.labelGameExecutale = new MetroFramework.Controls.MetroLabel();
-            this.buttonGameExecutable = new MetroFramework.Controls.MetroButton();
-            this.buttonSavesFolder = new MetroFramework.Controls.MetroButton();
-            this.textGameExecutable = new MetroFramework.Controls.MetroTextBox();
-            this.textSavesFolder = new MetroFramework.Controls.MetroTextBox();
-            this.labelSavesFolder = new MetroFramework.Controls.MetroLabel();
-            this.textProfileName = new MetroFramework.Controls.MetroTextBox();
-            this.labelProfileName = new MetroFramework.Controls.MetroLabel();
-            this.buttonSave = new MetroFramework.Controls.MetroButton();
-            this.buttonCancel = new MetroFramework.Controls.MetroButton();
-            this.buttonDelete = new MetroFramework.Controls.MetroButton();
-            this.labelWarning = new MetroFramework.Controls.MetroLabel();
-            this.labelBackupOnStartWatching = new MetroFramework.Controls.MetroLabel();
-            this.toggleBackupOnStartWatching = new MetroFramework.Controls.MetroToggle();
-            this.labelWriteLog = new MetroFramework.Controls.MetroLabel();
-            this.toggleWriteLog = new MetroFramework.Controls.MetroToggle();
-            this.toggleDeleteBeforeRestoring = new MetroFramework.Controls.MetroToggle();
-            this.labelDeleteBeforeRestoring = new MetroFramework.Controls.MetroLabel();
-            this.linkAdvancedFiltering = new MetroFramework.Controls.MetroLink();
-            this.labelShowNumberOfFiles = new MetroFramework.Controls.MetroLabel();
-            this.toggleShowNumberOfFiles = new MetroFramework.Controls.MetroToggle();
-            this.metroToolTip1 = new MetroFramework.Components.MetroToolTip();
-            this.labelDeleteWithoutConfirmation = new MetroFramework.Controls.MetroLabel();
-            this.toggleDeleteWithoutConfirmation = new MetroFramework.Controls.MetroToggle();
-            this.SuspendLayout();
+            labelBackupBeforeRestoring = new MetroFramework.Controls.MetroLabel();
+            labelDontWarnOnRestore = new MetroFramework.Controls.MetroLabel();
+            labelKillBeforeRestore = new MetroFramework.Controls.MetroLabel();
+            toggleBackupBeforeRestoring = new MetroFramework.Controls.MetroToggle();
+            toggleDontWarnOnRestore = new MetroFramework.Controls.MetroToggle();
+            toggleKillBeforeRestore = new MetroFramework.Controls.MetroToggle();
+            labelGameExecutale = new MetroFramework.Controls.MetroLabel();
+            buttonGameExecutable = new MetroFramework.Controls.MetroButton();
+            buttonSavesFolder = new MetroFramework.Controls.MetroButton();
+            textGameExecutable = new MetroFramework.Controls.MetroTextBox();
+            textSavesFolder = new MetroFramework.Controls.MetroTextBox();
+            labelSavesFolder = new MetroFramework.Controls.MetroLabel();
+            textProfileName = new MetroFramework.Controls.MetroTextBox();
+            labelProfileName = new MetroFramework.Controls.MetroLabel();
+            buttonSave = new MetroFramework.Controls.MetroButton();
+            buttonCancel = new MetroFramework.Controls.MetroButton();
+            buttonDelete = new MetroFramework.Controls.MetroButton();
+            labelWarning = new MetroFramework.Controls.MetroLabel();
+            labelBackupOnStartWatching = new MetroFramework.Controls.MetroLabel();
+            toggleBackupOnStartWatching = new MetroFramework.Controls.MetroToggle();
+            labelWriteLog = new MetroFramework.Controls.MetroLabel();
+            toggleWriteLog = new MetroFramework.Controls.MetroToggle();
+            toggleDeleteBeforeRestoring = new MetroFramework.Controls.MetroToggle();
+            labelDeleteBeforeRestoring = new MetroFramework.Controls.MetroLabel();
+            linkAdvancedFiltering = new MetroFramework.Controls.MetroLink();
+            labelShowNumberOfFiles = new MetroFramework.Controls.MetroLabel();
+            toggleShowNumberOfFiles = new MetroFramework.Controls.MetroToggle();
+            metroToolTip1 = new MetroFramework.Components.MetroToolTip();
+            labelDeleteWithoutConfirmation = new MetroFramework.Controls.MetroLabel();
+            toggleDeleteWithoutConfirmation = new MetroFramework.Controls.MetroToggle();
+            textMinimumInterval = new MetroFramework.Controls.MetroTextBox();
+            labelMinimumInterval = new MetroFramework.Controls.MetroLabel();
+            SuspendLayout();
             // 
             // labelBackupBeforeRestoring
             // 
-            this.labelBackupBeforeRestoring.AutoSize = true;
-            this.labelBackupBeforeRestoring.Location = new System.Drawing.Point(27, 271);
-            this.labelBackupBeforeRestoring.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelBackupBeforeRestoring.Name = "labelBackupBeforeRestoring";
-            this.labelBackupBeforeRestoring.Size = new System.Drawing.Size(150, 19);
-            this.labelBackupBeforeRestoring.TabIndex = 23;
-            this.labelBackupBeforeRestoring.Text = "Backup before restoring";
+            labelBackupBeforeRestoring.AutoSize = true;
+            labelBackupBeforeRestoring.Location = new System.Drawing.Point(27, 271);
+            labelBackupBeforeRestoring.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            labelBackupBeforeRestoring.Name = "labelBackupBeforeRestoring";
+            labelBackupBeforeRestoring.Size = new System.Drawing.Size(150, 19);
+            labelBackupBeforeRestoring.TabIndex = 23;
+            labelBackupBeforeRestoring.Text = "Backup before restoring";
             // 
             // labelDontWarnOnRestore
             // 
-            this.labelDontWarnOnRestore.AutoSize = true;
-            this.labelDontWarnOnRestore.Location = new System.Drawing.Point(27, 217);
-            this.labelDontWarnOnRestore.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelDontWarnOnRestore.Name = "labelDontWarnOnRestore";
-            this.labelDontWarnOnRestore.Size = new System.Drawing.Size(171, 19);
-            this.labelDontWarnOnRestore.TabIndex = 24;
-            this.labelDontWarnOnRestore.Text = "Do not warn when restoring";
+            labelDontWarnOnRestore.AutoSize = true;
+            labelDontWarnOnRestore.Location = new System.Drawing.Point(27, 217);
+            labelDontWarnOnRestore.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            labelDontWarnOnRestore.Name = "labelDontWarnOnRestore";
+            labelDontWarnOnRestore.Size = new System.Drawing.Size(171, 19);
+            labelDontWarnOnRestore.TabIndex = 24;
+            labelDontWarnOnRestore.Text = "Do not warn when restoring";
             // 
             // labelKillBeforeRestore
             // 
-            this.labelKillBeforeRestore.AutoSize = true;
-            this.labelKillBeforeRestore.Location = new System.Drawing.Point(27, 190);
-            this.labelKillBeforeRestore.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelKillBeforeRestore.Name = "labelKillBeforeRestore";
-            this.labelKillBeforeRestore.Size = new System.Drawing.Size(193, 19);
-            this.labelKillBeforeRestore.TabIndex = 25;
-            this.labelKillBeforeRestore.Text = "Kill/restart game during restore";
+            labelKillBeforeRestore.AutoSize = true;
+            labelKillBeforeRestore.Location = new System.Drawing.Point(27, 190);
+            labelKillBeforeRestore.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            labelKillBeforeRestore.Name = "labelKillBeforeRestore";
+            labelKillBeforeRestore.Size = new System.Drawing.Size(193, 19);
+            labelKillBeforeRestore.TabIndex = 25;
+            labelKillBeforeRestore.Text = "Kill/restart game during restore";
             // 
             // toggleBackupBeforeRestoring
             // 
-            this.toggleBackupBeforeRestoring.AutoSize = true;
-            this.toggleBackupBeforeRestoring.Location = new System.Drawing.Point(260, 273);
-            this.toggleBackupBeforeRestoring.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.toggleBackupBeforeRestoring.Name = "toggleBackupBeforeRestoring";
-            this.toggleBackupBeforeRestoring.Size = new System.Drawing.Size(80, 19);
-            this.toggleBackupBeforeRestoring.TabIndex = 9;
-            this.toggleBackupBeforeRestoring.Text = "Off";
-            this.toggleBackupBeforeRestoring.UseSelectable = true;
+            toggleBackupBeforeRestoring.AutoSize = true;
+            toggleBackupBeforeRestoring.Location = new System.Drawing.Point(260, 273);
+            toggleBackupBeforeRestoring.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            toggleBackupBeforeRestoring.Name = "toggleBackupBeforeRestoring";
+            toggleBackupBeforeRestoring.Size = new System.Drawing.Size(80, 19);
+            toggleBackupBeforeRestoring.TabIndex = 9;
+            toggleBackupBeforeRestoring.Text = "Off";
+            toggleBackupBeforeRestoring.UseSelectable = true;
             // 
             // toggleDontWarnOnRestore
             // 
-            this.toggleDontWarnOnRestore.AutoSize = true;
-            this.toggleDontWarnOnRestore.Location = new System.Drawing.Point(260, 219);
-            this.toggleDontWarnOnRestore.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.toggleDontWarnOnRestore.Name = "toggleDontWarnOnRestore";
-            this.toggleDontWarnOnRestore.Size = new System.Drawing.Size(80, 19);
-            this.toggleDontWarnOnRestore.TabIndex = 7;
-            this.toggleDontWarnOnRestore.Text = "Off";
-            this.toggleDontWarnOnRestore.UseSelectable = true;
+            toggleDontWarnOnRestore.AutoSize = true;
+            toggleDontWarnOnRestore.Location = new System.Drawing.Point(260, 219);
+            toggleDontWarnOnRestore.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            toggleDontWarnOnRestore.Name = "toggleDontWarnOnRestore";
+            toggleDontWarnOnRestore.Size = new System.Drawing.Size(80, 19);
+            toggleDontWarnOnRestore.TabIndex = 7;
+            toggleDontWarnOnRestore.Text = "Off";
+            toggleDontWarnOnRestore.UseSelectable = true;
             // 
             // toggleKillBeforeRestore
             // 
-            this.toggleKillBeforeRestore.AutoSize = true;
-            this.toggleKillBeforeRestore.Location = new System.Drawing.Point(260, 192);
-            this.toggleKillBeforeRestore.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.toggleKillBeforeRestore.Name = "toggleKillBeforeRestore";
-            this.toggleKillBeforeRestore.Size = new System.Drawing.Size(80, 19);
-            this.toggleKillBeforeRestore.TabIndex = 6;
-            this.toggleKillBeforeRestore.Text = "Off";
-            this.toggleKillBeforeRestore.UseSelectable = true;
+            toggleKillBeforeRestore.AutoSize = true;
+            toggleKillBeforeRestore.Location = new System.Drawing.Point(260, 192);
+            toggleKillBeforeRestore.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            toggleKillBeforeRestore.Name = "toggleKillBeforeRestore";
+            toggleKillBeforeRestore.Size = new System.Drawing.Size(80, 19);
+            toggleKillBeforeRestore.TabIndex = 6;
+            toggleKillBeforeRestore.Text = "Off";
+            toggleKillBeforeRestore.UseSelectable = true;
             // 
             // labelGameExecutale
             // 
-            this.labelGameExecutale.AutoSize = true;
-            this.labelGameExecutale.Location = new System.Drawing.Point(27, 103);
-            this.labelGameExecutale.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelGameExecutale.Name = "labelGameExecutale";
-            this.labelGameExecutale.Size = new System.Drawing.Size(113, 19);
-            this.labelGameExecutale.TabIndex = 17;
-            this.labelGameExecutale.Text = "Game Executable:";
+            labelGameExecutale.AutoSize = true;
+            labelGameExecutale.Location = new System.Drawing.Point(27, 103);
+            labelGameExecutale.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            labelGameExecutale.Name = "labelGameExecutale";
+            labelGameExecutale.Size = new System.Drawing.Size(113, 19);
+            labelGameExecutale.TabIndex = 17;
+            labelGameExecutale.Text = "Game Executable:";
             // 
             // buttonGameExecutable
             // 
-            this.buttonGameExecutable.Location = new System.Drawing.Point(403, 95);
-            this.buttonGameExecutable.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.buttonGameExecutable.Name = "buttonGameExecutable";
-            this.buttonGameExecutable.Size = new System.Drawing.Size(33, 27);
-            this.buttonGameExecutable.TabIndex = 2;
-            this.buttonGameExecutable.Text = "...";
-            this.buttonGameExecutable.UseSelectable = true;
-            this.buttonGameExecutable.Click += new System.EventHandler(this.buttonGameExecutable_Click);
+            buttonGameExecutable.Location = new System.Drawing.Point(403, 95);
+            buttonGameExecutable.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            buttonGameExecutable.Name = "buttonGameExecutable";
+            buttonGameExecutable.Size = new System.Drawing.Size(33, 27);
+            buttonGameExecutable.TabIndex = 2;
+            buttonGameExecutable.Text = "...";
+            buttonGameExecutable.UseSelectable = true;
+            buttonGameExecutable.Click += buttonGameExecutable_Click;
             // 
             // buttonSavesFolder
             // 
-            this.buttonSavesFolder.Location = new System.Drawing.Point(403, 128);
-            this.buttonSavesFolder.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.buttonSavesFolder.Name = "buttonSavesFolder";
-            this.buttonSavesFolder.Size = new System.Drawing.Size(33, 27);
-            this.buttonSavesFolder.TabIndex = 4;
-            this.buttonSavesFolder.Text = "...";
-            this.buttonSavesFolder.UseSelectable = true;
-            this.buttonSavesFolder.Click += new System.EventHandler(this.buttonSavesFolder_Click);
+            buttonSavesFolder.Location = new System.Drawing.Point(403, 128);
+            buttonSavesFolder.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            buttonSavesFolder.Name = "buttonSavesFolder";
+            buttonSavesFolder.Size = new System.Drawing.Size(33, 27);
+            buttonSavesFolder.TabIndex = 4;
+            buttonSavesFolder.Text = "...";
+            buttonSavesFolder.UseSelectable = true;
+            buttonSavesFolder.Click += buttonSavesFolder_Click;
             // 
             // textGameExecutable
             // 
             // 
             // 
             // 
-            this.textGameExecutable.CustomButton.Image = null;
-            this.textGameExecutable.CustomButton.Location = new System.Drawing.Point(202, 1);
-            this.textGameExecutable.CustomButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.textGameExecutable.CustomButton.Name = "";
-            this.textGameExecutable.CustomButton.Size = new System.Drawing.Size(25, 25);
-            this.textGameExecutable.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.textGameExecutable.CustomButton.TabIndex = 1;
-            this.textGameExecutable.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.textGameExecutable.CustomButton.UseSelectable = true;
-            this.textGameExecutable.CustomButton.Visible = false;
-            this.textGameExecutable.Lines = new string[0];
-            this.textGameExecutable.Location = new System.Drawing.Point(162, 98);
-            this.textGameExecutable.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.textGameExecutable.MaxLength = 32767;
-            this.textGameExecutable.Name = "textGameExecutable";
-            this.textGameExecutable.PasswordChar = '\0';
-            this.textGameExecutable.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.textGameExecutable.SelectedText = "";
-            this.textGameExecutable.SelectionLength = 0;
-            this.textGameExecutable.SelectionStart = 0;
-            this.textGameExecutable.ShortcutsEnabled = true;
-            this.textGameExecutable.Size = new System.Drawing.Size(228, 27);
-            this.textGameExecutable.TabIndex = 1;
-            this.textGameExecutable.UseSelectable = true;
-            this.textGameExecutable.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.textGameExecutable.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            textGameExecutable.CustomButton.Image = null;
+            textGameExecutable.CustomButton.Location = new System.Drawing.Point(202, 1);
+            textGameExecutable.CustomButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            textGameExecutable.CustomButton.Name = "";
+            textGameExecutable.CustomButton.Size = new System.Drawing.Size(25, 25);
+            textGameExecutable.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            textGameExecutable.CustomButton.TabIndex = 1;
+            textGameExecutable.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            textGameExecutable.CustomButton.UseSelectable = true;
+            textGameExecutable.CustomButton.Visible = false;
+            textGameExecutable.Location = new System.Drawing.Point(162, 98);
+            textGameExecutable.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            textGameExecutable.MaxLength = 32767;
+            textGameExecutable.Name = "textGameExecutable";
+            textGameExecutable.PasswordChar = '\0';
+            textGameExecutable.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            textGameExecutable.SelectedText = "";
+            textGameExecutable.SelectionLength = 0;
+            textGameExecutable.SelectionStart = 0;
+            textGameExecutable.ShortcutsEnabled = true;
+            textGameExecutable.Size = new System.Drawing.Size(228, 27);
+            textGameExecutable.TabIndex = 1;
+            textGameExecutable.UseSelectable = true;
+            textGameExecutable.WaterMarkColor = System.Drawing.Color.FromArgb(109, 109, 109);
+            textGameExecutable.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
             // textSavesFolder
             // 
             // 
             // 
             // 
-            this.textSavesFolder.CustomButton.Image = null;
-            this.textSavesFolder.CustomButton.Location = new System.Drawing.Point(202, 1);
-            this.textSavesFolder.CustomButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.textSavesFolder.CustomButton.Name = "";
-            this.textSavesFolder.CustomButton.Size = new System.Drawing.Size(25, 25);
-            this.textSavesFolder.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.textSavesFolder.CustomButton.TabIndex = 1;
-            this.textSavesFolder.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.textSavesFolder.CustomButton.UseSelectable = true;
-            this.textSavesFolder.CustomButton.Visible = false;
-            this.textSavesFolder.Lines = new string[0];
-            this.textSavesFolder.Location = new System.Drawing.Point(162, 131);
-            this.textSavesFolder.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.textSavesFolder.MaxLength = 32767;
-            this.textSavesFolder.Name = "textSavesFolder";
-            this.textSavesFolder.PasswordChar = '\0';
-            this.textSavesFolder.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.textSavesFolder.SelectedText = "";
-            this.textSavesFolder.SelectionLength = 0;
-            this.textSavesFolder.SelectionStart = 0;
-            this.textSavesFolder.ShortcutsEnabled = true;
-            this.textSavesFolder.Size = new System.Drawing.Size(228, 27);
-            this.textSavesFolder.TabIndex = 3;
-            this.textSavesFolder.UseSelectable = true;
-            this.textSavesFolder.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.textSavesFolder.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            textSavesFolder.CustomButton.Image = null;
+            textSavesFolder.CustomButton.Location = new System.Drawing.Point(202, 1);
+            textSavesFolder.CustomButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            textSavesFolder.CustomButton.Name = "";
+            textSavesFolder.CustomButton.Size = new System.Drawing.Size(25, 25);
+            textSavesFolder.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            textSavesFolder.CustomButton.TabIndex = 1;
+            textSavesFolder.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            textSavesFolder.CustomButton.UseSelectable = true;
+            textSavesFolder.CustomButton.Visible = false;
+            textSavesFolder.Location = new System.Drawing.Point(162, 131);
+            textSavesFolder.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            textSavesFolder.MaxLength = 32767;
+            textSavesFolder.Name = "textSavesFolder";
+            textSavesFolder.PasswordChar = '\0';
+            textSavesFolder.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            textSavesFolder.SelectedText = "";
+            textSavesFolder.SelectionLength = 0;
+            textSavesFolder.SelectionStart = 0;
+            textSavesFolder.ShortcutsEnabled = true;
+            textSavesFolder.Size = new System.Drawing.Size(228, 27);
+            textSavesFolder.TabIndex = 3;
+            textSavesFolder.UseSelectable = true;
+            textSavesFolder.WaterMarkColor = System.Drawing.Color.FromArgb(109, 109, 109);
+            textSavesFolder.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
             // labelSavesFolder
             // 
-            this.labelSavesFolder.AutoSize = true;
-            this.labelSavesFolder.Location = new System.Drawing.Point(27, 136);
-            this.labelSavesFolder.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelSavesFolder.Name = "labelSavesFolder";
-            this.labelSavesFolder.Size = new System.Drawing.Size(87, 19);
-            this.labelSavesFolder.TabIndex = 12;
-            this.labelSavesFolder.Text = "Saves Folder:";
+            labelSavesFolder.AutoSize = true;
+            labelSavesFolder.Location = new System.Drawing.Point(27, 136);
+            labelSavesFolder.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            labelSavesFolder.Name = "labelSavesFolder";
+            labelSavesFolder.Size = new System.Drawing.Size(87, 19);
+            labelSavesFolder.TabIndex = 12;
+            labelSavesFolder.Text = "Saves Folder:";
             // 
             // textProfileName
             // 
             // 
             // 
             // 
-            this.textProfileName.CustomButton.Image = null;
-            this.textProfileName.CustomButton.Location = new System.Drawing.Point(202, 1);
-            this.textProfileName.CustomButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.textProfileName.CustomButton.Name = "";
-            this.textProfileName.CustomButton.Size = new System.Drawing.Size(25, 25);
-            this.textProfileName.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.textProfileName.CustomButton.TabIndex = 1;
-            this.textProfileName.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.textProfileName.CustomButton.UseSelectable = true;
-            this.textProfileName.CustomButton.Visible = false;
-            this.textProfileName.Lines = new string[0];
-            this.textProfileName.Location = new System.Drawing.Point(162, 65);
-            this.textProfileName.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.textProfileName.MaxLength = 32767;
-            this.textProfileName.Name = "textProfileName";
-            this.textProfileName.PasswordChar = '\0';
-            this.textProfileName.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.textProfileName.SelectedText = "";
-            this.textProfileName.SelectionLength = 0;
-            this.textProfileName.SelectionStart = 0;
-            this.textProfileName.ShortcutsEnabled = true;
-            this.textProfileName.Size = new System.Drawing.Size(228, 27);
-            this.textProfileName.TabIndex = 0;
-            this.textProfileName.UseSelectable = true;
-            this.textProfileName.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.textProfileName.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            textProfileName.CustomButton.Image = null;
+            textProfileName.CustomButton.Location = new System.Drawing.Point(202, 1);
+            textProfileName.CustomButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            textProfileName.CustomButton.Name = "";
+            textProfileName.CustomButton.Size = new System.Drawing.Size(25, 25);
+            textProfileName.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            textProfileName.CustomButton.TabIndex = 1;
+            textProfileName.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            textProfileName.CustomButton.UseSelectable = true;
+            textProfileName.CustomButton.Visible = false;
+            textProfileName.Location = new System.Drawing.Point(162, 65);
+            textProfileName.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            textProfileName.MaxLength = 32767;
+            textProfileName.Name = "textProfileName";
+            textProfileName.PasswordChar = '\0';
+            textProfileName.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            textProfileName.SelectedText = "";
+            textProfileName.SelectionLength = 0;
+            textProfileName.SelectionStart = 0;
+            textProfileName.ShortcutsEnabled = true;
+            textProfileName.Size = new System.Drawing.Size(228, 27);
+            textProfileName.TabIndex = 0;
+            textProfileName.UseSelectable = true;
+            textProfileName.WaterMarkColor = System.Drawing.Color.FromArgb(109, 109, 109);
+            textProfileName.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
             // labelProfileName
             // 
-            this.labelProfileName.AutoSize = true;
-            this.labelProfileName.Location = new System.Drawing.Point(27, 69);
-            this.labelProfileName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelProfileName.Name = "labelProfileName";
-            this.labelProfileName.Size = new System.Drawing.Size(90, 19);
-            this.labelProfileName.TabIndex = 10;
-            this.labelProfileName.Text = "Profile Name:";
+            labelProfileName.AutoSize = true;
+            labelProfileName.Location = new System.Drawing.Point(27, 69);
+            labelProfileName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            labelProfileName.Name = "labelProfileName";
+            labelProfileName.Size = new System.Drawing.Size(90, 19);
+            labelProfileName.TabIndex = 10;
+            labelProfileName.Text = "Profile Name:";
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(348, 371);
-            this.buttonSave.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(88, 27);
-            this.buttonSave.TabIndex = 13;
-            this.buttonSave.Text = "Save";
-            this.buttonSave.UseSelectable = true;
-            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
+            buttonSave.Location = new System.Drawing.Point(348, 401);
+            buttonSave.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            buttonSave.Name = "buttonSave";
+            buttonSave.Size = new System.Drawing.Size(88, 27);
+            buttonSave.TabIndex = 13;
+            buttonSave.Text = "Save";
+            buttonSave.UseSelectable = true;
+            buttonSave.Click += buttonSave_Click;
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(348, 305);
-            this.buttonCancel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(88, 27);
-            this.buttonCancel.TabIndex = 15;
-            this.buttonCancel.Text = "Cancel";
-            this.buttonCancel.UseSelectable = true;
-            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
+            buttonCancel.Location = new System.Drawing.Point(348, 335);
+            buttonCancel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            buttonCancel.Name = "buttonCancel";
+            buttonCancel.Size = new System.Drawing.Size(88, 27);
+            buttonCancel.TabIndex = 15;
+            buttonCancel.Text = "Cancel";
+            buttonCancel.UseSelectable = true;
+            buttonCancel.Click += buttonCancel_Click;
             // 
             // buttonDelete
             // 
-            this.buttonDelete.Location = new System.Drawing.Point(348, 338);
-            this.buttonDelete.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.buttonDelete.Name = "buttonDelete";
-            this.buttonDelete.Size = new System.Drawing.Size(88, 27);
-            this.buttonDelete.TabIndex = 14;
-            this.buttonDelete.Text = "Delete";
-            this.buttonDelete.UseSelectable = true;
-            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
+            buttonDelete.Location = new System.Drawing.Point(348, 368);
+            buttonDelete.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            buttonDelete.Name = "buttonDelete";
+            buttonDelete.Size = new System.Drawing.Size(88, 27);
+            buttonDelete.TabIndex = 14;
+            buttonDelete.Text = "Delete";
+            buttonDelete.UseSelectable = true;
+            buttonDelete.Click += buttonDelete_Click;
             // 
             // labelWarning
             // 
-            this.labelWarning.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.labelWarning.AutoSize = true;
-            this.labelWarning.BackColor = System.Drawing.Color.White;
-            this.labelWarning.ForeColor = System.Drawing.Color.Red;
-            this.labelWarning.Location = new System.Drawing.Point(27, 408);
-            this.labelWarning.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelWarning.Name = "labelWarning";
-            this.labelWarning.Size = new System.Drawing.Size(58, 19);
-            this.labelWarning.TabIndex = 26;
-            this.labelWarning.Text = "Warning";
-            this.labelWarning.UseCustomForeColor = true;
-            this.labelWarning.Visible = false;
+            labelWarning.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
+            labelWarning.AutoSize = true;
+            labelWarning.BackColor = System.Drawing.Color.White;
+            labelWarning.ForeColor = System.Drawing.Color.Red;
+            labelWarning.Location = new System.Drawing.Point(27, 427);
+            labelWarning.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            labelWarning.Name = "labelWarning";
+            labelWarning.Size = new System.Drawing.Size(58, 19);
+            labelWarning.TabIndex = 26;
+            labelWarning.Text = "Warning";
+            labelWarning.UseCustomForeColor = true;
+            labelWarning.Visible = false;
             // 
             // labelBackupOnStartWatching
             // 
-            this.labelBackupOnStartWatching.AutoSize = true;
-            this.labelBackupOnStartWatching.Location = new System.Drawing.Point(27, 298);
-            this.labelBackupOnStartWatching.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelBackupOnStartWatching.Name = "labelBackupOnStartWatching";
-            this.labelBackupOnStartWatching.Size = new System.Drawing.Size(155, 19);
-            this.labelBackupOnStartWatching.TabIndex = 28;
-            this.labelBackupOnStartWatching.Text = "Backup on start watching";
+            labelBackupOnStartWatching.AutoSize = true;
+            labelBackupOnStartWatching.Location = new System.Drawing.Point(27, 298);
+            labelBackupOnStartWatching.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            labelBackupOnStartWatching.Name = "labelBackupOnStartWatching";
+            labelBackupOnStartWatching.Size = new System.Drawing.Size(155, 19);
+            labelBackupOnStartWatching.TabIndex = 28;
+            labelBackupOnStartWatching.Text = "Backup on start watching";
             // 
             // toggleBackupOnStartWatching
             // 
-            this.toggleBackupOnStartWatching.AutoSize = true;
-            this.toggleBackupOnStartWatching.Location = new System.Drawing.Point(260, 300);
-            this.toggleBackupOnStartWatching.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.toggleBackupOnStartWatching.Name = "toggleBackupOnStartWatching";
-            this.toggleBackupOnStartWatching.Size = new System.Drawing.Size(80, 19);
-            this.toggleBackupOnStartWatching.TabIndex = 10;
-            this.toggleBackupOnStartWatching.Text = "Off";
-            this.toggleBackupOnStartWatching.UseSelectable = true;
+            toggleBackupOnStartWatching.AutoSize = true;
+            toggleBackupOnStartWatching.Location = new System.Drawing.Point(260, 300);
+            toggleBackupOnStartWatching.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            toggleBackupOnStartWatching.Name = "toggleBackupOnStartWatching";
+            toggleBackupOnStartWatching.Size = new System.Drawing.Size(80, 19);
+            toggleBackupOnStartWatching.TabIndex = 10;
+            toggleBackupOnStartWatching.Text = "Off";
+            toggleBackupOnStartWatching.UseSelectable = true;
             // 
             // labelWriteLog
             // 
-            this.labelWriteLog.AutoSize = true;
-            this.labelWriteLog.Location = new System.Drawing.Point(27, 325);
-            this.labelWriteLog.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelWriteLog.Name = "labelWriteLog";
-            this.labelWriteLog.Size = new System.Drawing.Size(64, 19);
-            this.labelWriteLog.TabIndex = 30;
-            this.labelWriteLog.Text = "Write log";
+            labelWriteLog.AutoSize = true;
+            labelWriteLog.Location = new System.Drawing.Point(27, 325);
+            labelWriteLog.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            labelWriteLog.Name = "labelWriteLog";
+            labelWriteLog.Size = new System.Drawing.Size(64, 19);
+            labelWriteLog.TabIndex = 30;
+            labelWriteLog.Text = "Write log";
             // 
             // toggleWriteLog
             // 
-            this.toggleWriteLog.AutoSize = true;
-            this.toggleWriteLog.Location = new System.Drawing.Point(260, 327);
-            this.toggleWriteLog.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.toggleWriteLog.Name = "toggleWriteLog";
-            this.toggleWriteLog.Size = new System.Drawing.Size(80, 19);
-            this.toggleWriteLog.TabIndex = 11;
-            this.toggleWriteLog.Text = "Off";
-            this.toggleWriteLog.UseSelectable = true;
+            toggleWriteLog.AutoSize = true;
+            toggleWriteLog.Location = new System.Drawing.Point(260, 327);
+            toggleWriteLog.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            toggleWriteLog.Name = "toggleWriteLog";
+            toggleWriteLog.Size = new System.Drawing.Size(80, 19);
+            toggleWriteLog.TabIndex = 11;
+            toggleWriteLog.Text = "Off";
+            toggleWriteLog.UseSelectable = true;
             // 
             // toggleDeleteBeforeRestoring
             // 
-            this.toggleDeleteBeforeRestoring.AutoSize = true;
-            this.toggleDeleteBeforeRestoring.Location = new System.Drawing.Point(260, 246);
-            this.toggleDeleteBeforeRestoring.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.toggleDeleteBeforeRestoring.Name = "toggleDeleteBeforeRestoring";
-            this.toggleDeleteBeforeRestoring.Size = new System.Drawing.Size(80, 19);
-            this.toggleDeleteBeforeRestoring.TabIndex = 8;
-            this.toggleDeleteBeforeRestoring.Text = "Off";
-            this.toggleDeleteBeforeRestoring.UseSelectable = true;
+            toggleDeleteBeforeRestoring.AutoSize = true;
+            toggleDeleteBeforeRestoring.Location = new System.Drawing.Point(260, 246);
+            toggleDeleteBeforeRestoring.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            toggleDeleteBeforeRestoring.Name = "toggleDeleteBeforeRestoring";
+            toggleDeleteBeforeRestoring.Size = new System.Drawing.Size(80, 19);
+            toggleDeleteBeforeRestoring.TabIndex = 8;
+            toggleDeleteBeforeRestoring.Text = "Off";
+            toggleDeleteBeforeRestoring.UseSelectable = true;
             // 
             // labelDeleteBeforeRestoring
             // 
-            this.labelDeleteBeforeRestoring.AutoSize = true;
-            this.labelDeleteBeforeRestoring.Location = new System.Drawing.Point(27, 244);
-            this.labelDeleteBeforeRestoring.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelDeleteBeforeRestoring.Name = "labelDeleteBeforeRestoring";
-            this.labelDeleteBeforeRestoring.Size = new System.Drawing.Size(228, 19);
-            this.labelDeleteBeforeRestoring.TabIndex = 23;
-            this.labelDeleteBeforeRestoring.Text = "Clean up save folder before restoring";
+            labelDeleteBeforeRestoring.AutoSize = true;
+            labelDeleteBeforeRestoring.Location = new System.Drawing.Point(27, 244);
+            labelDeleteBeforeRestoring.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            labelDeleteBeforeRestoring.Name = "labelDeleteBeforeRestoring";
+            labelDeleteBeforeRestoring.Size = new System.Drawing.Size(228, 19);
+            labelDeleteBeforeRestoring.TabIndex = 23;
+            labelDeleteBeforeRestoring.Text = "Clean up save folder before restoring";
             // 
             // linkAdvancedFiltering
             // 
-            this.linkAdvancedFiltering.Location = new System.Drawing.Point(159, 164);
-            this.linkAdvancedFiltering.Name = "linkAdvancedFiltering";
-            this.linkAdvancedFiltering.Size = new System.Drawing.Size(171, 23);
-            this.linkAdvancedFiltering.TabIndex = 5;
-            this.linkAdvancedFiltering.Text = "Configure advanced filtering";
-            this.linkAdvancedFiltering.UseSelectable = true;
-            this.linkAdvancedFiltering.UseVisualStyleBackColor = true;
-            this.linkAdvancedFiltering.Click += new System.EventHandler(this.linkAdvancedFiltering_Click);
+            linkAdvancedFiltering.Location = new System.Drawing.Point(159, 164);
+            linkAdvancedFiltering.Name = "linkAdvancedFiltering";
+            linkAdvancedFiltering.Size = new System.Drawing.Size(171, 23);
+            linkAdvancedFiltering.TabIndex = 5;
+            linkAdvancedFiltering.Text = "Configure advanced filtering";
+            linkAdvancedFiltering.UseSelectable = true;
+            linkAdvancedFiltering.UseVisualStyleBackColor = true;
+            linkAdvancedFiltering.Click += linkAdvancedFiltering_Click;
             // 
             // labelShowNumberOfFiles
             // 
-            this.labelShowNumberOfFiles.AutoSize = true;
-            this.labelShowNumberOfFiles.Location = new System.Drawing.Point(27, 353);
-            this.labelShowNumberOfFiles.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelShowNumberOfFiles.Name = "labelShowNumberOfFiles";
-            this.labelShowNumberOfFiles.Size = new System.Drawing.Size(197, 19);
-            this.labelShowNumberOfFiles.TabIndex = 32;
-            this.labelShowNumberOfFiles.Text = "Show number of files backed up";
+            labelShowNumberOfFiles.AutoSize = true;
+            labelShowNumberOfFiles.Location = new System.Drawing.Point(27, 353);
+            labelShowNumberOfFiles.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            labelShowNumberOfFiles.Name = "labelShowNumberOfFiles";
+            labelShowNumberOfFiles.Size = new System.Drawing.Size(197, 19);
+            labelShowNumberOfFiles.TabIndex = 32;
+            labelShowNumberOfFiles.Text = "Show number of files backed up";
             // 
             // toggleShowNumberOfFiles
             // 
-            this.toggleShowNumberOfFiles.AutoSize = true;
-            this.toggleShowNumberOfFiles.Location = new System.Drawing.Point(260, 355);
-            this.toggleShowNumberOfFiles.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.toggleShowNumberOfFiles.Name = "toggleShowNumberOfFiles";
-            this.toggleShowNumberOfFiles.Size = new System.Drawing.Size(80, 19);
-            this.toggleShowNumberOfFiles.TabIndex = 12;
-            this.toggleShowNumberOfFiles.Text = "Off";
-            this.toggleShowNumberOfFiles.UseSelectable = true;
+            toggleShowNumberOfFiles.AutoSize = true;
+            toggleShowNumberOfFiles.Location = new System.Drawing.Point(260, 355);
+            toggleShowNumberOfFiles.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            toggleShowNumberOfFiles.Name = "toggleShowNumberOfFiles";
+            toggleShowNumberOfFiles.Size = new System.Drawing.Size(80, 19);
+            toggleShowNumberOfFiles.TabIndex = 12;
+            toggleShowNumberOfFiles.Text = "Off";
+            toggleShowNumberOfFiles.UseSelectable = true;
             // 
             // metroToolTip1
             // 
-            this.metroToolTip1.Style = MetroFramework.MetroColorStyle.Blue;
-            this.metroToolTip1.StyleManager = null;
-            this.metroToolTip1.Theme = MetroFramework.MetroThemeStyle.Light;
+            metroToolTip1.Style = MetroFramework.MetroColorStyle.Blue;
+            metroToolTip1.StyleManager = null;
+            metroToolTip1.Theme = MetroFramework.MetroThemeStyle.Light;
             // 
             // labelDeleteWithoutConfirmation
             // 
-            this.labelDeleteWithoutConfirmation.AutoSize = true;
-            this.labelDeleteWithoutConfirmation.Location = new System.Drawing.Point(27, 379);
-            this.labelDeleteWithoutConfirmation.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelDeleteWithoutConfirmation.Name = "labelDeleteWithoutConfirmation";
-            this.labelDeleteWithoutConfirmation.Size = new System.Drawing.Size(170, 19);
-            this.labelDeleteWithoutConfirmation.TabIndex = 34;
-            this.labelDeleteWithoutConfirmation.Text = "Delete without confirmation";
+            labelDeleteWithoutConfirmation.AutoSize = true;
+            labelDeleteWithoutConfirmation.Location = new System.Drawing.Point(27, 379);
+            labelDeleteWithoutConfirmation.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            labelDeleteWithoutConfirmation.Name = "labelDeleteWithoutConfirmation";
+            labelDeleteWithoutConfirmation.Size = new System.Drawing.Size(170, 19);
+            labelDeleteWithoutConfirmation.TabIndex = 34;
+            labelDeleteWithoutConfirmation.Text = "Delete without confirmation";
             // 
             // toggleDeleteWithoutConfirmation
             // 
-            this.toggleDeleteWithoutConfirmation.AutoSize = true;
-            this.toggleDeleteWithoutConfirmation.Location = new System.Drawing.Point(260, 381);
-            this.toggleDeleteWithoutConfirmation.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.toggleDeleteWithoutConfirmation.Name = "toggleDeleteWithoutConfirmation";
-            this.toggleDeleteWithoutConfirmation.Size = new System.Drawing.Size(80, 19);
-            this.toggleDeleteWithoutConfirmation.TabIndex = 33;
-            this.toggleDeleteWithoutConfirmation.Text = "Off";
-            this.toggleDeleteWithoutConfirmation.UseSelectable = true;
+            toggleDeleteWithoutConfirmation.AutoSize = true;
+            toggleDeleteWithoutConfirmation.Location = new System.Drawing.Point(260, 381);
+            toggleDeleteWithoutConfirmation.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            toggleDeleteWithoutConfirmation.Name = "toggleDeleteWithoutConfirmation";
+            toggleDeleteWithoutConfirmation.Size = new System.Drawing.Size(80, 19);
+            toggleDeleteWithoutConfirmation.TabIndex = 33;
+            toggleDeleteWithoutConfirmation.Text = "Off";
+            toggleDeleteWithoutConfirmation.UseSelectable = true;
+            // 
+            // textMinimumInterval
+            // 
+            // 
+            // 
+            // 
+            textMinimumInterval.CustomButton.Image = null;
+            textMinimumInterval.CustomButton.Location = new System.Drawing.Point(53, 1);
+            textMinimumInterval.CustomButton.Name = "";
+            textMinimumInterval.CustomButton.Size = new System.Drawing.Size(21, 21);
+            textMinimumInterval.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            textMinimumInterval.CustomButton.TabIndex = 1;
+            textMinimumInterval.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            textMinimumInterval.CustomButton.UseSelectable = true;
+            textMinimumInterval.CustomButton.Visible = false;
+            textMinimumInterval.Lines = new string[]
+    {
+    "0"
+    };
+            textMinimumInterval.Location = new System.Drawing.Point(265, 405);
+            textMinimumInterval.MaxLength = 32767;
+            textMinimumInterval.Name = "textMinimumInterval";
+            textMinimumInterval.PasswordChar = '\0';
+            textMinimumInterval.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            textMinimumInterval.SelectedText = "";
+            textMinimumInterval.SelectionLength = 0;
+            textMinimumInterval.SelectionStart = 0;
+            textMinimumInterval.ShortcutsEnabled = true;
+            textMinimumInterval.Size = new System.Drawing.Size(75, 23);
+            textMinimumInterval.TabIndex = 35;
+            textMinimumInterval.Text = "0";
+            textMinimumInterval.UseSelectable = true;
+            textMinimumInterval.WaterMarkColor = System.Drawing.Color.FromArgb(109, 109, 109);
+            textMinimumInterval.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            // 
+            // labelMinimumInterval
+            // 
+            labelMinimumInterval.AutoSize = true;
+            labelMinimumInterval.Location = new System.Drawing.Point(28, 405);
+            labelMinimumInterval.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            labelMinimumInterval.Name = "labelMinimumInterval";
+            labelMinimumInterval.Size = new System.Drawing.Size(218, 19);
+            labelMinimumInterval.TabIndex = 36;
+            labelMinimumInterval.Text = "Minimum minutes between backups";
             // 
             // EditGameProfile
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BorderStyle = MetroFramework.Forms.MetroFormBorderStyle.FixedSingle;
-            this.CancelButton = this.buttonCancel;
-            this.ClientSize = new System.Drawing.Size(469, 434);
-            this.Controls.Add(this.labelDeleteWithoutConfirmation);
-            this.Controls.Add(this.toggleDeleteWithoutConfirmation);
-            this.Controls.Add(this.labelShowNumberOfFiles);
-            this.Controls.Add(this.toggleShowNumberOfFiles);
-            this.Controls.Add(this.linkAdvancedFiltering);
-            this.Controls.Add(this.labelDeleteBeforeRestoring);
-            this.Controls.Add(this.toggleDeleteBeforeRestoring);
-            this.Controls.Add(this.labelWriteLog);
-            this.Controls.Add(this.toggleWriteLog);
-            this.Controls.Add(this.labelBackupOnStartWatching);
-            this.Controls.Add(this.toggleBackupOnStartWatching);
-            this.Controls.Add(this.labelWarning);
-            this.Controls.Add(this.buttonDelete);
-            this.Controls.Add(this.buttonCancel);
-            this.Controls.Add(this.buttonSave);
-            this.Controls.Add(this.labelBackupBeforeRestoring);
-            this.Controls.Add(this.labelDontWarnOnRestore);
-            this.Controls.Add(this.labelKillBeforeRestore);
-            this.Controls.Add(this.toggleBackupBeforeRestoring);
-            this.Controls.Add(this.toggleDontWarnOnRestore);
-            this.Controls.Add(this.toggleKillBeforeRestore);
-            this.Controls.Add(this.labelGameExecutale);
-            this.Controls.Add(this.buttonGameExecutable);
-            this.Controls.Add(this.buttonSavesFolder);
-            this.Controls.Add(this.textGameExecutable);
-            this.Controls.Add(this.textSavesFolder);
-            this.Controls.Add(this.labelSavesFolder);
-            this.Controls.Add(this.textProfileName);
-            this.Controls.Add(this.labelProfileName);
-            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.MaximizeBox = false;
-            this.Name = "EditGameProfile";
-            this.Padding = new System.Windows.Forms.Padding(23, 69, 23, 23);
-            this.Resizable = false;
-            this.Text = "Edit Game Profile";
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            BorderStyle = MetroFramework.Forms.MetroFormBorderStyle.FixedSingle;
+            CancelButton = buttonCancel;
+            ClientSize = new System.Drawing.Size(469, 453);
+            Controls.Add(labelMinimumInterval);
+            Controls.Add(textMinimumInterval);
+            Controls.Add(labelDeleteWithoutConfirmation);
+            Controls.Add(toggleDeleteWithoutConfirmation);
+            Controls.Add(labelShowNumberOfFiles);
+            Controls.Add(toggleShowNumberOfFiles);
+            Controls.Add(linkAdvancedFiltering);
+            Controls.Add(labelDeleteBeforeRestoring);
+            Controls.Add(toggleDeleteBeforeRestoring);
+            Controls.Add(labelWriteLog);
+            Controls.Add(toggleWriteLog);
+            Controls.Add(labelBackupOnStartWatching);
+            Controls.Add(toggleBackupOnStartWatching);
+            Controls.Add(labelWarning);
+            Controls.Add(buttonDelete);
+            Controls.Add(buttonCancel);
+            Controls.Add(buttonSave);
+            Controls.Add(labelBackupBeforeRestoring);
+            Controls.Add(labelDontWarnOnRestore);
+            Controls.Add(labelKillBeforeRestore);
+            Controls.Add(toggleBackupBeforeRestoring);
+            Controls.Add(toggleDontWarnOnRestore);
+            Controls.Add(toggleKillBeforeRestore);
+            Controls.Add(labelGameExecutale);
+            Controls.Add(buttonGameExecutable);
+            Controls.Add(buttonSavesFolder);
+            Controls.Add(textGameExecutable);
+            Controls.Add(textSavesFolder);
+            Controls.Add(labelSavesFolder);
+            Controls.Add(textProfileName);
+            Controls.Add(labelProfileName);
+            Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            MaximizeBox = false;
+            Name = "EditGameProfile";
+            Padding = new System.Windows.Forms.Padding(23, 69, 23, 23);
+            Resizable = false;
+            Text = "Edit Game Profile";
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -519,5 +563,7 @@
         private MetroFramework.Components.MetroToolTip metroToolTip1;
         private MetroFramework.Controls.MetroLabel labelDeleteWithoutConfirmation;
         private MetroFramework.Controls.MetroToggle toggleDeleteWithoutConfirmation;
+        private MetroFramework.Controls.MetroTextBox textMinimumInterval;
+        private MetroFramework.Controls.MetroLabel labelMinimumInterval;
     }
 }

@@ -13,15 +13,16 @@ namespace Memento.Models
         {
             SavesFolderCollection = [];
             GameExecutableCollection = [];
+            WatchSubdirectories = true;
         }
             
-        private string backupFolder;
+        private string _backupFolder;
 
         public string ProfileName { get; set; }
         public string BackupFolder
         {
-            get => backupFolder ?? (ProfileName == "<New>" ? null : ProfileName);
-            set => backupFolder = value;
+            get => _backupFolder ?? (ProfileName == "<New>" ? null : ProfileName);
+            set => _backupFolder = value;
         }
         public Dictionary<string,string> SavesFolderCollection { get; set; }
         public Dictionary<string, string> GameExecutableCollection { get; set; }
@@ -32,6 +33,7 @@ namespace Memento.Models
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string GameExecutable { get; set; }
         public string WatchFilter { get; set; }
+        public bool WatchSubdirectories { get; set; }
         public string BackupFilter { get; set; }
         public bool KillBeforeRestore { get; set; }
         public bool DontWarnOnRestore { get; set; }
@@ -41,6 +43,8 @@ namespace Memento.Models
         public bool WriteLog { get; set; }
         public bool ShowNumberOfFiles { get; set; }
         public bool DeleteWithoutConfirmation { get; set; }
+        [CLSCompliant(false)]
+        public uint MinimumBackupInterval { get; set; }
         public void Load(GameProfile copy)
         {
             ProfileName = copy.ProfileName;
@@ -48,6 +52,7 @@ namespace Memento.Models
             SavesFolderCollection = copy.SavesFolderCollection.ToDictionary(e => e.Key,e => e.Value);
             GameExecutableCollection = copy.GameExecutableCollection.ToDictionary(e => e.Key, e => e.Value);
             WatchFilter = copy.WatchFilter;
+            WatchSubdirectories = copy.WatchSubdirectories;
             BackupFilter = copy.BackupFilter;
             KillBeforeRestore = copy.KillBeforeRestore;
             DontWarnOnRestore = copy.DontWarnOnRestore;
@@ -57,6 +62,7 @@ namespace Memento.Models
             WriteLog = copy.WriteLog;
             ShowNumberOfFiles = copy.ShowNumberOfFiles;
             DeleteWithoutConfirmation = copy.DeleteWithoutConfirmation;
+            MinimumBackupInterval = copy.MinimumBackupInterval;
         }
 
         public string GetSavesFolder()
@@ -124,7 +130,7 @@ namespace Memento.Models
             {
                 try
                 {
-                    new Regex(BackupFilter);
+                    Regex _ = new(BackupFilter);
                 } catch (RegexParseException)
                 {
                     return "Could not parse 'Backup Filter' as a Regular Expression";

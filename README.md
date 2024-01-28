@@ -2,7 +2,7 @@
 
 ![Main UI](Images/main01.png)
 
-This is a simple tool for save scumming, initial version written in an evening. Build it on Windows 10/11 with .NET Core 6.0
+This is a simple tool for save scumming for Windows, initial version written in an evening. Build it on Windows 11 with .NET Core 8.0
 
 ## Support
 
@@ -33,6 +33,8 @@ Please make sure that when you are restoring, the game is not running, most game
 - **Backup on start watching** - If checked, when you press "Start Watching" Memento takes a backup immediatelly, even before a first change detected
 - **Write log** - If checked Memento will write a debug log in a file. Press "Open Backups Folder" to see the log file
 - **Show number of files backed up** - See Advanced Filtering below
+- **Delete without confirmation** - do not ask for confirmation when deleting a backup
+- **Minimum minutes between backups** - only affects automatic backups, when the watcher is on. Will not back up if there is a recent backup not older than given number of minutes. Specify `0` to disable.
 
 ## Advanced Filtering
 
@@ -43,9 +45,11 @@ You can click "Configure advanced filtering" when editing a game profile. You ca
 When the Backup Filter option is specified, a couple of options above behave differently:
 
 - *Clean up save folder before restoring* - instead of removing the entire backup subfolder, only the files matching the Backup Filter are removed.
-- *Show number of files backed up* - this option can only be enabled if Backup Filter is specified. When enabled, after each backup a message will be displayed in the main Memento window, specifying the number of files included in the last backup. This can be helpful to see at a glance that your regular expression backups what you want. Of course, you can always press "Backup", "Open Backups Folder" and drill down to see what exactly was backed up.
+- *Show number of files backed up* - this option can only be enabled if Backup Filter is specified. (Because otherwise Memento copies the entire folder and does not know individual files count). When enabled, after each backup a message will be displayed in the main Memento window, specifying the number of files included in the last backup. This can be helpful to see at a glance that your regular expression backups what you want. Of course, you can always press "Backup", "Open Backups Folder" and drill down to see what exactly was backed up.
 
-**Watch Filter** - Can be used to fine tune a bit when the change detection is triggered. Unfortunately the syntax of this filter does not allow regex, just basic operating system wildcards: `*` and `?`. See [filter](https://docs.microsoft.com/en-us/dotnet/api/system.io.filesystemwatcher.filter) for more details. While it will not be always possible to watch only those files that belongs to the Backup Filter, specifying this still could be useful to cut down on the number of unwanted backups when files that we do not want to backup are changed in the Saves Folder.
+**Watch Filter** - Can be used to fine tune a bit when the file change detection is triggered, to reduce the performance impact of rapidly changing files. Unfortunately the syntax of this filter does not allow regex, just basic operating system wildcards: `*` and `?`. See [filter](https://docs.microsoft.com/en-us/dotnet/api/system.io.filesystemwatcher.filter) for more details. When Memento receives a file change event, and backup filter (above) is specified, the file name in the even it matched against the backup filter. If the match does not occur, the event will not trigger a backup. Most of the time you can leave this field blank.
+
+**Watch Subfolders** - if switched off, subfolders will not be watched for changes
 
 ## Installation
 
@@ -55,26 +59,29 @@ Unzip the archive and put the content to a folder and run.
 
 ## Building
 
-You can build in VS2022. You can use `build.ps1` to build the Release with .Net core SDK. Look at `global.json` to find out which SDK version you need installed. You probably want to delete your `bin`/`obj` before the build so that the build output does not have irrelevant files you might have used during testing.
+You can build in VS2022. You can use `build.ps1` to build the Release with .Net core SDK. You probably want to delete your `bin`/`obj` before the build so that the build output does not have irrelevant files you might have used during testing.
 
 ## Change Log
 
+* 1.4.1
+  * Added `Watch Subfolders` setting
+  * Added `Minimum minutes between backups` setting
+  * Remove warp based builds as .net can now do this natively
+  * Fixed an issue with `Show number of files backed up` option not respected
+  * Watcher notifications that do not match backup filter are now ignored
+  * Embbed PDB into executable
 * 1.4.0
-
   * Upgraded to .net 8
-  * Fixed issue with deleteing saves on Google Drive
-
+  * Fixed issue with deleting saves on Google Drive
 * 1.3.0
 
   * Upgraded to .net SDK 6.0.101
-  * Pathes to the game executable and the save folder are now saved per PC making it easier to sync the backups with the likes of Dropbox and Google Drive
-
+  * Paths to the game executable and the save folder are now saved per PC making it easier to sync the backups with the likes of Dropbox and Google Drive
 * 1.2.0
 
   * Upgraded to .net SDK 6.0.100
   * Added an confirmation dialog when deleting a backup
   * Added help links to advanced filtering window
-
 * 1.1.0
 
   * Upgraded to .net SDK 5.0.400
@@ -85,26 +92,22 @@ You can build in VS2022. You can use `build.ps1` to build the Release with .Net 
   * Added an option to filter which files to backup using [Regular Expressions](https://docs.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-language-quick-reference)
   * Minor code clean up
   * Fixed an issue Where "Delete" backup would not delete the parent folders if it's the last backup we are deleting in the parent folder, which interfered with Radion Buttons display logic causing some backups not to be displayed
-
 * 1.0.6
 
   * Upgraded to .net 5
   * Upgraded dependencies
-
 * 1.0.5
 
   * Fixed to work with the new Windows Forms Designer for .NET Core
   * Minor fix in the build script
   * Added "Deleting old save before restoring" option (use with care, if used on Windows build before 1903, it can cause intermittent deletion lock issues)
   * Updated dependencies
-
 * 1.0.4
 
   * Added ability to rename saves
   * Added ability to delete saves from the application itself
   * Fixed a bug, when after renaming a profile, the application did not know how to find old saves
   * A minor fix for MetroFramework
-
 * 1.0.3
 
   * Removed maximise button on the Edit form
@@ -112,12 +115,11 @@ You can build in VS2022. You can use `build.ps1` to build the Release with .Net 
   * Fixed version link not working
   * Updated .net core sdk to the lastest
   * Worked around a race condition in the build script, that caused a missing icon in the executable
-
 * 1.0.2
 
   * Ported to .Net Core. 
   * Fixed an issue with [Use Unicode UTF-8 for worldwide language support](https://stackoverflow.com/questions/56419639/what-does-beta-use-unicode-utf-8-for-worldwide-language-support-actually-do) option.
-  
+
 
 ## Attributions
 
