@@ -734,5 +734,39 @@ namespace Memento.Forms
 
         [GeneratedRegex(@"(?<year>\d{4})-(?<month>\d{2})\\(?<day>\d{2})\\(?<hour>\d{2})\.(?<minute>\d{2})\.(?<second>\d{2})(?:$|[^\d])")]
         private static partial Regex DateTimeFromBackupPath();
+
+        private void buttonCloneProfile_Click(object sender, EventArgs e)
+        {
+            if (comboProfiles.SelectedItem is GameProfile currentProfile)
+            {
+                var clonedProfile = currentProfile.Clone();
+
+                EditGameProfile editGameProfileForm = new EditGameProfile
+                {
+                    Profile = clonedProfile,
+                    IsCloning = true,
+                    ExistingProfileNames = _settings.Profiles.Select(x => x.ProfileName).ToList(),
+                    ExistingBackupFolders = _settings.Profiles.Select(x => x.BackupFolder).ToList()
+                };
+
+                
+                var dialogResult = editGameProfileForm.ShowDialog(this);
+
+                
+                if (editGameProfileForm.Updated)
+                {
+                    _settings.Profiles.Add(editGameProfileForm.Profile);
+                    
+                    comboProfiles.Items.Add(editGameProfileForm.Profile);
+                    comboProfiles.SelectedItem = editGameProfileForm.Profile;
+                    
+                    _settings.Save(_configPath);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a profile to clone.", "No Profile Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
     }
 }

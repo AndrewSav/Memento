@@ -69,6 +69,7 @@ namespace Memento.Forms
         public IEnumerable<string> ExistingBackupFolders { get; set; }
         public bool Deleted { get; private set; }
         public bool Updated { get; private set; }
+        public bool IsCloning { get; set; } = false;
         private string _backupFolder;
         private Dictionary<string, string> SavesFolder { get; set; }
         private Dictionary<string, string> GameExecutable { get; set; }
@@ -127,16 +128,20 @@ namespace Memento.Forms
                 return;
             }
             string message = Profile.GetValidateMessage(ExistingProfileNames, InitialProfileName);
-            if (message == null)
-            {
-                Updated = true;
-                Close();
-            }
-            else
+            if (message != null)
             {
                 labelWarning.Text = message;
                 labelWarning.Visible = true;
+                return;
             }
+            
+            if (IsCloning)
+            {
+                Profile.BackupFolder = null;
+            }
+
+            Updated = true;
+            Close();
         }
         private void linkAdvancedFiltering_Click(object sender, EventArgs e)
         {

@@ -15,7 +15,38 @@ namespace Memento.Models
             GameExecutableCollection = [];
             WatchSubdirectories = true;
         }
-            
+
+        public GameProfile(GameProfile other)
+        {
+            if (other == null) throw new ArgumentNullException(nameof(other));
+
+            ProfileName = other.ProfileName;
+            SavesFolderCollection = new Dictionary<string, string>(other.SavesFolderCollection);
+            GameExecutableCollection = new Dictionary<string, string>(other.GameExecutableCollection);
+            WatchFilter = other.WatchFilter;
+            WatchSubdirectories = other.WatchSubdirectories;
+            BackupFilter = other.BackupFilter;
+            KillBeforeRestore = other.KillBeforeRestore;
+            DontWarnOnRestore = other.DontWarnOnRestore;
+            DeleteBeforeRestoring = other.DeleteBeforeRestoring;
+            BackupBeforeRestoring = other.BackupBeforeRestoring;
+            BackupOnStartWatching = other.BackupOnStartWatching;
+            WriteLog = other.WriteLog;
+            ShowNumberOfFiles = other.ShowNumberOfFiles;
+            DeleteWithoutConfirmation = other.DeleteWithoutConfirmation;
+            MinimumBackupInterval = other.MinimumBackupInterval;
+        }
+
+        public GameProfile Clone()
+        {
+            var clone = new GameProfile(this)
+            {                
+               _backupFolder = null
+            };
+
+            return clone;
+        }
+
         private string _backupFolder;
 
         public string ProfileName { get; set; }
