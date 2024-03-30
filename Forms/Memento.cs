@@ -14,7 +14,7 @@ using MetroFramework.Controls;
 using Serilog.Core;
 
 namespace Memento.Forms
-{
+{    
     public partial class Memento : MetroFramework.Forms.MetroForm
     {
         private Settings _settings;
@@ -27,47 +27,60 @@ namespace Memento.Forms
         public Memento()
         {
             InitializeComponent();
+
+            LoadSettings();
         }
-
-        private void Memento_Load(object sender, EventArgs e)
+        private void LoadSettings()
         {
-            FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(Environment.ProcessPath);
-            linkVersion.Text = $"v{fvi.FileMajorPart}.{fvi.FileMinorPart}.{fvi.FileBuildPart}";
-
             if (!File.Exists(_configPath))
             {
-                new Settings
+                var defaultSettings = new Settings
                 {
                     LogFileName = "log.txt",
                     LogRetainedCountLimit = "9",
                     LogSizeLimitBytes = "1000000",
                     StabilizationTimeSeconds = 5,
                     DefaultProfile = "<New>",
-                    Profiles = []
-                }.Save(_configPath);
+                    Profiles = new List<GameProfile>()
+                };
+                defaultSettings.Save(_configPath);
             }
-
             _settings = Settings.Load(_configPath);
+        }
+
+        private void Memento_Load(object sender, EventArgs e)
+        {
+            DisplayVersion();
+            PopulateProfilesDropdown();
+            SelectDefaultProfile();
+            InitializeRadioButtons();
+        }
+        private void DisplayVersion()
+        {
+            FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(Environment.ProcessPath);
+            linkVersion.Text = $"v{fvi.FileMajorPart}.{fvi.FileMinorPart}.{fvi.FileBuildPart}";
+        }
+
+        private void PopulateProfilesDropdown()
+        {
             comboProfiles.Items.Add(new GameProfile { ProfileName = "<New>" });
             foreach (GameProfile gameProfile in _settings.Profiles)
             {
                 comboProfiles.Items.Add(gameProfile);
             }
+        }
 
-            GameProfile selected = _settings.Profiles.FirstOrDefault(x => x.ProfileName == _settings.DefaultProfile);
-            if (selected != null)
-            {
-                comboProfiles.SelectedItem = selected;
-            }
-            else
-            {
-                comboProfiles.SelectedIndex = 0;
-            }
+        private void SelectDefaultProfile()
+        {
+            GameProfile selected = _settings.Profiles.FirstOrDefault(x => x.ProfileName == _settings.DefaultProfile) ?? comboProfiles.Items[0] as GameProfile;
+            comboProfiles.SelectedItem = selected;
+        }
 
-            _radioButtons =
-                panelBackups.Controls.OfType<MetroRadioButton>().Where(x => x.Name != "radioSpecific").ToList();
+        private void InitializeRadioButtons()
+        {
+            _radioButtons = panelBackups.Controls.OfType<MetroRadioButton>().Where(x => x.Name != "radioSpecific").ToList();
             _radioButtons.Sort((x, y) => string.Compare(x.Name, y.Name, StringComparison.OrdinalIgnoreCase));
-            comboProfiles_SelectedIndexChanged(comboProfiles, new EventArgs());
+            comboProfiles_SelectedIndexChanged(comboProfiles, EventArgs.Empty);
         }
 
         private void buttonStartStop_Click(object sender, EventArgs e)
@@ -164,7 +177,8 @@ namespace Memento.Forms
             {
                 labelBackup.Text = $"{n} files backed up {BackupPath.LabelFromTimestamp(x)}";
                 labelBackup.Visible = true;
-            } else
+            }
+            else
             {
                 labelBackup.Visible = false;
             }
@@ -174,7 +188,7 @@ namespace Memento.Forms
         {
             radioSpecific.Checked = true;
             radioSpecific.Tag = null;
-            radioSpecific.Text =  @"none";
+            radioSpecific.Text = @"none";
         }
 
         private void UpdateRadioButtonsInner()
@@ -185,7 +199,7 @@ namespace Memento.Forms
             }
             GetRadioButtons(_selectedItem);
         }
-        
+
         private void UpdateRadioButtons()
         {
             object tag = panelBackups.Controls.OfType<MetroRadioButton>().First(x => x.Checked).Tag;
@@ -197,7 +211,7 @@ namespace Memento.Forms
                 SelectNoneBackup();
                 return;
             }
-            
+
             if (!Directory.Exists(selectBackup))
             {
                 BackupPath old = BackupPath.FromPath(selectBackup);
@@ -215,7 +229,7 @@ namespace Memento.Forms
             selectedRadio.Checked = true;
             selectedRadio.Tag = selectBackup;
             selectedRadio.Text = TrimStringForRadioButton(BackupFolders.GetLabelFromPath(selectBackup) ?? @"none");
-            
+
             if (!radioSpecific.Checked && radioSpecific.Tag != null && BackupPath.FromPath(selectBackup).IsSameIgnoreLabel(BackupPath.FromPath((string)radioSpecific.Tag)))
             {
                 radioSpecific.Text = selectedRadio.Text;
@@ -249,7 +263,7 @@ namespace Memento.Forms
 
             editGameProfile.ShowDialog(this);
 
-            if (editGameProfile.Deleted && ((GameProfile) comboProfiles.SelectedItem).ProfileName != "<New>")
+            if (editGameProfile.Deleted && ((GameProfile)comboProfiles.SelectedItem).ProfileName != "<New>")
             {
                 _settings.Profiles = _settings.Profiles.Where(x => x != comboProfiles.SelectedItem).ToList();
                 comboProfiles.Items.Remove(comboProfiles.SelectedItem);
@@ -260,7 +274,7 @@ namespace Memento.Forms
             if (editGameProfile.Updated)
             {
                 GameProfile newProfile = editGameProfile.Profile;
-                GameProfile selectedItem = (GameProfile) comboProfiles.SelectedItem;
+                GameProfile selectedItem = (GameProfile)comboProfiles.SelectedItem;
                 if (selectedItem.ProfileName != "<New>")
                 {
                     selectedItem.Load(newProfile);
@@ -271,7 +285,7 @@ namespace Memento.Forms
                 else
                 {
                     comboProfiles.Items.Add(newProfile);
-                    _settings.Profiles = _settings.Profiles.Union(new[] {newProfile}).ToList();
+                    _settings.Profiles = _settings.Profiles.Union(new[] { newProfile }).ToList();
                     comboProfiles.SelectedItem = newProfile;
                 }
                 _settings.DefaultProfile = newProfile.ProfileName;
@@ -283,7 +297,7 @@ namespace Memento.Forms
         {
             labelWarning.Visible = false;
             labelBackup.Visible = false;
-            _selectedItem = (GameProfile) comboProfiles.SelectedItem;
+            _selectedItem = (GameProfile)comboProfiles.SelectedItem;
             _settings.DefaultProfile = _selectedItem.ProfileName;
             _settings.Save(_configPath);
 
@@ -398,17 +412,17 @@ namespace Memento.Forms
                 }
             }
         }
-        
+
         private void radioLastest_Click(object sender, EventArgs e)
         {
-            MetroRadioButton button = (MetroRadioButton) sender;
+            MetroRadioButton button = (MetroRadioButton)sender;
             if (!button.Checked)
             {
                 return;
             }
             linkRestore.Enabled = button.Tag != null;
         }
-        
+
         private void linkSelect_Click(object sender, EventArgs e)
         {
             Log("Selecting specific backup");
@@ -564,7 +578,7 @@ namespace Memento.Forms
             BlockPanel();
             Task.Factory.StartNew(() => { RunMakeBackup(_selectedItem, DateTime.Now); })
                 .ContinueWith((x) =>
-                {                    
+                {
                     RestorePanel();
                     UpdateRadioButtons();
                     Log("Backup finished");
@@ -626,10 +640,10 @@ namespace Memento.Forms
                 MetroRadioButton button = (MetroRadioButton)textBoxSavenameEdit.Tag;
                 string path = (string)button.Tag;
                 BackupPath backupPath = BackupPath.FromPath(path);
-                                string newPath = backupPath.ApplyLabel(textBoxSavenameEdit.Text).ToString();
+                string newPath = backupPath.ApplyLabel(textBoxSavenameEdit.Text).ToString();
                 if (string.Compare(
-                    Path.GetFullPath(path).TrimEnd(Path.DirectorySeparatorChar), 
-                    Path.GetFullPath(newPath).TrimEnd(Path.DirectorySeparatorChar), 
+                    Path.GetFullPath(path).TrimEnd(Path.DirectorySeparatorChar),
+                    Path.GetFullPath(newPath).TrimEnd(Path.DirectorySeparatorChar),
                     StringComparison.InvariantCultureIgnoreCase) != 0)
                 {
                     Directory.Move(path, newPath);
@@ -646,7 +660,7 @@ namespace Memento.Forms
             MetroContextMenu strip = (MetroContextMenu)item.Owner;
             MetroRadioButton button = (MetroRadioButton)strip.SourceControl;
 
-            EditSaveName(button);               
+            EditSaveName(button);
         }
 
         private void EditSaveName(MetroRadioButton button)
