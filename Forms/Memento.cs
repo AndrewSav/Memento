@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reactive;
 using System.Reactive.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -14,9 +15,11 @@ using MetroFramework.Controls;
 using Serilog.Core;
 
 namespace Memento.Forms
-{    
+{
     public partial class Memento : MetroFramework.Forms.MetroForm
     {
+        private const string tagRunning = "Running";
+
         private Settings _settings;
         private readonly string _configPath = Path.Combine(BackupFolders.GetBaseFolder(), "settings.json");
         private List<MetroRadioButton> _radioButtons;
@@ -83,85 +86,115 @@ namespace Memento.Forms
             comboProfiles_SelectedIndexChanged(comboProfiles, EventArgs.Empty);
         }
 
-        private void buttonStartStop_Click(object sender, EventArgs e)
+        private void StopWatching()
         {
-            string tagRunning = "Running";
+            Log("Stopping watching");
+            CleanUpWatcher();
+            UpdateUIForWatchingState(false);
+        }
+
+        private void UpdateUIForWatchingState(bool isWatching)
+        {
+            buttonStartStop.Text = isWatching ? @"Stop watching" : @"Start watching";
+            buttonStartStop.Tag = isWatching ? tagRunning : null;
+            ToggleUIEnabled(!isWatching);
+        }
+
+        private void ToggleUIEnabled(bool enabled)
+        {
+            linkBackup.Enabled = enabled;
+            comboProfiles.Enabled = enabled;
+            buttonEdit.Enabled = enabled;
+        }
+
+        private void StartWatching()
+        {
+            Log("Starting watching");
+            if (_selectedItem.BackupOnStartWatching)
+            {
+                DoBackup();
+            }
+
+            SetupFileSystemWatcher();
+            SetUpObservables();
+            UpdateUIForWatchingState(true);
+        }
+
+        private void SetUpObservables()
+        {
+            var observables = new List<IObservable<EventPattern<FileSystemEventArgs>>>
+            {
+                Observable.FromEventPattern<FileSystemEventHandler, FileSystemEventArgs>(
+                    handler => watcher.Changed += handler,
+                    handler => watcher.Changed -= handler),
+                Observable.FromEventPattern<FileSystemEventHandler, FileSystemEventArgs>(
+                    handler => watcher.Created += handler,
+                    handler => watcher.Created -= handler),
+                Observable.FromEventPattern<FileSystemEventHandler, FileSystemEventArgs>(
+                    handler => watcher.Deleted += handler,
+                    handler => watcher.Deleted -= handler),
+                Observable.FromEventPattern<RenamedEventHandler, RenamedEventArgs>(
+                    handler => watcher.Renamed += handler,
+                    handler => watcher.Renamed -= handler).Select(pattern => new EventPattern<FileSystemEventArgs>(pattern.Sender, pattern.EventArgs))
+            };
+
+            _watcherObservableDisposable = Observable.Merge(observables)
+                .Where(evt =>
+                {
+                    var fileName = evt.EventArgs.Name;
+                    if (string.IsNullOrEmpty(_selectedItem.BackupFilter) || string.IsNullOrEmpty(fileName)) return true;
+                    bool ok = Regex.IsMatch(fileName, _selectedItem.BackupFilter);
+                    if (!ok)
+                    {
+                        Log($"Suppressing change not matching backup filter: {evt.EventArgs.ChangeType} {fileName}");
+                    }
+                    return ok;
+                })
+                .Throttle(TimeSpan.FromSeconds(_settings.StabilizationTimeSeconds))
+                .Subscribe(evt =>
+                {
+                    DateTime now = DateTime.Now;
+                    Log($"Save change detected. {now:HH:mm:ss} {evt.EventArgs.ChangeType} {evt.EventArgs.Name}");
+                    if (_selectedItem.MinimumBackupInterval > 0)
+                    {
+                        DateTime? z = Invoke(GetLastSaveTime);
+                        if (z != null)
+                        {
+                            TimeSpan interval = DateTime.Now - z.Value;
+                            if (_selectedItem.MinimumBackupInterval != 0 &&
+                                interval.TotalMinutes < _selectedItem.MinimumBackupInterval)
+                            {
+                                Log($"Skipping backup. Last one was {(int)interval.TotalMinutes} minutes ago, which is less than {_selectedItem.MinimumBackupInterval} minutes");
+                                return;
+                            }
+                        }
+                    }
+                    RunMakeBackup(_selectedItem, now);
+                    Invoke(UpdateRadioButtons);
+                    Log("Finished automated backup");
+                });
+        }
+
+        private void SetupFileSystemWatcher()
+        {
+            watcher = new FileSystemWatcher(_selectedItem.GetSavesFolder())
+            {
+                IncludeSubdirectories = _selectedItem.WatchSubdirectories,
+                Filter = string.IsNullOrEmpty(_selectedItem.WatchFilter) ? "*" : _selectedItem.WatchFilter,
+                EnableRaisingEvents = true
+            };
+        }
+
+        private void buttonStartStop_Click(object sender, EventArgs e)
+        {            
             CleanUpWatcher();
             if (buttonStartStop.Tag as string == tagRunning)
             {
-                // Stopping
-                buttonStartStop.Tag = null;
-                buttonStartStop.Text = @"Start watching";
-                linkBackup.Enabled = true;
-                comboProfiles.Enabled = true;
-                buttonEdit.Enabled = true;
+                StopWatching();
             }
             else
             {
-                // Starting
-                Log("Starting watching");
-                if (_selectedItem.BackupOnStartWatching)
-                {
-                    DoBackup();
-                }
-                buttonStartStop.Text = @"Stop watching";
-                buttonStartStop.Tag = tagRunning;
-                linkBackup.Enabled = false;
-                comboProfiles.Enabled = false;
-                buttonEdit.Enabled = false;
-                watcher = new FileSystemWatcher(_selectedItem.GetSavesFolder()) { IncludeSubdirectories = _selectedItem.WatchSubdirectories };
-                if (!string.IsNullOrEmpty(_selectedItem.WatchFilter))
-                {
-                    watcher.Filter = _selectedItem.WatchFilter;
-                }
-                var changed = Observable.FromEventPattern<FileSystemEventArgs>(watcher, "Changed");
-                var deleted = Observable.FromEventPattern<FileSystemEventArgs>(watcher, "Deleted");
-                var renamed = Observable.FromEventPattern<FileSystemEventArgs>(watcher, "Renamed");
-                var created = Observable.FromEventPattern<FileSystemEventArgs>(watcher, "Created");
-                _watcherObservableDisposable = changed
-                    .Merge(deleted)
-                    .Merge(renamed)
-                    .Merge(created)
-                    .Where(x =>
-                    {
-                        if (string.IsNullOrEmpty(_selectedItem.BackupFilter) || x.EventArgs.Name == null) return true;
-                        bool ok = Regex.IsMatch(x.EventArgs.Name, _selectedItem.BackupFilter);
-                        if (!ok)
-                        {
-                            Log($"Suppressing change not matching backup filter. {x.EventArgs.ChangeType} {x.EventArgs.Name}");
-                        }
-                        return ok;
-                    })
-                    .Select(x =>
-                    {
-                        DateTime now = DateTime.Now;
-                        FileSystemEventArgs ea = x.EventArgs;
-                        Log($"Save change detected. {now:HH:mm:ss} {ea.ChangeType} {ea.Name}");
-                        return now;
-                    })
-                    .Throttle(TimeSpan.FromSeconds(_settings.StabilizationTimeSeconds))
-                    .Subscribe(x =>
-                    {
-                        Log($"Save change notified. {x:HH:mm:ss}");
-                        if (_selectedItem.MinimumBackupInterval > 0)
-                        {
-                            DateTime? z = Invoke(GetLastSaveTime);
-                            if (z != null)
-                            {
-                                TimeSpan interval = DateTime.Now - z.Value;
-                                if (_selectedItem.MinimumBackupInterval != 0 &&
-                                    interval.TotalMinutes < _selectedItem.MinimumBackupInterval)
-                                {
-                                    Log($"Skipping backup. Last one was {(int)interval.TotalMinutes} minutes ago, which is less than {_selectedItem.MinimumBackupInterval} minutes");
-                                    return;
-                                }
-                            }
-                        }
-                        RunMakeBackup(_selectedItem, x);
-                        Invoke(UpdateRadioButtons);
-                        Log("Finished automated backup");
-                    });
-                watcher.EnableRaisingEvents = true;
+                StartWatching();
             }
         }
 
