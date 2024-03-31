@@ -60,6 +60,7 @@
             toggleDeleteWithoutConfirmation = new MetroFramework.Controls.MetroToggle();
             textMinimumInterval = new MetroFramework.Controls.MetroTextBox();
             labelMinimumInterval = new MetroFramework.Controls.MetroLabel();
+            buttonClone = new MetroFramework.Controls.MetroButton();
             SuspendLayout();
             // 
             // labelBackupBeforeRestoring
@@ -283,7 +284,7 @@
             // 
             // buttonCancel
             // 
-            buttonCancel.Location = new System.Drawing.Point(348, 335);
+            buttonCancel.Location = new System.Drawing.Point(348, 302);
             buttonCancel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             buttonCancel.Name = "buttonCancel";
             buttonCancel.Size = new System.Drawing.Size(88, 27);
@@ -294,7 +295,7 @@
             // 
             // buttonDelete
             // 
-            buttonDelete.Location = new System.Drawing.Point(348, 368);
+            buttonDelete.Location = new System.Drawing.Point(348, 335);
             buttonDelete.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             buttonDelete.Name = "buttonDelete";
             buttonDelete.Size = new System.Drawing.Size(88, 27);
@@ -484,6 +485,17 @@
             labelMinimumInterval.TabIndex = 36;
             labelMinimumInterval.Text = "Minimum minutes between backups";
             // 
+            // buttonClone
+            // 
+            buttonClone.Location = new System.Drawing.Point(348, 368);
+            buttonClone.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            buttonClone.Name = "buttonClone";
+            buttonClone.Size = new System.Drawing.Size(88, 27);
+            buttonClone.TabIndex = 37;
+            buttonClone.Text = "Clone";
+            buttonClone.UseSelectable = true;
+            buttonClone.Click += buttonClone_Click;
+            // 
             // EditGameProfile
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -491,6 +503,7 @@
             BorderStyle = MetroFramework.Forms.MetroFormBorderStyle.FixedSingle;
             CancelButton = buttonCancel;
             ClientSize = new System.Drawing.Size(469, 453);
+            Controls.Add(buttonClone);
             Controls.Add(labelMinimumInterval);
             Controls.Add(textMinimumInterval);
             Controls.Add(labelDeleteWithoutConfirmation);
@@ -565,5 +578,6 @@
         private MetroFramework.Controls.MetroToggle toggleDeleteWithoutConfirmation;
         private MetroFramework.Controls.MetroTextBox textMinimumInterval;
         private MetroFramework.Controls.MetroLabel labelMinimumInterval;
+        private MetroFramework.Controls.MetroButton buttonClone;
     }
 }

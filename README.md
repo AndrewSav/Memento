@@ -63,6 +63,8 @@ You can build in VS2022. You can use `build.ps1` to build the Release with .Net 
 
 ## Change Log
 
+* 1.5.0
+  * Added ability to clone Profiles, e.g. when you want to track different characters separately for the same game
 * 1.4.1
   * Added `Watch Subfolders` setting
   * Added `Minimum minutes between backups` setting

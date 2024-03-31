@@ -52,7 +52,7 @@ namespace Memento.Helpers
 
         public static int MakeBackup(this GameProfile profile, DateTime x)
         {
-            string targetPath = GetTargetBackupFolder(profile.ProfileName, x);
+            string targetPath = GetTargetBackupFolder(profile.BackupFolder, x);
             if (string.IsNullOrEmpty(profile.BackupFilter))
             {
                 CopyFolder(profile.GetSavesFolder(), targetPath);

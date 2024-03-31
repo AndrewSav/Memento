@@ -92,7 +92,7 @@ namespace Memento.Models
             GameExecutableCollection[Environment.MachineName] = value;
         }
 
-        public string GetValidateMessage(IEnumerable<string> existingProfiles, string originalProfileName)
+        public string GetValidateMessage(IEnumerable<string> existingProfiles, string originalProfileName, bool isCloning)
         {
             if (string.IsNullOrEmpty(ProfileName))
             {
@@ -102,7 +102,7 @@ namespace Memento.Models
             {
                 return $"Profile name cannot have illegal characters";
             }
-            if (ProfileName != originalProfileName && existingProfiles != null && existingProfiles.Contains(ProfileName))
+            if ((ProfileName != originalProfileName || isCloning) && existingProfiles != null && existingProfiles.Contains(ProfileName))
             {
                 return "Profile with this name already exists";
             }

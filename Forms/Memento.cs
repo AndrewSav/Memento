@@ -242,7 +242,6 @@ namespace Memento.Forms
             {
                 editGameProfile.Profile = currentProfile;
                 editGameProfile.InitialProfileName = currentProfile.ProfileName;
-                editGameProfile.InitialBackupFolder = currentProfile.BackupFolder;
                 editGameProfile.ExistingProfileNames = _settings.Profiles.Select(x => x.ProfileName);
                 editGameProfile.ExistingBackupFolders = _settings.Profiles.Select(x => x.BackupFolder);
             }
@@ -257,11 +256,11 @@ namespace Memento.Forms
                 comboProfiles.SelectedIndex = comboProfiles.Items.Count > 1 ? 1 : 0;
             }
 
-            if (editGameProfile.Updated)
+            if (editGameProfile.Updated || editGameProfile.Cloned)
             {
                 GameProfile newProfile = editGameProfile.Profile;
                 GameProfile selectedItem = (GameProfile) comboProfiles.SelectedItem;
-                if (selectedItem.ProfileName != "<New>")
+                if (selectedItem.ProfileName != "<New>" && !editGameProfile.Cloned)
                 {
                     selectedItem.Load(newProfile);
                     comboProfiles.Items.Remove(selectedItem);
@@ -271,7 +270,7 @@ namespace Memento.Forms
                 else
                 {
                     comboProfiles.Items.Add(newProfile);
-                    _settings.Profiles = _settings.Profiles.Union(new[] {newProfile}).ToList();
+                    _settings.Profiles = _settings.Profiles.Union([newProfile]).ToList();
                     comboProfiles.SelectedItem = newProfile;
                 }
                 _settings.DefaultProfile = newProfile.ProfileName;

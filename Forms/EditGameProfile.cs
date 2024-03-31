@@ -37,7 +37,7 @@ namespace Memento.Forms
                     ShowNumberOfFiles = toggleShowNumberOfFiles.Checked,
                     DeleteWithoutConfirmation = toggleDeleteWithoutConfirmation.Checked,
                     MinimumBackupInterval = uint.Parse(textMinimumInterval.Text)
-                    
+
                 };
             }
             set
@@ -64,11 +64,11 @@ namespace Memento.Forms
         }
 
         public string InitialProfileName { get; set; }
-        public string InitialBackupFolder { get; set; }
         public IEnumerable<string> ExistingProfileNames { get; set; }
         public IEnumerable<string> ExistingBackupFolders { get; set; }
         public bool Deleted { get; private set; }
         public bool Updated { get; private set; }
+        public bool Cloned { get; private set; }
         private string _backupFolder;
         private Dictionary<string, string> SavesFolder { get; set; }
         private Dictionary<string, string> GameExecutable { get; set; }
@@ -116,28 +116,41 @@ namespace Memento.Forms
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
-            if (InitialBackupFolder != Profile.BackupFolder && ExistingBackupFolders != null && ExistingBackupFolders.Contains(Profile.BackupFolder))
-            {
-                _backupFolder += Profile.BackupFolder + $" - {DateTime.Now:dd MMM yyyy HH.mm.ss}";
-            }
+            if (!ProcessUserChange()) return;
+            Updated = true;
+            Close();
+        }
+
+        private bool ProcessUserChange(bool isCloning = false)
+        {
             if (!uint.TryParse(textMinimumInterval.Text, out _))
             {
                 labelWarning.Text = "The interval should be a number in minutes";
                 labelWarning.Visible = true;
-                return;
+                return false;
             }
-            string message = Profile.GetValidateMessage(ExistingProfileNames, InitialProfileName);
-            if (message == null)
-            {
-                Updated = true;
-                Close();
-            }
-            else
+            
+            string message = Profile.GetValidateMessage(ExistingProfileNames, InitialProfileName, isCloning);
+            if (message != null)
             {
                 labelWarning.Text = message;
                 labelWarning.Visible = true;
+                return false;
             }
+
+            if (isCloning)
+            {
+                _backupFolder = Profile.ProfileName;
+            }
+
+            // Check that if backup folder changed it does not point to an existing backup folder (belonging to a different profile)
+            if ((_backupFolder != Profile.BackupFolder || isCloning) && ExistingBackupFolders.Contains(Profile.BackupFolder))
+            {
+                _backupFolder += Profile.BackupFolder + $" - {DateTime.Now:dd MMM yyyy HH.mm.ss}";
+            }
+            return true;
         }
+
         private void linkAdvancedFiltering_Click(object sender, EventArgs e)
         {
             AdvancedFiltering advancedFiltering = new();
@@ -150,6 +163,12 @@ namespace Memento.Forms
                 _watchFilter = profile.WatchFilter;
                 _watchSubdirectories = profile.WatchSubdirectories;
             }
+        }
+        private void buttonClone_Click(object sender, EventArgs e)
+        {
+            if (!ProcessUserChange(isCloning: true)) return;
+            Cloned = true;
+            Close();
         }
     }
 }
