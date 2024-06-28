@@ -89,7 +89,6 @@ After you update to the latest version load the program and change the currently
       ]
     }
   }
-}
 ```
 
 Under the `PrefixMap` there should be an object for each of the computers you sync your data across. The name of them should be what you see under `SavesFolderCollection` and `GameExecutableCollection` in `settings.json` for each of you game profiles, e.g. if you see there:
