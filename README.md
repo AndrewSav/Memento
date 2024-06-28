@@ -89,6 +89,7 @@ After you update to the latest version load the program and change the currently
       ]
     }
   }
+}
 ```
 
 Under the `PrefixMap` there should be an object for each of the computers you sync your data across. The name of them should be what you see under `SavesFolderCollection` and `GameExecutableCollection` in `settings.json` for each of you game profiles, e.g. if you see there:
@@ -122,8 +123,12 @@ Unzip the archive and put the content to a folder and run.
 
 You can build in VS2022. You can use `build.ps1` to build the Release with .Net core SDK. You probably want to delete your `bin`/`obj` before the build so that the build output does not have irrelevant files you might have used during testing.
 
+To create a release via GitHub actions update version in `Memento.csproj`and create/push a tag, e.g. `1.2.3`
+
 ## Change Log
 
+* 1.6.1
+  * GitHub Actions build process
 * 1.6.0
   * Updated dependencies
   * Add installed and save path detection when playing the same game on a second computer, and syncing via cloud sync. See Cloud Sync section above
