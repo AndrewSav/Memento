@@ -331,7 +331,7 @@ namespace MetroFramework.Drawing.Html
                 }
                 else
                 {
-                    curBox = new CssBox(curBox, tag);
+                    curBox = new(curBox, tag);
                 }
 
                 

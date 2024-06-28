@@ -136,8 +136,8 @@ namespace MetroFramework.Components
             OwnerDraw = true;
             ShowAlways = true;
 
-            Draw += new DrawToolTipEventHandler(MetroToolTip_Draw);
-            Popup += new PopupEventHandler(MetroToolTip_Popup);
+            Draw += new(MetroToolTip_Draw);
+            Popup += new(MetroToolTip_Popup);
         }
 
         #endregion
@@ -172,7 +172,7 @@ namespace MetroFramework.Components
                 StyleManager = ((IMetroControl)e.AssociatedControl).StyleManager;
             }
 
-            e.ToolTipSize = new Size(e.ToolTipSize.Width + 24, e.ToolTipSize.Height + 9);
+            e.ToolTipSize = new(e.ToolTipSize.Width + 24, e.ToolTipSize.Height + 9);
         }
 
         private void MetroToolTip_Draw(object sender, DrawToolTipEventArgs e)
@@ -189,7 +189,7 @@ namespace MetroFramework.Components
             }
             using (Pen p = new(borderColor))
             {
-                e.Graphics.DrawRectangle(p, new Rectangle(e.Bounds.X, e.Bounds.Y, e.Bounds.Width - 1, e.Bounds.Height - 1));
+                e.Graphics.DrawRectangle(p, new(e.Bounds.X, e.Bounds.Y, e.Bounds.Width - 1, e.Bounds.Height - 1));
             }
 
             Font f = MetroFonts.Default(13f);

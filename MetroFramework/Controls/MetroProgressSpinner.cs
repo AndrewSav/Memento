@@ -279,7 +279,7 @@ namespace MetroFramework.Controls
 
         public MetroProgressSpinner()
         {
-            timer = new Timer();
+            timer = new();
             timer.Interval = 20;
             timer.Tick += timer_Tick;
             timer.Enabled = true;
@@ -344,7 +344,7 @@ namespace MetroFramework.Controls
 
                 base.OnPaintBackground(e);
 
-                OnCustomPaintBackground(new MetroPaintEventArgs(backColor, Color.Empty, e.Graphics));
+                OnCustomPaintBackground(new(backColor, Color.Empty, e.Graphics));
             }
             catch
             {
@@ -361,7 +361,7 @@ namespace MetroFramework.Controls
                     OnPaintBackground(e);
                 }
 
-                OnCustomPaint(new MetroPaintEventArgs(Color.Empty, Color.Empty, e.Graphics));
+                OnCustomPaint(new(Color.Empty, Color.Empty, e.Graphics));
                 OnPaintForeground(e);
             }
             catch
@@ -444,7 +444,7 @@ namespace MetroFramework.Controls
                 }
             }
 
-            OnCustomPaintForeground(new MetroPaintEventArgs(Color.Empty, foreColor, e.Graphics));
+            OnCustomPaintForeground(new(Color.Empty, foreColor, e.Graphics));
         }
 
         #endregion

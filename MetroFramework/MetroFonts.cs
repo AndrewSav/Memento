@@ -188,7 +188,7 @@ namespace MetroFramework
         {
             public Font ResolveFont(string familyName, float emSize, FontStyle fontStyle, GraphicsUnit unit)
             {
-                return new Font(familyName, emSize, fontStyle, unit);
+                return new(familyName, emSize, fontStyle, unit);
             }
         }
 

@@ -34,7 +34,7 @@ namespace MetroFramework
             lock (metroPens)
             {
                 if (!metroPens.ContainsKey(key))
-                    metroPens.Add(key, new Pen(color, 1f));
+                    metroPens.Add(key, new(color, 1f));
 
                 return metroPens[key].Clone() as Pen;
             }

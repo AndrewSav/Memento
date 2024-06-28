@@ -431,7 +431,7 @@ namespace MetroFramework.Controls
 
         public MetroListView()
         {
-            Font = new Font("Segoe UI", 12.0f);
+            Font = new("Segoe UI", 12.0f);
             HideSelection = true;
 
             OwnerDraw = true;
@@ -476,7 +476,7 @@ namespace MetroFramework.Controls
                 }
                 else
                 {
-                    lvwColumnSorter = new ListViewColumnSorter();
+                    lvwColumnSorter = new();
                     ListViewItemSorter = lvwColumnSorter;
                 }
             }
@@ -722,7 +722,7 @@ namespace MetroFramework.Controls
                     Rectangle rect = new(e.Item.Bounds.X + _left, e.Item.Bounds.Y + _fill, e.Item.Bounds.Width, e.Item.Bounds.Height);
 
                     TextFormatFlags align = TextFormatFlags.Left;
-                    TextRenderer.DrawText(e.Graphics, item.Text, new Font("Segoe UI", 9.0f), rect, itemForeColor, align | TextFormatFlags.SingleLine | TextFormatFlags.GlyphOverhangPadding | TextFormatFlags.WordEllipsis);
+                    TextRenderer.DrawText(e.Graphics, item.Text, new("Segoe UI", 9.0f), rect, itemForeColor, align | TextFormatFlags.SingleLine | TextFormatFlags.GlyphOverhangPadding | TextFormatFlags.WordEllipsis);
                     _fill += 15;
                 }
             }
@@ -834,7 +834,7 @@ public class ListViewColumnSorter : IComparer
         ColumnToSort = 0;
 
         // Initialize the CaseInsensitiveComparer object
-        ObjectCompare = new CaseInsensitiveComparer();
+        ObjectCompare = new();
     }
 
     /// <summary>

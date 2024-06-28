@@ -103,7 +103,7 @@ namespace MetroFramework.Drawing.Html
         /// </summary>
         public RectangleF Bounds
         {
-            get { return new RectangleF(Left, Top, Width, Height); }
+            get { return new(Left, Top, Width, Height); }
             set { Left = value.Left; Top = value.Top; Width = value.Width; Height = value.Height; }
         }
 
@@ -112,7 +112,7 @@ namespace MetroFramework.Drawing.Html
         /// </summary>
         public PointF Location
         {
-            get { return new PointF(Left, Top); }
+            get { return new(Left, Top); }
             set { Left = value.X; Top = value.Y; }
         }
 
@@ -121,7 +121,7 @@ namespace MetroFramework.Drawing.Html
         /// </summary>
         public SizeF Size
         {
-            get { return new SizeF(Width, Height); }
+            get { return new(Width, Height); }
             set { Width = value.Width; Height = value.Height; }
         }
 

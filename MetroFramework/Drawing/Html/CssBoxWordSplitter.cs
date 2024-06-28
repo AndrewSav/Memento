@@ -121,7 +121,7 @@ namespace MetroFramework.Drawing.Html
 
             if (string.IsNullOrEmpty(Text)) return;
 
-            _curword = new CssBoxWord(Box);
+            _curword = new(Box);
 
             bool onspace = IsSpace(Text[0]);
 
@@ -164,7 +164,7 @@ namespace MetroFramework.Drawing.Html
         {
             if(_curword.Text.Length > 0)
                 Words.Add(_curword);
-            _curword = new CssBoxWord(Box);
+            _curword = new(Box);
         }
 
         private static bool IsSpace(char c)

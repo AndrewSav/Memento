@@ -190,7 +190,7 @@ namespace MetroFramework.Controls
 
                 base.OnPaintBackground(e);
 
-                OnCustomPaintBackground(new MetroPaintEventArgs(backColor, Color.Empty, e.Graphics));
+                OnCustomPaintBackground(new(backColor, Color.Empty, e.Graphics));
             }
             catch
             {
@@ -207,7 +207,7 @@ namespace MetroFramework.Controls
                     OnPaintBackground(e);
                 }
 
-                OnCustomPaint(new MetroPaintEventArgs(Color.Empty, Color.Empty, e.Graphics));
+                OnCustomPaint(new(Color.Empty, Color.Empty, e.Graphics));
                 OnPaintForeground(e);
             }
             catch
@@ -218,7 +218,7 @@ namespace MetroFramework.Controls
 
         protected virtual void OnPaintForeground(PaintEventArgs e)
         {
-            OnCustomPaintForeground(new MetroPaintEventArgs(Color.Empty, Color.Empty, e.Graphics));
+            OnCustomPaintForeground(new(Color.Empty, Color.Empty, e.Graphics));
         }
 
         protected override void OnEnabledChanged(EventArgs e)

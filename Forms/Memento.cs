@@ -17,7 +17,8 @@ namespace Memento.Forms
 {
     public partial class Memento : MetroFramework.Forms.MetroForm
     {
-        private Settings _settings;
+        private static Settings _settings;
+        public static Settings Settings => _settings;
         private readonly string _configPath = Path.Combine(BackupFolders.GetBaseFolder(), "settings.json");
         private List<MetroRadioButton> _radioButtons;
         private IDisposable _watcherObservableDisposable;
@@ -67,7 +68,7 @@ namespace Memento.Forms
             _radioButtons =
                 panelBackups.Controls.OfType<MetroRadioButton>().Where(x => x.Name != "radioSpecific").ToList();
             _radioButtons.Sort((x, y) => string.Compare(x.Name, y.Name, StringComparison.OrdinalIgnoreCase));
-            comboProfiles_SelectedIndexChanged(comboProfiles, new EventArgs());
+            comboProfiles_SelectedIndexChanged(comboProfiles, EventArgs.Empty);
         }
 
         private void buttonStartStop_Click(object sender, EventArgs e)
@@ -96,7 +97,7 @@ namespace Memento.Forms
                 linkBackup.Enabled = false;
                 comboProfiles.Enabled = false;
                 buttonEdit.Enabled = false;
-                watcher = new FileSystemWatcher(_selectedItem.GetSavesFolder()) { IncludeSubdirectories = _selectedItem.WatchSubdirectories };
+                watcher = new(_selectedItem.GetSavesFolder()) { IncludeSubdirectories = _selectedItem.WatchSubdirectories };
                 if (!string.IsNullOrEmpty(_selectedItem.WatchFilter))
                 {
                     watcher.Filter = _selectedItem.WatchFilter;
@@ -538,7 +539,7 @@ namespace Memento.Forms
                     }
                     _selectedItem.RestoreBackup(backupToRestore);
                 })
-                .ContinueWith((x) =>
+                .ContinueWith(_ =>
                 {
                     if (_selectedItem.KillBeforeRestore && !GameProcess.FindProcess(_selectedItem.GetGameExecutable()).Any())
                     {
@@ -562,7 +563,7 @@ namespace Memento.Forms
             Log($"Backing up {now:dd MMM yyyy HH:mm:ss}");
             BlockPanel();
             Task.Factory.StartNew(() => { RunMakeBackup(_selectedItem, DateTime.Now); })
-                .ContinueWith((x) =>
+                .ContinueWith(_ =>
                 {                    
                     RestorePanel();
                     UpdateRadioButtons();
@@ -654,7 +655,7 @@ namespace Memento.Forms
             panelBackups.Enabled = true;
             textBoxSavenameEdit.Tag = button;
             textBoxSavenameEdit.Text = BackupFolders.GetLabelFromPath((string)button.Tag);
-            textBoxSavenameEdit.Location = new Point(button.Location.X + 20, button.Location.Y);
+            textBoxSavenameEdit.Location = new(button.Location.X + 20, button.Location.Y);
             textBoxSavenameEdit.Visible = true;
             textBoxSavenameEdit.Select();
         }
@@ -699,18 +700,18 @@ namespace Memento.Forms
             MetroRadioButton button = (MetroRadioButton)strip.SourceControl;
 
             string timeFolder = (string)button.Tag;
-            SetAttributesNormal(new DirectoryInfo(timeFolder));
+            SetAttributesNormal(new(timeFolder));
             Directory.Delete(timeFolder, true);
             string dayFolder = Path.GetDirectoryName(timeFolder);
             if (Directory.GetDirectories(dayFolder).Length == 0)
             {
-                SetAttributesNormal(new DirectoryInfo(dayFolder));
+                SetAttributesNormal(new(dayFolder));
                 Directory.Delete(dayFolder, true);
             }
             string monthFolder = Path.GetDirectoryName(dayFolder);
             if (Directory.GetDirectories(monthFolder).Length == 0)
             {
-                SetAttributesNormal(new DirectoryInfo(monthFolder));
+                SetAttributesNormal(new(monthFolder));
                 Directory.Delete(monthFolder, true);
             }
 
@@ -719,7 +720,7 @@ namespace Memento.Forms
         }
         private static void SetAttributesNormal(DirectoryInfo path)
         {
-            Queue<DirectoryInfo> dirs = new Queue<DirectoryInfo>();
+            Queue<DirectoryInfo> dirs = new();
             dirs.Enqueue(path);
             while (dirs.Count > 0)
             {

@@ -164,8 +164,8 @@ namespace MetroFramework.Controls
             _horizontal.Visible = false;
             _vertical.Visible = false;
 
-            scrollhelper = new MetroDataGridHelper(_vertical, this);
-            scrollhelperH = new MetroDataGridHelper(_horizontal, this, false);
+            scrollhelper = new(_vertical, this);
+            scrollhelperH = new(_horizontal, this, false);
 
             DoubleBuffered = true;
         }
@@ -206,7 +206,7 @@ namespace MetroFramework.Controls
             BackgroundColor = MetroPaint.BackColor.Form(Theme);
             GridColor = MetroPaint.BackColor.Form(Theme);
             ForeColor = MetroPaint.ForeColor.Button.Disabled(Theme);
-            Font = new Font("Segoe UI", 11f, FontStyle.Regular, GraphicsUnit.Pixel);
+            Font = new("Segoe UI", 11f, FontStyle.Regular, GraphicsUnit.Pixel);
 
             RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             AllowUserToResizeRows = false;
@@ -284,10 +284,10 @@ namespace MetroFramework.Controls
                 }
             }
 
-            _grid.RowsAdded += new DataGridViewRowsAddedEventHandler(_grid_RowsAdded);
-            _grid.UserDeletedRow += new DataGridViewRowEventHandler(_grid_UserDeletedRow);
-            _grid.Scroll += new ScrollEventHandler(_grid_Scroll);
-            _grid.Resize += new EventHandler(_grid_Resize);
+            _grid.RowsAdded += new(_grid_RowsAdded);
+            _grid.UserDeletedRow += new(_grid_UserDeletedRow);
+            _grid.Scroll += new(_grid_Scroll);
+            _grid.Resize += new(_grid_Resize);
             _scrollbar.Scroll += _scrollbar_Scroll;
             _scrollbar.ScrollbarSize = 17;
 
@@ -364,7 +364,7 @@ namespace MetroFramework.Controls
                     _scrollbar.Minimum = hScrollbar.Minimum;
                     _scrollbar.SmallChange = hScrollbar.SmallChange;
                     _scrollbar.LargeChange = hScrollbar.LargeChange;
-                    _scrollbar.Location = new Point(0, _grid.Height - _scrollbar.ScrollbarSize);
+                    _scrollbar.Location = new(0, _grid.Height - _scrollbar.ScrollbarSize);
                     _scrollbar.Width = _grid.Width - (vScrollbar.Visible ? _scrollbar.ScrollbarSize : 0);
                     _scrollbar.BringToFront();
                     _scrollbar.Visible = hScrollbar.Visible;
@@ -382,7 +382,7 @@ namespace MetroFramework.Controls
                     {
                         _scrollbar.Value =  _grid.RowCount;
                     }
-                    _scrollbar.Location = new Point(_grid.Width - _scrollbar.ScrollbarSize, 0);
+                    _scrollbar.Location = new(_grid.Width - _scrollbar.ScrollbarSize, 0);
                     _scrollbar.Height = _grid.Height - (hScrollbar.Visible ? _scrollbar.ScrollbarSize : 0);
                     _scrollbar.BringToFront();
                     _scrollbar.Visible = vScrollbar.Visible;

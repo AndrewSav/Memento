@@ -229,7 +229,7 @@ namespace MetroFramework.Controls
                      ControlStyles.ResizeRedraw |
                      ControlStyles.UserPaint, true);
 
-            baseTextBox = new DoubleBufferedTextBox();
+            baseTextBox = new();
             baseTextBox.Visible = false;
             Controls.Add(baseTextBox);
         }
@@ -261,7 +261,7 @@ namespace MetroFramework.Controls
 
                 base.OnPaintBackground(e);
 
-                OnCustomPaintBackground(new MetroPaintEventArgs(backColor, Color.Empty, e.Graphics));
+                OnCustomPaintBackground(new(backColor, Color.Empty, e.Graphics));
             }
             catch
             {
@@ -278,7 +278,7 @@ namespace MetroFramework.Controls
                     OnPaintBackground(e);
                 }
 
-                OnCustomPaint(new MetroPaintEventArgs(Color.Empty, Color.Empty, e.Graphics));
+                OnCustomPaint(new(Color.Empty, Color.Empty, e.Graphics));
                 OnPaintForeground(e);
             }
             catch
@@ -363,7 +363,7 @@ namespace MetroFramework.Controls
             {
                 DestroyBaseTextbox();
                 TextRenderer.DrawText(e.Graphics, Text, MetroFonts.Label(metroLabelSize, metroLabelWeight), ClientRectangle, foreColor, MetroPaint.GetTextFormatFlags(TextAlign, wrapToLine));
-                OnCustomPaintForeground(new MetroPaintEventArgs(Color.Empty, foreColor, e.Graphics));
+                OnCustomPaintForeground(new(Color.Empty, foreColor, e.Graphics));
             }
         }
 
@@ -388,7 +388,7 @@ namespace MetroFramework.Controls
 
             using (var g = CreateGraphics())
             {
-                proposedSize = new Size(int.MaxValue, int.MaxValue);
+                proposedSize = new(int.MaxValue, int.MaxValue);
                 preferredSize = TextRenderer.MeasureText(g, Text, MetroFonts.Label(metroLabelSize, metroLabelWeight), proposedSize, MetroPaint.GetTextFormatFlags(TextAlign));
             }
 
@@ -447,8 +447,8 @@ namespace MetroFramework.Controls
                 Form parentForm = FindForm();
                 if (parentForm != null)
                 {
-                    parentForm.ResizeBegin += new EventHandler(parentForm_ResizeBegin);
-                    parentForm.ResizeEnd += new EventHandler(parentForm_ResizeEnd);
+                    parentForm.ResizeBegin += new(parentForm_ResizeBegin);
+                    parentForm.ResizeEnd += new(parentForm_ResizeEnd);
                 }
             }
 
@@ -456,7 +456,7 @@ namespace MetroFramework.Controls
             baseTextBox.Visible = true;
             baseTextBox.BorderStyle = BorderStyle.None;
             baseTextBox.Font = MetroFonts.Label(metroLabelSize, metroLabelWeight);
-            baseTextBox.Location = new Point(1, 0);
+            baseTextBox.Location = new(1, 0);
             baseTextBox.Text = Text;
             baseTextBox.ReadOnly = true;
 

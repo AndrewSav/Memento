@@ -296,7 +296,7 @@ namespace MetroFramework.Controls
                      ControlStyles.OptimizedDoubleBuffer |
                      ControlStyles.SupportsTransparentBackColor, true);
 
-            Padding = new Point(6, 8);
+            Padding = new(6, 8);
             Selecting += MetroTabControl_Selecting;
         }
 
@@ -323,7 +323,7 @@ namespace MetroFramework.Controls
 
                 base.OnPaintBackground(e);
 
-                OnCustomPaintBackground(new MetroPaintEventArgs(backColor, Color.Empty, e.Graphics));
+                OnCustomPaintBackground(new(backColor, Color.Empty, e.Graphics));
             }
             catch
             {
@@ -340,7 +340,7 @@ namespace MetroFramework.Controls
                     OnPaintBackground(e);
                 }
 
-                OnCustomPaint(new MetroPaintEventArgs(Color.Empty, Color.Empty, e.Graphics));
+                OnCustomPaint(new(Color.Empty, Color.Empty, e.Graphics));
                 OnPaintForeground(e);
             }
             catch
@@ -367,7 +367,7 @@ namespace MetroFramework.Controls
             DrawTab(SelectedIndex, e.Graphics);
             DrawTabSelected(SelectedIndex, e.Graphics);
 
-            OnCustomPaintForeground(new MetroPaintEventArgs(Color.Empty, Color.Empty, e.Graphics));
+            OnCustomPaintForeground(new(Color.Empty, Color.Empty, e.Graphics));
         }
 
         private void DrawTabBottomBorder(int index, Graphics graphics)
@@ -533,7 +533,7 @@ namespace MetroFramework.Controls
         private new Rectangle GetTabRect(int index)
         {
             if (index < 0)
-                return new Rectangle();
+                return new();
 
             Rectangle baseRect = base.GetTabRect(index);
             return baseRect;
@@ -646,8 +646,8 @@ namespace MetroFramework.Controls
 
                         if (!bUpDown)
                         {
-                            scUpDown = new SubClass(pWnd, true);
-                            scUpDown.SubClassedWndProc += new SubClass.SubClassWndProcEventHandler(scUpDown_SubClassedWndProc);
+                            scUpDown = new(pWnd, true);
+                            scUpDown.SubClassedWndProc += new(scUpDown_SubClassedWndProc);
 
                             bUpDown = true;
                         }
@@ -720,7 +720,7 @@ namespace MetroFramework.Controls
             {
                 int _tabid = TabPages.IndexOf(tabpage);
 
-                hidTabs.Add(new HiddenTabs(_tabid, tabpage.Name));
+                hidTabs.Add(new(_tabid, tabpage.Name));
                 TabPages.Remove(tabpage);
             }
         }

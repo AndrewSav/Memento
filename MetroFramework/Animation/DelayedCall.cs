@@ -46,7 +46,7 @@ namespace MetroFramework.Animation
 
         protected DelayedCall()
         {
-            timerLock = new object();
+            timerLock = new();
         }
 
         #region Compatibility code
@@ -158,9 +158,9 @@ namespace MetroFramework.Animation
                 if (dc.context == null)
                     throw new InvalidOperationException("Cannot delay calls synchronously on a non-UI thread. Use the *Async methods instead.");
             }
-            if (dc.context == null) dc.context = new SynchronizationContext();   // Run asynchronously silently
+            if (dc.context == null) dc.context = new();   // Run asynchronously silently
 
-            dc.timer = new System.Timers.Timer();
+            dc.timer = new();
             if (milliseconds > 0) dc.timer.Interval = milliseconds;
             dc.timer.AutoReset = false;
             dc.timer.Elapsed += dc.Timer_Elapsed;

@@ -252,7 +252,7 @@ namespace MetroFramework.Controls
 
                 base.OnPaintBackground(e);
 
-                OnCustomPaintBackground(new MetroPaintEventArgs(backColor, Color.Empty, e.Graphics));
+                OnCustomPaintBackground(new(backColor, Color.Empty, e.Graphics));
             }
             catch
             {
@@ -269,7 +269,7 @@ namespace MetroFramework.Controls
                     OnPaintBackground(e);
                 }
 
-                OnCustomPaint(new MetroPaintEventArgs(Color.Empty, Color.Empty, e.Graphics));
+                OnCustomPaint(new(Color.Empty, Color.Empty, e.Graphics));
                 OnPaintForeground(e);
             }
             catch
@@ -334,36 +334,36 @@ namespace MetroFramework.Controls
                 switch (CheckAlign )
                 {
                     case ContentAlignment.TopLeft:
-                        boxRect = new Rectangle(0, 0, 12, 12);
+                        boxRect = new(0, 0, 12, 12);
                         break;
                     case ContentAlignment.MiddleLeft:
-                        boxRect = new Rectangle(0, Height / 2 - 6, 12, 12);
+                        boxRect = new(0, Height / 2 - 6, 12, 12);
                         break;
                     case ContentAlignment.BottomLeft:
-                        boxRect = new Rectangle(0, Height - 13, 12, 12);
+                        boxRect = new(0, Height - 13, 12, 12);
                         break;
                     case ContentAlignment.TopCenter:
-                        boxRect = new Rectangle(Width / 2 - 6, 0, 12, 12);
-                        textRect = new Rectangle(16, boxRect.Top + boxRect.Height - 5, Width - 16 / 2, Height);  
+                        boxRect = new(Width / 2 - 6, 0, 12, 12);
+                        textRect = new(16, boxRect.Top + boxRect.Height - 5, Width - 16 / 2, Height);  
                         break;
                     case ContentAlignment.BottomCenter:                        
-                        boxRect = new Rectangle(Width / 2 - 6, Height - 13, 12, 12);
-                        textRect = new Rectangle(16, -10, Width - 16 / 2, Height);  
+                        boxRect = new(Width / 2 - 6, Height - 13, 12, 12);
+                        textRect = new(16, -10, Width - 16 / 2, Height);  
                         break;
                     case ContentAlignment.MiddleCenter:
-                        boxRect = new Rectangle(Width / 2 - 6, Height / 2 - 6, 12, 12);
+                        boxRect = new(Width / 2 - 6, Height / 2 - 6, 12, 12);
                         break;
                     case ContentAlignment.TopRight:
-                        boxRect = new Rectangle(Width - 13, 0, 12, 12);
-                        textRect = new Rectangle(0, 0, Width - 16, Height);
+                        boxRect = new(Width - 13, 0, 12, 12);
+                        textRect = new(0, 0, Width - 16, Height);
                         break;
                     case ContentAlignment.MiddleRight:
-                        boxRect = new Rectangle(Width - 13, Height / 2 - 6, 12, 12);
-                        textRect = new Rectangle(0, 0, Width - 16, Height);
+                        boxRect = new(Width - 13, Height / 2 - 6, 12, 12);
+                        textRect = new(0, 0, Width - 16, Height);
                         break;
                     case ContentAlignment.BottomRight:
-                        boxRect = new Rectangle(Width - 13, Height - 13, 12, 12);
-                        textRect = new Rectangle(0, 0, Width - 16, Height);
+                        boxRect = new(Width - 13, Height - 13, 12, 12);
+                        textRect = new(0, 0, Width - 16, Height);
                         break;
                 }
 
@@ -384,7 +384,7 @@ namespace MetroFramework.Controls
            
             TextRenderer.DrawText(e.Graphics, Text, MetroFonts.CheckBox(metroCheckBoxSize, metroCheckBoxWeight), textRect, foreColor, MetroPaint.GetTextFormatFlags(TextAlign));
 
-            OnCustomPaintForeground(new MetroPaintEventArgs(Color.Empty, foreColor, e.Graphics));
+            OnCustomPaintForeground(new(Color.Empty, foreColor, e.Graphics));
 
             if (displayFocusRectangle && isFocused)
                 ControlPaint.DrawFocusRectangle(e.Graphics, ClientRectangle);
@@ -525,7 +525,7 @@ namespace MetroFramework.Controls
 
             using (var g = CreateGraphics())
             {
-                proposedSize = new Size(int.MaxValue, int.MaxValue);
+                proposedSize = new(int.MaxValue, int.MaxValue);
                 preferredSize = TextRenderer.MeasureText(g, Text, MetroFonts.CheckBox(metroCheckBoxSize, metroCheckBoxWeight), proposedSize, MetroPaint.GetTextFormatFlags(TextAlign));
                 preferredSize.Width += 16;
 

@@ -51,6 +51,68 @@ When the Backup Filter option is specified, a couple of options above behave dif
 
 **Watch Subfolders** - if switched off, subfolders will not be watched for changes
 
+## Cloud Sync
+
+The application does not have a built in cloud sync, but you can sync the backups folder and `settings.json` using something lite Dropbox, or Google Drive or many other cloud sync providers.
+
+When I started using it for playing on different computers, I noticed, that the installation and save paths could be different for the same game. When this happens Memento displays a error when you switch to a profile, that it cannot find the game executable or saves folder respectively. And if you change it the change would sync back, so it will now give a error on your first computer. To help with this in version 1.3.0 the installation and save paths are now saved per computer in `settings.json`, so when you get the error saying that they are missing, if you set them correctly it will save it for the current computer and won't affect the same settings for another one.
+
+And yet, as I started playing more games on two devices it become annoying that I need to adjust the path on the second device for each single game. Because of this in version 1.6.0 I added auto-detection of those path. This auto-detection works by examining the paths from the other devices and mapping them to the current device based on a prefix map.
+
+As of the moment of writing, the prefix map does not have an UI option. This is because a) I could not be bothered to implement it yet b) It is not clear where in the UI it should reside and what it would look like. Normally something like this would go into settings page, but this app does not have a setting page. And if I create one just for that, then where is the rest of settings one might ask.
+
+After you update to the latest version load the program and change the currently selected game to trigger a `settings.json` update. Exit the program. In `settings.json` find the `PrefixMap` element, and substitute it with something like this:
+
+```json
+ "PrefixMap": {
+    "MYDESKTOP": {
+      "UserProfilePrefix": [
+        "C:\\Users\\homeuser\\"
+      ],
+      "SteamPathPrefix": [
+        "D:\\steam\\",
+        "C:\\steam\\"
+      ],
+      "EpicPathPrefix": [
+        "E:\\Program Files\\Epic Games\\"
+      ]
+    },
+    "WORKLAPTOP": {
+      "UserProfilePrefix": [
+        "C:\\Users\\workuser\\"
+      ],
+      "SteamPathPrefix": [
+        "D:\\HiddenSecertTotallyWorkRelated\\steam\\"
+      ],
+      "EpicPathPrefix": [
+        "D:\\HiddenSecertTotallyWorkRelated\\Epic"
+      ]
+    }
+  }
+}
+```
+
+Under the `PrefixMap` there should be an object for each of the computers you sync your data across. The name of them should be what you see under `SavesFolderCollection` and `GameExecutableCollection` in `settings.json` for each of you game profiles, e.g. if you see there:
+
+
+
+```json
+      "SavesFolderCollection": {
+        "MYDESKTOP": "C:\\Users\\andrewsav\\AppData\\LocalLow\\Eremite Games\\Against the Storm",
+        "WORKLAPTOP": "C:\\Users\\admas$\\AppData\\LocalLow\\Eremite Games\\Against the Storm"
+      },
+      "GameExecutableCollection": {
+        "MYDESKTOP": "E:\\Program Files\\Epic Games\\AgainstTheStorm\\Against the Storm.exe",
+        "WORKLAPTOP": "D:\\Misc\\Epic\\AgainstTheStorm\\Against the Storm.exe"
+      },
+```
+
+Then you know that `MYDESKTOP` and `WORKLAPTOP` are the names you are going to use. Under those Prefix Map objects, go prefix objects: the name of them are arbitrary, but should match across your computer objects, and the values of them are an array with possible path prefixes for that prefix.
+
+In the example above on `MYDESKTOP` the steam games are installed on both disks `D` and `C`. Under  `D:\steam\` and  `C:\steam\` respectively. (*Note: in json `\` should be escaped by doubling it*), and on `WORKLAPTOP` steam games are located under `D:\HiddenSecertTotallyWorkRelated\steam\` (*Note: I do not endorse or support using your work laptop for work unrelated stuff, please check your employer policy on that*). So for the path detection to work I create a prefix in `PrefixMap` for each of the computers with the same name which does not matter, but in this case I chose descriptive `SteamPathPrefx` name. I create prefixes for other possible paths, such as Epic games installation path and user profile path under which saves are often written by games.
+
+With this setup in place, next time I add a new game to Memento on `MYDESKTOP`, after this game is installed to `WORKLAPTOP` the path for it could be autodetected. The autodetection works by looking at the configured paths for other computers, seeing if those paths have prefixes listing in the `PrefixMap` and if yes, changing the path prefix to match the current computer. Autodetection could fail if there is not enough information to figure out the path, in which case you still can specify paths manually as before.
+
 ## Installation
 
 Download latest version from [Releases](https://github.com/AndrewSav/Memento/releases). There are two version .NET Core self-contained, which is supposed to run without dependencies, and a smaller one that relies on .NET Core SDK/runtime present on your PC. 
@@ -63,6 +125,9 @@ You can build in VS2022. You can use `build.ps1` to build the Release with .Net 
 
 ## Change Log
 
+* 1.6.0
+  * Updated dependencies
+  * Add installed and save path detection when playing the same game on a second computer, and syncing via cloud sync. See Cloud Sync section above
 * 1.5.0
   * Added ability to clone Profiles, e.g. when you want to track different characters separately for the same game
 * 1.4.1
@@ -87,13 +152,13 @@ You can build in VS2022. You can use `build.ps1` to build the Release with .Net 
 * 1.1.0
 
   * Upgraded to .net SDK 5.0.400
-  * When "Kill/restart game during restore" is enambled attemt to wait for process to finish after killing it
+  * When "Kill/restart game during restore" is enambled attempt to wait for process to finish after killing it
   * Now "Kill/restart game during restore" option actually attempt to restart the game after restore
   * Updated dependencies
   * Added an option for File Watcher [filter](https://docs.microsoft.com/en-us/dotnet/api/system.io.filesystemwatcher.filter)
   * Added an option to filter which files to backup using [Regular Expressions](https://docs.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-language-quick-reference)
   * Minor code clean up
-  * Fixed an issue Where "Delete" backup would not delete the parent folders if it's the last backup we are deleting in the parent folder, which interfered with Radion Buttons display logic causing some backups not to be displayed
+  * Fixed an issue Where "Delete" backup would not delete the parent folders if it's the last backup we are deleting in the parent folder, which interfered with Radio Buttons display logic causing some backups not to be displayed
 * 1.0.6
 
   * Upgraded to .net 5

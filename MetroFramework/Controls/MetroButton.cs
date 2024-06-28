@@ -260,7 +260,7 @@ namespace MetroFramework.Controls
                 
                 base.OnPaintBackground(e);
 
-                OnCustomPaintBackground(new MetroPaintEventArgs(backColor, Color.Empty, e.Graphics));
+                OnCustomPaintBackground(new(backColor, Color.Empty, e.Graphics));
             }
             catch
             { 
@@ -277,7 +277,7 @@ namespace MetroFramework.Controls
                     OnPaintBackground(e);
                 }
 
-                OnCustomPaint(new MetroPaintEventArgs(Color.Empty, Color.Empty, e.Graphics));
+                OnCustomPaint(new(Color.Empty, Color.Empty, e.Graphics));
                 OnPaintForeground(e); 
             }
             catch 
@@ -334,14 +334,14 @@ namespace MetroFramework.Controls
                 {
                     Rectangle borderRect = new(0, 0, Width - 1, Height - 1);
                     e.Graphics.DrawRectangle(p, borderRect);
-                    borderRect = new Rectangle(1, 1, Width - 3, Height - 3);
+                    borderRect = new(1, 1, Width - 3, Height - 3);
                     e.Graphics.DrawRectangle(p, borderRect);
                 }
             }
 
             TextRenderer.DrawText(e.Graphics, Text, MetroFonts.Button(metroButtonSize, metroButtonWeight), ClientRectangle, foreColor, MetroPaint.GetTextFormatFlags(TextAlign));
 
-            OnCustomPaintForeground(new MetroPaintEventArgs(Color.Empty, foreColor, e.Graphics));
+            OnCustomPaintForeground(new(Color.Empty, foreColor, e.Graphics));
 
             if (displayFocusRectangle && isFocused)
                 ControlPaint.DrawFocusRectangle(e.Graphics, ClientRectangle);

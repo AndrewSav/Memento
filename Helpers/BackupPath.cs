@@ -18,7 +18,7 @@ namespace Memento.Helpers
 
         public BackupPath ApplyLabel(string newLabel)
         {
-            return new BackupPath
+            return new()
             {
                 _month = _month,
                 _day = _day,
@@ -45,7 +45,7 @@ namespace Memento.Helpers
 
         public static BackupPath FromDateTime(DateTime timestamp, string savesFolder)
         {
-            return new BackupPath
+            return new()
             {
                 _month = timestamp.ToString("yyyy-MM"),
                 _day = timestamp.ToString("dd"),
@@ -92,7 +92,7 @@ namespace Memento.Helpers
                 return null;
             }
 
-            result._timestamp = new DateTime(
+            result._timestamp = new(
                 monthPart.Value.Year,
                 monthPart.Value.Month,
                 dayPart.Value.Day,

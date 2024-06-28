@@ -182,7 +182,7 @@ namespace MetroFramework.Controls
         public event ScrollEventHandler Scroll;
         private void OnScroll(ScrollEventType scrollType, int newValue)
         {
-            Scroll?.Invoke(this, new ScrollEventArgs(scrollType, newValue));
+            Scroll?.Invoke(this, new(scrollType, newValue));
         }
 
 
@@ -229,7 +229,7 @@ namespace MetroFramework.Controls
                     if (trackerValue < barMinimum)
                     {
                         trackerValue = barMinimum;
-                        ValueChanged?.Invoke(this, new EventArgs());
+                        ValueChanged?.Invoke(this, EventArgs.Empty);
                     }
                     Invalidate();
                 }
@@ -251,7 +251,7 @@ namespace MetroFramework.Controls
                     if (trackerValue > barMaximum)
                     {
                         trackerValue = barMaximum;
-                        ValueChanged?.Invoke(this, new EventArgs());
+                        ValueChanged?.Invoke(this, EventArgs.Empty);
                     }
                     Invalidate();
                 }
@@ -338,7 +338,7 @@ namespace MetroFramework.Controls
 
                 base.OnPaintBackground(e);
 
-                OnCustomPaintBackground(new MetroPaintEventArgs(backColor, Color.Empty, e.Graphics));
+                OnCustomPaintBackground(new(backColor, Color.Empty, e.Graphics));
             }
             catch
             {
@@ -355,7 +355,7 @@ namespace MetroFramework.Controls
                     OnPaintBackground(e);
                 }
 
-                OnCustomPaint(new MetroPaintEventArgs(Color.Empty, Color.Empty, e.Graphics));
+                OnCustomPaint(new(Color.Empty, Color.Empty, e.Graphics));
                 OnPaintForeground(e);
             }
             catch
@@ -511,14 +511,14 @@ namespace MetroFramework.Controls
                 OnScroll(ScrollEventType.Last, Value);
 
             Point pt = PointToClient(Cursor.Position);
-            OnMouseMove(new MouseEventArgs(MouseButtons.None, 0, pt.X, pt.Y, 0));
+            OnMouseMove(new(MouseButtons.None, 0, pt.X, pt.Y, 0));
         }
 
         protected override bool ProcessDialogKey(Keys keyData)
         {
             if (keyData == Keys.Tab | ModifierKeys == Keys.Shift)
                 return base.ProcessDialogKey(keyData);
-            OnKeyDown(new KeyEventArgs(keyData));
+            OnKeyDown(new(keyData));
             return true;
         }
 

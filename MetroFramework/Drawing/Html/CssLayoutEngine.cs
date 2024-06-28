@@ -136,7 +136,7 @@ namespace MetroFramework.Drawing.Html
                             curx = startx;
                             cury = maxbottom + linespacing;
 
-                            line = new CssLineBox(blockbox);
+                            line = new(blockbox);
 
                             if (word.IsImage || word.Equals(b.FirstWord))
                             {
@@ -216,7 +216,7 @@ namespace MetroFramework.Drawing.Html
             
             StringFormat sf = new();
             sf.SetMeasurableCharacterRanges(new CharacterRange[] { new(0, 1) });
-            Region[] regs = g.MeasureCharacterRanges(space, b.ActualFont, new RectangleF(0, 0, float.MaxValue, float.MaxValue), sf);
+            Region[] regs = g.MeasureCharacterRanges(space, b.ActualFont, new(0, 0, float.MaxValue, float.MaxValue), sf);
 
             if (regs == null || regs.Length == 0) return onError;
 
@@ -495,7 +495,7 @@ namespace MetroFramework.Drawing.Html
             foreach (CssBox b in line.Rectangles.Keys)
             {
                 RectangleF r = b.Rectangles[line];
-                b.Rectangles[line] = new RectangleF(r.X + diff, r.Y, r.Width, r.Height);
+                b.Rectangles[line] = new(r.X + diff, r.Y, r.Width, r.Height);
             }
         }
 
@@ -529,7 +529,7 @@ namespace MetroFramework.Drawing.Html
             foreach (CssBox b in line.Rectangles.Keys)
             {
                 RectangleF r = b.Rectangles[line];
-                b.Rectangles[line] = new RectangleF(r.X + diff, r.Y, r.Width, r.Height);
+                b.Rectangles[line] = new(r.X + diff, r.Y, r.Width, r.Height);
             }
         }
 

@@ -49,7 +49,7 @@ namespace MetroFramework.Drawing.Html
         /// </summary>
         public HtmlPanel()
         {
-            htmlContainer = new InitialContainer();
+            htmlContainer = new();
 
             SetStyle(ControlStyles.ResizeRedraw, true);
             SetStyle(ControlStyles.Opaque, true);
@@ -131,7 +131,7 @@ namespace MetroFramework.Drawing.Html
         /// </summary>
         protected virtual void CreateFragment()
         {
-            htmlContainer = new InitialContainer(Text);
+            htmlContainer = new(Text);
         }
 
         /// <summary>
@@ -139,7 +139,7 @@ namespace MetroFramework.Drawing.Html
         /// </summary>
         public virtual void MeasureBounds()
         {
-            htmlContainer.SetBounds(this is HtmlLabel ? new Rectangle(0, 0, 10, 10) : ClientRectangle);
+            htmlContainer.SetBounds(this is HtmlLabel ? new(0, 0, 10, 10) : ClientRectangle);
 
             using (Graphics g = CreateGraphics())
             {

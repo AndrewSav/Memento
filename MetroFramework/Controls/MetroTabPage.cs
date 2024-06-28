@@ -281,13 +281,13 @@ namespace MetroFramework.Controls
 
         private void HorizontalScrollbarScroll(object sender, ScrollEventArgs e)
         {
-            AutoScrollPosition = new Point(e.NewValue, verticalScrollbar.Value);
+            AutoScrollPosition = new(e.NewValue, verticalScrollbar.Value);
             UpdateScrollBarPositions();
         }
 
         private void VerticalScrollbarScroll(object sender, ScrollEventArgs e)
         {
-            AutoScrollPosition = new Point(horizontalScrollbar.Value, e.NewValue);
+            AutoScrollPosition = new(horizontalScrollbar.Value, e.NewValue);
             UpdateScrollBarPositions();
         }
 
@@ -314,7 +314,7 @@ namespace MetroFramework.Controls
 
                 base.OnPaintBackground(e);
 
-                OnCustomPaintBackground(new MetroPaintEventArgs(backColor, Color.Empty, e.Graphics));
+                OnCustomPaintBackground(new(backColor, Color.Empty, e.Graphics));
             }
             catch
             {
@@ -333,7 +333,7 @@ namespace MetroFramework.Controls
                     OnPaintBackground(e);
                 }
 
-                OnCustomPaint(new MetroPaintEventArgs(Color.Empty, Color.Empty, e.Graphics));
+                OnCustomPaint(new(Color.Empty, Color.Empty, e.Graphics));
                 OnPaintForeground(e);
             }
             catch
@@ -377,7 +377,7 @@ namespace MetroFramework.Controls
                 verticalScrollbar.LargeChange = VerticalScroll.LargeChange;
             }
 
-            OnCustomPaintForeground(new MetroPaintEventArgs(Color.Empty, Color.Empty, e.Graphics));
+            OnCustomPaintForeground(new(Color.Empty, Color.Empty, e.Graphics));
         }
 
         protected override void OnMouseWheel(MouseEventArgs e)
@@ -417,7 +417,7 @@ namespace MetroFramework.Controls
                 return;
             }
 
-            verticalScrollbar.Location = new Point(ClientRectangle.Width - verticalScrollbar.Width, ClientRectangle.Y);
+            verticalScrollbar.Location = new(ClientRectangle.Width - verticalScrollbar.Width, ClientRectangle.Y);
             verticalScrollbar.Height = ClientRectangle.Height;
 
             if (!VerticalScrollbar)
@@ -425,7 +425,7 @@ namespace MetroFramework.Controls
                 verticalScrollbar.Visible = false;
             }
 
-            horizontalScrollbar.Location = new Point(ClientRectangle.X, ClientRectangle.Height - horizontalScrollbar.Height);
+            horizontalScrollbar.Location = new(ClientRectangle.X, ClientRectangle.Height - horizontalScrollbar.Height);
             horizontalScrollbar.Width = ClientRectangle.Width;
 
             if (!HorizontalScrollbar)

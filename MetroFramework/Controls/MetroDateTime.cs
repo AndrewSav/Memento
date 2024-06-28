@@ -231,7 +231,7 @@ namespace MetroFramework.Controls
 
                 base.OnPaintBackground(e);
 
-                OnCustomPaintBackground(new MetroPaintEventArgs(backColor, Color.Empty, e.Graphics));
+                OnCustomPaintBackground(new(backColor, Color.Empty, e.Graphics));
             }
             catch
             {
@@ -248,7 +248,7 @@ namespace MetroFramework.Controls
                     OnPaintBackground(e);
                 }
 
-                OnCustomPaint(new MetroPaintEventArgs(Color.Empty, Color.Empty, e.Graphics));
+                OnCustomPaint(new(Color.Empty, Color.Empty, e.Graphics));
                 OnPaintForeground(e);
             }
             catch
@@ -259,7 +259,7 @@ namespace MetroFramework.Controls
 
         protected virtual void OnPaintForeground(PaintEventArgs e)
         {
-            MinimumSize = new Size(0, GetPreferredSize(Size.Empty).Height);
+            MinimumSize = new(0, GetPreferredSize(Size.Empty).Height);
 
             Color borderColor, foreColor;
 
@@ -328,7 +328,7 @@ namespace MetroFramework.Controls
 
             TextRenderer.DrawText(e.Graphics, Text, MetroFonts.DateTime(metroDateTimeSize, metroDateTimeWeight), textRect, foreColor, TextFormatFlags.Left | TextFormatFlags.VerticalCenter);
 
-            OnCustomPaintForeground(new MetroPaintEventArgs(Color.Empty, foreColor, e.Graphics));
+            OnCustomPaintForeground(new(Color.Empty, foreColor, e.Graphics));
 
             if (displayFocusRectangle && isFocused)
                 ControlPaint.DrawFocusRectangle(e.Graphics, ClientRectangle);
@@ -458,7 +458,7 @@ namespace MetroFramework.Controls
             using (var g = CreateGraphics())
             {
                 string measureText = Text.Length > 0 ? Text : "MeasureText";
-                proposedSize = new Size(int.MaxValue, int.MaxValue);
+                proposedSize = new(int.MaxValue, int.MaxValue);
                 preferredSize = TextRenderer.MeasureText(g, measureText, MetroFonts.DateTime(metroDateTimeSize, metroDateTimeWeight), proposedSize, TextFormatFlags.Left | TextFormatFlags.LeftAndRightPadding | TextFormatFlags.VerticalCenter);
                 preferredSize.Height += 10;
             }

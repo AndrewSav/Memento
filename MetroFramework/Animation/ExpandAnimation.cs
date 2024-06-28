@@ -36,7 +36,7 @@ namespace MetroFramework.Animation
                     int width = DoExpandAnimation(control.Width, targetSize.Width);
                     int height = DoExpandAnimation(control.Height, targetSize.Height);
 
-                    control.Size = new Size(width, height);
+                    control.Size = new(width, height);
                 }, 
                 delegate 
                 {

@@ -219,7 +219,7 @@ namespace MetroFramework.Controls
                 }
             }
 
-            Scroll(this, new ScrollEventArgs(type, oldValue, newValue, orientation));
+            Scroll(this, new(type, oldValue, newValue, orientation));
         }
 
         #endregion
@@ -327,7 +327,7 @@ namespace MetroFramework.Controls
                     scrollOrientation = ScrollOrientation.HorizontalScroll;
                 }
 
-                Size = new Size(Height, Width);
+                Size = new(Height, Width);
                 SetupScrollBar();
             }
         }
@@ -480,9 +480,9 @@ namespace MetroFramework.Controls
 
                     if (autoHoverTimer == null)
                     {
-                        autoHoverTimer = new Timer();
+                        autoHoverTimer = new();
                         autoHoverTimer.Interval = 1000;
-                        autoHoverTimer.Tick += new EventHandler(autoHoverTimer_Tick);
+                        autoHoverTimer.Tick += new(autoHoverTimer_Tick);
                         autoHoverTimer.Start();
                     }
                     else
@@ -604,7 +604,7 @@ namespace MetroFramework.Controls
 
                 base.OnPaintBackground(e);
 
-                OnCustomPaintBackground(new MetroPaintEventArgs(backColor, Color.Empty, e.Graphics));
+                OnCustomPaintBackground(new(backColor, Color.Empty, e.Graphics));
             }
             catch
             {
@@ -621,7 +621,7 @@ namespace MetroFramework.Controls
                     OnPaintBackground(e);
                 }
 
-                OnCustomPaint(new MetroPaintEventArgs(Color.Empty, Color.Empty, e.Graphics));
+                OnCustomPaint(new(Color.Empty, Color.Empty, e.Graphics));
                 OnPaintForeground(e);
             }
             catch
@@ -680,7 +680,7 @@ namespace MetroFramework.Controls
 
             DrawScrollBar(e.Graphics, backColor, thumbColor, barColor);
 
-            OnCustomPaintForeground(new MetroPaintEventArgs(backColor, thumbColor, e.Graphics));
+            OnCustomPaintForeground(new(backColor, thumbColor, e.Graphics));
         }
 
         private void DrawScrollBar(Graphics g, Color backColor, Color thumbColor, Color barColor)
@@ -1051,7 +1051,7 @@ namespace MetroFramework.Controls
                 clickedBarRectangle = ClientRectangle;
                 clickedBarRectangle.Inflate(-1, -1);
 
-                thumbRectangle = new Rectangle(ClientRectangle.X, ClientRectangle.Y, thumbWidth, thumbHeight);
+                thumbRectangle = new(ClientRectangle.X, ClientRectangle.Y, thumbWidth, thumbHeight);
 
                 thumbPosition = thumbRectangle.Height/2;
                 thumbBottomLimitBottom = ClientRectangle.Bottom;
@@ -1066,7 +1066,7 @@ namespace MetroFramework.Controls
                 clickedBarRectangle = ClientRectangle;
                 clickedBarRectangle.Inflate(-1, -1);
 
-                thumbRectangle = new Rectangle(ClientRectangle.X, ClientRectangle.Y, thumbWidth, thumbHeight);
+                thumbRectangle = new(ClientRectangle.X, ClientRectangle.Y, thumbWidth, thumbHeight);
 
                 thumbPosition = thumbRectangle.Width/2;
                 thumbBottomLimitBottom = ClientRectangle.Right;

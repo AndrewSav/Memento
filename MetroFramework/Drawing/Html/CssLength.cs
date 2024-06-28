@@ -228,7 +228,7 @@ namespace MetroFramework.Drawing.Html
             if (HasError) throw new InvalidOperationException("Invalid length");
             if (Unit != CssUnit.Ems) throw new InvalidOperationException("Length is not in ems");
 
-            return new CssLength(string.Format("{0}pt", Convert.ToSingle(Number * emSize).ToString("0.0", NumberFormatInfo.InvariantInfo)));
+            return new(string.Format("{0}pt", Convert.ToSingle(Number * emSize).ToString("0.0", NumberFormatInfo.InvariantInfo)));
         }
 
         /// <summary>
@@ -242,7 +242,7 @@ namespace MetroFramework.Drawing.Html
             if (HasError) throw new InvalidOperationException("Invalid length");
             if (Unit != CssUnit.Ems) throw new InvalidOperationException("Length is not in ems");
 
-            return new CssLength(string.Format("{0}px", Convert.ToSingle(Number * pixelFactor).ToString("0.0", NumberFormatInfo.InvariantInfo)));
+            return new(string.Format("{0}px", Convert.ToSingle(Number * pixelFactor).ToString("0.0", NumberFormatInfo.InvariantInfo)));
         }
 
         /// <summary>

@@ -15,17 +15,17 @@ namespace MetroFramework
         {
             InitializeComponent();
 
-            _properties = new MetroMessageBoxProperties(this);
+            _properties = new(this);
 
             StylizeButton(metroButton1);
             StylizeButton(metroButton2);
             StylizeButton(metroButton3);
 
-            metroButton1.Click += new EventHandler(button_Click);
-            metroButton2.Click += new EventHandler(button_Click);
-            metroButton3.Click += new EventHandler(button_Click);
+            metroButton1.Click += new(button_Click);
+            metroButton2.Click += new(button_Click);
+            metroButton3.Click += new(button_Click);
 
-            metroLocalize = new MetroLocalize(this);
+            metroLocalize = new(this);
         }
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

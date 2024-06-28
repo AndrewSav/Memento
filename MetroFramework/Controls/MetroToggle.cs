@@ -265,7 +265,7 @@ namespace MetroFramework.Controls
                      ControlStyles.SupportsTransparentBackColor, true);
 
             Name = "MetroToggle";
-            metroLocalize = new MetroLocalize(this);
+            metroLocalize = new(this);
         }
 
         #endregion
@@ -291,7 +291,7 @@ namespace MetroFramework.Controls
 
                 base.OnPaintBackground(e);
 
-                OnCustomPaintBackground(new MetroPaintEventArgs(backColor, Color.Empty, e.Graphics));
+                OnCustomPaintBackground(new(backColor, Color.Empty, e.Graphics));
             }
             catch
             {
@@ -308,7 +308,7 @@ namespace MetroFramework.Controls
                     OnPaintBackground(e);
                 }
 
-                OnCustomPaint(new MetroPaintEventArgs(Color.Empty, Color.Empty, e.Graphics));
+                OnCustomPaint(new(Color.Empty, Color.Empty, e.Graphics));
                 OnPaintForeground(e);
             }
             catch

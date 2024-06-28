@@ -161,7 +161,7 @@ namespace MetroFramework.Forms
 
         protected override Padding DefaultPadding
         {
-            get { return new Padding(20, DisplayHeader ? 60 : 20, 20, 20); }
+            get { return new(20, DisplayHeader ? 60 : 20, 20, 20); }
         }
 
         private bool displayHeader = true;
@@ -233,7 +233,7 @@ namespace MetroFramework.Forms
             set
             {
                 backImage = value;
-                if (value != null) _image = ApplyInvert(new Bitmap(value));
+                if (value != null) _image = ApplyInvert(new(value));
                 Refresh();
             }
         }
@@ -375,10 +375,10 @@ namespace MetroFramework.Forms
 
             if (backImage != null && backMaxSize != 0)
             {
-                Image img = MetroImage.ResizeImage(backImage, new Rectangle(0, 0, backMaxSize, backMaxSize));
+                Image img = MetroImage.ResizeImage(backImage, new(0, 0, backMaxSize, backMaxSize));
                 if (_imageinvert)
                 {
-                    img = MetroImage.ResizeImage((Theme == MetroThemeStyle.Dark) ? _image : backImage, new Rectangle(0, 0, backMaxSize, backMaxSize));
+                    img = MetroImage.ResizeImage((Theme == MetroThemeStyle.Dark) ? _image : backImage, new(0, 0, backMaxSize, backMaxSize));
                 }
 
                 switch (backLocation)
@@ -412,12 +412,12 @@ namespace MetroFramework.Forms
                 {
                     Size resizeHandleSize = new(2, 2);
                     e.Graphics.FillRectangles(b, new Rectangle[] {
-                        new(new Point(ClientRectangle.Width-6,ClientRectangle.Height-6), resizeHandleSize),
-                        new(new Point(ClientRectangle.Width-10,ClientRectangle.Height-10), resizeHandleSize),
-                        new(new Point(ClientRectangle.Width-10,ClientRectangle.Height-6), resizeHandleSize),
-                        new(new Point(ClientRectangle.Width-6,ClientRectangle.Height-10), resizeHandleSize),
-                        new(new Point(ClientRectangle.Width-14,ClientRectangle.Height-6), resizeHandleSize),
-                        new(new Point(ClientRectangle.Width-6,ClientRectangle.Height-14), resizeHandleSize)
+                        new(new(ClientRectangle.Width-6,ClientRectangle.Height-6), resizeHandleSize),
+                        new(new(ClientRectangle.Width-10,ClientRectangle.Height-10), resizeHandleSize),
+                        new(new(ClientRectangle.Width-10,ClientRectangle.Height-6), resizeHandleSize),
+                        new(new(ClientRectangle.Width-6,ClientRectangle.Height-10), resizeHandleSize),
+                        new(new(ClientRectangle.Width-14,ClientRectangle.Height-6), resizeHandleSize),
+                        new(new(ClientRectangle.Width-6,ClientRectangle.Height-14), resizeHandleSize)
                     });
                 }
             }
@@ -639,11 +639,11 @@ namespace MetroFramework.Forms
 
             if (Resizable)
             {
-                if (RectangleToScreen(new Rectangle(ClientRectangle.Width - vPadding, ClientRectangle.Height - vPadding, vPadding, vPadding)).Contains(vPoint))
+                if (RectangleToScreen(new(ClientRectangle.Width - vPadding, ClientRectangle.Height - vPadding, vPadding, vPadding)).Contains(vPoint))
                     return WinApi.HitTest.HTBOTTOMRIGHT;
             }
 
-            if (RectangleToScreen(new Rectangle(borderWidth, borderWidth, ClientRectangle.Width - 2 * borderWidth, 50)).Contains(vPoint))
+            if (RectangleToScreen(new(borderWidth, borderWidth, ClientRectangle.Width - 2 * borderWidth, 50)).Contains(vPoint))
                 return WinApi.HitTest.HTCAPTION;
 
             return WinApi.HitTest.HTCLIENT;
@@ -732,7 +732,7 @@ namespace MetroFramework.Forms
             newButton.Style = Style;
             newButton.Theme = Theme;
             newButton.Tag = button;
-            newButton.Size = new Size(25, 20);
+            newButton.Size = new(25, 20);
             newButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             newButton.TabStop = false; //remove the form controls from the tab stop
             newButton.Click += WindowButton_Click;
@@ -805,7 +805,7 @@ namespace MetroFramework.Forms
 
                     if (firstButton == null || !buttonExists) continue;
 
-                    windowButtonList[button.Value].Location = new Point(lastDrawedButtonPosition, borderWidth);
+                    windowButtonList[button.Value].Location = new(lastDrawedButtonPosition, borderWidth);
                     lastDrawedButtonPosition = lastDrawedButtonPosition - 25;
                 }
             }
@@ -1373,7 +1373,7 @@ namespace MetroFramework.Forms
 
             private Bitmap DrawBlurBorder()
             {
-                return (Bitmap)DrawOutsetShadow(Color.Black, new Rectangle(0, 0, ClientRectangle.Width, ClientRectangle.Height));
+                return (Bitmap)DrawOutsetShadow(Color.Black, new(0, 0, ClientRectangle.Width, ClientRectangle.Height));
             }
 
             private Image DrawOutsetShadow(Color color, Rectangle shadowCanvasArea)
@@ -1489,7 +1489,7 @@ namespace MetroFramework.Forms
 
             private Bitmap DrawBlurBorder()
             {
-                return (Bitmap)DrawOutsetShadow(0, 0, 40, 1, Color.Black, new Rectangle(1, 1, ClientRectangle.Width, ClientRectangle.Height));
+                return (Bitmap)DrawOutsetShadow(0, 0, 40, 1, Color.Black, new(1, 1, ClientRectangle.Width, ClientRectangle.Height));
             }
 
             private Image DrawOutsetShadow(int hShadow, int vShadow, int blur, int spread, Color color, Rectangle shadowCanvasArea)
@@ -1593,7 +1593,7 @@ namespace MetroFramework.Forms
         {
             var proposedSize = new Size(int.MaxValue, int.MinValue);
             var actualSize = TextRenderer.MeasureText(g, text, font, proposedSize, flags);
-            return new Rectangle(clientRectangle.X, clientRectangle.Y, actualSize.Width, actualSize.Height);
+            return new(clientRectangle.X, clientRectangle.Y, actualSize.Width, actualSize.Height);
         }
 
         #endregion

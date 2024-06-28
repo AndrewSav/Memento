@@ -52,7 +52,7 @@ namespace MetroFramework.Drawing.Html
 
             if (index < 0)
             {
-                throw new Exception("insertBefore box doesn't exist on parent");
+                throw new("insertBefore box doesn't exist on parent");
             }
             parent.Boxes.Remove(this);
             parent.Boxes.Insert(index, this);

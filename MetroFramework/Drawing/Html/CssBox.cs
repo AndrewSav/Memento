@@ -104,7 +104,7 @@ namespace MetroFramework.Drawing.Html
             } 
             #endregion
 
-            Empty = new CssBox();
+            Empty = new();
             
         }
 
@@ -1667,7 +1667,7 @@ namespace MetroFramework.Drawing.Html
             {
                 if (float.IsNaN(_actualWordSpacing))
                 {
-                    throw new Exception("Space must be calculated before using this property");
+                    throw new("Space must be calculated before using this property");
                 }
                 return _actualWordSpacing; 
             }
@@ -1820,7 +1820,7 @@ namespace MetroFramework.Drawing.Html
 
                     if (fsize <= 1f) fsize = CssDefaults.FontSize;
 
-                    _actualFont = new Font(FontFamily, fsize, st);
+                    _actualFont = new(FontFamily, fsize, st);
                 }
                 return _actualFont; 
             }
@@ -1937,7 +1937,7 @@ namespace MetroFramework.Drawing.Html
         /// </summary>
         public RectangleF Bounds
         {
-            get { return new RectangleF(Location, Size); }
+            get { return new(Location, Size); }
         }
 
         /// <summary>
@@ -1952,7 +1952,7 @@ namespace MetroFramework.Drawing.Html
             }
             set 
             {
-                Size = new SizeF(Size.Width, value - Location.Y);
+                Size = new(Size.Width, value - Location.Y);
             }
         }
 
@@ -2028,7 +2028,7 @@ namespace MetroFramework.Drawing.Html
                 }
 
                 //Comment this following line to treat always superior box as block
-                if (b == null) throw new Exception("There's no containing block on the chain");
+                if (b == null) throw new("There's no containing block on the chain");
 
                 return b;
             }
@@ -2241,7 +2241,7 @@ namespace MetroFramework.Drawing.Html
             get { return Location.X + Size.Width; }
             set
             {
-                Size = new SizeF(value - Location.X, Size.Height);
+                Size = new(value - Location.X, Size.Height);
             }
         }
 
@@ -2329,7 +2329,7 @@ namespace MetroFramework.Drawing.Html
             {
                 if (_listItemBox == null)
                 {
-                    _listItemBox = new CssBox();
+                    _listItemBox = new();
                     _listItemBox.InheritStyle(this, false);
                     _listItemBox.Display = CssConstants.Inline;
                     _listItemBox.SetInitialContainer(InitialContainer);
@@ -2344,7 +2344,7 @@ namespace MetroFramework.Drawing.Html
                     }
                     
                     _listItemBox.MeasureBounds(g);
-                    _listItemBox.Size = new SizeF(_listItemBox.Words[0].Width, _listItemBox.Words[0].Height); 
+                    _listItemBox.Size = new(_listItemBox.Words[0].Width, _listItemBox.Words[0].Height); 
                 }
                 _listItemBox.Words[0].Left = Location.X - _listItemBox.Size.Width - 5;
                 _listItemBox.Words[0].Top = Location.Y + ActualPaddingTop;// +FontAscent;
@@ -2445,7 +2445,7 @@ namespace MetroFramework.Drawing.Html
 
             int index = b.ParentBox.Boxes.IndexOf(this);
 
-            if (index < 0) throw new Exception("Box doesn't exist on parent's Box list");
+            if (index < 0) throw new("Box doesn't exist on parent's Box list");
 
             if (index == 0) return null; //This is the first sibling.
 
@@ -2608,7 +2608,7 @@ namespace MetroFramework.Drawing.Html
 
             int index = ParentBox.Boxes.IndexOf(this);
 
-            if (index < 0) throw new Exception("Box doesn't exist on parent's Box list");
+            if (index < 0) throw new("Box doesn't exist on parent's Box list");
 
             if (index == ParentBox.Boxes.Count - 1) return null; //This is the last sibling
 
@@ -2708,7 +2708,7 @@ namespace MetroFramework.Drawing.Html
                         (prevSibling == null && ParentBox != null ? ParentBox.ClientTop : 0) +
                         MarginCollapse(prevSibling, this) +
                         (prevSibling != null ? prevSibling.ActualBottom + prevSibling.ActualBorderBottomWidth : 0);
-                    Location = new PointF(left, top);
+                    Location = new(left, top);
                     ActualBottom = top;
                 }
 
@@ -2732,7 +2732,7 @@ namespace MetroFramework.Drawing.Html
 
                     if (width < minwidth) width = minwidth;
 
-                    Size = new SizeF(width, Size.Height);
+                    Size = new(width, Size.Height);
 
                     #endregion
                 }
@@ -2772,7 +2772,7 @@ namespace MetroFramework.Drawing.Html
 
             if (InitialContainer != null)
             {
-                InitialContainer.MaximumSize = new SizeF(
+                InitialContainer.MaximumSize = new(
                     Math.Max(InitialContainer.MaximumSize.Width, ActualRight),
                     Math.Max(InitialContainer.MaximumSize.Height, ActualBottom));
             }
@@ -2859,13 +2859,13 @@ namespace MetroFramework.Drawing.Html
                         sf.SetMeasurableCharacterRanges(measurable);
 
                         Region[] regions = g.MeasureCharacterRanges(word, ActualFont,
-                            new RectangleF(0, 0, float.MaxValue, float.MaxValue),
+                            new(0, 0, float.MaxValue, float.MaxValue),
                             sf);
 
                         SizeF s = regions[0].GetBounds(g).Size;
                         PointF p = regions[0].GetBounds(g).Location;
 
-                        b.LastMeasureOffset = new PointF(p.X, p.Y);
+                        b.LastMeasureOffset = new(p.X, p.Y);
                         b.Width = s.Width;// +p.X;
                         b.Height = s.Height;// +p.Y;
 
@@ -2905,7 +2905,7 @@ namespace MetroFramework.Drawing.Html
             foreach (CssLineBox line in lines)
             {
                 RectangleF r = Rectangles[line];
-                Rectangles[line] = new RectangleF(r.X, r.Y + amount, r.Width, r.Height);
+                Rectangles[line] = new(r.X, r.Y + amount, r.Width, r.Height);
             }
 
             foreach (CssBoxWord word in Words)
@@ -2918,7 +2918,7 @@ namespace MetroFramework.Drawing.Html
                 b.OffsetTop(amount);
             }
             //TODO: Aquí me quede: no se mueve bien todo (probar con las tablas rojas)
-            Location = new PointF(Location.X, Location.Y + amount);
+            Location = new(Location.X, Location.Y + amount);
         }
 
         /// <summary>
@@ -2936,7 +2936,7 @@ namespace MetroFramework.Drawing.Html
                 return;
 
             List<RectangleF> areas = Rectangles.Count == 0 ?
-                new List<RectangleF>(new RectangleF[] { Bounds }) :
+                new(new RectangleF[] { Bounds }) :
                 new List<RectangleF>(Rectangles.Values);
 
             RectangleF[] rects = areas.ToArray();
@@ -3142,7 +3142,7 @@ namespace MetroFramework.Drawing.Html
             if (isFirst) x1 += ActualPaddingLeft + ActualBorderLeftWidth;
             if (isLast) x2 -= ActualPaddingRight + ActualBorderRightWidth;
 
-            g.DrawLine(new Pen(ActualColor), x1, y, x2, y);
+            g.DrawLine(new(ActualColor), x1, y, x2, y);
         }
 
         /// <summary>
@@ -3156,7 +3156,7 @@ namespace MetroFramework.Drawing.Html
             if (Rectangles.ContainsKey(lineBox))
             {
                 RectangleF r = Rectangles[lineBox];
-                Rectangles[lineBox] = new RectangleF(r.X, r.Y + gap, r.Width, r.Height);
+                Rectangles[lineBox] = new(r.X, r.Y + gap, r.Width, r.Height);
             }
 
             //foreach (Box b in Boxes)

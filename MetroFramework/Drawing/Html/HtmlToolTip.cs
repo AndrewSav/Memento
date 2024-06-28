@@ -50,8 +50,8 @@ namespace MetroFramework.Drawing.Html
 
             OwnerDraw = true;
 
-            Popup += new PopupEventHandler(HtmlToolTip_Popup);
-            Draw += new DrawToolTipEventHandler(HtmlToolTip_Draw);
+            Popup += new(HtmlToolTip_Popup);
+            Draw += new(HtmlToolTip_Draw);
 
         }
 
@@ -63,8 +63,8 @@ namespace MetroFramework.Drawing.Html
             string font = string.Format(NumberFormatInfo.InvariantInfo, "font: {0}pt {1}", e.AssociatedControl.Font.Size, e.AssociatedControl.Font.FontFamily.Name);
             
             //Create fragment container
-            container = new InitialContainer("<table class=htmltooltipbackground cellspacing=5 cellpadding=0 style=\"" + font + "\"><tr><td style=border:0px>" + text + "</td></tr></table>");
-            container.SetBounds(new Rectangle(0, 0, 10, 10));
+            container = new("<table class=htmltooltipbackground cellspacing=5 cellpadding=0 style=\"" + font + "\"><tr><td style=border:0px>" + text + "</td></tr></table>");
+            container.SetBounds(new(0, 0, 10, 10));
             container.AvoidGeometryAntialias = true;
             
             //Measure bounds of the container

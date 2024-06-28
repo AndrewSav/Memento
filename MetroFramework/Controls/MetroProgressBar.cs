@@ -294,7 +294,7 @@ namespace MetroFramework.Controls
 
                 base.OnPaintBackground(e);
 
-                OnCustomPaintBackground(new MetroPaintEventArgs(backColor, Color.Empty, e.Graphics));
+                OnCustomPaintBackground(new(backColor, Color.Empty, e.Graphics));
             }
             catch
             {
@@ -311,7 +311,7 @@ namespace MetroFramework.Controls
                     OnPaintBackground(e);
                 }
 
-                OnCustomPaint(new MetroPaintEventArgs(Color.Empty, Color.Empty, e.Graphics));
+                OnCustomPaint(new(Color.Empty, Color.Empty, e.Graphics));
                 OnPaintForeground(e);
             }
             catch
@@ -358,7 +358,7 @@ namespace MetroFramework.Controls
                 e.Graphics.DrawRectangle(p, borderRect);
             }
 
-            OnCustomPaintForeground(new MetroPaintEventArgs(Color.Empty, Color.Empty, e.Graphics));
+            OnCustomPaintForeground(new(Color.Empty, Color.Empty, e.Graphics));
         }
 
         private void DrawProgressContinuous(Graphics graphics)
@@ -402,7 +402,7 @@ namespace MetroFramework.Controls
 
             using (var g = CreateGraphics())
             {
-                proposedSize = new Size(int.MaxValue, int.MaxValue);
+                proposedSize = new(int.MaxValue, int.MaxValue);
                 preferredSize = TextRenderer.MeasureText(g, ProgressPercentText, MetroFonts.ProgressBar(metroLabelSize, metroLabelWeight), proposedSize, MetroPaint.GetTextFormatFlags(TextAlign));
             }
 
@@ -428,7 +428,7 @@ namespace MetroFramework.Controls
 
             if (marqueeTimer == null)
             {
-                marqueeTimer = new Timer {Interval = 10};
+                marqueeTimer = new() {Interval = 10};
                 marqueeTimer.Tick += marqueeTimer_Tick;
             }
 

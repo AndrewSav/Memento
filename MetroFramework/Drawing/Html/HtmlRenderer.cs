@@ -86,7 +86,7 @@ namespace MetroFramework.Drawing.Html
         /// <param name="width">Width to fit HTML drawing</param>
         public static void Render(Graphics g, string html, PointF location, float width)
         {
-            Render(g, html, new RectangleF(location, new SizeF(width, 0)), false);
+            Render(g, html, new(location, new(width, 0)), false);
         }
 
         /// <summary>

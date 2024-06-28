@@ -34,7 +34,7 @@ namespace MetroFramework
             lock (metroBrushes)
             {
                 if (!metroBrushes.ContainsKey(key))
-                    metroBrushes.Add(key, new SolidBrush(color));
+                    metroBrushes.Add(key, new(color));
 
                 return metroBrushes[key].Clone() as SolidBrush;
             }

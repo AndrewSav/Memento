@@ -36,7 +36,7 @@ namespace MetroFramework.Animation
                     int x = DoMoveAnimation(control.Location.X, targetPoint.X);
                     int y = DoMoveAnimation(control.Location.Y, targetPoint.Y);
 
-                    control.Location = new Point(x, y);
+                    control.Location = new(x, y);
                 },
                 delegate
                 {

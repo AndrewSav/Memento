@@ -19,7 +19,7 @@ namespace Memento.Forms
             {
                 SavesFolder[Environment.MachineName] = textSavesFolder.Text.Trim();
                 GameExecutable[Environment.MachineName] = textGameExecutable.Text.Trim();
-                return new GameProfile
+                return new()
                 {
                     ProfileName = textProfileName.Text.Trim(),
                     BackupFolder = _backupFolder ?? textProfileName.Text.Trim(),

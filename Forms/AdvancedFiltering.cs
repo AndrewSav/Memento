@@ -15,7 +15,7 @@ namespace Memento.Forms
         {
             get
             {
-                return new GameProfile
+                return new()
                 {
                     WatchFilter = textWatchFilter.Text.Trim(),
                     BackupFilter = textBackupFilter.Text.Trim(),

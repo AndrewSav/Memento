@@ -1,5 +1,4 @@
 using System;
-using System.Drawing;
 using System.Media;
 using System.Threading;
 using System.Windows.Forms;
@@ -177,7 +176,7 @@ namespace MetroFramework
                 _control.Properties.Icon = icon;
                 _control.Properties.Message = message;
                 _control.Properties.Title = title;
-                _control.Padding = new Padding(0, 0, 0, 0);
+                _control.Padding = new(0, 0, 0, 0);
                 _control.ControlBox = false;
                 _control.ShowInTaskbar = false;
                 _control.TopMost = true;
@@ -192,8 +191,8 @@ namespace MetroFramework
                 //    _control.Style = ((MetroForm)_owner).Style;
                 //}
 
-                _control.Size = new Size(_owner.Size.Width, height);
-                _control.Location = new Point(_owner.Location.X, _owner.Location.Y + (_owner.Height - _control.Height) / 2);
+                _control.Size = new(_owner.Size.Width, height);
+                _control.Location = new(_owner.Location.X, _owner.Location.Y + (_owner.Height - _control.Height) / 2);
                 _control.ArrangeApperance();
                 int _overlaySizes = Convert.ToInt32(Math.Floor(_control.Size.Height * 0.28));
                 //_control.OverlayPanelTop.Size = new Size(_control.Size.Width, _overlaySizes - 30);

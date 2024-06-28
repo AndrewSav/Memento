@@ -86,7 +86,7 @@ namespace MetroFramework.Drawing.Html
             string font = string.Format("font: {0}pt {1}", Font.Size, Font.FontFamily.Name);
 
             //Create fragment container
-            htmlContainer = new InitialContainer("<table border=0 cellspacing=5 cellpadding=0 style=\"" + font + "\"><tr><td>" + text + "</td></tr></table>");
+            htmlContainer = new("<table border=0 cellspacing=5 cellpadding=0 style=\"" + font + "\"><tr><td>" + text + "</td></tr></table>");
             //_htmlContainer.SetBounds(new Rectangle(0, 0, 10, 10));
             
         }

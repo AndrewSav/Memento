@@ -179,9 +179,9 @@ namespace MetroFramework.Drawing.Html
                 }
                 else if (hex.Length == 3)
                 {
-                    r = int.Parse(new String(hex[..1][0], 2), NumberStyles.HexNumber);
-                    g = int.Parse(new String(hex.Substring(1, 1)[0], 2), NumberStyles.HexNumber);
-                    b = int.Parse(new String(hex.Substring(2, 1)[0], 2), NumberStyles.HexNumber);
+                    r = int.Parse(new(hex[..1][0], 2), NumberStyles.HexNumber);
+                    g = int.Parse(new(hex.Substring(1, 1)[0], 2), NumberStyles.HexNumber);
+                    b = int.Parse(new(hex.Substring(2, 1)[0], 2), NumberStyles.HexNumber);
                 }
                 else
                 {

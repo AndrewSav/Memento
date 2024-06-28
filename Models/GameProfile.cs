@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Memento.Helpers;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -64,24 +65,156 @@ namespace Memento.Models
             DeleteWithoutConfirmation = copy.DeleteWithoutConfirmation;
             MinimumBackupInterval = copy.MinimumBackupInterval;
         }
+        
+        private void Log(string s)
+        {
+            var logger = WriteLog ? LoggerHelper.GetLoggerForFolder(this.GetBackupFolder()) : null;
+            logger?.Information(s);
+        }
+
+        private static string Replace(string source, string search, string replace)
+        {
+            return Regex.Replace(source, Regex.Escape(search), replace.Replace("$", "$$"), RegexOptions.IgnoreCase);
+        }
+
+        private string DetectPath(Dictionary<string,string> pathCollection, Dictionary<string, Dictionary<string, List<string>>> prefixMap)
+        {
+            Log($"Detecting path for {ProfileName} on {Environment.MachineName}");
+
+            if (!prefixMap.TryGetValue(Environment.MachineName, out Dictionary<string, List<string>> localPrefixes))
+            {
+                Log($"No prefixes are found in the Prefix map for {Environment.MachineName}");
+                return null;
+            }
+
+            foreach (KeyValuePair<string, string> pair in pathCollection)
+            {
+                Log($"Detecting based on existing path '{pair.Value}' for {pair.Key}");
+                if (prefixMap.TryGetValue(pair.Key, out Dictionary<string, List<string>> prefixes))
+                {
+                    List<KeyValuePair<string, List<string>>> pp = prefixes.Where(x => x.Value.Any(y => pair.Value.ToLowerInvariant().StartsWith(y.ToLowerInvariant()))).ToList();
+                    if (pp.Count == 0)
+                    {
+                        Log($"No prefix from prefix map for {pair.Key} matched {pair.Value}");
+                        continue;
+                    }
+                    if (pp.Count > 1)
+                    {
+                        Log($"More than one prefix from prefix map for {pair.Key} matched {pair.Value}");
+                        foreach (KeyValuePair<string, List<string>> matched in pp)
+                        {
+                            string val = string.Join(", ", matched.Value);
+                            Log($"Match: {matched.Key}: {val}");
+                        }
+                    }
+                    KeyValuePair<string, List<string>> prefix = pp[0];
+                    string displayValue = string.Join(", ", prefix.Value);
+                    Log($"Matched: {prefix.Key}: {displayValue}");
+
+                    if (!localPrefixes.TryGetValue(prefix.Key, out List<string> localPrefixValues))
+                    {
+                        Log($"No prefix key {prefix.Key} found for {Environment.MachineName}");
+                        continue;
+                    }
+
+                    if (localPrefixValues.Count == 0)
+                    {
+                        Log($"The prefix array is empty for {prefix.Key} on {Environment.MachineName}");
+                        continue;
+                    }
+
+                    string GetPath(string localPrefix)
+                    {
+                        foreach (string v in prefix.Value)
+                        {
+                            if (pair.Value.ToLowerInvariant().StartsWith(v.ToLowerInvariant()))
+                            {
+                                return Replace(pair.Value, v, localPrefix);
+                            }
+                        }
+
+                        throw new ApplicationException("Unexpected code path");
+                    }
+
+                    string UseFirstPrefix()
+                    {
+                        Log($"Using prefix {prefix.Key}, value {localPrefixValues[0]} for {Environment.MachineName}");
+                        string path = GetPath(localPrefixValues[0]);
+                        Log($"Detected path {path}");
+                        return path;
+                    }
+
+                    if (localPrefixValues.Count == 1)
+                    {
+                        return UseFirstPrefix();
+                    }
+
+                    foreach (string prefixValue in localPrefixValues)
+                    {
+                        Log($"Checking prefix {prefix.Key}, value '{prefixValue}' for an existing path");
+                        string path = GetPath(prefixValue);
+                        if (File.Exists(path) && Directory.Exists(path))
+                        {
+                            Log($"Using prefix value {prefixValue}");
+                            Log($"Detected path {path}");
+                            return path;
+                        }
+                    }
+
+                    Log("No existing path found with any given prefix. Using the first one");
+                    return UseFirstPrefix();
+
+                }
+
+                Log($"No prefixes are found in the Prefix map for {pair.Key}");
+            }
+
+            Log("Prefix search did not find any matches");
+            return null;
+        }
+
+        //private static readonly Dictionary<string, Dictionary<string, List<string>>> PrefixMap = new() 
+        //{
+        //    ["IREALM2022"]= new()
+        //    {
+        //        ["UserProfilePrefix"] = [@"C:\Users\andrewsav\"],
+        //        ["SteamPathPrefix"] = [@"D:\steam\", @"C:\steam\"]
+        //    },
+        //    ["13960-ASAV"] = new()
+        //    {
+        //        ["UserProfilePrefix"] = [@"C:\Users\admas$\"],
+        //        ["SteamPathPrefix"] = [@"D:\Misc\steam\"]
+        //    }
+        //};
 
         public string GetSavesFolder()
         {
-            if (SavesFolderCollection.ContainsKey(Environment.MachineName))
+
+            if (SavesFolderCollection.TryGetValue(Environment.MachineName, out string folder))
             {
-                return SavesFolderCollection[Environment.MachineName];
+                return folder;
             }
 
-            return SavesFolderCollection.Count > 0 ? SavesFolderCollection[SavesFolderCollection.Keys.First()] : null;
+            string path = DetectPath(SavesFolderCollection, Forms.Memento.Settings.PrefixMap);
+            if (Directory.Exists(path))
+            {
+                SavesFolderCollection[Environment.MachineName] = path;
+            }
+            return path;
         }
         public string GetGameExecutable()
         {
-            if (GameExecutableCollection.ContainsKey(Environment.MachineName))
+            if (GameExecutableCollection.TryGetValue(Environment.MachineName, out string executable))
             {
-                return GameExecutableCollection[Environment.MachineName];
+                return executable;
             }
 
-            return GameExecutableCollection.Count > 0 ? GameExecutableCollection[GameExecutableCollection.Keys.First()] :  null;
+            string path = DetectPath(GameExecutableCollection, Forms.Memento.Settings.PrefixMap);
+            if (File.Exists(path))
+            {
+                GameExecutableCollection[Environment.MachineName] = path;
+            }
+            return path;
         }
         public void SetSavesFolder(string value)
         {

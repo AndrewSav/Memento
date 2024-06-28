@@ -84,7 +84,7 @@ namespace MetroFramework.Localization
             }
 
             if (languageDataset == null)
-                languageDataset = new DataSet();
+                languageDataset = new();
 
             if (xmlStream != null)
             {

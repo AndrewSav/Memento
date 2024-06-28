@@ -46,7 +46,7 @@ namespace MetroFramework.Forms
                 singletonWindow = null;
             }
 
-            singletonWindow = new MetroTaskWindow(secToClose, userControl);
+            singletonWindow = new(secToClose, userControl);
             singletonWindow.Text = title;
             singletonWindow.Resizable = false;
             singletonWindow.Movable = true;
@@ -115,7 +115,7 @@ namespace MetroFramework.Forms
 
         public MetroTaskWindow()
         {
-            controlContainer = new MetroPanel();
+            controlContainer = new();
             Controls.Add(controlContainer);
         }
 
@@ -146,31 +146,31 @@ namespace MetroFramework.Forms
 
                 TopMost = true;
 
-                Size = new Size(400, 200);
+                Size = new(400, 200);
 
                 Taskbar myTaskbar = new();
                 switch (myTaskbar.Position)
                 {
                     case TaskbarPosition.Left:
-                        Location = new Point(myTaskbar.Bounds.Width + 5, myTaskbar.Bounds.Height - Height - 5);
+                        Location = new(myTaskbar.Bounds.Width + 5, myTaskbar.Bounds.Height - Height - 5);
                         break;
                     case TaskbarPosition.Top:
-                        Location = new Point(myTaskbar.Bounds.Width - Width - 5, myTaskbar.Bounds.Height + 5);
+                        Location = new(myTaskbar.Bounds.Width - Width - 5, myTaskbar.Bounds.Height + 5);
                         break;
                     case TaskbarPosition.Right:
-                        Location = new Point(myTaskbar.Bounds.X - Width - 5, myTaskbar.Bounds.Height - Height - 5);
+                        Location = new(myTaskbar.Bounds.X - Width - 5, myTaskbar.Bounds.Height - Height - 5);
                         break;
                     case TaskbarPosition.Bottom:
-                        Location = new Point(myTaskbar.Bounds.Width - Width - 5, myTaskbar.Bounds.Y - Height - 5);
+                        Location = new(myTaskbar.Bounds.Width - Width - 5, myTaskbar.Bounds.Y - Height - 5);
                         break;
                     case TaskbarPosition.Unknown:
                     default:
-                        Location = new Point(Screen.PrimaryScreen.Bounds.Width - Width - 5, Screen.PrimaryScreen.Bounds.Height - Height - 5);
+                        Location = new(Screen.PrimaryScreen.Bounds.Width - Width - 5, Screen.PrimaryScreen.Bounds.Height - Height - 5);
                         break;
                 }
 
-                controlContainer.Location = new Point(0, 60);
-                controlContainer.Size = new Size(Width - 40, Height - 80);
+                controlContainer.Location = new(0, 60);
+                controlContainer.Size = new(Width - 40, Height - 80);
                 controlContainer.Anchor = AnchorStyles.Top | AnchorStyles.Right | AnchorStyles.Bottom | AnchorStyles.Left;
 
                 controlContainer.AutoScroll = false;
@@ -186,7 +186,7 @@ namespace MetroFramework.Forms
                 isInitialized = true;
 
                 MoveAnimation myMoveAnim = new();
-                myMoveAnim.Start(controlContainer, new Point(20, 60), TransitionType.EaseInOutCubic, 15);
+                myMoveAnim.Start(controlContainer, new(20, 60), TransitionType.EaseInOutCubic, 15);
             }
 
             base.OnActivated(e);
@@ -198,7 +198,7 @@ namespace MetroFramework.Forms
 
             using (SolidBrush b = new(MetroPaint.BackColor.Form(Theme)))
             {
-                e.Graphics.FillRectangle(b, new Rectangle(Width - progressWidth, 0, progressWidth, 5));
+                e.Graphics.FillRectangle(b, new(Width - progressWidth, 0, progressWidth, 5));
             }
         }
 

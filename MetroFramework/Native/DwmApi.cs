@@ -84,7 +84,7 @@ namespace MetroFramework.Native
 
             public Rectangle ToRectangle()
             {
-                return new Rectangle(left, top, right - left, bottom - top);
+                return new(left, top, right - left, bottom - top);
             }
 
             public int Height
@@ -94,7 +94,7 @@ namespace MetroFramework.Native
 
             public Size Size
             {
-                get { return new Size(Width, Height); }
+                get { return new(Width, Height); }
             }
 
             public int Width

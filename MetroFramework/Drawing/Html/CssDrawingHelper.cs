@@ -86,10 +86,10 @@ namespace MetroFramework.Drawing.Html
             {
                 case Border.Top:
                     bwidth = b.ActualBorderTopWidth;
-                    pts[0] = RoundP(new PointF(r.Left + b.ActualCornerNW, r.Top), b);
-                    pts[1] = RoundP(new PointF(r.Right - b.ActualCornerNE, r.Top), b);
-                    pts[2] = RoundP(new PointF(r.Right - b.ActualCornerNE, r.Top + bwidth), b);
-                    pts[3] = RoundP(new PointF(r.Left + b.ActualCornerNW, r.Top + bwidth), b);
+                    pts[0] = RoundP(new(r.Left + b.ActualCornerNW, r.Top), b);
+                    pts[1] = RoundP(new(r.Right - b.ActualCornerNE, r.Top), b);
+                    pts[2] = RoundP(new(r.Right - b.ActualCornerNE, r.Top + bwidth), b);
+                    pts[3] = RoundP(new(r.Left + b.ActualCornerNW, r.Top + bwidth), b);
 
                     if (isLineEnd && b.ActualCornerNE == 0f) pts[2].X -= b.ActualBorderRightWidth;
                     if (isLineStart && b.ActualCornerNW == 0f) pts[3].X += b.ActualBorderLeftWidth;
@@ -99,10 +99,10 @@ namespace MetroFramework.Drawing.Html
                     break;
                 case Border.Right:
                     bwidth = b.ActualBorderRightWidth;
-                    pts[0] = RoundP(new PointF(r.Right - bwidth, r.Top + b.ActualCornerNE), b);
-                    pts[1] = RoundP(new PointF(r.Right, r.Top + b.ActualCornerNE), b);
-                    pts[2] = RoundP(new PointF(r.Right, r.Bottom - b.ActualCornerSE), b);
-                    pts[3] = RoundP(new PointF(r.Right - bwidth, r.Bottom - b.ActualCornerSE), b);
+                    pts[0] = RoundP(new(r.Right - bwidth, r.Top + b.ActualCornerNE), b);
+                    pts[1] = RoundP(new(r.Right, r.Top + b.ActualCornerNE), b);
+                    pts[2] = RoundP(new(r.Right, r.Bottom - b.ActualCornerSE), b);
+                    pts[3] = RoundP(new(r.Right - bwidth, r.Bottom - b.ActualCornerSE), b);
                     
                    
                     if (b.ActualCornerNE == 0f) pts[0].Y += b.ActualBorderTopWidth;
@@ -111,10 +111,10 @@ namespace MetroFramework.Drawing.Html
                     break;
                 case Border.Bottom:
                     bwidth = b.ActualBorderBottomWidth;
-                    pts[0] = RoundP(new PointF(r.Left + b.ActualCornerSW, r.Bottom - bwidth), b);
-                    pts[1] = RoundP(new PointF(r.Right - b.ActualCornerSE, r.Bottom - bwidth), b);
-                    pts[2] = RoundP(new PointF(r.Right - b.ActualCornerSE, r.Bottom), b);
-                    pts[3] = RoundP(new PointF(r.Left + b.ActualCornerSW, r.Bottom), b);
+                    pts[0] = RoundP(new(r.Left + b.ActualCornerSW, r.Bottom - bwidth), b);
+                    pts[1] = RoundP(new(r.Right - b.ActualCornerSE, r.Bottom - bwidth), b);
+                    pts[2] = RoundP(new(r.Right - b.ActualCornerSE, r.Bottom), b);
+                    pts[3] = RoundP(new(r.Left + b.ActualCornerSW, r.Bottom), b);
 
                     if (isLineStart && b.ActualCornerSW == 0f) pts[0].X += b.ActualBorderLeftWidth;
                     if (isLineEnd && b.ActualCornerSE == 0f) pts[1].X -= b.ActualBorderRightWidth;
@@ -123,10 +123,10 @@ namespace MetroFramework.Drawing.Html
                     break;
                 case Border.Left:
                     bwidth = b.ActualBorderLeftWidth;
-                    pts[0] = RoundP(new PointF(r.Left, r.Top + b.ActualCornerNW), b);
-                    pts[1] = RoundP(new PointF(r.Left + bwidth, r.Top + b.ActualCornerNW), b);
-                    pts[2] = RoundP(new PointF(r.Left + bwidth, r.Bottom - b.ActualCornerSW), b);
-                    pts[3] = RoundP(new PointF(r.Left, r.Bottom - b.ActualCornerSW), b);
+                    pts[0] = RoundP(new(r.Left, r.Top + b.ActualCornerNW), b);
+                    pts[1] = RoundP(new(r.Left + bwidth, r.Top + b.ActualCornerNW), b);
+                    pts[2] = RoundP(new(r.Left + bwidth, r.Bottom - b.ActualCornerSW), b);
+                    pts[3] = RoundP(new(r.Left, r.Bottom - b.ActualCornerSW), b);
 
                     if (b.ActualCornerNW == 0f) pts[1].Y += b.ActualBorderTopWidth;
                     if (b.ActualCornerSW == 0f) pts[2].Y -= b.ActualBorderBottomWidth;
@@ -165,13 +165,13 @@ namespace MetroFramework.Drawing.Html
             switch (cornerIndex)
             {
                 case 1:
-                    outer = new RectangleF(r.Left, r.Top, b.ActualCornerNW, b.ActualCornerNW);
+                    outer = new(r.Left, r.Top, b.ActualCornerNW, b.ActualCornerNW);
                     inner = RectangleF.FromLTRB(outer.Left + b.ActualBorderLeftWidth, outer.Top + b.ActualBorderTopWidth, outer.Right, outer.Bottom);
                     start1 = 180;
                     start2 = 270;
                     break;
                 case 2:
-                    outer = new RectangleF(r.Right - b.ActualCornerNE, r.Top, b.ActualCornerNE, b.ActualCornerNE);
+                    outer = new(r.Right - b.ActualCornerNE, r.Top, b.ActualCornerNE, b.ActualCornerNE);
                     inner = RectangleF.FromLTRB(outer.Left, outer.Top + b.ActualBorderTopWidth, outer.Right - b.ActualBorderRightWidth, outer.Bottom);
                     outer.X -= outer.Width;
                     inner.X -= inner.Width;
@@ -180,7 +180,7 @@ namespace MetroFramework.Drawing.Html
                     break;
                 case 3:
                     outer = RectangleF.FromLTRB(r.Right - b.ActualCornerSE, r.Bottom - b.ActualCornerSE, r.Right, r.Bottom);
-                    inner = new RectangleF(outer.Left, outer.Top, outer.Width - b.ActualBorderRightWidth, outer.Height - b.ActualBorderBottomWidth);
+                    inner = new(outer.Left, outer.Top, outer.Width - b.ActualBorderRightWidth, outer.Height - b.ActualBorderBottomWidth);
                     outer.X -= outer.Width;
                     outer.Y -= outer.Height;
                     inner.X -= inner.Width;
@@ -189,7 +189,7 @@ namespace MetroFramework.Drawing.Html
                     start2 = 90;
                     break;
                 case 4:
-                    outer = new RectangleF(r.Left, r.Bottom - b.ActualCornerSW, b.ActualCornerSW, b.ActualCornerSW);
+                    outer = new(r.Left, r.Bottom - b.ActualCornerSW, b.ActualCornerSW, b.ActualCornerSW);
                     inner = RectangleF.FromLTRB( r.Left + b.ActualBorderLeftWidth , outer.Top , outer.Right, outer.Bottom - b.ActualBorderBottomWidth);
                     start1 = 90;
                     start2 = 180;

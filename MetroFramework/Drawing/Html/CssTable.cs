@@ -43,7 +43,7 @@ namespace MetroFramework.Drawing.Html
             public readonly CssBox ExtendedBox;
 
             public SpacingBox(CssBox tableBox, ref CssBox extendedBox, int startRow)
-                : base(tableBox, new HtmlTag("<none colspan=" + extendedBox.GetAttribute("colspan", "1") + ">"))
+                : base(tableBox, new("<none colspan=" + extendedBox.GetAttribute("colspan", "1") + ">"))
             {
                 ExtendedBox = extendedBox;
                 Display = CssConstants.None;
@@ -619,8 +619,8 @@ namespace MetroFramework.Drawing.Html
                     int rowspan = GetRowSpan(cell);
                     float width = GetCellWidth(GetCellRealColumnIndex(row, cell), cell);
 
-                    cell.Location = new PointF(curx, cury);
-                    cell.Size = new SizeF(width, 0f);
+                    cell.Location = new(curx, cury);
+                    cell.Size = new(width, 0f);
                     cell.MeasureBounds(g); //That will automatically set the bottom of the cell
 
                     //Alter max bottom only if row is cell's row + cell's rowspan - 1
@@ -892,7 +892,7 @@ namespace MetroFramework.Drawing.Html
 
             for (int i = 0; i < ColumnWidths.Length; i++)
                 if (float.IsNaN(ColumnWidths[i]))
-                    throw new Exception("CssTable Algorithm error: There's a NaN in column widths");
+                    throw new("CssTable Algorithm error: There's a NaN in column widths");
                 else
                     f += ColumnWidths[i];
             

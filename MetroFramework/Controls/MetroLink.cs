@@ -304,7 +304,7 @@ public Int32 ImageSize
 
                 base.OnPaintBackground(e);
 
-                OnCustomPaintBackground(new MetroPaintEventArgs(backColor, Color.Empty, e.Graphics));
+                OnCustomPaintBackground(new(backColor, Color.Empty, e.Graphics));
             }
             catch
             {
@@ -321,7 +321,7 @@ public Int32 ImageSize
                     OnPaintBackground(e);
                 }
 
-                OnCustomPaint(new MetroPaintEventArgs(Color.Empty, Color.Empty, e.Graphics));
+                OnCustomPaint(new(Color.Empty, Color.Empty, e.Graphics));
                 OnPaintForeground(e);
             }
             catch
@@ -359,7 +359,7 @@ public Int32 ImageSize
 
             TextRenderer.DrawText(e.Graphics, Text, MetroFonts.Link(metroLinkSize, metroLinkWeight), ClientRectangle, foreColor, MetroPaint.GetTextFormatFlags(TextAlign));
 
-            OnCustomPaintForeground(new MetroPaintEventArgs(Color.Empty, foreColor, e.Graphics));
+            OnCustomPaintForeground(new(Color.Empty, foreColor, e.Graphics));
 
             if (displayFocusRectangle && isFocused)
                 ControlPaint.DrawFocusRectangle(e.Graphics, ClientRectangle);
@@ -386,31 +386,31 @@ private void DrawIcon(Graphics g)
         switch (ImageAlign)
         {
             case ContentAlignment.BottomCenter:
-                iconLocation = new Point((ClientRectangle.Width - _imgW) / 2, (ClientRectangle.Height - _imgH) - _filler);
+                iconLocation = new((ClientRectangle.Width - _imgW) / 2, (ClientRectangle.Height - _imgH) - _filler);
                 break;
             case ContentAlignment.BottomLeft:
-                iconLocation = new Point(_filler, (ClientRectangle.Height - _imgH) - _filler);
+                iconLocation = new(_filler, (ClientRectangle.Height - _imgH) - _filler);
                 break;
             case ContentAlignment.BottomRight:
-                iconLocation = new Point((ClientRectangle.Width - _imgW) - _filler, (ClientRectangle.Height - _imgH) - _filler);
+                iconLocation = new((ClientRectangle.Width - _imgW) - _filler, (ClientRectangle.Height - _imgH) - _filler);
                 break;
             case ContentAlignment.MiddleCenter:
-                iconLocation = new Point((ClientRectangle.Width - _imgW) / 2, (ClientRectangle.Height - _imgH) / 2);
+                iconLocation = new((ClientRectangle.Width - _imgW) / 2, (ClientRectangle.Height - _imgH) / 2);
                 break;
             case ContentAlignment.MiddleLeft:
-                iconLocation = new Point(_filler, (ClientRectangle.Height - _imgH) / 2);
+                iconLocation = new(_filler, (ClientRectangle.Height - _imgH) / 2);
                 break;
             case ContentAlignment.MiddleRight:
-                iconLocation = new Point((ClientRectangle.Width - _imgW) - _filler, (ClientRectangle.Height - _imgH) / 2);
+                iconLocation = new((ClientRectangle.Width - _imgW) - _filler, (ClientRectangle.Height - _imgH) / 2);
                 break;
             case ContentAlignment.TopCenter:
-                iconLocation = new Point((ClientRectangle.Width - _imgW) / 2, _filler);
+                iconLocation = new((ClientRectangle.Width - _imgW) / 2, _filler);
                 break;
             case ContentAlignment.TopLeft:
-                iconLocation = new Point(_filler, _filler);
+                iconLocation = new(_filler, _filler);
                 break;
             case ContentAlignment.TopRight:
-                iconLocation = new Point((ClientRectangle.Width - _imgW) - _filler, _filler);
+                iconLocation = new((ClientRectangle.Width - _imgW) - _filler, _filler);
                 break;
         }
 
@@ -420,22 +420,22 @@ private void DrawIcon(Graphics g)
         {
             if (Theme == MetroThemeStyle.Dark)
             {
-                g.DrawImage((isHovered && !isPressed) ? _darkimg : _darklightimg, new Rectangle(iconLocation, new Size(_imgW, _imgH)));
+                g.DrawImage((isHovered && !isPressed) ? _darkimg : _darklightimg, new Rectangle(iconLocation, new(_imgW, _imgH)));
             }
             else
             {
-                g.DrawImage((isHovered && !isPressed) ? _lightimg : _lightlightimg, new Rectangle(iconLocation, new Size(_imgW, _imgH)));
+                g.DrawImage((isHovered && !isPressed) ? _lightimg : _lightlightimg, new Rectangle(iconLocation, new(_imgW, _imgH)));
             }
         }
         else
         {
             if (Theme == MetroThemeStyle.Dark)
             {
-                g.DrawImage((isHovered && !isPressed) ? _darkimg : _nofocus, new Rectangle(iconLocation, new Size(_imgW, _imgH)));
+                g.DrawImage((isHovered && !isPressed) ? _darkimg : _nofocus, new Rectangle(iconLocation, new(_imgW, _imgH)));
             }
             else
             {
-                g.DrawImage((isHovered && !isPressed) ? _image : _nofocus, new Rectangle(iconLocation, new Size(_imgW, _imgH)));
+                g.DrawImage((isHovered && !isPressed) ? _image : _nofocus, new Rectangle(iconLocation, new(_imgW, _imgH)));
             }
         }
     }
@@ -451,10 +451,10 @@ private void CreateImages()
     if (_image != null)
     {
         _lightimg = _image;
-        _darkimg = ApplyInvert(new Bitmap(_image));
+        _darkimg = ApplyInvert(new(_image));
 
-        _darklightimg = ApplyLight(new Bitmap(_darkimg));
-        _lightlightimg = ApplyLight(new Bitmap(_lightimg));
+        _darklightimg = ApplyLight(new(_darkimg));
+        _lightlightimg = ApplyLight(new(_lightimg));
     }
 }
 public static Bitmap ApplyInvert(Bitmap bitmapImage)

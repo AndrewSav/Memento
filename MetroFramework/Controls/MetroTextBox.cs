@@ -265,10 +265,10 @@ namespace MetroFramework.Controls
                     double resizeFactor = _height / (double)originalSize.Height;
 
                     Point iconLocation = new(1, 1);
-                    return new Size((int)(originalSize.Width * resizeFactor), (int)(originalSize.Height * resizeFactor));
+                    return new((int)(originalSize.Width * resizeFactor), (int)(originalSize.Height * resizeFactor));
                 }
 
-                return new Size(-1, -1);
+                return new(-1, -1);
             }
         }
 
@@ -636,7 +636,7 @@ namespace MetroFramework.Controls
 
                 base.OnPaintBackground(e);
 
-                OnCustomPaintBackground(new MetroPaintEventArgs(backColor, Color.Empty, e.Graphics));
+                OnCustomPaintBackground(new(backColor, Color.Empty, e.Graphics));
             }
             catch
             {
@@ -653,7 +653,7 @@ namespace MetroFramework.Controls
                     OnPaintBackground(e);
                 }
 
-                OnCustomPaint(new MetroPaintEventArgs(Color.Empty, Color.Empty, e.Graphics));
+                OnCustomPaint(new(Color.Empty, Color.Empty, e.Graphics));
                 OnPaintForeground(e);
             }
             catch
@@ -686,7 +686,7 @@ namespace MetroFramework.Controls
 
             using (Pen p = new(borderColor))
             {
-                e.Graphics.DrawRectangle(p, new Rectangle(0, 0, Width - 2, Height - 1));
+                e.Graphics.DrawRectangle(p, new(0, 0, Width - 2, Height - 1));
             }
 
             DrawIcon(e.Graphics);
@@ -699,7 +699,7 @@ namespace MetroFramework.Controls
                 Point iconLocation = new(5, 5);
                 if (textBoxIconRight)
                 {
-                    iconLocation = new Point(ClientRectangle.Width - iconSize.Width - 1, 1);
+                    iconLocation = new(ClientRectangle.Width - iconSize.Width - 1, 1);
                 }
 
                 g.DrawImage(textBoxIcon, new Rectangle(iconLocation, iconSize));
@@ -712,7 +712,7 @@ namespace MetroFramework.Controls
                 if (_showbutton && _button != null) UpdateBaseTextBox();
             }
 
-            OnCustomPaintForeground(new MetroPaintEventArgs(Color.Empty, baseTextBox.ForeColor, g));
+            OnCustomPaintForeground(new(Color.Empty, baseTextBox.ForeColor, g));
         }
 
         #endregion
@@ -745,14 +745,14 @@ namespace MetroFramework.Controls
         {
             if (baseTextBox != null) return;
 
-            baseTextBox = new PromptedTextBox();
+            baseTextBox = new();
 
             baseTextBox.BorderStyle = BorderStyle.None;
             baseTextBox.Font = MetroFonts.TextBox(metroTextBoxSize, metroTextBoxWeight);
-            baseTextBox.Location = new Point(3, 3);
-            baseTextBox.Size = new Size(Width - 6, Height - 6);
+            baseTextBox.Location = new(3, 3);
+            baseTextBox.Size = new(Width - 6, Height - 6);
 
-            Size = new Size(baseTextBox.Width + 6, baseTextBox.Height + 6);
+            Size = new(baseTextBox.Width + 6, baseTextBox.Height + 6);
 
             baseTextBox.TabStop = true;
             //baseTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Bottom | AnchorStyles.Right;
@@ -761,11 +761,11 @@ namespace MetroFramework.Controls
 
             if (_button != null) return;
 
-            _button = new MetroTextButton();
+            _button = new();
             _button.Theme = Theme;
             _button.Style = Style;
-            _button.Location = new Point(3, 1);
-            _button.Size = new Size(Height - 4, Height - 4);
+            _button.Location = new(3, 1);
+            _button.Size = new(Height - 4, Height - 4);
             _button.TextChanged += _button_TextChanged;
             _button.MouseEnter += _button_MouseEnter;
             _button.MouseLeave += _button_MouseLeave;
@@ -851,13 +851,13 @@ namespace MetroFramework.Controls
             {
                 if ((Height % 2) > 0)
                 {
-                    _button.Size = new Size(Height - 2, Height - 2);
-                    _button.Location = new Point(Width - (_button.Width + 1), 1);
+                    _button.Size = new(Height - 2, Height - 2);
+                    _button.Location = new(Width - (_button.Width + 1), 1);
                 }
                 else
                 {
-                    _button.Size = new Size(Height - 5, Height - 5);
-                    _button.Location = new Point((Width - _button.Width) - 3, 2);
+                    _button.Size = new(Height - 5, Height - 5);
+                    _button.Location = new((Width - _button.Width) - 3, 2);
                 }
 
                 _button.Visible = _showbutton;
@@ -870,7 +870,7 @@ namespace MetroFramework.Controls
                 if (_showclear && Text != "" && !ReadOnly && Enabled)
                 {
                     _clearloc = 16;
-                    lnkClear.Location = new Point(Width - (ButtonWidth + 17), (Height - 14) / 2);
+                    lnkClear.Location = new(Width - (ButtonWidth + 17), (Height - 14) / 2);
                     lnkClear.Visible = true;
                 }
             }
@@ -885,16 +885,16 @@ namespace MetroFramework.Controls
                 Point textBoxLocation = new(iconSize.Width + 10, 5);
                 if (textBoxIconRight)
                 {
-                    textBoxLocation = new Point(3, 3);
+                    textBoxLocation = new(3, 3);
                 }
 
                 baseTextBox.Location = textBoxLocation;
-                baseTextBox.Size = new Size(Width - (20 + ButtonWidth + _clearloc) - iconSize.Width, Height - 6);
+                baseTextBox.Size = new(Width - (20 + ButtonWidth + _clearloc) - iconSize.Width, Height - 6);
             }
             else
             {
-                baseTextBox.Location = new Point(3, 3);
-                baseTextBox.Size = new Size(Width - (6 + ButtonWidth + _clearloc), Height - 6);
+                baseTextBox.Location = new(3, 3);
+                baseTextBox.Size = new(Width - (6 + ButtonWidth + _clearloc), Height - 6);
             }
         }
 
@@ -1029,7 +1029,7 @@ namespace MetroFramework.Controls
         private void InitializeComponent()
         {
             ComponentResourceManager resources = new(typeof(MetroTextBox));
-            lnkClear = new MetroLink();
+            lnkClear = new();
             SuspendLayout();
             // 
             // lnkClear
@@ -1038,13 +1038,13 @@ namespace MetroFramework.Controls
             lnkClear.FontWeight = MetroLinkWeight.Regular;
             lnkClear.Image = ((Image)(resources.GetObject("lnkClear.Image")));
             lnkClear.ImageSize = 10;
-            lnkClear.Location = new Point(654, 96);
+            lnkClear.Location = new(654, 96);
             lnkClear.Name = "lnkClear";
             lnkClear.NoFocusImage = ((Image)(resources.GetObject("lnkClear.NoFocusImage")));
-            lnkClear.Size = new Size(12, 12);
+            lnkClear.Size = new(12, 12);
             lnkClear.TabIndex = 2;
             lnkClear.UseSelectable = true;
-            lnkClear.Click += new EventHandler(lnkClear_Click);
+            lnkClear.Click += new(lnkClear_Click);
             ResumeLayout(false);
             Controls.Add(lnkClear);
         }
@@ -1295,7 +1295,7 @@ namespace MetroFramework.Controls
                 {
                     base.Image = value;
                     if (value == null) return;
-                    _image = ApplyInvert(new Bitmap(value));
+                    _image = ApplyInvert(new(value));
                 }
             }
 
@@ -1330,10 +1330,10 @@ namespace MetroFramework.Controls
                         double resizeFactor = 14 / (double)originalSize.Height;
 
                         Point iconLocation = new(1, 1);
-                        return new Size((int)(originalSize.Width * resizeFactor), (int)(originalSize.Height * resizeFactor));
+                        return new((int)(originalSize.Width * resizeFactor), (int)(originalSize.Height * resizeFactor));
                     }
 
-                    return new Size(-1, -1);
+                    return new(-1, -1);
                 }
             }
 
@@ -1347,31 +1347,31 @@ namespace MetroFramework.Controls
                     switch (ImageAlign)
                     {
                         case ContentAlignment.BottomCenter:
-                            iconLocation = new Point((ClientRectangle.Width - iconSize.Width) / 2, (ClientRectangle.Height - iconSize.Height) - _filler);
+                            iconLocation = new((ClientRectangle.Width - iconSize.Width) / 2, (ClientRectangle.Height - iconSize.Height) - _filler);
                             break;
                         case ContentAlignment.BottomLeft:
-                            iconLocation = new Point(_filler, (ClientRectangle.Height - iconSize.Height) - _filler);
+                            iconLocation = new(_filler, (ClientRectangle.Height - iconSize.Height) - _filler);
                             break;
                         case ContentAlignment.BottomRight:
-                            iconLocation = new Point((ClientRectangle.Width - iconSize.Width) - _filler, (ClientRectangle.Height - iconSize.Height) - _filler);
+                            iconLocation = new((ClientRectangle.Width - iconSize.Width) - _filler, (ClientRectangle.Height - iconSize.Height) - _filler);
                             break;
                         case ContentAlignment.MiddleCenter:
-                            iconLocation = new Point((ClientRectangle.Width - iconSize.Width) / 2, (ClientRectangle.Height - iconSize.Height) / 2);
+                            iconLocation = new((ClientRectangle.Width - iconSize.Width) / 2, (ClientRectangle.Height - iconSize.Height) / 2);
                             break;
                         case ContentAlignment.MiddleLeft:
-                            iconLocation = new Point(_filler, (ClientRectangle.Height - iconSize.Height) / 2);
+                            iconLocation = new(_filler, (ClientRectangle.Height - iconSize.Height) / 2);
                             break;
                         case ContentAlignment.MiddleRight:
-                            iconLocation = new Point((ClientRectangle.Width - iconSize.Width) - _filler, (ClientRectangle.Height - iconSize.Height) / 2);
+                            iconLocation = new((ClientRectangle.Width - iconSize.Width) - _filler, (ClientRectangle.Height - iconSize.Height) / 2);
                             break;
                         case ContentAlignment.TopCenter:
-                            iconLocation = new Point((ClientRectangle.Width - iconSize.Width) / 2, _filler);
+                            iconLocation = new((ClientRectangle.Width - iconSize.Width) / 2, _filler);
                             break;
                         case ContentAlignment.TopLeft:
-                            iconLocation = new Point(_filler, _filler);
+                            iconLocation = new(_filler, _filler);
                             break;
                         case ContentAlignment.TopRight:
-                            iconLocation = new Point((ClientRectangle.Width - iconSize.Width) - _filler, _filler);
+                            iconLocation = new((ClientRectangle.Width - iconSize.Width) - _filler, _filler);
                             break;
                     }
 
