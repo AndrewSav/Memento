@@ -126,6 +126,9 @@ To create a release via GitHub actions update version in `Memento.csproj`and cre
 
 ## Change Log
 
+* 1.6.2
+  * Fixed crash if path detection would run, but no prefix map was specified
+  * Resolved slow downs with path detections on certain code paths
 * 1.6.1
   * GitHub Actions build process
 * 1.6.0

@@ -79,6 +79,12 @@ namespace Memento.Models
 
         private string DetectPath(Dictionary<string,string> pathCollection, Dictionary<string, Dictionary<string, List<string>>> prefixMap)
         {
+            if (prefixMap == null)
+            {
+                Log($"Cannot detect path for {ProfileName} on {Environment.MachineName} because prefix map is not specified");
+                return null;
+            }
+
             Log($"Detecting path for {ProfileName} on {Environment.MachineName}");
 
             if (!prefixMap.TryGetValue(Environment.MachineName, out Dictionary<string, List<string>> localPrefixes))
@@ -172,20 +178,6 @@ namespace Memento.Models
             Log("Prefix search did not find any matches");
             return null;
         }
-
-        //private static readonly Dictionary<string, Dictionary<string, List<string>>> PrefixMap = new() 
-        //{
-        //    ["IREALM2022"]= new()
-        //    {
-        //        ["UserProfilePrefix"] = [@"C:\Users\andrewsav\"],
-        //        ["SteamPathPrefix"] = [@"D:\steam\", @"C:\steam\"]
-        //    },
-        //    ["13960-ASAV"] = new()
-        //    {
-        //        ["UserProfilePrefix"] = [@"C:\Users\admas$\"],
-        //        ["SteamPathPrefix"] = [@"D:\Misc\steam\"]
-        //    }
-        //};
 
         public string GetSavesFolder()
         {

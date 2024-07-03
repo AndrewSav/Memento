@@ -53,16 +53,17 @@ namespace Memento.Helpers
         public static int MakeBackup(this GameProfile profile, DateTime x)
         {
             string targetPath = GetTargetBackupFolder(profile.BackupFolder, x);
+            string savesFolder = profile.GetSavesFolder();
             if (string.IsNullOrEmpty(profile.BackupFilter))
             {
-                CopyFolder(profile.GetSavesFolder(), targetPath);
+                CopyFolder(savesFolder, targetPath);
                 return -1;
             }
 
             int counter = 0;
-            foreach (string path in ApplyFilter(profile.GetSavesFolder(), profile.BackupFilter))
+            foreach (string path in ApplyFilter(savesFolder, profile.BackupFilter))
             {
-                string target = path.Replace(profile.GetSavesFolder(), targetPath);
+                string target = path.Replace(savesFolder, targetPath);
                 Directory.CreateDirectory(Path.GetDirectoryName(target)!);
                 File.Copy(path, target, true);
                 counter++;
