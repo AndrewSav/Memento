@@ -145,6 +145,21 @@ namespace MetroFramework.Controls
 
         #endregion
 
+        internal const uint WM_MOUSEACTIVATE = 0x21;
+        internal const uint MA_ACTIVATE = 1;
+        internal const uint MA_ACTIVATEANDEAT = 2;
+
+        // https://stackoverflow.com/a/1892990/284111
+        protected override void WndProc(ref Message m)
+        {
+            base.WndProc(ref m);
+
+            if (m.Msg == WM_MOUSEACTIVATE &&
+                m.Result == (IntPtr)MA_ACTIVATEANDEAT)
+            {
+                m.Result = (IntPtr)MA_ACTIVATE;
+            }
+        }
 
         public MetroContextMenu(IContainer Container)
         {

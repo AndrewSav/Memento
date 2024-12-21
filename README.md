@@ -126,6 +126,9 @@ To create a release via GitHub actions update version in `Memento.csproj`and cre
 
 ## Change Log
 
+* 1.6.3
+  * Updated dependecies
+  * Attempted to improve UI so it does not require two click to do anything when the main window does not have focus
 * 1.6.2
   * Fixed crash if path detection would run, but no prefix map was specified
   * Resolved slow downs with path detections on certain code paths
