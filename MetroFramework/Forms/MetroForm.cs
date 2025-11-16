@@ -733,7 +733,7 @@ namespace MetroFramework.Forms
             newButton.Theme = Theme;
             newButton.Tag = button;
             newButton.Size = new(25, 20);
-            newButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            //newButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             newButton.TabStop = false; //remove the form controls from the tab stop
             newButton.Click += WindowButton_Click;
             Controls.Add(newButton);
@@ -1016,7 +1016,7 @@ namespace MetroFramework.Forms
                 e.Graphics.Clear(backColor);
                 //Font buttonFont = new Font("Webdings", 9.25f);
                 //TextRenderer.DrawText(e.Graphics, Text, buttonFont, ClientRectangle, foreColor, backColor, TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter | TextFormatFlags.EndEllipsis);
-                TextRenderer.DrawText(e.Graphics, Text, Font, ClientRectangle, foreColor, backColor, TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter | TextFormatFlags.EndEllipsis);
+                TextRenderer.DrawText(e.Graphics, Text, Font, ClientRectangle, foreColor, backColor, TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
             }
 
             #endregion

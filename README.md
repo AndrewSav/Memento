@@ -126,6 +126,9 @@ To create a release via GitHub actions update version in `Memento.csproj`and cre
 
 ## Change Log
 
+* 1.6.4
+  * Updated dependecies
+  * Small fixes for UI scaling
 * 1.6.3
   * Updated dependecies
   * Attempted to improve UI so it does not require two click to do anything when the main window does not have focus
