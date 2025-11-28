@@ -126,6 +126,9 @@ To create a release via GitHub actions update version in `Memento.csproj`and cre
 
 ## Change Log
 
+* 1.6.5
+  * Another UI scaling fix
+  * Updated to .net 10
 * 1.6.4
   * Updated dependecies
   * Small fixes for UI scaling

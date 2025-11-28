@@ -2,7 +2,7 @@ $ErrorActionPreference = "Stop"
 $global:ProgressPreference = 'SilentlyContinue'
 $env:DOTNET_CLI_TELEMETRY_OPTOUT="1"
 
-$targetFramework = "net8.0-windows7.0"
+$targetFramework = "net10.0-windows7.0"
 
 $targetFolder = Join-Path $PSScriptRoot Build
 
@@ -20,5 +20,5 @@ mkdir $targetFolder -force | Out-Null
 dotnet publish -c Release --self-contained -r win-x64 -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true "/p:Version=$version" "/p:AssemblyVersion=$version"
 Compress-Archive "$releasePublish/*" $targetSelfContainedZip -Force
 
-dotnet publish Memento.csproj -o $releasePublishNsc -c Release --self-contained false -r win-x64 -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true "/p:Version=$version" "/p:AssemblyVersion=$version"
+dotnet publish Memento.csproj -o $releasePublishNsc -c Release --no-self-contained -r win-x64 -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true "/p:Version=$version" "/p:AssemblyVersion=$version"
 Compress-Archive "$releasePublishNsc/*" $targetZip -Force

@@ -376,6 +376,7 @@ namespace MetroFramework.Controls
         }
 
         [Category(MetroDefaults.PropertyCategory.Appearance)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Color WaterMarkColor
         {
             get { return baseTextBox.WaterMarkColor; }
@@ -383,12 +384,14 @@ namespace MetroFramework.Controls
         }
 
         [Category(MetroDefaults.PropertyCategory.Appearance)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Font WaterMarkFont
         {
             get { return baseTextBox.WaterMarkFont; }
             set { baseTextBox.WaterMarkFont = value; }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string[] Lines
         {
             get { return baseTextBox.Lines; }
@@ -396,6 +399,7 @@ namespace MetroFramework.Controls
         }
 
         [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string SelectedText
         {
             get { return baseTextBox.SelectedText; }
@@ -412,6 +416,7 @@ namespace MetroFramework.Controls
             }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public char PasswordChar
         {
             get { return baseTextBox.PasswordChar; }
@@ -432,12 +437,14 @@ namespace MetroFramework.Controls
             set { baseTextBox.TextAlign = value; }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int SelectionStart
         {
             get { return baseTextBox.SelectionStart; }
             set { baseTextBox.SelectionStart = value; }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int SelectionLength
         {
             get { return baseTextBox.SelectionLength; }
@@ -451,12 +458,14 @@ namespace MetroFramework.Controls
             set { baseTextBox.TabStop = value; }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int MaxLength
         {
             get { return baseTextBox.MaxLength; }
             set { baseTextBox.MaxLength = value; }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public ScrollBars ScrollBars
         {
             get { return baseTextBox.ScrollBars; }
@@ -477,12 +486,14 @@ namespace MetroFramework.Controls
             set { baseTextBox.AutoCompleteSource = value; }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public AutoCompleteStringCollection AutoCompleteCustomSource
         {
             get { return baseTextBox.AutoCompleteCustomSource; }
             set { baseTextBox.AutoCompleteCustomSource = value; }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShortcutsEnabled
         {
             get { return baseTextBox.ShortcutsEnabled; }
@@ -924,6 +935,7 @@ namespace MetroFramework.Controls
             }
 
             private Color _waterMarkColor = MetroPaint.ForeColor.Button.Disabled(MetroThemeStyle.Dark);
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
             public Color WaterMarkColor
             {
                 get { return _waterMarkColor; }
@@ -935,6 +947,7 @@ namespace MetroFramework.Controls
             }
 
             private Font _waterMarkFont = MetroFonts.WaterMark(MetroLabelSize.Small, MetroWaterMarkWeight.Italic);
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
             public Font WaterMarkFont
             {
                 get { return _waterMarkFont; }
@@ -1288,6 +1301,7 @@ namespace MetroFramework.Controls
 
             private Bitmap _image = null;
 
+            [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
             public new Image Image
             {
                 get { return base.Image; }

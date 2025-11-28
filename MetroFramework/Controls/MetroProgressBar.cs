@@ -218,6 +218,7 @@ namespace MetroFramework.Controls
             set { progressBarStyle = value; }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public new int Value
         {
             get { return base.Value; }

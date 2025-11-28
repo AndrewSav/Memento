@@ -21,16 +21,16 @@
  * CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE 
  * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-using System;
-using System.Drawing;
-using System.Windows.Forms;
-
 using MetroFramework.Animation;
 using MetroFramework.Components;
 using MetroFramework.Controls;
 using MetroFramework.Drawing;
 using MetroFramework.Interfaces;
 using MetroFramework.Native;
+using System;
+using System.ComponentModel;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace MetroFramework.Forms
 {
@@ -100,6 +100,7 @@ namespace MetroFramework.Forms
         }
 
         private bool cancelTimer = false;
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool CancelTimer
         {
             get { return cancelTimer; }

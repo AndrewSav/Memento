@@ -38,6 +38,7 @@ namespace MetroFramework.Components
 
         private MetroColorStyle metroStyle = MetroColorStyle.Blue;
         [Category(MetroDefaults.PropertyCategory.Appearance)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public MetroColorStyle Style
         {
             get
@@ -52,6 +53,7 @@ namespace MetroFramework.Components
 
         private MetroThemeStyle metroTheme = MetroThemeStyle.Light;
         [Category(MetroDefaults.PropertyCategory.Appearance)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public MetroThemeStyle Theme
         {
             get
@@ -66,6 +68,7 @@ namespace MetroFramework.Components
 
         private MetroStyleManager metroStyleManager = null;
         [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public MetroStyleManager StyleManager
         {
             get { return metroStyleManager; }
@@ -93,6 +96,7 @@ namespace MetroFramework.Components
         }
 
         [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public new bool IsBalloon
         {
             get { return base.IsBalloon; }
@@ -100,6 +104,7 @@ namespace MetroFramework.Components
         }
 
         [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public new Color BackColor
         {
             get { return base.BackColor; }
@@ -107,6 +112,7 @@ namespace MetroFramework.Components
         }
 
         [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public new Color ForeColor
         {
             get { return base.ForeColor; }
@@ -114,6 +120,7 @@ namespace MetroFramework.Components
         }
 
         [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public new string ToolTipTitle
         {
             get { return base.ToolTipTitle; }
@@ -121,6 +128,7 @@ namespace MetroFramework.Components
         }
 
         [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public new ToolTipIcon ToolTipIcon
         {
             get { return base.ToolTipIcon; }

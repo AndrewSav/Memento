@@ -189,6 +189,7 @@ namespace MetroFramework.Controls
         }
 
         [Category(MetroDefaults.PropertyCategory.Appearance)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int HorizontalScrollbarSize
         {
             get { return HorizontalMetroScrollbar.ScrollbarSize; }
@@ -196,6 +197,7 @@ namespace MetroFramework.Controls
         }
 
         [Category(MetroDefaults.PropertyCategory.Appearance)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool HorizontalScrollbarBarColor
         {
             get { return HorizontalMetroScrollbar.UseBarColor; }
@@ -203,6 +205,7 @@ namespace MetroFramework.Controls
         }
 
         [Category(MetroDefaults.PropertyCategory.Appearance)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool HorizontalScrollbarHighlightOnWheel
         {
             get { return HorizontalMetroScrollbar.HighlightOnWheel; }
@@ -219,6 +222,7 @@ namespace MetroFramework.Controls
         }
 
         [Category(MetroDefaults.PropertyCategory.Appearance)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int VerticalScrollbarSize
         {
             get { return VerticalMetroScrollbar.ScrollbarSize; }
@@ -226,6 +230,7 @@ namespace MetroFramework.Controls
         }
 
         [Category(MetroDefaults.PropertyCategory.Appearance)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool VerticalScrollbarBarColor
         {
             get { return VerticalMetroScrollbar.UseBarColor; }
@@ -233,6 +238,7 @@ namespace MetroFramework.Controls
         }
 
         [Category(MetroDefaults.PropertyCategory.Appearance)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool VerticalScrollbarHighlightOnWheel
         {
             get { return VerticalMetroScrollbar.HighlightOnWheel; }
@@ -240,6 +246,7 @@ namespace MetroFramework.Controls
         }
 
         [Category(MetroDefaults.PropertyCategory.Appearance)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public new bool AutoScroll
         {
             get

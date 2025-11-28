@@ -82,6 +82,7 @@ namespace MetroFramework.Components
         }
 
         private ContainerControl owner;
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public ContainerControl Owner
         {
             get { return owner; }

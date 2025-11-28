@@ -1,6 +1,7 @@
-﻿using System;
+﻿using Memento.Models;
+using System;
+using System.ComponentModel;
 using System.Diagnostics;
-using Memento.Models;
 
 namespace Memento.Forms
 {
@@ -10,7 +11,8 @@ namespace Memento.Forms
         {
             InitializeComponent();
         }
-                
+
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public GameProfile Profile
         {
             get

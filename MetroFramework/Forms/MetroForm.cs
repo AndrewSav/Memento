@@ -77,6 +77,7 @@ namespace MetroFramework.Forms
 
         private MetroColorStyle metroStyle = MetroColorStyle.Blue;
         [Category(MetroDefaults.PropertyCategory.Appearance)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public MetroColorStyle Style
         {
             get
@@ -92,6 +93,7 @@ namespace MetroFramework.Forms
         private MetroThemeStyle metroTheme = MetroThemeStyle.Light;
 
         [Category(MetroDefaults.PropertyCategory.Appearance)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public MetroThemeStyle Theme
         {
             get
@@ -106,6 +108,7 @@ namespace MetroFramework.Forms
 
         private MetroStyleManager metroStyleManager = null;
         [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public MetroStyleManager StyleManager
         {
             get { return metroStyleManager; }
@@ -119,6 +122,7 @@ namespace MetroFramework.Forms
         private MetroFormTextAlign textAlign = MetroFormTextAlign.Left;
         [Browsable(true)]
         [Category(MetroDefaults.PropertyCategory.Appearance)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public MetroFormTextAlign TextAlign
         {
             get { return textAlign; }
@@ -143,12 +147,14 @@ namespace MetroFramework.Forms
 
         private bool isMovable = true;
         [Category(MetroDefaults.PropertyCategory.Appearance)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool Movable
         {
             get { return isMovable; }
             set { isMovable = value; }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public new Padding Padding
         {
             get { return base.Padding; }
@@ -184,6 +190,7 @@ namespace MetroFramework.Forms
 
         private bool isResizable = true;
         [Category(MetroDefaults.PropertyCategory.Appearance)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool Resizable
         {
             get { return isResizable; }
@@ -200,12 +207,14 @@ namespace MetroFramework.Forms
         }
 
         [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public new FormBorderStyle FormBorderStyle
         {
             get { return base.FormBorderStyle; }
             set { base.FormBorderStyle = value; }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public new Form MdiParent
         {
             get { return base.MdiParent; }
@@ -240,6 +249,7 @@ namespace MetroFramework.Forms
 
         private Padding backImagePadding;
         [Category(MetroDefaults.PropertyCategory.Appearance)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Padding BackImagePadding
         {
             get { return backImagePadding; }
@@ -252,6 +262,7 @@ namespace MetroFramework.Forms
 
         private int backMaxSize;
         [Category(MetroDefaults.PropertyCategory.Appearance)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int BackMaxSize
         {
             get { return backMaxSize; }
@@ -439,6 +450,7 @@ namespace MetroFramework.Forms
 
         #region Management Methods
 
+        [Obsolete]
         protected override void OnClosing(CancelEventArgs e)
         {
             if (!(this is MetroTaskWindow))
@@ -447,6 +459,7 @@ namespace MetroFramework.Forms
             base.OnClosing(e);
         }
 
+        [Obsolete]
         protected override void OnClosed(EventArgs e)
         {
             if (Owner != null) Owner = null;

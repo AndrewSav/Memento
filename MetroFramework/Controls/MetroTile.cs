@@ -167,6 +167,7 @@ namespace MetroFramework.Controls
 
         private Control activeControl = null;
         [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Control ActiveControl
         {
             get { return activeControl; }

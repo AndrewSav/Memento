@@ -1,1 +1,6 @@
-Add commnad line for the game executable
+Add commnad line and environment variables for the game executable
+Two instances at the same time are not working well
+With too many games the dropdown gets unwieldy
+Add alternative save path for games with big saves that we do not wont to sync via google drive so that we do not blow up our quota
+Multiple profiles for the same game
+Detection and better handling of huge copies

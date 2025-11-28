@@ -252,6 +252,7 @@ namespace MetroFramework.Controls
 
         private int mouseWheelBarPartitions = 10;
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int MouseWheelBarPartitions
         {
             get { return mouseWheelBarPartitions; }
@@ -281,6 +282,7 @@ namespace MetroFramework.Controls
         }
 
         [Category(MetroDefaults.PropertyCategory.Appearance)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int ScrollbarSize
         {
             get { return Orientation == MetroScrollOrientation.Vertical ? Width : Height; }
@@ -305,6 +307,7 @@ namespace MetroFramework.Controls
         private MetroScrollOrientation metroOrientation = MetroScrollOrientation.Vertical;
         private ScrollOrientation scrollOrientation = ScrollOrientation.VerticalScroll;
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public MetroScrollOrientation Orientation
         {
             get { return metroOrientation; }
@@ -338,6 +341,7 @@ namespace MetroFramework.Controls
         private int largeChange = 10;
         private int curValue;
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int Minimum
         {
             get { return minimum; }
@@ -374,6 +378,7 @@ namespace MetroFramework.Controls
             }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int Maximum
         {
             get { return maximum; }

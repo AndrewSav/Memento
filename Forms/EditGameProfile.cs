@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Memento.Models;
+using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
-using Memento.Models;
+using System.ComponentModel;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace Memento.Forms
 {
@@ -13,6 +14,7 @@ namespace Memento.Forms
             InitializeComponent();
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public GameProfile Profile
         {
             get
@@ -63,8 +65,11 @@ namespace Memento.Forms
             }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string InitialProfileName { get; set; }
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public IEnumerable<string> ExistingProfileNames { get; set; }
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public IEnumerable<string> ExistingBackupFolders { get; set; }
         public bool Deleted { get; private set; }
         public bool Updated { get; private set; }
