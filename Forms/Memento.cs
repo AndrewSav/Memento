@@ -29,6 +29,20 @@ namespace Memento.Forms
         {
             InitializeComponent();
         }
+        
+        public void BringToTop()
+        {
+            if (WindowState == FormWindowState.Minimized)
+            {
+                WindowState = FormWindowState.Normal;
+            }
+            // get our current "TopMost" value (ours will always be false though)
+            bool top = TopMost;
+            // make our form jump to the top of everything
+            TopMost = true;
+            // set it back to whatever it was
+            TopMost = top;
+        }
 
         private void Memento_Load(object sender, EventArgs e)
         {

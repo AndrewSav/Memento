@@ -126,6 +126,8 @@ To create a release via GitHub actions update version in `Memento.csproj`and cre
 
 ## Change Log
 
+* 1.7.0
+  * Enforce single instance, since multiple instances step on each other toes
 * 1.6.5
   * Another UI scaling fix
   * Updated to .net 10
